@@ -32,7 +32,7 @@ void Thread::execute(void *arg) {
     while(!isStopped()) {
 
     	GREEN();
-        usleep(500000);
+        sleep(1);
     	YELLOW();
         usleep(500000);
     	RED();
