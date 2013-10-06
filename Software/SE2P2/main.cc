@@ -37,11 +37,15 @@ int main(int argc, char *argv[]) {
 	// Initialisierung der Digitalen IO Karte
 	out8(DIGITAL_CARD_CONTROL, 0x8A);
 
+	
+	//Neues Objekt der Klasse Thread anlegen
 	Thread thread;
+	//Thread starten (void execute() wird aufgerufen)
 	thread.start(NULL);
 
 	sleep(10);
 
+	//Thread beenden (void shutdown() wird aufgerufen)
 	thread.stop();
 	thread.join();
 
