@@ -1,3 +1,13 @@
+/*
+ * Thread.cpp
+ *
+ *  Created on: 02.10.2013
+ *      Author: Jannik Schick
+                Philipp Kloth
+                Rutkay Küpelikilinc
+                Natalia Duske
+ */
+
 #include <cstdlib>
 #include <iostream>
 #include <unistd.h>
@@ -36,7 +46,7 @@ int main(int argc, char *argv[]) {
 	thread.join();
 
 #ifdef SIMULATION
-	IOaccess_close(); // Schlie�e die Verbindung zur Simulation
+	IOaccess_close(); // Schließe die Verbindung zur Simulation
 #endif
 	return EXIT_SUCCESS;
 }

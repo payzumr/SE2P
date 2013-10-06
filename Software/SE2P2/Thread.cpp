@@ -2,7 +2,10 @@
  * Thread.cpp
  *
  *  Created on: 02.10.2013
- *      Author: Jannik
+ *      Author: Jannik Schick
+                Philipp Kloth
+                Rutkay Küpelikilinc
+                Natalia Duske
  */
 
 #include "Thread.h"
