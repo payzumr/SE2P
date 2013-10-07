@@ -2,10 +2,10 @@
  * Thread.cpp
  *
  *  Created on: 02.10.2013
- *      Author: Jannik Schick
-                Philipp Kloth
-                Rutkay Küpelikilinc
-                Natalia Duske
+ *      Author: Jannik Schick (2063265)
+                Philipp Kloth (2081738)
+                Rutkay Küpelikilinc (2081831)
+                Natalia Duske (2063265)
  */
 
 #include "Thread.h"
@@ -36,11 +36,11 @@ void Thread::shutdown() {
 void Thread::execute(void *arg) {
     while(!isStopped()) {
 
-    	GREEN(); // Gruen lechtet auf - geht aus (im Wechsel)
+    	GREEN(); // Gruen lechtet auf
         sleep(1); // 1 Sekunde warten
-    	YELLOW(); // Gelb leuchtet auf - geht aus (im Wechsel)
+    	YELLOW(); // Gelb leuchtet auf
         usleep(500000); // 0,5 Sekunden warten
-    	RED(); // Rot leuchtet auf - geht aus (im Wechsel) 
+    	RED(); // Rot leuchtet auf
         usleep(500000); // 0,5 Sekunden warten
     }
 }
