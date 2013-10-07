@@ -2,15 +2,15 @@
  * Thread.cpp
  *
  *  Created on: 02.10.2013
- *      Author: Jannik Schick
-                Philipp Kloth
-                Rutkay Küpelikilinc
-                Natalia Duske
+ *      Author: Jannik Schick (2063265)
+                Philipp Kloth (2081738)
+                Rutkay Küpelikilinc (2081831)
+                Natalia Duske (2063265)
  */
 
 #include <cstdlib>
 #include <iostream>
-#include <unistd.h>
+#include <unistd.h> //für sleep() und usleep
 #include "IOMakros.h"
 #include "HWaccess.h"
 
@@ -26,8 +26,6 @@ int main(int argc, char *argv[]) {
 	IOaccess_open(); // Baue die Verbindung zur Simulation auf
 #endif
 
-	// Simpler Test des HW Zugriffs ohne Klassen, Pattern etc.
-	// Reicht nicht fuer den ersten Meilenstein aus
 
 	// Zugriffsrechte fuer den Zugriff auf die HW holen
 	if (-1 == ThreadCtl(_NTO_TCTL_IO, 0)) {
@@ -37,11 +35,15 @@ int main(int argc, char *argv[]) {
 	// Initialisierung der Digitalen IO Karte
 	out8(DIGITAL_CARD_CONTROL, 0x8A);
 
+	
+	//Neues Objekt der Klasse Thread anlegen
 	Thread thread;
+	//Thread starten (void execute() wird aufgerufen)
 	thread.start(NULL);
 
 	sleep(10);
 
+	//Thread beenden (void shutdown() wird aufgerufen)
 	thread.stop();
 	thread.join();
 

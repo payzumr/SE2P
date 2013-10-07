@@ -2,10 +2,10 @@
  * Thread.cpp
  *
  *  Created on: 02.10.2013
- *      Author: Jannik Schick
-                Philipp Kloth
-                Rutkay Küpelikilinc
-                Natalia Duske
+ *      Author: Jannik Schick (2063265)
+                Philipp Kloth (2081738)
+                Rutkay Küpelikilinc (2081831)
+                Natalia Duske (2063265)
  */
 
 #ifndef THREAD_H_
@@ -16,13 +16,16 @@
 
 namespace thread {
 
+//Klasse Thread abgeleitet von HAWThread + Definitionen
+
 class Thread: public HAWThread {
 public:
 	Thread();
 	virtual ~Thread();
 
-    virtual void execute(void*arg);
-    virtual void shutdown();
+	//Die Methoden werden von HAWThread gefordert
+    virtual void execute(void*arg); // Was soll gemacht werden während der Thread läuft?
+    virtual void shutdown(); // Was soll gemacht werden wenn der Thread beendet wird?
 
 };
 
