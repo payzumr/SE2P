@@ -2,10 +2,10 @@
  * Thread.cpp
  *
  *  Created on: 02.10.2013
- *      Author: Jannik Schick
-                Philipp Kloth
-                Rutkay Küpelikilinc
-                Natalia Duske
+ *      Author: Jannik Schick (2063265)
+                Philipp Kloth (2081738)
+                Rutkay Küpelikilinc (2081831)
+                Natalia Duske (2063265)
  */
 
 
