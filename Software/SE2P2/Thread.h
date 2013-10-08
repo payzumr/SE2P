@@ -4,13 +4,13 @@
  *  Created on: 02.10.2013
  *      Author: Jannik Schick (2063265)
                 Philipp Kloth (2081738)
-                Rutkay Küpelikilinc (2081831)
+                Rutkay Kuepelikilinc (2081831)
                 Natalia Duske (2063265)
  */
 
 #ifndef THREAD_H_
 #define THREAD_H_
-
+#define ONE_SEC 1
 
 #include "HAWThread.h"
 
@@ -24,8 +24,8 @@ public:
 	virtual ~Thread();
 
 	//Die Methoden werden von HAWThread gefordert
-    virtual void execute(void*arg); // Was soll gemacht werden während der Thread läuft?
-    virtual void shutdown(); // Was soll gemacht werden wenn der Thread beendet wird?
+    virtual void execute(void*arg); 
+    virtual void shutdown(); 
 
 };
 
