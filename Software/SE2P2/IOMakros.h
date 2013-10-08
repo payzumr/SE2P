@@ -4,7 +4,7 @@
  *  Created on: 02.10.2013
  *      Author: Jannik Schick (2063265)
                 Philipp Kloth (2081738)
-                Rutkay Küpelikilinc (2081831)
+                Rutkay Kuepelikilinc (2081831)
                 Natalia Duske (2063265)
  */
 
