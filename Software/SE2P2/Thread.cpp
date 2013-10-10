@@ -12,9 +12,7 @@
 #include <iostream>
 #include <unistd.h>
 #include "HWaccess.h"
-#include "IOMakros.h"
-#include "Lights.h"
-#include "Switch.h"
+#include "HAL.h"
 
 using namespace std;
 
@@ -36,24 +34,25 @@ void Thread::shutdown() {
 }
 
 void Thread::execute(void *arg) {
-	Lights* lights = Lights::getInstance();
-	Switch* swi = Switch::getInstance();
+	HAL* hal = HAL::getInstance();
 	while (!isStopped()) {
-		swi->switchOpen();
-		lights->greenOn();
+		hal->switchOpen();
+		hal->greenOn();
 		sleep(1);
-		lights->yellowOn();
+		hal->yellowOn();
 		sleep(1);
-		lights->redOn();
+		hal->redOn();
+		sleep(3);
+		hal->engine_rigth();
 		sleep(1);
-		lights->greenOff();
+		hal->greenOff();
 		sleep(1);
-		lights->yellowOff();
+		hal->yellowOff();
 		sleep(1);
-		lights->redOff();
+		hal->redOff();
 		sleep(1);
 
-		swi->switchClose();
+		hal->switchClose();
 		sleep(1);
 	}
 }
