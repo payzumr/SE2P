@@ -3,9 +3,9 @@
  *
  *  Created on: 02.10.2013
  *      Author: Jannik Schick (2063265)
-                Philipp Kloth (2081738)
-                Rutkay Kuepelikilinc (2081831)
-                Natalia Duske (2063265)
+ *              Philipp Kloth (2081738)
+ *              Rutkay Kuepelikilinc (2081831)
+ *              Natalia Duske (2063265)
  */
 
 #include "Thread.h"
@@ -13,6 +13,8 @@
 #include <unistd.h>
 #include "HWaccess.h"
 #include "IOMakros.h"
+#include "Lights.h"
+#include "Switch.h"
 
 using namespace std;
 
@@ -30,19 +32,30 @@ Thread::~Thread() {
 }
 
 void Thread::shutdown() {
-    cout << "Shutting down..." << endl;
+	cout << "Shutting down..." << endl;
 }
 
 void Thread::execute(void *arg) {
-    while(!isStopped()) {
+	Lights* lights = Lights::getInstance();
+	Switch* swi = Switch::getInstance();
+	while (!isStopped()) {
+		swi->switchOpen();
+		lights->greenOn();
+		sleep(1);
+		lights->yellowOn();
+		sleep(1);
+		lights->redOn();
+		sleep(1);
+		lights->greenOff();
+		sleep(1);
+		lights->yellowOff();
+		sleep(1);
+		lights->redOff();
+		sleep(1);
 
-    	GREEN(); 
-        sleep(ONE_SEC); 
-    	YELLOW(); 
-        sleep(ONE_SEC); 
-    	RED(); 
-        sleep(ONE_SEC); 
-    }
+		swi->switchClose();
+		sleep(1);
+	}
 }
 
 }
