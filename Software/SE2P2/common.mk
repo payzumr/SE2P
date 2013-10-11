@@ -20,7 +20,8 @@ LDFLAGS+=-lang-c++
 VFLAG_g=-gstabs+
 
 #===== EXTRA_SRCVPATH - a space-separated list of directories to search for source files.
-EXTRA_SRCVPATH+=$(PROJECT_ROOT)
+EXTRA_SRCVPATH+=$(PROJECT_ROOT)/HAL $(PROJECT_ROOT)/HAW  \
+	$(PROJECT_ROOT)/Mutex
 
 #===== LIBS - a space-separated list of library items to be included in the link.
 LIBS+=ioaccess

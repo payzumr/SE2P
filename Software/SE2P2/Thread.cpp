@@ -12,13 +12,12 @@
 #include <iostream>
 #include <unistd.h>
 #include "HWaccess.h"
-#include "IOMakros.h"
-#include "Lights.h"
-#include "Switch.h"
+#include "HAL.h"
 
 using namespace std;
 
 namespace thread {
+HAL* hal = HAL::getInstance();
 
 //Default Konstruktor der Klasse Thread
 Thread::Thread() {
@@ -32,29 +31,44 @@ Thread::~Thread() {
 }
 
 void Thread::shutdown() {
+
 	cout << "Shutting down..." << endl;
+	hal->engine_stop();
+	hal->greenOn();
+
 }
 
 void Thread::execute(void *arg) {
-	Lights* lights = Lights::getInstance();
-	Switch* swi = Switch::getInstance();
-	while (!isStopped()) {
-		swi->switchOpen();
-		lights->greenOn();
-		sleep(1);
-		lights->yellowOn();
-		sleep(1);
-		lights->redOn();
-		sleep(1);
-		lights->greenOff();
-		sleep(1);
-		lights->yellowOff();
-		sleep(1);
-		lights->redOff();
-		sleep(1);
 
-		swi->switchClose();
-		sleep(1);
+	while (!isStopped()) {
+		hal->greenOn();
+		sleep(2);
+		hal->greenOff();
+		sleep(2);
+		hal->yellowOn();
+		sleep(2);
+		hal->yellowOff();
+		sleep(2);
+		hal->redOn();
+		sleep(2);
+		hal->redOff();
+		sleep(2);
+		hal->switchOpen();
+		sleep(2);
+		hal->switchClose();
+		sleep(2);
+		hal->engine_rigth();
+		sleep(2);
+		hal->engine_stop();
+		sleep(2);
+		hal->engine_left();
+		sleep(2);
+		hal->engine_start();
+		sleep(2);
+		hal->engine_slowON();
+		sleep(2);
+		hal->engine_slowOFF();
+		sleep(2);
 	}
 }
 

@@ -11,8 +11,8 @@
 #include <cstdlib>
 #include <iostream>
 #include <unistd.h> //fuer sleep() und usleep
-#include "IOMakros.h"
 #include "HWaccess.h"
+#include "ioaccess.h"
 
 #include "Thread.h"
 
@@ -32,8 +32,6 @@ int main(int argc, char *argv[]) {
 		perror("ThreadCtl access failed\n");
 		return -1;
 	}
-	// Initialisierung der Digitalen IO Karte
-	out8(DIGITAL_CARD_CONTROL, 0x8A);
 
 	
 	//Neues Objekt der Klasse Thread anlegen
@@ -41,7 +39,7 @@ int main(int argc, char *argv[]) {
 	//Thread starten (void execute() wird aufgerufen)
 	thread.start(NULL);
 
-	sleep(10);
+	sleep(30);
 
 	//Thread beenden (void shutdown() wird aufgerufen)
 	thread.stop();
