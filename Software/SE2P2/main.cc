@@ -39,7 +39,11 @@ int main(int argc, char *argv[]) {
 	//Thread starten (void execute() wird aufgerufen)
 	thread.start(NULL);
 
+<<<<<<< HEAD
 	sleep(30);
+=======
+	sleep(20);
+>>>>>>> c5d71c516b725ffc56b25a2ff91ed05b1dc5625b
 
 	//Thread beenden (void shutdown() wird aufgerufen)
 	thread.stop();

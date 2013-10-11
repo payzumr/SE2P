@@ -39,6 +39,7 @@ void Thread::shutdown() {
 }
 
 void Thread::execute(void *arg) {
+<<<<<<< HEAD
 
 	while (!isStopped()) {
 		hal->greenOn();
@@ -69,6 +70,28 @@ void Thread::execute(void *arg) {
 		sleep(2);
 		hal->engine_slowOFF();
 		sleep(2);
+=======
+	HAL* hal = HAL::getInstance();
+	while (!isStopped()) {
+		hal->switchOpen();
+		hal->greenOn();
+		sleep(1);
+		hal->yellowOn();
+		sleep(1);
+		hal->redOn();
+		sleep(3);
+		hal->engine_rigth();
+		sleep(1);
+		hal->greenOff();
+		sleep(1);
+		hal->yellowOff();
+		sleep(1);
+		hal->redOff();
+		sleep(1);
+
+		hal->switchClose();
+		sleep(1);
+>>>>>>> c5d71c516b725ffc56b25a2ff91ed05b1dc5625b
 	}
 }
 

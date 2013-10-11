@@ -105,20 +105,30 @@ void HAL::greenOff() {
 void HAL::engine_rigth() {
 	HALmutex->lock();
 	uint8_t val = in8(DIO_BASE + DIO_OFFS_A);
+<<<<<<< HEAD
 	out8(DIO_BASE + DIO_OFFS_A, val & ~BIT_3);
 	val = in8(DIO_BASE + DIO_OFFS_A);
 	out8(DIO_BASE + DIO_OFFS_A, val & ~BIT_1);
 	val = in8(DIO_BASE + DIO_OFFS_A);
+=======
+	out8(DIO_BASE + DIO_OFFS_A, val & ~BIT_1);
+	//val = in8(DIO_BASE + DIO_OFFS_A);
+>>>>>>> c5d71c516b725ffc56b25a2ff91ed05b1dc5625b
 	out8(DIO_BASE + DIO_OFFS_A, val | BIT_0);
 	HALmutex->unlock();
 }
 void HAL::engine_left() {
 	HALmutex->lock();
 	uint8_t val = in8(DIO_BASE + DIO_OFFS_A);
+<<<<<<< HEAD
 	out8(DIO_BASE + DIO_OFFS_A, val & ~BIT_3);
 	 val = in8(DIO_BASE + DIO_OFFS_A);
 	out8(DIO_BASE + DIO_OFFS_A, val & ~BIT_0);
 	val = in8(DIO_BASE + DIO_OFFS_A);
+=======
+	out8(DIO_BASE + DIO_OFFS_A, val & ~BIT_0);
+	//val = in8(DIO_BASE + DIO_OFFS_A);
+>>>>>>> c5d71c516b725ffc56b25a2ff91ed05b1dc5625b
 	out8(DIO_BASE + DIO_OFFS_A, val | BIT_1);
 	HALmutex->unlock();
 }
@@ -140,6 +150,7 @@ void HAL::engine_stop() {
 	out8(DIO_BASE + DIO_OFFS_A, val | BIT_3);
 	HALmutex->unlock();
 }
+<<<<<<< HEAD
 void HAL::engine_start() {
 	HALmutex->lock();
 	uint8_t val = in8(DIO_BASE + DIO_OFFS_A);
@@ -148,4 +159,6 @@ void HAL::engine_start() {
 }
 
 
+=======
+>>>>>>> c5d71c516b725ffc56b25a2ff91ed05b1dc5625b
 

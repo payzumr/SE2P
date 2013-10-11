@@ -3,8 +3,13 @@
 
 <cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
 <storageModule moduleId="org.eclipse.cdt.core.settings">
+<<<<<<< HEAD
 <cconfiguration id="org.eclipse.cdt.core.default.config.1401733351">
 <storageModule buildSystemId="org.eclipse.cdt.core.defaultConfigDataProvider" id="org.eclipse.cdt.core.default.config.1401733351" moduleId="org.eclipse.cdt.core.settings" name="Configuration">
+=======
+<cconfiguration id="org.eclipse.cdt.core.default.config.2121983497">
+<storageModule buildSystemId="org.eclipse.cdt.core.defaultConfigDataProvider" id="org.eclipse.cdt.core.default.config.2121983497" moduleId="org.eclipse.cdt.core.settings" name="Configuration">
+>>>>>>> c5d71c516b725ffc56b25a2ff91ed05b1dc5625b
 <externalSettings/>
 <extensions>
 <extension id="com.qnx.tools.ide.qde.core.QDEBynaryParser" point="org.eclipse.cdt.core.BinaryParser"/>
