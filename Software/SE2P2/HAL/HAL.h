@@ -38,11 +38,9 @@ public:
     void engine_rigth();
     void engine_slowON();
     void engine_slowOFF();
+    bool slowIsOn();
     void engine_stop();
-<<<<<<< HEAD
     void engine_start();
-=======
->>>>>>> c5d71c516b725ffc56b25a2ff91ed05b1dc5625b
 
     //Switch
 	void switchOpen();
