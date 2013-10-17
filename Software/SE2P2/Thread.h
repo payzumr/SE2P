@@ -24,7 +24,7 @@ public:
 	virtual ~Thread();
 
 	//Die Methoden werden von HAWThread gefordert
-    virtual void execute(void*arg); 
+    virtual void execute(void*arg);
     virtual void shutdown(); 
 
 };
