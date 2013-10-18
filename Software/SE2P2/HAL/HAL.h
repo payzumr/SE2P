@@ -38,7 +38,7 @@ public:
     void engine_rigth();
     void engine_slowON();
     void engine_slowOFF();
-    bool slowIsOn();
+    bool isON(int Bit);
     void engine_stop();
     void engine_start();
 
