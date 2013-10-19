@@ -26,25 +26,18 @@ public:
 	static HAL* getInstance();
 
 	//lights
-	void redOn();
-	void redOff();
-	void yellowOn();
-	void yellowOff();
-	void greenOn();
-	void greenOff();
+	void redLigths(bool state);
+	void yellowLigths(bool state);
+	void greenLigths(bool state);
 
 	//conveyer
     void engine_left();
     void engine_rigth();
-    void engine_slowON();
-    void engine_slowOFF();
-    bool isON(int Bit);
+    void engine_slow(bool state);
     void engine_stop();
     void engine_start();
 
     //Switch
-	void switchOpen();
-	void switchClose();
+	void switchOnOff(bool state);
 };
-
 #endif /* HAL_H_ */

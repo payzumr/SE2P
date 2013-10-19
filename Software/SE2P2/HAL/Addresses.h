@@ -26,4 +26,7 @@
 #define BIT_6 0x40
 #define BIT_7 0x80
 
+#define ON true
+#define OFF false
+
 #endif /* ADDRESSES_H_ */
