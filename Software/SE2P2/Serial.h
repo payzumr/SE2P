@@ -28,7 +28,7 @@ public:
 	int open_serial(char* device);
 	void close_serial();
 	ssize_t write_serial(void* buf, size_t nbytes);
-	int read_serial(void* buf, int maxLen, int minLen);
+	int read_serial(void* buf, int length);
 
 };
 
