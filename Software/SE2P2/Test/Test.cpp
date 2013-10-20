@@ -1,5 +1,5 @@
 /*
- * ComponentTest.cpp
+ * Test.cpp
  *
  *  Created on: 17.10.2013
  *      Author: Jannik Schick (2063265)
@@ -10,25 +10,27 @@
 
 
 #include "Thread.h"
-#include "ComponentTest.h"
+#include "Test.h"
 #include <iostream>
 #include <unistd.h>
 #include "HWaccess.h"
 #include "Addresses.h"
 
 #define TEST_MESSAGES
+//#define READ
+#define WRITE
 
-ComponentTest::ComponentTest() {
+Test::Test() {
 	// TODO Auto-generated constructor stub
 
 }
 
-ComponentTest::~ComponentTest() {
+Test::~Test() {
 	// TODO Auto-generated destructor stub
 }
 
 
-void ComponentTest::StartTest(HAL* hal) {
+void Test::componentTest(HAL* hal) {
 		hal->greenLigths(ON);
 		#ifdef TEST_MESSAGES
 		cout<<"green on"<<endl;
@@ -101,4 +103,22 @@ void ComponentTest::StartTest(HAL* hal) {
 		#endif
 		sleep(1);
 	}
+
+void Test::serialTest(Serial* serial){
+
+	serial->open_serial("dev/Serial1");
+#ifdef READ
+	char* msgIn[20];
+	serial->read_serial(msgIn, sizeof(msgIn));
+	printf("Nachricht: %s", msgIn);
+#endif
+
+#ifdef WRITE
+	char* msgOut = "Hallo Maschine";
+	serial->write_serial(msgOut, sizeof(msgOut));
+#endif
+
+	serial->close_serial();
+}
+
 

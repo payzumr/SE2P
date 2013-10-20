@@ -13,7 +13,8 @@
 #include <unistd.h>
 #include "HWaccess.h"
 #include "HAL.h"
-#include "ComponentTest.h"
+#include "Test.h"
+#include "Serial.h"
 
 using namespace std;
 
@@ -39,10 +40,12 @@ void Thread::shutdown() {
 
 void Thread::execute(void *arg) {
 	HAL* hal = HAL::getInstance();
-	ComponentTest componenttest;
+	Serial* serial = Serial::getInstance();
+	Test test;
 
 	while(!isStopped()){
-		componenttest.StartTest(hal);
+		test.componentTest(hal);
+		test.serialTest(serial);
 	}
 
 }

@@ -12,13 +12,30 @@
 
 int fd;
 
+Serial* Serial::instance = NULL;
+
 Serial::Serial() {
 	// TODO Auto-generated constructor stub
 
 }
 
 Serial::~Serial() {
+	delete instance;
+	instance = NULL;
 	// TODO Auto-generated destructor stub
+}
+
+Serial* Serial::getInstance() {
+
+	// Zugriffsrechte fuer den Zugriff auf die HW holen
+	if (-1 == ThreadCtl(_NTO_TCTL_IO, 0)) {
+		perror("ThreadCtl access failed\n");
+		return NULL;
+	}
+	if (instance == NULL) {
+		instance = new Serial();
+	}
+	return instance;
 }
 	int Serial::open_serial(char* device) {
 		// O_NOCTTY:
