@@ -20,10 +20,12 @@
 
 class Serial {
 private:
+	static Serial* instance;
 	int fd;//filedescriptor->schnittstelle
-public:
 	Serial();
-	virtual ~Serial();
+	~Serial();
+public:
+	static Serial* getInstance();
 
 	int open_serial(char* device);
 	void close_serial();
