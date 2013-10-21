@@ -31,82 +31,89 @@ Test::~Test() {
 
 
 void Test::componentTest(HAL* hal) {
-		hal->greenLigths(ON);
-		#ifdef TEST_MESSAGES
-		cout<<"green on"<<endl;
-		#endif
-		sleep(1);
-		hal->greenLigths(OFF);
-		#ifdef TEST_MESSAGES
-		cout<<"green off"<<endl;
-		#endif
-		sleep(1);
-		hal->yellowLigths(ON);
-		#ifdef TEST_MESSAGES
-		cout<<"yellow on"<<endl;
-		#endif
-		sleep(1);
-		hal->yellowLigths(OFF);
-		#ifdef TEST_MESSAGES
-		cout<<"yellow off"<<endl;
-		#endif
-		sleep(1);
-		hal->redLigths(ON);
-		#ifdef TEST_MESSAGES
-		cout<<"red on"<<endl;
-		#endif
-		sleep(1);
-		hal->redLigths(OFF);
-		#ifdef TEST_MESSAGES
-		cout<<"red off"<<endl;
-		#endif
-		sleep(1);
-		hal->switchOnOff(ON);
-		#ifdef TEST_MESSAGES
-		cout<<"switch open"<<endl;
-		#endif
-		sleep(1);
-		hal->switchOnOff(OFF);
-		#ifdef TEST_MESSAGES
-		cout<<"switch close"<<endl;
-		#endif
-		sleep(1);
-		hal->engine_rigth();
-		#ifdef TEST_MESSAGES
-		cout<<"engine right"<<endl;
-		#endif
-		sleep(1);
-		sleep(1);
-		hal->engine_left();
-		#ifdef TEST_MESSAGES
-		cout<<"engine left"<<endl;
-		#endif
-		sleep(1);
-		hal->engine_stop();
-		#ifdef TEST_MESSAGES
-		cout<<"engine stop"<<endl;
-		#endif
-		sleep(1);
-		hal->engine_start();
-		#ifdef TEST_MESSAGES
-		cout<<"engine start"<<endl;
-		#endif
-		sleep(1);
-		hal->engine_slow(ON);
-		#ifdef TEST_MESSAGES
-		cout<<"engine slow on"<<endl;
-		#endif
-		sleep(1);
-		hal->engine_slow(OFF);
-		#ifdef TEST_MESSAGES
-		cout<<"engine slow off"<<endl;
-		#endif
-		sleep(1);
-	}
+	hal->greenLigths(ON);
+#ifdef TEST_MESSAGES
+	cout << "green on" << endl;
+#endif
+	sleep(2);
+	hal->greenLigths(OFF);
+#ifdef TEST_MESSAGES
+	cout << "green off" << endl;
+#endif
+	sleep(2);
+	hal->yellowLigths(ON);
+#ifdef TEST_MESSAGES
+	cout << "yellow on" << endl;
+#endif
+	sleep(2);
+	hal->yellowLigths(OFF);
+#ifdef TEST_MESSAGES
+	cout << "yellow off" << endl;
+#endif
+	sleep(2);
+	hal->redLigths(ON);
+#ifdef TEST_MESSAGES
+	cout << "red on" << endl;
+#endif
+	sleep(2);
+	hal->redLigths(OFF);
+#ifdef TEST_MESSAGES
+	cout << "red off" << endl;
+#endif
+	sleep(2);
+	hal->switchOnOff(ON);
+#ifdef TEST_MESSAGES
+	cout << "switch open" << endl;
+#endif
+	sleep(2);
+	hal->switchOnOff(OFF);
+#ifdef TEST_MESSAGES
+	cout << "switch close" << endl;
+#endif
+	sleep(2);
+	hal->engine_rigth();
+#ifdef TEST_MESSAGES
+	cout << "engine right" << endl;
+#endif
+	sleep(2);
+	hal->engine_stop();
+#ifdef TEST_MESSAGES
+	cout << "engine stop" << endl;
+#endif
+	sleep(2);
+	hal->engine_start();
+#ifdef TEST_MESSAGES
+	cout << "engine start" << endl;
+#endif
+	hal->engine_left();
+#ifdef TEST_MESSAGES
+	cout << "engine left" << endl;
+#endif
+	sleep(2);
+	hal->engine_stop();
+#ifdef TEST_MESSAGES
+	cout << "engine stop" << endl;
+#endif
+	sleep(2);
+	hal->engine_start();
+#ifdef TEST_MESSAGES
+	cout << "engine start" << endl;
+#endif
+	sleep(2);
+	hal->engine_slow(ON);
+#ifdef TEST_MESSAGES
+	cout << "engine slow on" << endl;
+#endif
+	sleep(2);
+	hal->engine_slow(OFF);
+#ifdef TEST_MESSAGES
+	cout << "engine slow off" << endl;
+#endif
+	sleep(2);
+}
 
 void Test::serialTest(Serial* serial){
 
-	serial->open_serial("dev/Serial1");
 #ifdef READ
 	char* msgIn[20];
 	serial->read_serial(msgIn, sizeof(msgIn));
@@ -114,11 +121,10 @@ void Test::serialTest(Serial* serial){
 #endif
 
 #ifdef WRITE
-	char* msgOut = "Hallo Maschine";
-	serial->write_serial(msgOut, sizeof(msgOut));
+	char* msgOut = "Hallo Maschine\n";
+	serial->write_serial(msgOut, /*sizeof(msgOut)*/ 20);
 #endif
 
-	serial->close_serial();
 }
 
 
