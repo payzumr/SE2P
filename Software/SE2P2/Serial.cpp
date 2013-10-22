@@ -37,43 +37,61 @@ Serial* Serial::getInstance() {
 	}
 	return instance;
 }
-	int Serial::open_serial(char* device) {
-		// O_NOCTTY:
-		// If set, and path identifies a terminal device, the open() function
-		// doesn't cause the terminal device to become the controlling terminal for
-		// the process.
 
-		fd = open(device, O_RDWR | O_NOCTTY); // O_NOBLOCK => nicht blockierend
-		if (fd < 0) {
-			perror(device);
-			return 0;
-		}
-		return 1;
-	}
-	void Serial::close_serial() {
-		if(close(fd)<0){
-			perror("close failed");
-		}
-		fd = 0;
-	}
-	ssize_t Serial::write_serial(void* buf, size_t nbytes) {
-		ssize_t returnV;
-		returnV = write(fd, buf, nbytes);// s. open, Sendepuffer, Anzahl der zu schreibenden Bytes
-		if(returnV<0){
-			perror("write failed");
-		}
-		usleep(200000); // min. Zeit zwischen 2 Nachrichten
-		return returnV;
+/**
+ * This method opens a connection via a serial port.
+ * @param device: serial port that is connected to an other device
+ */
+int Serial::open_serial(char* device) {
+	// O_NOCTTY:
+	// If set, and path identifies a terminal device, the open() function
+	// doesn't cause the terminal device to become the controlling terminal for
+	// the process.
 
+	fd = open(device, O_RDWR | O_NOCTTY); // O_NOBLOCK => nicht blockierend
+	if (fd < 0) {
+		perror(device);
+		return 0;
 	}
-	int Serial::read_serial(void* buf, int length) {
-		int returnV;
-		returnV = readcond(fd, buf, length, length, // kein min/max
-				1, // max. 0.1 Sekunden zwischen 2 zusammengehörigen Bytes
-				0); // ohne Timeout blockieren, bis etwas gesendet wurde
-		if(returnV<0){
-					perror("read failed");
-				}
-		return returnV;
+	return 1;
+}
+/**
+ * Closes the connection to a device
+ */
+void Serial::close_serial() {
+	if (close(fd) < 0) {
+		perror("close failed");
 	}
+	fd = 0;
+}
+/**
+ * Writes data from a Buffer buf with the length nbytes to the serial port.
+ * @param 	buf: data
+ * 			nbytes: number of bytes
+ */
+ssize_t Serial::write_serial(void* buf, size_t nbytes) {
+	ssize_t returnV;
+	returnV = write(fd, buf, nbytes);// s. open, Sendepuffer, Anzahl der zu schreibenden Bytes
+	if (returnV < 0) {
+		perror("write failed");
+	}
+	usleep(200000); // min. Zeit zwischen 2 Nachrichten
+	return returnV;
+
+}
+/**
+ * Reads data to a Buffer buf with the length "length" from the serial port.
+ * @param 	buf: buffer for incoming data
+ * 			lentgh: number of bytes
+ */
+int Serial::read_serial(void* buf, int length) {
+	int returnV;
+	returnV = readcond(fd, buf, length, length, // kein min/max
+			1, // max. 0.1 Sekunden zwischen 2 zusammengehörigen Bytes
+			0); // ohne Timeout blockieren, bis etwas gesendet wurde
+	if (returnV < 0) {
+		perror("read failed");
+	}
+	return returnV;
+}
 

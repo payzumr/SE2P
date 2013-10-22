@@ -16,6 +16,8 @@
 #include "Test.h"
 #include "Serial.h"
 
+#define SLEEP_TWO_SEC 2
+
 using namespace std;
 
 namespace thread {
@@ -32,24 +34,24 @@ Thread::~Thread() {
 }
 
 void Thread::shutdown() {
-	//HAL* hal = HAL::getInstance();
+	HAL* hal = HAL::getInstance();
 	Serial* serial = Serial::getInstance();
 	cout << "Shutting down..." << endl;
-	//hal->engine_stop();
+	hal->engine_stop();
 	serial->close_serial();
 
 }
 
 void Thread::execute(void *arg) {
-	//HAL* hal = HAL::getInstance();
+	HAL* hal = HAL::getInstance();
 	Serial* serial = Serial::getInstance();
 	serial->open_serial("/dev/ser1");
 	Test test;
 
 	while(!isStopped()){
-		//test.componentTest(hal);
+		test.componentTest(hal);
 		test.serialTest(serial);
-		sleep(2);
+		sleep(SLEEP_TWO_SEC);
 	}
 
 }
