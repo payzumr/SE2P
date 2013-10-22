@@ -15,6 +15,7 @@
 #include "ioaccess.h"
 
 #include "Thread.h"
+#define TEST_TIME 25
 
 using namespace thread;
 
@@ -39,14 +40,14 @@ int main(int argc, char *argv[]) {
 	//Thread starten (void execute() wird aufgerufen)
 	thread.start(NULL);
 
-	sleep(20);
+	sleep(TEST_TIME);
 
 	//Thread beenden (void shutdown() wird aufgerufen)
 	thread.stop();
 	thread.join();
 
 #ifdef SIMULATION
-	IOaccess_close(); // Schließe die Verbindung zur Simulation
+	IOaccess_close(); // Schliesse die Verbindung zur Simulation
 #endif
 	return EXIT_SUCCESS;
 }

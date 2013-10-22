@@ -12,6 +12,7 @@
 
 int fd;
 
+Mutex* Serial::Serialmutex = new Mutex();
 Serial* Serial::instance = NULL;
 
 Serial::Serial() {
@@ -27,20 +28,23 @@ Serial::~Serial() {
 
 Serial* Serial::getInstance() {
 
-	// Zugriffsrechte fuer den Zugriff auf die HW holen
-	if (-1 == ThreadCtl(_NTO_TCTL_IO, 0)) {
-		perror("ThreadCtl access failed\n");
-		return NULL;
-	}
+	Serialmutex->lock();
 	if (instance == NULL) {
+		// Zugriffsrechte fuer den Zugriff auf die HW holen
+		if (-1 == ThreadCtl(_NTO_TCTL_IO, 0)) {
+			perror("ThreadCtl access failed\n");
+			return NULL;
+		}
 		instance = new Serial();
 	}
+	Serialmutex->unlock();
 	return instance;
 }
 
 /**
  * This method opens a connection via a serial port.
  * @param device: serial port that is connected to an other device
+ * @return Filedeskriptor
  */
 int Serial::open_serial(char* device) {
 	// O_NOCTTY:
@@ -49,11 +53,8 @@ int Serial::open_serial(char* device) {
 	// the process.
 
 	fd = open(device, O_RDWR | O_NOCTTY); // O_NOBLOCK => nicht blockierend
-	if (fd < 0) {
-		perror(device);
-		return 0;
-	}
-	return 1;
+
+	return fd;
 }
 /**
  * Closes the connection to a device
@@ -85,10 +86,11 @@ ssize_t Serial::write_serial(void* buf, size_t nbytes) {
  * 			lentgh: number of bytes
  */
 int Serial::read_serial(void* buf, int length) {
-	int returnV;
-	returnV = readcond(fd, buf, length, length, // kein min/max
-			1, // max. 0.1 Sekunden zwischen 2 zusammengehörigen Bytes
-			0); // ohne Timeout blockieren, bis etwas gesendet wurde
+	int returnV = 0;
+	while(returnV < length){
+	returnV = returnV + read(fd, buf[returnV], length-returnV); //blockieren, bis etwas gesendet wurde
+
+	}
 	if (returnV < 0) {
 		perror("read failed");
 	}

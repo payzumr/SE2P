@@ -37,6 +37,11 @@ public:
     void engine_stop();
     void engine_start();
 
+    //LED's
+    void led_Q1(bool state);
+    void led_Q2(bool state);
+    void led_Start(bool state);
+    void led_Reset(bool state);
     //Switch
 	void switchOnOff(bool state);
 };

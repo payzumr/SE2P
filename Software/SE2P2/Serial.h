@@ -17,10 +17,12 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include "Mutex.h"
 
 class Serial {
 private:
 	static Serial* instance;
+	static Mutex* Serialmutex;
 	int fd;//filedescriptor->schnittstelle
 	Serial();
 	~Serial();

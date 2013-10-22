@@ -31,9 +31,51 @@ Test::Test() {
 Test::~Test() {
 	// TODO Auto-generated destructor stub
 }
-
+/**
+ *  testing all the aktoric Components, waits 1sec after each test
+ */
 
 void Test::componentTest(HAL* hal) {
+	hal->led_Q1(ON);
+#ifdef TEST_MESSAGES
+	cout << "LED Q1 on" << endl;
+#endif
+	sleep(SLEEP_ONE_SEC);
+	hal->led_Q1(OFF);
+#ifdef TEST_MESSAGES
+	cout << "LED Q1 off" << endl;
+#endif
+	sleep(SLEEP_ONE_SEC);
+	hal->led_Q2(ON);
+#ifdef TEST_MESSAGES
+	cout << "LED Q2 on" << endl;
+#endif
+	sleep(SLEEP_ONE_SEC);
+	hal->led_Q2(OFF);
+#ifdef TEST_MESSAGES
+	cout << "LED Q2 off" << endl;
+#endif
+	sleep(SLEEP_ONE_SEC);
+	hal->led_Start(ON);
+#ifdef TEST_MESSAGES
+	cout << "LED Start on" << endl;
+#endif
+	sleep(SLEEP_ONE_SEC);
+	hal->led_Start(OFF);
+#ifdef TEST_MESSAGES
+	cout << "LED Start off" << endl;
+#endif
+	sleep(SLEEP_ONE_SEC);
+	hal->led_Reset(ON);
+#ifdef TEST_MESSAGES
+	cout << "LED Reset on" << endl;
+#endif
+	sleep(SLEEP_ONE_SEC);
+	hal->led_Reset(OFF);
+#ifdef TEST_MESSAGES
+	cout << "LED Reset off" << endl;
+#endif
+	sleep(SLEEP_ONE_SEC);
 	hal->greenLigths(ON);
 #ifdef TEST_MESSAGES
 	cout << "green on" << endl;
@@ -114,7 +156,10 @@ void Test::componentTest(HAL* hal) {
 #endif
 	sleep(SLEEP_ONE_SEC);
 }
-
+/**
+ * testing to send a char to the other device
+ *
+ */
 void Test::serialTest(Serial* serial){
 
 #ifdef READ
@@ -126,6 +171,9 @@ void Test::serialTest(Serial* serial){
 #ifdef WRITE
 	char* msgOut = "Hallo Maschine\n";
 	serial->write_serial(msgOut, MSG_LENGTH);
+#ifdef TEST_MESSAGES
+	cout << "send Message" << endl;
+#endif
 #endif
 
 }

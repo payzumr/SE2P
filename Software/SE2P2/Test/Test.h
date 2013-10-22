@@ -1,11 +1,8 @@
 /*
- * Test.cpp
+ * Test.h
  *
  *  Created on: 17.10.2013
- *      Author: Jannik Schick (2063265)
- *              Philipp Kloth (2081738)
- *              Rutkay Kuepelikilinc (2081831)
- *              Natalia Duske (2063265)
+ *      Author: Rutkay
  */
 
 #ifndef TEST_H_

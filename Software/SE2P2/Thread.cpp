@@ -45,7 +45,11 @@ void Thread::shutdown() {
 void Thread::execute(void *arg) {
 	HAL* hal = HAL::getInstance();
 	Serial* serial = Serial::getInstance();
-	serial->open_serial("/dev/ser1");
+	if (serial->open_serial("/dev/ser1") < 0) {
+			perror(device);
+			return 0;
+	}
+
 	Test test;
 
 	while(!isStopped()){

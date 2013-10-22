@@ -34,14 +34,16 @@ HAL::~HAL() {
 
 HAL* HAL::getInstance() {
 
-	// Zugriffsrechte fuer den Zugriff auf die HW holen
-	if (-1 == ThreadCtl(_NTO_TCTL_IO, 0)) {
-		perror("ThreadCtl access failed\n");
-		return NULL;
-	}
+	HALmutex->lock();
 	if (instance == NULL) {
+		// Zugriffsrechte fuer den Zugriff auf die HW holen
+		if (-1 == ThreadCtl(_NTO_TCTL_IO, 0)) {
+			perror("ThreadCtl access failed\n");
+			return NULL;
+		}
 		instance = new HAL();
 	}
+	HALmutex->unlock();
 	return instance;
 }
 /**
@@ -115,6 +117,78 @@ void HAL::greenLigths(bool state){
 		HALmutex->lock();
 		uint8_t val = in8(DIO_BASE + DIO_OFFS_A);
 		out8(DIO_BASE + DIO_OFFS_A, val & ~BIT_5);
+		HALmutex->unlock();
+	}
+}
+/**
+ * This function turns the LED Q1 on or off
+ * @param true = ON
+ * 		  false = OFF
+ */
+void HAL::led_Q1(bool state){
+	if(state){
+		HALmutex->lock();
+		uint8_t val = in8(DIO_BASE + DIO_OFFS_C);
+		out8(DIO_BASE + DIO_OFFS_C, val | BIT_2);
+		HALmutex->unlock();
+	}else{
+		HALmutex->lock();
+		uint8_t val = in8(DIO_BASE + DIO_OFFS_C);
+		out8(DIO_BASE + DIO_OFFS_C, val & ~BIT_2);
+		HALmutex->unlock();
+	}
+}
+/**
+ * This function turns the LED Q2 on or off
+ * @param true = ON
+ * 		  false = OFF
+ */
+void HAL::led_Q2(bool state){
+	if(state){
+		HALmutex->lock();
+		uint8_t val = in8(DIO_BASE + DIO_OFFS_C);
+		out8(DIO_BASE + DIO_OFFS_C, val | BIT_3);
+		HALmutex->unlock();
+	}else{
+		HALmutex->lock();
+		uint8_t val = in8(DIO_BASE + DIO_OFFS_C);
+		out8(DIO_BASE + DIO_OFFS_C, val & ~BIT_3);
+		HALmutex->unlock();
+	}
+}
+/**
+ * This function turns the LED Start on or off
+ * @param true = ON
+ * 		  false = OFF
+ */
+void HAL::led_Start(bool state){
+	if(state){
+		HALmutex->lock();
+		uint8_t val = in8(DIO_BASE + DIO_OFFS_C);
+		out8(DIO_BASE + DIO_OFFS_C, val | BIT_0);
+		HALmutex->unlock();
+	}else{
+		HALmutex->lock();
+		uint8_t val = in8(DIO_BASE + DIO_OFFS_C);
+		out8(DIO_BASE + DIO_OFFS_C, val & ~BIT_0);
+		HALmutex->unlock();
+	}
+}
+/**
+ * This function turns the LED Reset on or off
+ * @param true = ON
+ * 		  false = OFF
+ */
+void HAL::led_Reset(bool state){
+	if(state){
+		HALmutex->lock();
+		uint8_t val = in8(DIO_BASE + DIO_OFFS_C);
+		out8(DIO_BASE + DIO_OFFS_C, val | BIT_1);
+		HALmutex->unlock();
+	}else{
+		HALmutex->lock();
+		uint8_t val = in8(DIO_BASE + DIO_OFFS_C);
+		out8(DIO_BASE + DIO_OFFS_C, val & ~BIT_1);
 		HALmutex->unlock();
 	}
 }
