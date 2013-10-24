@@ -20,8 +20,8 @@
 #define SLEEP_ONE_SEC 1
 
 #define TEST_MESSAGES
-//#define READ
-#define WRITE
+#define READ
+//#define WRITE
 
 Test::Test() {
 	// TODO Auto-generated constructor stub
@@ -164,8 +164,8 @@ void Test::serialTest(Serial* serial){
 
 #ifdef READ
 	char* msgIn[MSG_LENGTH];
-	serial->read_serial(msgIn, MSG_LENGTH);
-	printf("Nachricht: %s", msgIn);
+	serial->read_serial((void*)msgIn, MSG_LENGTH);
+	printf("Nachricht: %s\n", msgIn);
 #endif
 
 #ifdef WRITE

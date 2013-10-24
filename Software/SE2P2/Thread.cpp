@@ -52,9 +52,9 @@ void Thread::execute(void *arg) {
 	Test test;
 
 	while(!isStopped()){
-		test.componentTest(hal);
-		test.serialTest(serial);
-		sleep(SLEEP_TWO_SEC);
+		//test.componentTest(hal);
+		//test.serialTest(serial);
+		//sleep(10);
 	}
 
 }

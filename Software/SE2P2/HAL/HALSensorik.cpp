@@ -2,10 +2,14 @@
  * HALSensorik.cpp
  *
  *  Created on: 24.10.2013
- *      Author: Jannik
+  *      Author: Jannik Schick (2063265)
+ *              Philipp Kloth (2081738)
+ *              Rutkay Kuepelikilinc (2081831)
+ *              Natalia Duske (2063265)
  */
 
 #include "HALSensorik.h"
+#include <stdio.h>
 
 static int isr_coid;
 hal::HALSensorik* hal::HALSensorik::instance = NULL;
@@ -15,9 +19,13 @@ const struct sigevent* ISR(void* arg, int id) {
 	struct sigevent *event = (struct sigevent *) arg;
 	uint16_t val;
 	uint8_t state;
-	state = in8(DIO_BASE + OFFS_INT_STATUS) & (BIT_1 | BIT_3);//lesen
-	out8(DIO_BASE + OFFS_INT_STATUS, 0);//zuruecksetzen
+	state = in8(DIO_BASE + OFFS_INT_STATUS) & (BIT_1 | BIT_3);//read
+	out8(DIO_BASE + OFFS_INT_STATUS, 0);//reset
 
+	/**
+	 * switch case check where the bits are changend
+	 * BIT_1 for Port B and BIT_3 for Port C
+	 */
 	switch (state) {
 	case (BIT_1 | BIT_3):
 		val = (in8(DIO_BASE + DIO_OFFS_B) << 8) | (in8(DIO_BASE + DIO_OFFS_C));
@@ -39,7 +47,7 @@ const struct sigevent* ISR(void* arg, int id) {
 
 hal::HALSensorik::HALSensorik() {
 	//make sure HAL object is already created
-	hal::HALSensorik::getInstance();
+	//	hal::HALSensorik::getInstance();
 	initInterrupts();
 
 	//create channel for dispatcher
@@ -48,7 +56,7 @@ hal::HALSensorik::HALSensorik() {
 		perror("Dispatcher: ChannelCreate signalChid failed");
 		exit(EXIT_FAILURE);
 	}
-
+	//creats connection between PC Channel and Prozess
 	signalCoid = ConnectAttach(0, 0, signalChid, _NTO_SIDE_CHANNEL, 0);
 	if (signalCoid == -1) {
 		perror("Dispatcher: ConnectAttach signalCoid failed");
@@ -57,6 +65,7 @@ hal::HALSensorik::HALSensorik() {
 }
 
 hal::HALSensorik* hal::HALSensorik::getInstance() {
+	std::cout << "1huhu" << endl;
 	HAL_Smutex->lock();
 	if (instance == NULL) {
 		// Zugriffsrechte fuer den Zugriff auf die HW holen
@@ -66,7 +75,9 @@ hal::HALSensorik* hal::HALSensorik::getInstance() {
 		}
 		instance = new HALSensorik();
 	}
+	std::cout << "2huhu" << endl;
 	HAL_Smutex->unlock();
+
 	return instance;
 }
 
@@ -144,7 +155,6 @@ void hal::HALSensorik::execute(void *arg) {
 			perror("SensorCtrl: MsgReceivePulse");
 			exit(EXIT_FAILURE);
 		}
-
 		printf("|   %X   |   %2X   |", pulse.code, pulse.value.sival_int);
 		cout << endl;
 	}

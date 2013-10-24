@@ -13,11 +13,15 @@
 #include <unistd.h> //fuer sleep() und usleep
 #include "HWaccess.h"
 #include "ioaccess.h"
+#include "HALSensorik.h"
+#include <string>
 
 #include "Thread.h"
 #define TEST_TIME 25
 
 using namespace thread;
+using namespace hal;
+using namespace std;
 
 int main(int argc, char *argv[]) {
 
@@ -37,13 +41,20 @@ int main(int argc, char *argv[]) {
 	
 	//Neues Objekt der Klasse Thread anlegen
 	Thread thread;
+	HALSensorik* sens = HALSensorik::getInstance();
 	//Thread starten (void execute() wird aufgerufen)
 	thread.start(NULL);
+	sens->start(NULL);
 
-	sleep(TEST_TIME);
+	string quit;
+	do{
+		cin >> quit;
+	}while(quit != "q");
 
 	//Thread beenden (void shutdown() wird aufgerufen)
+	sens->stop();
 	thread.stop();
+	sens->join();
 	thread.join();
 
 #ifdef SIMULATION

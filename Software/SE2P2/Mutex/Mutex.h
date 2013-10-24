@@ -17,6 +17,9 @@ public:
 	~Mutex();
 	void lock();
 	void unlock();
+
+private:
+	pthread_mutex_t mutex;
 };
 
 #endif /* MUTEX_H_ */

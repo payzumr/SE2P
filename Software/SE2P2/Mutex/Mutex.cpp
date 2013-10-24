@@ -11,8 +11,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-pthread_mutex_t mutex;
-
 Mutex::Mutex() {
 	if(pthread_mutex_init(&mutex, NULL) != 0){
 		perror("Mutex init failed!\n");
