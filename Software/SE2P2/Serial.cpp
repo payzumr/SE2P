@@ -85,10 +85,10 @@ ssize_t Serial::write_serial(void* buf, size_t nbytes) {
  * @param 	buf: buffer for incoming data
  * 			lentgh: number of bytes
  */
-int Serial::read_serial(void* buf, int length) {
+int Serial::read_serial(char* buf, int length) {
 	int returnV = 0;
 	while(returnV < length){
-	returnV = returnV + read(fd, buf[returnV], length-returnV); //blockieren, bis etwas gesendet wurde
+	returnV += read(fd, buf + returnV, length-returnV); //blockieren, bis etwas gesendet wurde
 
 	}
 	if (returnV < 0) {
