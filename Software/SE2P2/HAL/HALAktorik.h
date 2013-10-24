@@ -8,22 +8,26 @@
  *              Natalia Duske (2063265)
  */
 
-#include <iostream>
 
 #ifndef HAL_H_
 #define HAL_H_
 
 #include "Mutex.h"
+#include "HWaccess.h"
+#include "Addresses.h"
+#include <unistd.h>
+#include <stdint.h>
+#include <iostream>//?????
 
-class HAL {
+class HALAktorik {
 private:
-	static HAL* instance;
+	static HALAktorik* instance;
 	static Mutex* HALmutex;
-	HAL();
-	~HAL();
+	HALAktorik();
+	~HALAktorik();
 public:
 
-	static HAL* getInstance();
+	static HALAktorik* getInstance();
 
 	//lights
 	void redLigths(bool state);

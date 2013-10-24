@@ -8,7 +8,7 @@
 #ifndef TEST_H_
 #define TEST_H_
 
-#include "HAL.h"
+#include "HALAktorik.h"
 #include "Serial.h"
 
 class Test {
@@ -17,7 +17,7 @@ public:
 	virtual ~Test();
 
 
-	virtual void componentTest(HAL* hal);
+	virtual void componentTest(HALAktorik* hal);
 	virtual void serialTest(Serial* serial);
 };
 

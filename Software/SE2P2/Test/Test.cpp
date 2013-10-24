@@ -35,7 +35,7 @@ Test::~Test() {
  *  testing all the aktoric Components, waits 1sec after each test
  */
 
-void Test::componentTest(HAL* hal) {
+void Test::componentTest(HALAktorik* hal) {
 	hal->led_Q1(ON);
 #ifdef TEST_MESSAGES
 	cout << "LED Q1 on" << endl;
