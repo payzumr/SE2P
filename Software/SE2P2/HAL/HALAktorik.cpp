@@ -8,31 +8,28 @@
  *              Natalia Duske (2063265)
  */
 
-#include "HAL.h"
-#include "HWaccess.h"
-#include "Addresses.h"
-#include <unistd.h>
-#include <stdint.h>
+#include "HALAktorik.h"
+
 
 using namespace std;
 
-Mutex* HAL::HALmutex = new Mutex();
+Mutex* HALAktorik::HALmutex = new Mutex();
 
-HAL* HAL::instance = NULL;
+HALAktorik* HALAktorik::instance = NULL;
 
-HAL::HAL() {
+HALAktorik::HALAktorik() {
 	// Initialisierung der Digitalen IO Karte
 	out8(DIO_BASE + DIO_OFFS_CTRL, 0x8A);
 	out8(DIO_BASE + DIO_OFFS_A, 0x00);
 	out8(DIO_BASE + DIO_OFFS_C, 0x00);
 }
 
-HAL::~HAL() {
+HALAktorik::~HALAktorik() {
 	delete instance;
 	instance = NULL;
 }
 
-HAL* HAL::getInstance() {
+HALAktorik* HALAktorik::getInstance() {
 
 	HALmutex->lock();
 	if (instance == NULL) {
@@ -41,7 +38,7 @@ HAL* HAL::getInstance() {
 			perror("ThreadCtl access failed\n");
 			return NULL;
 		}
-		instance = new HAL();
+		instance = new HALAktorik();
 	}
 	HALmutex->unlock();
 	return instance;
@@ -52,7 +49,7 @@ HAL* HAL::getInstance() {
  * 		   false = OFF
  */
 
-void HAL::switchOnOff(bool state){
+void HALAktorik::switchOnOff(bool state){
 	if(state){
 		HALmutex->lock();
 		uint8_t val = in8(DIO_BASE + DIO_OFFS_A);
@@ -70,7 +67,7 @@ void HAL::switchOnOff(bool state){
  * @param true = ON
  * 		  false = OFF
  */
-void HAL::redLigths(bool state){
+void HALAktorik::redLigths(bool state){
 	if(state){
 		HALmutex->lock();
 		uint8_t val = in8(DIO_BASE + DIO_OFFS_A);
@@ -88,7 +85,7 @@ void HAL::redLigths(bool state){
  * @param true = ON
  * 		  false = OFF
  */
-void HAL::yellowLigths(bool state){
+void HALAktorik::yellowLigths(bool state){
 	if(state){
 		HALmutex->lock();
 		uint8_t val = in8(DIO_BASE + DIO_OFFS_A);
@@ -107,7 +104,7 @@ void HAL::yellowLigths(bool state){
  * @param true = ON
  * 		  false = OFF
  */
-void HAL::greenLigths(bool state){
+void HALAktorik::greenLigths(bool state){
 	if(state){
 		HALmutex->lock();
 		uint8_t val = in8(DIO_BASE + DIO_OFFS_A);
@@ -125,7 +122,7 @@ void HAL::greenLigths(bool state){
  * @param true = ON
  * 		  false = OFF
  */
-void HAL::led_Q1(bool state){
+void HALAktorik::led_Q1(bool state){
 	if(state){
 		HALmutex->lock();
 		uint8_t val = in8(DIO_BASE + DIO_OFFS_C);
@@ -143,7 +140,7 @@ void HAL::led_Q1(bool state){
  * @param true = ON
  * 		  false = OFF
  */
-void HAL::led_Q2(bool state){
+void HALAktorik::led_Q2(bool state){
 	if(state){
 		HALmutex->lock();
 		uint8_t val = in8(DIO_BASE + DIO_OFFS_C);
@@ -161,7 +158,7 @@ void HAL::led_Q2(bool state){
  * @param true = ON
  * 		  false = OFF
  */
-void HAL::led_Start(bool state){
+void HALAktorik::led_Start(bool state){
 	if(state){
 		HALmutex->lock();
 		uint8_t val = in8(DIO_BASE + DIO_OFFS_C);
@@ -179,7 +176,7 @@ void HAL::led_Start(bool state){
  * @param true = ON
  * 		  false = OFF
  */
-void HAL::led_Reset(bool state){
+void HALAktorik::led_Reset(bool state){
 	if(state){
 		HALmutex->lock();
 		uint8_t val = in8(DIO_BASE + DIO_OFFS_C);
@@ -195,7 +192,7 @@ void HAL::led_Reset(bool state){
 /**
  * This function starts the engine in rigth direction
  */
-void HAL::engine_rigth() {
+void HALAktorik::engine_rigth() {
 	HALmutex->lock();
 	uint8_t val = in8(DIO_BASE + DIO_OFFS_A);
 	val = val | (BIT_0 & ~BIT_1);
@@ -205,7 +202,7 @@ void HAL::engine_rigth() {
 /**
  * This function starts the engine in left direction
  */
-void HAL::engine_left() {
+void HALAktorik::engine_left() {
 	HALmutex->lock();
 	uint8_t val = in8(DIO_BASE + DIO_OFFS_A);
 	val = val | (BIT_1 & ~BIT_0);
@@ -217,7 +214,7 @@ void HAL::engine_left() {
  * @param true = ON
  * 		  false = OFF
  */
-void HAL::engine_slow(bool state) {
+void HALAktorik::engine_slow(bool state) {
 	if(state){
 		HALmutex->lock();
 		uint8_t val = in8(DIO_BASE + DIO_OFFS_A);
@@ -233,7 +230,7 @@ void HAL::engine_slow(bool state) {
 /**
  * This function stops the engine
  */
-void HAL::engine_stop() {
+void HALAktorik::engine_stop() {
 	HALmutex->lock();
 	uint8_t val = in8(DIO_BASE + DIO_OFFS_A);
 	out8(DIO_BASE + DIO_OFFS_A, val | BIT_3);
@@ -242,7 +239,7 @@ void HAL::engine_stop() {
 /**
  * This function starts the engine
  */
-void HAL::engine_start() {
+void HALAktorik::engine_start() {
 	HALmutex->lock();
 	uint8_t val = in8(DIO_BASE + DIO_OFFS_A);
 	out8(DIO_BASE + DIO_OFFS_A, val & ~BIT_3);

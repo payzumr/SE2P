@@ -29,4 +29,17 @@
 #define ON true
 #define OFF false
 
+
+/*
+ * interrupt specific
+ */
+
+#define OFFS_INT_STATUS 0x0F
+#define PB_STATUS       0x02
+#define PC_STATUS       0x08
+
+#define OFFS_INT_CTRL   0x0B
+#define PB_CTRL         0x02
+#define PC_CTRL         0x04
+
 #endif /* ADDRESSES_H_ */
