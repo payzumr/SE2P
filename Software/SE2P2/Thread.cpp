@@ -46,8 +46,7 @@ void Thread::execute(void *arg) {
 	HAL* hal = HAL::getInstance();
 	Serial* serial = Serial::getInstance();
 	if (serial->open_serial("/dev/ser1") < 0) {
-			perror(device);
-			return 0;
+			perror("open call failed");
 	}
 
 	Test test;
