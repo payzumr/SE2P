@@ -17,6 +17,8 @@
 #include <unistd.h>
 #include <stdint.h>
 
+
+
 const struct sigevent * ISR (void *arg, int id);
 
 namespace hal {
@@ -36,6 +38,21 @@ namespace hal {
         uint8_t portBstatus;
         uint8_t portCstatus;
 
+        bool portB_0;
+        bool portB_1;
+        bool portB_2;
+        bool portB_3;
+        bool portB_4;
+        bool portB_5;
+        bool portB_6;
+        bool portB_7;
+
+        bool portC_4;
+        bool portC_5;
+        bool portC_6;
+        bool portC_7;
+
+
         HALSensorik();
 
     public:
@@ -50,6 +67,7 @@ namespace hal {
 
     private:
         void initInterrupts();
+        void printSensorChanges(int code, int val);
     };
 }
 
