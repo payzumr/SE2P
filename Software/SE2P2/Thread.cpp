@@ -11,6 +11,7 @@
 #include "Thread.h"
 #include <iostream>
 #include <unistd.h>
+#include <inttypes.h>
 #include "HWaccess.h"
 #include "HALAktorik.h"
 #include "Test.h"
