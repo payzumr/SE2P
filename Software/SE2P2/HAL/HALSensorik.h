@@ -8,7 +8,6 @@
 #ifndef HALSENSORIK_H_
 #define HALSENSORIK_H_
 
-
 #include <stdint.h>
 #include "HAWThread.h"
 #include "Mutex.h"
@@ -17,58 +16,56 @@
 #include <unistd.h>
 #include <stdint.h>
 
-
-
-const struct sigevent * ISR (void *arg, int id);
+const struct sigevent * ISR(void *arg, int id);
 
 namespace hal {
 
-    class HALSensorik: public thread::HAWThread {
-    private:
-        static HALSensorik* instance;
-    	static Mutex* HAL_Smutex;
+class HALSensorik: public thread::HAWThread {
+private:
+	static HALSensorik* instance;
+	static Mutex* HAL_Smutex;
 
-        int isrChid;
-        int interruptId;
-        struct sigevent event;
+	int isrChid;
+	int interruptId;
+	struct sigevent event;
 
-        int signalChid;
-        int signalCoid;
+	int signalChid;
+	int signalCoid;
 
-        uint8_t portBstatus;
-        uint8_t portCstatus;
+	uint8_t portBstatus;
+	uint8_t portCstatus;
 
-        bool portB_0;
-        bool portB_1;
-        bool portB_2;
-        bool portB_3;
-        bool portB_4;
-        bool portB_5;
-        bool portB_6;
-        bool portB_7;
+	bool portB_0;
+	bool portB_1;
+	bool portB_2;
+	bool portB_3;
+	bool portB_4;
+	bool portB_5;
+	bool portB_6;
+	bool portB_7;
 
-        bool portC_4;
-        bool portC_5;
-        bool portC_6;
-        bool portC_7;
+	bool portC_4;
+	bool portC_5;
+	bool portC_6;
+	bool portC_7;
 
+	HALSensorik();
 
-        HALSensorik();
+public:
+	~HALSensorik();
+	static HALSensorik* getInstance();
+	int getHeight();
 
-    public:
-        ~HALSensorik();
-        static HALSensorik* getInstance();
+	void stop(); // HAWThread: stop -> virtual
 
-        void stop(); // HAWThread: stop -> virtual
+protected:
+	virtual void execute(void* arg);
+	virtual void shutdown();
 
-    protected:
-        virtual void execute(void* arg);
-        virtual void shutdown();
-
-    private:
-        void initInterrupts();
-        void printSensorChanges(int code, int val);
-    };
+private:
+	void initInterrupts();
+	void printSensorChanges(int code, int val);
+};
 }
 
 #endif /* HALSENSORIK_H_ */

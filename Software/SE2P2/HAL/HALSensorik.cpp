@@ -175,18 +175,19 @@ void hal::HALSensorik::printSensorChanges(int code, int val) {
 		}
 		if (((val & BIT_1) == 0) && !portB_1) {
 			cout << "Werkstueck in Hoehenmessung" << endl;
+			printf("AD PORT: %d \n",getHeight());
 			portB_1 = true;
 		} else if ((val & BIT_1) && portB_1) {
 			cout << "Werkstueck nicht mehr in Hoehenmessung" << endl;
 			portB_1 = false;
 		}
-		if ((val & BIT_2) && !portB_2) {
-			cout << "Werkstueck im Toleranzbereich" << endl;
-			portB_2 = true;
-		} else if (((val & BIT_2) == 0) && portB_2) {
-			cout << "Werkstueck nicht im Toleranzbereich" << endl;
-			portB_2 = false;
-		}
+//		if ((val & BIT_2) && !portB_2) {
+//			cout << "Werkstueck im Toleranzbereich" << endl;
+//			portB_2 = true;
+//		} else if (((val & BIT_2) == 0) && portB_2) {
+//			cout << "Werkstueck nicht im Toleranzbereich" << endl;
+//			portB_2 = false;
+//		}
 		if (((val & BIT_3) == 0) && !portB_3) {
 			cout << "Werkstueck in Weiche" << endl;
 			portB_3 = true;
@@ -254,6 +255,21 @@ void hal::HALSensorik::printSensorChanges(int code, int val) {
 		}
 
 	}
-
 }
+
+	int hal::HALSensorik::getHeight(){
+		int heigth = -1;
+		int i;
+		out8(AIO_PORT_A, AIO_GET_VAL);
+		for(i = 0; 1< 50; i++){
+			if(in8(AIO_BASE) & 1<<7 ){
+				heigth = in16(AIO_PORT_A);
+				break;
+			}
+		}
+		return heigth;
+
+	}
+
+
 

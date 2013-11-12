@@ -16,6 +16,9 @@
 #define DIO_OFFS_B 0x01         // Port B offset
 #define DIO_OFFS_C 0x02         // Port C offset
 #define DIO_OFFS_CTRL 0x03      // Control register offset
+
+#define CTRL_CODE 0x10
+
 // BIT_X is set to one
 #define BIT_0 0x01
 #define BIT_1 0x02
@@ -41,5 +44,12 @@
 #define OFFS_INT_CTRL   0x0B
 #define PB_CTRL         0x02
 #define PC_CTRL         0x04
+
+//AIO Card
+#define AIO_BASE 	0x320
+#define AIO_OFFS_A 	0x02
+#define AIO_GET_VAL 0x10
+#define AIO_PORT_A 	(AIO_BASE + AIO_OFFS_A)
+
 
 #endif /* ADDRESSES_H_ */
