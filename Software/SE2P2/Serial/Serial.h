@@ -8,8 +8,8 @@
 #ifndef SERIAL_H_
 #define SERIAL_H_
 
-#include "HWaccess.h"
-#include "Addresses.h"
+#include "../HAW/HWaccess.h"
+#include "../HAL/Addresses.h"
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -17,7 +17,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include "Mutex.h"
+#include "../Mutex/Mutex.h"
 
 class Serial {
 private:

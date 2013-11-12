@@ -6,8 +6,8 @@
  */
 
 #include "Mutex.h"
-#include "HWaccess.h"
-#include "Addresses.h"
+#include "../HAW/HWaccess.h"
+#include "../HAL/Addresses.h"
 #include <stdio.h>
 #include <stdlib.h>
 

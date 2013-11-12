@@ -11,6 +11,7 @@
 #include "HALSensorik.h"
 #include <stdio.h>
 
+
 static int isr_coid;
 hal::HALSensorik* hal::HALSensorik::instance = NULL;
 Mutex* hal::HALSensorik::HAL_Smutex = new Mutex();
@@ -199,7 +200,7 @@ void hal::HALSensorik::printSensorChanges(int code, int val) {
 			cout << "Werkstueck Metall" << endl;
 			portB_4 = true;
 		} else if (((val & BIT_4) == 0) && portB_4) {
-			cout << "Werkstueck kein Metall" << endl;
+			cout << "Metallwerkstueck hat messung verlassen" << endl;
 			portB_4 = false;
 		}
 		if ((val & BIT_5) && !portB_5) {
@@ -256,6 +257,27 @@ void hal::HALSensorik::printSensorChanges(int code, int val) {
 
 	}
 }
+
+	void hal::HALSensorik::set_timer(){
+        timer_t timerid;
+        struct itimerspec timer;
+        struct sigevent   timerEvent;
+
+        /* Init Pulse and creat Timer */
+        SIGEV_PULSE_INIT (&timerEvent, timeCoId_, SIGEV_PULSE_PRIO_INHERIT, 0, 0);
+        if (timer_create (CLOCK_REALTIME, &timerEvent, &timerid) == -1) {
+            Logger(ERROR) << "Can't create Timer for Height Sensor";
+            exit (EXIT_FAILURE);
+        }
+
+        /* Fill Timerstructure */
+        timer.it_value.tv_sec = 0;
+        timer.it_value.tv_nsec = DURATION_HEIGHT_MEASUREMENT;
+        timer.it_interval.tv_sec = 0;
+        timer.it_interval.tv_nsec = 0;
+
+        timer_settime (timerid, 0, &timer, NULL);
+	}
 
 	int hal::HALSensorik::getHeight(){
 		int heigth = -1;

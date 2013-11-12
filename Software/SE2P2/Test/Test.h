@@ -8,8 +8,8 @@
 #ifndef TEST_H_
 #define TEST_H_
 
-#include "HALAktorik.h"
-#include "Serial.h"
+#include "../HAL/HALAktorik.h"
+#include "../Serial/Serial.h"
 
 class Test {
 public:

@@ -12,8 +12,8 @@
 #ifndef HAL_H_
 #define HAL_H_
 
-#include "Mutex.h"
-#include "HWaccess.h"
+#include "../Mutex/Mutex.h"
+#include "../HAW/HWaccess.h"
 #include "Addresses.h"
 #include <unistd.h>
 #include <stdint.h>

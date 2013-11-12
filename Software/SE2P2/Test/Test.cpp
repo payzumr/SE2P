@@ -9,12 +9,12 @@
  */
 
 
-#include "Thread.h"
+#include "../Thread.h"
 #include "Test.h"
 #include <iostream>
 #include <unistd.h>
-#include "HWaccess.h"
-#include "Addresses.h"
+#include "../HAW/HWaccess.h"
+#include "../HAL/Addresses.h"
 
 #define MSG_LENGTH 20
 #define SLEEP_ONE_SEC 1

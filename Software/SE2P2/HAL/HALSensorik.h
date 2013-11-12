@@ -9,12 +9,13 @@
 #define HALSENSORIK_H_
 
 #include <stdint.h>
-#include "HAWThread.h"
-#include "Mutex.h"
-#include "HWaccess.h"
+#include "../HAW/HAWThread.h"
+#include "../Mutex/Mutex.h"
+#include "../HAW/HWaccess.h"
 #include "Addresses.h"
 #include <unistd.h>
 #include <stdint.h>
+#include <time.h>
 
 const struct sigevent * ISR(void *arg, int id);
 
@@ -65,6 +66,7 @@ protected:
 private:
 	void initInterrupts();
 	void printSensorChanges(int code, int val);
+	void hal::HALSensorik::set_timer();
 };
 }
 
