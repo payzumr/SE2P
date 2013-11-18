@@ -234,27 +234,30 @@ void hal::HALSensorik::printSensorChanges(int code, int val) {
 		}
 
 	} else if (code == 8) {
-		if ((val & BIT_4) && !portC_4) {
+		if (val & BIT_4) {
 			cout << "Starttaste gedrueckt" << endl;
-			portC_4 = true;
-		} else if (((val & BIT_4) == 0) && portC_4) {
-			cout << "Starttaste losgelassen" << endl;
-			portC_4 = false;
+//			portC_4 = true;
 		}
-		if (((val & BIT_5) == 0) && !portC_5) {
+//		 else if (((val & BIT_4) == 0) && portC_4) {
+//			cout << "Starttaste losgelassen" << endl;
+//			portC_4 = false;
+//		}
+		if ((val & BIT_5) == 0) {
 			cout << "Stoptaste gedrueckt" << endl;
-			portC_5 = true;
-		} else if ((val & BIT_5) && portC_5) {
-			cout << "Stoptaste losgelassen" << endl;
-			portC_5 = false;
+//			portC_5 = true;
 		}
-		if ((val & BIT_6) && !portC_6) {
+//		 else if ((val & BIT_5) && portC_5) {
+//			cout << "Stoptaste losgelassen" << endl;
+//			portC_5 = false;
+//		}
+		if (val & BIT_6) {
 			cout << "Resettaste gedrueckt" << endl;
-			portC_6 = true;
-		} else if (((val & BIT_6) == 0) && portC_6) {
-			cout << "Resettaste losgelassen" << endl;
-			portC_6 = false;
+//			portC_6 = true;
 		}
+//		 else if (((val & BIT_6) == 0) && portC_6) {
+//			cout << "Resettaste losgelassen" << endl;
+//			portC_6 = false;
+//		}
 		if (((val & BIT_7) == 0) && !portC_7) {
 			cout << "E-stop gedrueckt" << endl;
 			portC_7 = true;
