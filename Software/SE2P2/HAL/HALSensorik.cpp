@@ -15,9 +15,10 @@
 static int isr_coid;
 hal::HALSensorik* hal::HALSensorik::instance = NULL;
 Mutex* hal::HALSensorik::HAL_Smutex = new Mutex();
-
-bool portB_0, portB_1, portB_2, portB_3, portB_4, portB_5, portB_6, portB_7 =
-		false;
+/**
+ * boolen for Port Status
+ */
+bool portB_0, portB_1, portB_2, portB_3, portB_4, portB_5, portB_6, portB_7 = false;
 bool portC_4, portC_6, portC_5, portC_7 = false;
 
 const struct sigevent* ISR(void* arg, int id) {
@@ -125,7 +126,10 @@ void hal::HALSensorik::initInterrupts() {
 	portCstatus = in8(DIO_BASE + DIO_OFFS_B);
 
 }
-
+/**
+ * Detach the Connection and Interrupt
+ * Destroy the Channel
+ */
 void hal::HALSensorik::stop() {
 	HAWThread::stop(); // super.stop();
 
@@ -163,7 +167,11 @@ void hal::HALSensorik::execute(void *arg) {
 		//cout << endl;
 	}
 }
-
+/**
+ * @param code: get the Code from Pulse Message
+ * @param val: get's the value from Pulse Message
+ * Shows the State of the Sensor if any Sensor makes an Interrupt
+ */
 void hal::HALSensorik::printSensorChanges(int code, int val) {
 
 	if (code == 2) {
@@ -264,7 +272,7 @@ void hal::HALSensorik::printSensorChanges(int code, int val) {
         struct sigevent   timerEvent;
 
         /* Init Pulse and creat Timer */
-        SIGEV_PULSE_INIT (&timerEvent, timeCoId_, SIGEV_PULSE_PRIO_INHERIT, 0, 0);
+        SIGEV_PULSE_INIT (&timerEvent, isr_coid, SIGEV_PULSE_PRIO_INHERIT, 0, 0);
         if (timer_create (CLOCK_REALTIME, &timerEvent, &timerid) == -1) {
             Logger(ERROR) << "Can't create Timer for Height Sensor";
             exit (EXIT_FAILURE);
@@ -278,7 +286,12 @@ void hal::HALSensorik::printSensorChanges(int code, int val) {
 
         timer_settime (timerid, 0, &timer, NULL);
 	}
-
+/**
+ * Write 0x10 on Register 0x02
+ * waits till  Bit 7 gets high and read value from 0x02
+ * @return the high
+ *
+ */
 	int hal::HALSensorik::getHeight(){
 		int heigth = -1;
 		int i;
