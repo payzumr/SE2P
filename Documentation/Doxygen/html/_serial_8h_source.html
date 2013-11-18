@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.5"/>
-<title>SE2P: Serial.h Source File</title>
+<title>SE2: Software/SE2P2/Serial/Serial.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">SE2P
+   <div id="projectname">SE2
    </div>
   </td>
  </tr>
@@ -37,6 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
@@ -64,13 +65,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -79,6 +79,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_4e9c05acfa2c3671b8618fcb95d57d96.html">Software</a></li><li class="navelem"><a class="el" href="dir_e5f819d96407601b25fb30ec63f4cfa7.html">SE2P2</a></li><li class="navelem"><a class="el" href="dir_71570d793715032e6ad5624f1feff9d3.html">Serial</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">Serial.h</div>  </div>
@@ -94,8 +99,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef SERIAL_H_</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define SERIAL_H_</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_h_waccess_8h.html">HWaccess.h</a>&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_addresses_8h.html">Addresses.h</a>&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;../HAW/HWaccess.h&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;../HAL/Addresses.h&quot;</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;unistd.h&gt;</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
@@ -103,36 +108,37 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;sys/types.h&gt;</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;sys/stat.h&gt;</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;fcntl.h&gt;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="class_serial.html">   21</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_serial.html">Serial</a> {</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_serial.html">Serial</a>* instance;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">int</span> fd;<span class="comment">//filedescriptor-&gt;schnittstelle</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_serial.html">Serial</a>();</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    ~<a class="code" href="class_serial.html">Serial</a>();</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_serial.html">Serial</a>* <a class="code" href="class_serial.html#a586999e4d3b21aa0f527f4f1b30d98b5">getInstance</a>();</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_serial.html#a8fb59fe5f1eaf5113c6024cc01aca666">open_serial</a>(<span class="keywordtype">char</span>* device);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_serial.html#ac1421277839c8c7c57b2d3757a27b005">close_serial</a>();</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    ssize_t <a class="code" href="class_serial.html#a46886e43b42a069ee9abd4de18e32ea2">write_serial</a>(<span class="keywordtype">void</span>* buf, <span class="keywordtype">size_t</span> nbytes);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_serial.html#aaffa99b4312d4fbf3212a1e47a2cc1cb">read_serial</a>(<span class="keywordtype">void</span>* buf, <span class="keywordtype">int</span> length);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;};</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;../Mutex/Mutex.h&quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="class_serial.html">   22</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_serial.html">Serial</a> {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_serial.html">Serial</a>* instance;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_mutex.html">Mutex</a>* Serialmutex;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">int</span> fd;<span class="comment">//filedescriptor-&gt;schnittstelle</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="class_serial.html">Serial</a>();</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    ~<a class="code" href="class_serial.html">Serial</a>();</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_serial.html">Serial</a>* <a class="code" href="class_serial.html#a586999e4d3b21aa0f527f4f1b30d98b5">getInstance</a>();</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_serial.html#a8fb59fe5f1eaf5113c6024cc01aca666">open_serial</a>(<span class="keywordtype">char</span>* device);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_serial.html#ac1421277839c8c7c57b2d3757a27b005">close_serial</a>();</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    ssize_t <a class="code" href="class_serial.html#a46886e43b42a069ee9abd4de18e32ea2">write_serial</a>(<span class="keywordtype">void</span>* buf, <span class="keywordtype">size_t</span> nbytes);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_serial.html#aaffa99b4312d4fbf3212a1e47a2cc1cb">read_serial</a>(<span class="keywordtype">void</span>* buf, <span class="keywordtype">int</span> length);</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* SERIAL_H_ */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="class_serial_html_a46886e43b42a069ee9abd4de18e32ea2"><div class="ttname"><a href="class_serial.html#a46886e43b42a069ee9abd4de18e32ea2">Serial::write_serial</a></div><div class="ttdeci">ssize_t write_serial(void *buf, size_t nbytes)</div><div class="ttdef"><b>Definition:</b> Serial.cpp:72</div></div>
-<div class="ttc" id="class_serial_html_aaffa99b4312d4fbf3212a1e47a2cc1cb"><div class="ttname"><a href="class_serial.html#aaffa99b4312d4fbf3212a1e47a2cc1cb">Serial::read_serial</a></div><div class="ttdeci">int read_serial(void *buf, int length)</div><div class="ttdef"><b>Definition:</b> Serial.cpp:87</div></div>
-<div class="ttc" id="class_serial_html_a586999e4d3b21aa0f527f4f1b30d98b5"><div class="ttname"><a href="class_serial.html#a586999e4d3b21aa0f527f4f1b30d98b5">Serial::getInstance</a></div><div class="ttdeci">static Serial * getInstance()</div><div class="ttdef"><b>Definition:</b> Serial.cpp:28</div></div>
-<div class="ttc" id="class_serial_html_ac1421277839c8c7c57b2d3757a27b005"><div class="ttname"><a href="class_serial.html#ac1421277839c8c7c57b2d3757a27b005">Serial::close_serial</a></div><div class="ttdeci">void close_serial()</div><div class="ttdef"><b>Definition:</b> Serial.cpp:61</div></div>
-<div class="ttc" id="_h_waccess_8h_html"><div class="ttname"><a href="_h_waccess_8h.html">HWaccess.h</a></div></div>
-<div class="ttc" id="_addresses_8h_html"><div class="ttname"><a href="_addresses_8h.html">Addresses.h</a></div></div>
-<div class="ttc" id="class_serial_html"><div class="ttname"><a href="class_serial.html">Serial</a></div><div class="ttdef"><b>Definition:</b> Serial.h:21</div></div>
-<div class="ttc" id="class_serial_html_a8fb59fe5f1eaf5113c6024cc01aca666"><div class="ttname"><a href="class_serial.html#a8fb59fe5f1eaf5113c6024cc01aca666">Serial::open_serial</a></div><div class="ttdeci">int open_serial(char *device)</div><div class="ttdef"><b>Definition:</b> Serial.cpp:45</div></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;};</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* SERIAL_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="class_serial_html_a46886e43b42a069ee9abd4de18e32ea2"><div class="ttname"><a href="class_serial.html#a46886e43b42a069ee9abd4de18e32ea2">Serial::write_serial</a></div><div class="ttdeci">ssize_t write_serial(void *buf, size_t nbytes)</div><div class="ttdef"><b>Definition:</b> Serial.cpp:73</div></div>
+<div class="ttc" id="class_serial_html_aaffa99b4312d4fbf3212a1e47a2cc1cb"><div class="ttname"><a href="class_serial.html#aaffa99b4312d4fbf3212a1e47a2cc1cb">Serial::read_serial</a></div><div class="ttdeci">int read_serial(void *buf, int length)</div><div class="ttdef"><b>Definition:</b> Serial.cpp:88</div></div>
+<div class="ttc" id="class_mutex_html"><div class="ttname"><a href="class_mutex.html">Mutex</a></div><div class="ttdef"><b>Definition:</b> Mutex.h:12</div></div>
+<div class="ttc" id="class_serial_html_a586999e4d3b21aa0f527f4f1b30d98b5"><div class="ttname"><a href="class_serial.html#a586999e4d3b21aa0f527f4f1b30d98b5">Serial::getInstance</a></div><div class="ttdeci">static Serial * getInstance()</div><div class="ttdef"><b>Definition:</b> Serial.cpp:29</div></div>
+<div class="ttc" id="class_serial_html_ac1421277839c8c7c57b2d3757a27b005"><div class="ttname"><a href="class_serial.html#ac1421277839c8c7c57b2d3757a27b005">Serial::close_serial</a></div><div class="ttdeci">void close_serial()</div><div class="ttdef"><b>Definition:</b> Serial.cpp:62</div></div>
+<div class="ttc" id="class_serial_html"><div class="ttname"><a href="class_serial.html">Serial</a></div><div class="ttdef"><b>Definition:</b> Serial.h:22</div></div>
+<div class="ttc" id="class_serial_html_a8fb59fe5f1eaf5113c6024cc01aca666"><div class="ttname"><a href="class_serial.html#a8fb59fe5f1eaf5113c6024cc01aca666">Serial::open_serial</a></div><div class="ttdeci">int open_serial(char *device)</div><div class="ttdef"><b>Definition:</b> Serial.cpp:49</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Oct 22 2013 11:52:19 for SE2P by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Nov 18 2013 20:30:39 for SE2 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

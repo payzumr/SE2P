@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.5"/>
-<title>SE2P: Test/Test.h Source File</title>
+<title>SE2: Software/SE2P2/Test/Test.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">SE2P
+   <div id="projectname">SE2
    </div>
   </td>
  </tr>
@@ -37,6 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
@@ -69,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -80,7 +81,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_37618a71d99bdfed5979e976980d5eec.html">Test</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_4e9c05acfa2c3671b8618fcb95d57d96.html">Software</a></li><li class="navelem"><a class="el" href="dir_e5f819d96407601b25fb30ec63f4cfa7.html">SE2P2</a></li><li class="navelem"><a class="el" href="dir_7ddd82f90c2de9c119b61e6d77f74eae.html">Test</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -89,45 +90,40 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="_test_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Test.cpp</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Test.h</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *  Created on: 17.10.2013</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> *      Author: Jannik Schick (2063265)</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> *              Philipp Kloth (2081738)</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> *              Rutkay Kuepelikilinc (2081831)</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> *              Natalia Duske (2063265)</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#ifndef TEST_H_</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define TEST_H_</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_h_a_l_8h.html">HAL.h</a>&quot;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_serial_8h.html">Serial.h</a>&quot;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="class_test.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_test.html">Test</a> {</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="class_test.html#a99f2bbfac6c95612322b0f10e607ebe5">Test</a>();</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="class_test.html#a2b0a62f1e667bbe8d8cb18d785bfa991">~Test</a>();</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_test.html#a2f24745185bb2ce5eb6d4a8bcf07d28e">componentTest</a>(<a class="code" href="class_h_a_l.html">HAL</a>* hal);</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_test.html#ad27b04e088e07fba8b3c44f333a8237b">serialTest</a>(<a class="code" href="class_serial.html">Serial</a>* serial);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;};</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* TEST_H_ */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="class_test_html"><div class="ttname"><a href="class_test.html">Test</a></div><div class="ttdef"><b>Definition:</b> Test.h:17</div></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> *      Author: Rutkay</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef TEST_H_</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define TEST_H_</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;../HAL/HALAktorik.h&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;../Serial/Serial.h&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="class_test.html">   14</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_test.html">Test</a> {</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="class_test.html#a99f2bbfac6c95612322b0f10e607ebe5">Test</a>();</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="class_test.html#a2b0a62f1e667bbe8d8cb18d785bfa991">~Test</a>();</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_test.html#a118c64b69e753289df5f97556e751e8a">componentTest</a>(<a class="code" href="class_h_a_l_aktorik.html">HALAktorik</a>* hal);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_test.html#ad27b04e088e07fba8b3c44f333a8237b">serialTest</a>(<a class="code" href="class_serial.html">Serial</a>* serial);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;};</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* TEST_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="class_test_html"><div class="ttname"><a href="class_test.html">Test</a></div><div class="ttdef"><b>Definition:</b> Test.h:14</div></div>
 <div class="ttc" id="class_test_html_a2b0a62f1e667bbe8d8cb18d785bfa991"><div class="ttname"><a href="class_test.html#a2b0a62f1e667bbe8d8cb18d785bfa991">Test::~Test</a></div><div class="ttdeci">virtual ~Test()</div><div class="ttdef"><b>Definition:</b> Test.cpp:31</div></div>
-<div class="ttc" id="class_h_a_l_html"><div class="ttname"><a href="class_h_a_l.html">HAL</a></div><div class="ttdef"><b>Definition:</b> HAL.h:18</div></div>
-<div class="ttc" id="class_test_html_a2f24745185bb2ce5eb6d4a8bcf07d28e"><div class="ttname"><a href="class_test.html#a2f24745185bb2ce5eb6d4a8bcf07d28e">Test::componentTest</a></div><div class="ttdeci">virtual void componentTest(HAL *hal)</div><div class="ttdef"><b>Definition:</b> Test.cpp:36</div></div>
+<div class="ttc" id="class_test_html_a118c64b69e753289df5f97556e751e8a"><div class="ttname"><a href="class_test.html#a118c64b69e753289df5f97556e751e8a">Test::componentTest</a></div><div class="ttdeci">virtual void componentTest(HALAktorik *hal)</div><div class="ttdef"><b>Definition:</b> Test.cpp:38</div></div>
 <div class="ttc" id="class_test_html_a99f2bbfac6c95612322b0f10e607ebe5"><div class="ttname"><a href="class_test.html#a99f2bbfac6c95612322b0f10e607ebe5">Test::Test</a></div><div class="ttdeci">Test()</div><div class="ttdef"><b>Definition:</b> Test.cpp:26</div></div>
-<div class="ttc" id="_serial_8h_html"><div class="ttname"><a href="_serial_8h.html">Serial.h</a></div></div>
-<div class="ttc" id="class_serial_html"><div class="ttname"><a href="class_serial.html">Serial</a></div><div class="ttdef"><b>Definition:</b> Serial.h:21</div></div>
-<div class="ttc" id="_h_a_l_8h_html"><div class="ttname"><a href="_h_a_l_8h.html">HAL.h</a></div></div>
-<div class="ttc" id="class_test_html_ad27b04e088e07fba8b3c44f333a8237b"><div class="ttname"><a href="class_test.html#ad27b04e088e07fba8b3c44f333a8237b">Test::serialTest</a></div><div class="ttdeci">virtual void serialTest(Serial *serial)</div><div class="ttdef"><b>Definition:</b> Test.cpp:118</div></div>
+<div class="ttc" id="class_serial_html"><div class="ttname"><a href="class_serial.html">Serial</a></div><div class="ttdef"><b>Definition:</b> Serial.h:22</div></div>
+<div class="ttc" id="class_h_a_l_aktorik_html"><div class="ttname"><a href="class_h_a_l_aktorik.html">HALAktorik</a></div><div class="ttdef"><b>Definition:</b> HALAktorik.h:22</div></div>
+<div class="ttc" id="class_test_html_ad27b04e088e07fba8b3c44f333a8237b"><div class="ttname"><a href="class_test.html#ad27b04e088e07fba8b3c44f333a8237b">Test::serialTest</a></div><div class="ttdeci">virtual void serialTest(Serial *serial)</div><div class="ttdef"><b>Definition:</b> Test.cpp:163</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Oct 22 2013 11:52:19 for SE2P by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Nov 18 2013 20:30:39 for SE2 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>
