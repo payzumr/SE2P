@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="class_test" kind="class" prot="public">
+    <compoundname>Test</compoundname>
+    <includes refid="_test_8h" local="no">Test.h</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_test_1a99f2bbfac6c95612322b0f10e607ebe5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Test::Test</definition>
+        <argsstring>()</argsstring>
+        <name>Test</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/Test/Test.h" line="16" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/Test/Test.cpp" bodystart="26" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="class_test_1a2b0a62f1e667bbe8d8cb18d785bfa991" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>Test::~Test</definition>
+        <argsstring>()</argsstring>
+        <name>~Test</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/Test/Test.h" line="17" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/Test/Test.cpp" bodystart="31" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="class_test_1a118c64b69e753289df5f97556e751e8a" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Test::componentTest</definition>
+        <argsstring>(HALAktorik *hal)</argsstring>
+        <name>componentTest</name>
+        <param>
+          <type><ref refid="class_h_a_l_aktorik" kindref="compound">HALAktorik</ref> *</type>
+          <declname>hal</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>testing all the aktoric Components, waits 1sec after each test </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/Test/Test.h" line="20" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/Test/Test.cpp" bodystart="38" bodyend="158"/>
+      </memberdef>
+      <memberdef kind="function" id="class_test_1ad27b04e088e07fba8b3c44f333a8237b" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Test::serialTest</definition>
+        <argsstring>(Serial *serial)</argsstring>
+        <name>serialTest</name>
+        <param>
+          <type><ref refid="class_serial" kindref="compound">Serial</ref> *</type>
+          <declname>serial</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>testing to send a char to the other device </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/Test/Test.h" line="21" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/Test/Test.cpp" bodystart="163" bodyend="179"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/Test/Test.h" line="14" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/Test/Test.h" bodystart="14" bodyend="22"/>
+    <listofallmembers>
+      <member refid="class_test_1a118c64b69e753289df5f97556e751e8a" prot="public" virt="virtual"><scope>Test</scope><name>componentTest</name></member>
+      <member refid="class_test_1ad27b04e088e07fba8b3c44f333a8237b" prot="public" virt="virtual"><scope>Test</scope><name>serialTest</name></member>
+      <member refid="class_test_1a99f2bbfac6c95612322b0f10e607ebe5" prot="public" virt="non-virtual"><scope>Test</scope><name>Test</name></member>
+      <member refid="class_test_1a2b0a62f1e667bbe8d8cb18d785bfa991" prot="public" virt="virtual"><scope>Test</scope><name>~Test</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

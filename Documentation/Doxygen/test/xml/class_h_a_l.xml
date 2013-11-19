@@ -1,0 +1,304 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="class_h_a_l" kind="class" prot="public">
+    <compoundname>HAL</compoundname>
+    <includes refid="_h_a_l_8h" local="no">HAL.h</includes>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_h_a_l_1a05c2ae49ad52c49e331c7160e8bd83f9" prot="private" static="yes" mutable="no">
+        <type><ref refid="class_h_a_l" kindref="compound">HAL</ref> *</type>
+        <definition>HAL * HAL::instance</definition>
+        <argsstring></argsstring>
+        <name>instance</name>
+        <initializer>= NULL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.h" line="20" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_h_a_l_1ab6cc86db8f70e37986e052973d3e99ce" prot="private" static="yes" mutable="no">
+        <type><ref refid="class_mutex" kindref="compound">Mutex</ref> *</type>
+        <definition>Mutex * HAL::HALmutex</definition>
+        <argsstring></argsstring>
+        <name>HALmutex</name>
+        <initializer>= new <ref refid="class_mutex" kindref="compound">Mutex</ref>()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.h" line="21" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_h_a_l_1a7d08a1223bbd6d12a6c3755b007e9a33" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HAL::HAL</definition>
+        <argsstring>()</argsstring>
+        <name>HAL</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.h" line="22" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.cpp" bodystart="20" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="class_h_a_l_1ae3462e97cfb2641bc30525500ffb3fec" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HAL::~HAL</definition>
+        <argsstring>()</argsstring>
+        <name>~HAL</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.h" line="23" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.cpp" bodystart="27" bodyend="30"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_h_a_l_1a78f22148fbdcbdb8d7a1db6cf772ec7a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_h_a_l" kindref="compound">HAL</ref> *</type>
+        <definition>HAL * HAL::getInstance</definition>
+        <argsstring>()</argsstring>
+        <name>getInstance</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.h" line="26" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.cpp" bodystart="32" bodyend="44"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_h_a_l_1a9ff83439d72ca8a6052e53e256887e73" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void HAL::redOn</definition>
+        <argsstring>()</argsstring>
+        <name>redOn</name>
+        <briefdescription>
+<para>lights </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.h" line="29" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.cpp" bodystart="61" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="class_h_a_l_1a7ad5008f959d269c1ec08a0819f42f8d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void HAL::redOff</definition>
+        <argsstring>()</argsstring>
+        <name>redOff</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.h" line="30" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.cpp" bodystart="68" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="function" id="class_h_a_l_1a44cde8d09671df13878b6a0f13370bff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void HAL::yellowOn</definition>
+        <argsstring>()</argsstring>
+        <name>yellowOn</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.h" line="31" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.cpp" bodystart="76" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="class_h_a_l_1ac00c6620a2fdbed2f60caded31de1c86" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void HAL::yellowOff</definition>
+        <argsstring>()</argsstring>
+        <name>yellowOff</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.h" line="32" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.cpp" bodystart="83" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="class_h_a_l_1ae9af9ba65709973ef74f9ef21feab5e7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void HAL::greenOn</definition>
+        <argsstring>()</argsstring>
+        <name>greenOn</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.h" line="33" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.cpp" bodystart="90" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="class_h_a_l_1a7c7cf883adc8bc8269686b4bc9807c46" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void HAL::greenOff</definition>
+        <argsstring>()</argsstring>
+        <name>greenOff</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.h" line="34" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.cpp" bodystart="97" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="function" id="class_h_a_l_1a65320182dfa8080e067f2b50b1670fa5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void HAL::engine_left</definition>
+        <argsstring>()</argsstring>
+        <name>engine_left</name>
+        <briefdescription>
+<para>conveyer </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.h" line="37" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.cpp" bodystart="126" bodyend="149"/>
+      </memberdef>
+      <memberdef kind="function" id="class_h_a_l_1a554579a6e7c46052377e24a4cd04a9cd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void HAL::engine_rigth</definition>
+        <argsstring>()</argsstring>
+        <name>engine_rigth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.h" line="38" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.cpp" bodystart="105" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="function" id="class_h_a_l_1a87ee7251a47176e50c88e4a98c389567" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void HAL::engine_slowON</definition>
+        <argsstring>()</argsstring>
+        <name>engine_slowON</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.h" line="39" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.cpp" bodystart="150" bodyend="155"/>
+      </memberdef>
+      <memberdef kind="function" id="class_h_a_l_1a3dff4d1e1b8b0c5b0b60ac7c1ca72cfc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void HAL::engine_slowOFF</definition>
+        <argsstring>()</argsstring>
+        <name>engine_slowOFF</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.h" line="40" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.cpp" bodystart="156" bodyend="164"/>
+      </memberdef>
+      <memberdef kind="function" id="class_h_a_l_1a28eb7a9c1846465a49384667b705f636" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool HAL::slowIsOn</definition>
+        <argsstring>()</argsstring>
+        <name>slowIsOn</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.h" line="41" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.cpp" bodystart="178" bodyend="184"/>
+      </memberdef>
+      <memberdef kind="function" id="class_h_a_l_1a3b46caa6b77450aa249134d3661f1885" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void HAL::engine_stop</definition>
+        <argsstring>()</argsstring>
+        <name>engine_stop</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.h" line="42" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.cpp" bodystart="165" bodyend="170"/>
+      </memberdef>
+      <memberdef kind="function" id="class_h_a_l_1a1248c17a3ea9acd85fac3d8e2d6baf16" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void HAL::engine_start</definition>
+        <argsstring>()</argsstring>
+        <name>engine_start</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.h" line="43" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.cpp" bodystart="171" bodyend="176"/>
+      </memberdef>
+      <memberdef kind="function" id="class_h_a_l_1a9894ab6b4f352b40d6ed617fa0cb2021" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void HAL::switchOpen</definition>
+        <argsstring>()</argsstring>
+        <name>switchOpen</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.h" line="46" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.cpp" bodystart="46" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="class_h_a_l_1a9d0bbb1f0bdd80b226343c5823183e70" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void HAL::switchClose</definition>
+        <argsstring>()</argsstring>
+        <name>switchClose</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.h" line="47" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.cpp" bodystart="53" bodyend="59"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.h" line="18" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HAL.h" bodystart="18" bodyend="48"/>
+    <listofallmembers>
+      <member refid="class_h_a_l_1a65320182dfa8080e067f2b50b1670fa5" prot="public" virt="non-virtual"><scope>HAL</scope><name>engine_left</name></member>
+      <member refid="class_h_a_l_1a554579a6e7c46052377e24a4cd04a9cd" prot="public" virt="non-virtual"><scope>HAL</scope><name>engine_rigth</name></member>
+      <member refid="class_h_a_l_1a3dff4d1e1b8b0c5b0b60ac7c1ca72cfc" prot="public" virt="non-virtual"><scope>HAL</scope><name>engine_slowOFF</name></member>
+      <member refid="class_h_a_l_1a87ee7251a47176e50c88e4a98c389567" prot="public" virt="non-virtual"><scope>HAL</scope><name>engine_slowON</name></member>
+      <member refid="class_h_a_l_1a1248c17a3ea9acd85fac3d8e2d6baf16" prot="public" virt="non-virtual"><scope>HAL</scope><name>engine_start</name></member>
+      <member refid="class_h_a_l_1a3b46caa6b77450aa249134d3661f1885" prot="public" virt="non-virtual"><scope>HAL</scope><name>engine_stop</name></member>
+      <member refid="class_h_a_l_1a78f22148fbdcbdb8d7a1db6cf772ec7a" prot="public" virt="non-virtual"><scope>HAL</scope><name>getInstance</name></member>
+      <member refid="class_h_a_l_1a7c7cf883adc8bc8269686b4bc9807c46" prot="public" virt="non-virtual"><scope>HAL</scope><name>greenOff</name></member>
+      <member refid="class_h_a_l_1ae9af9ba65709973ef74f9ef21feab5e7" prot="public" virt="non-virtual"><scope>HAL</scope><name>greenOn</name></member>
+      <member refid="class_h_a_l_1a7d08a1223bbd6d12a6c3755b007e9a33" prot="private" virt="non-virtual"><scope>HAL</scope><name>HAL</name></member>
+      <member refid="class_h_a_l_1ab6cc86db8f70e37986e052973d3e99ce" prot="private" virt="non-virtual"><scope>HAL</scope><name>HALmutex</name></member>
+      <member refid="class_h_a_l_1a05c2ae49ad52c49e331c7160e8bd83f9" prot="private" virt="non-virtual"><scope>HAL</scope><name>instance</name></member>
+      <member refid="class_h_a_l_1a7ad5008f959d269c1ec08a0819f42f8d" prot="public" virt="non-virtual"><scope>HAL</scope><name>redOff</name></member>
+      <member refid="class_h_a_l_1a9ff83439d72ca8a6052e53e256887e73" prot="public" virt="non-virtual"><scope>HAL</scope><name>redOn</name></member>
+      <member refid="class_h_a_l_1a28eb7a9c1846465a49384667b705f636" prot="public" virt="non-virtual"><scope>HAL</scope><name>slowIsOn</name></member>
+      <member refid="class_h_a_l_1a9d0bbb1f0bdd80b226343c5823183e70" prot="public" virt="non-virtual"><scope>HAL</scope><name>switchClose</name></member>
+      <member refid="class_h_a_l_1a9894ab6b4f352b40d6ed617fa0cb2021" prot="public" virt="non-virtual"><scope>HAL</scope><name>switchOpen</name></member>
+      <member refid="class_h_a_l_1ac00c6620a2fdbed2f60caded31de1c86" prot="public" virt="non-virtual"><scope>HAL</scope><name>yellowOff</name></member>
+      <member refid="class_h_a_l_1a44cde8d09671df13878b6a0f13370bff" prot="public" virt="non-virtual"><scope>HAL</scope><name>yellowOn</name></member>
+      <member refid="class_h_a_l_1ae3462e97cfb2641bc30525500ffb3fec" prot="private" virt="non-virtual"><scope>HAL</scope><name>~HAL</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

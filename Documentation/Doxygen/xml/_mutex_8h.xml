@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="_mutex_8h" kind="file">
+    <compoundname>Mutex.h</compoundname>
+    <includes local="no">pthread.h</includes>
+    <includedby refid="_h_a_l_aktorik_8h" local="yes">Software/SE2P2/HAL/HALAktorik.h</includedby>
+    <includedby refid="_h_a_l_sensorik_8h" local="yes">Software/SE2P2/HAL/HALSensorik.h</includedby>
+    <includedby refid="_mutex_8cpp" local="yes">Software/SE2P2/Mutex/Mutex.cpp</includedby>
+    <includedby refid="_serial_8h" local="yes">Software/SE2P2/Serial/Serial.h</includedby>
+    <incdepgraph>
+      <node id="272">
+        <label>pthread.h</label>
+      </node>
+      <node id="271">
+        <label>Software/SE2P2/Mutex/Mutex.h</label>
+        <link refid="Mutex.h"/>
+        <childnode refid="272" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="280">
+        <label>Software/SE2P2/HAL/HALSensorik.cpp</label>
+        <link refid="_h_a_l_sensorik_8cpp"/>
+      </node>
+      <node id="274">
+        <label>Software/SE2P2/HAL/HALAktorik.h</label>
+        <link refid="_h_a_l_aktorik_8h"/>
+        <childnode refid="275" relation="include">
+        </childnode>
+        <childnode refid="276" relation="include">
+        </childnode>
+        <childnode refid="278" relation="include">
+        </childnode>
+      </node>
+      <node id="278">
+        <label>Software/SE2P2/Thread.cpp</label>
+        <link refid="_thread_8cpp"/>
+      </node>
+      <node id="281">
+        <label>Software/SE2P2/main.cc</label>
+        <link refid="main_8cc"/>
+      </node>
+      <node id="273">
+        <label>Software/SE2P2/Mutex/Mutex.h</label>
+        <link refid="Mutex.h"/>
+        <childnode refid="274" relation="include">
+        </childnode>
+        <childnode refid="279" relation="include">
+        </childnode>
+        <childnode refid="282" relation="include">
+        </childnode>
+        <childnode refid="283" relation="include">
+        </childnode>
+      </node>
+      <node id="276">
+        <label>Software/SE2P2/Test/Test.h</label>
+        <link refid="_test_8h"/>
+        <childnode refid="277" relation="include">
+        </childnode>
+        <childnode refid="278" relation="include">
+        </childnode>
+      </node>
+      <node id="275">
+        <label>Software/SE2P2/HAL/HALAktorik.cpp</label>
+        <link refid="_h_a_l_aktorik_8cpp"/>
+      </node>
+      <node id="277">
+        <label>Software/SE2P2/Test/Test.cpp</label>
+        <link refid="_test_8cpp"/>
+      </node>
+      <node id="282">
+        <label>Software/SE2P2/Mutex/Mutex.cpp</label>
+        <link refid="_mutex_8cpp"/>
+      </node>
+      <node id="284">
+        <label>Software/SE2P2/Serial/Serial.cpp</label>
+        <link refid="_serial_8cpp"/>
+      </node>
+      <node id="279">
+        <label>Software/SE2P2/HAL/HALSensorik.h</label>
+        <link refid="_h_a_l_sensorik_8h"/>
+        <childnode refid="280" relation="include">
+        </childnode>
+        <childnode refid="281" relation="include">
+        </childnode>
+      </node>
+      <node id="283">
+        <label>Software/SE2P2/Serial/Serial.h</label>
+        <link refid="_serial_8h"/>
+        <childnode refid="284" relation="include">
+        </childnode>
+        <childnode refid="276" relation="include">
+        </childnode>
+        <childnode refid="278" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="class_mutex" prot="public">Mutex</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>Mutex.h</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/><sp/>Created<sp/>on:<sp/>10.10.2013</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Author:<sp/>Jannik</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;pthread.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>MUTEX_H_</highlight></codeline>
+<codeline lineno="10"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>MUTEX_H_</highlight></codeline>
+<codeline lineno="11"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12" refid="class_mutex" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_mutex" kindref="compound">Mutex</ref><sp/>{</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_mutex_1a593423d868daf926c7b0d63a833ae29a" kindref="member">Mutex</ref>();</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_mutex_1ac9e9182407f5f74892318607888e9be4" kindref="member">~Mutex</ref>();</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_mutex_1ad91be808bf0a60a16f10b897ec246d3a" kindref="member">lock</ref>();</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_mutex_1a546a5b797ba29959357586aa2b3740a8" kindref="member">unlock</ref>();</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>pthread_mutex_t<sp/>mutex;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>MUTEX_H_<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/Mutex/Mutex.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="_h_a_l_aktorik_8h" kind="file">
+    <compoundname>HALAktorik.h</compoundname>
+    <includes refid="_mutex_8h" local="yes">../Mutex/Mutex.h</includes>
+    <includes refid="_s_e2_p2_2_h_a_w_2_h_waccess_8h" local="yes">../HAW/HWaccess.h</includes>
+    <includes refid="_addresses_8h" local="yes">Addresses.h</includes>
+    <includes local="no">unistd.h</includes>
+    <includes local="no">stdint.h</includes>
+    <includes local="no">iostream</includes>
+    <includedby refid="_h_a_l_aktorik_8cpp" local="yes">Software/SE2P2/HAL/HALAktorik.cpp</includedby>
+    <includedby refid="_test_8h" local="yes">Software/SE2P2/Test/Test.h</includedby>
+    <includedby refid="_thread_8cpp" local="yes">Software/SE2P2/Thread.cpp</includedby>
+    <incdepgraph>
+      <node id="159">
+        <label>stdint.h</label>
+      </node>
+      <node id="150">
+        <label>Software/SE2P2/HAL/HALAktorik.h</label>
+        <link refid="HALAktorik.h"/>
+        <childnode refid="151" relation="include">
+        </childnode>
+        <childnode refid="153" relation="include">
+        </childnode>
+        <childnode refid="157" relation="include">
+        </childnode>
+        <childnode refid="158" relation="include">
+        </childnode>
+        <childnode refid="159" relation="include">
+        </childnode>
+        <childnode refid="160" relation="include">
+        </childnode>
+      </node>
+      <node id="152">
+        <label>pthread.h</label>
+      </node>
+      <node id="151">
+        <label>../Mutex/Mutex.h</label>
+        <link refid="_mutex_8h"/>
+        <childnode refid="152" relation="include">
+        </childnode>
+      </node>
+      <node id="158">
+        <label>unistd.h</label>
+      </node>
+      <node id="156">
+        <label>hw/inout.h</label>
+      </node>
+      <node id="160">
+        <label>iostream</label>
+      </node>
+      <node id="155">
+        <label>sys/neutrino.h</label>
+      </node>
+      <node id="153">
+        <label>../HAW/HWaccess.h</label>
+        <link refid="_s_e2_p2_2_h_a_w_2_h_waccess_8h"/>
+        <childnode refid="154" relation="include">
+        </childnode>
+        <childnode refid="155" relation="include">
+        </childnode>
+        <childnode refid="156" relation="include">
+        </childnode>
+      </node>
+      <node id="157">
+        <label>Addresses.h</label>
+        <link refid="_addresses_8h"/>
+      </node>
+      <node id="154">
+        <label>stdio.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="161">
+        <label>Software/SE2P2/HAL/HALAktorik.h</label>
+        <link refid="HALAktorik.h"/>
+        <childnode refid="162" relation="include">
+        </childnode>
+        <childnode refid="163" relation="include">
+        </childnode>
+        <childnode refid="165" relation="include">
+        </childnode>
+      </node>
+      <node id="165">
+        <label>Software/SE2P2/Thread.cpp</label>
+        <link refid="_thread_8cpp"/>
+      </node>
+      <node id="163">
+        <label>Software/SE2P2/Test/Test.h</label>
+        <link refid="_test_8h"/>
+        <childnode refid="164" relation="include">
+        </childnode>
+        <childnode refid="165" relation="include">
+        </childnode>
+      </node>
+      <node id="162">
+        <label>Software/SE2P2/HAL/HALAktorik.cpp</label>
+        <link refid="_h_a_l_aktorik_8cpp"/>
+      </node>
+      <node id="164">
+        <label>Software/SE2P2/Test/Test.cpp</label>
+        <link refid="_test_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="class_h_a_l_aktorik" prot="public">HALAktorik</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>HAL.h</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/><sp/>Created<sp/>on:<sp/>10.10.2013</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Author:<sp/>Jannik<sp/>Schick<sp/>(2063265)</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Philipp<sp/>Kloth<sp/>(2081738)</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Rutkay<sp/>Kuepelikilinc<sp/>(2081831)</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Natalia<sp/>Duske<sp/>(2063265)</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>HAL_H_</highlight></codeline>
+<codeline lineno="13"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>HAL_H_</highlight></codeline>
+<codeline lineno="14"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../Mutex/Mutex.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../HAW/HWaccess.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_addresses_8h" kindref="compound">Addresses.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;unistd.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="comment">//?????</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="class_h_a_l_aktorik" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_h_a_l_aktorik" kindref="compound">HALAktorik</ref><sp/>{</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_h_a_l_aktorik" kindref="compound">HALAktorik</ref>*<sp/>instance;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_mutex" kindref="compound">Mutex</ref>*<sp/>HALmutex;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_h_a_l_aktorik" kindref="compound">HALAktorik</ref>();</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>~<ref refid="class_h_a_l_aktorik" kindref="compound">HALAktorik</ref>();</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_h_a_l_aktorik" kindref="compound">HALAktorik</ref>*<sp/><ref refid="class_h_a_l_aktorik_1a20a68e52a470319e011e5f8cee37df28" kindref="member">getInstance</ref>();</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//lights</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_h_a_l_aktorik_1a39aa3258cdc96175dc1638d5d76f4fec" kindref="member">redLigths</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>state);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_h_a_l_aktorik_1aad58daf98ce2e64c18ca220fe6b93bd2" kindref="member">yellowLigths</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>state);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_h_a_l_aktorik_1ad0a2847f65bf5c04265a8eda42d6efe6" kindref="member">greenLigths</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>state);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//conveyer</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_h_a_l_aktorik_1aa962e7d5821f483e8fe64fe092be01cf" kindref="member">engine_left</ref>();</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_h_a_l_aktorik_1a826479036fecba7751da649d7f6cd797" kindref="member">engine_rigth</ref>();</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_h_a_l_aktorik_1a5de35c820a4f8e501e3b698d5cf3ae9d" kindref="member">engine_slow</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>state);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_h_a_l_aktorik_1a8b36149a576b3d4842ef3f05dba6c958" kindref="member">engine_stop</ref>();</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_h_a_l_aktorik_1a3febe317f574530a79aaecf5228acdd0" kindref="member">engine_start</ref>();</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//LED&apos;s</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_h_a_l_aktorik_1a28e4f18950c87e3a6adccb88e87d631a" kindref="member">led_Q1</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>state);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_h_a_l_aktorik_1ae32a42f9de09de7d150f7a676b135d6c" kindref="member">led_Q2</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>state);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_h_a_l_aktorik_1a76d14c80220995490f526ef77c389111" kindref="member">led_Start</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>state);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_h_a_l_aktorik_1a4dec7b3441ba3967fc7c56c7f8dbb1ff" kindref="member">led_Reset</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>state);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Switch</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_h_a_l_aktorik_1a28f6c111b47b2a91b2f0b40b5355b283" kindref="member">switchOnOff</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>state);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>HAL_H_<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALAktorik.h"/>
+  </compounddef>
+</doxygen>

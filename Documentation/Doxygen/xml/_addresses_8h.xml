@@ -1,0 +1,441 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="_addresses_8h" kind="file">
+    <compoundname>Addresses.h</compoundname>
+    <includedby refid="_h_a_l_aktorik_8h" local="yes">Software/SE2P2/HAL/HALAktorik.h</includedby>
+    <includedby refid="_h_a_l_sensorik_8h" local="yes">Software/SE2P2/HAL/HALSensorik.h</includedby>
+    <includedby refid="_mutex_8cpp" local="yes">Software/SE2P2/Mutex/Mutex.cpp</includedby>
+    <includedby refid="_serial_8h" local="yes">Software/SE2P2/Serial/Serial.h</includedby>
+    <includedby refid="_test_8cpp" local="yes">Software/SE2P2/Test/Test.cpp</includedby>
+    <invincdepgraph>
+      <node id="132">
+        <label>Software/SE2P2/HAL/HALSensorik.cpp</label>
+        <link refid="_h_a_l_sensorik_8cpp"/>
+      </node>
+      <node id="126">
+        <label>Software/SE2P2/HAL/HALAktorik.h</label>
+        <link refid="_h_a_l_aktorik_8h"/>
+        <childnode refid="127" relation="include">
+        </childnode>
+        <childnode refid="128" relation="include">
+        </childnode>
+        <childnode refid="130" relation="include">
+        </childnode>
+      </node>
+      <node id="130">
+        <label>Software/SE2P2/Thread.cpp</label>
+        <link refid="_thread_8cpp"/>
+      </node>
+      <node id="133">
+        <label>Software/SE2P2/main.cc</label>
+        <link refid="main_8cc"/>
+      </node>
+      <node id="128">
+        <label>Software/SE2P2/Test/Test.h</label>
+        <link refid="_test_8h"/>
+        <childnode refid="129" relation="include">
+        </childnode>
+        <childnode refid="130" relation="include">
+        </childnode>
+      </node>
+      <node id="127">
+        <label>Software/SE2P2/HAL/HALAktorik.cpp</label>
+        <link refid="_h_a_l_aktorik_8cpp"/>
+      </node>
+      <node id="129">
+        <label>Software/SE2P2/Test/Test.cpp</label>
+        <link refid="_test_8cpp"/>
+      </node>
+      <node id="134">
+        <label>Software/SE2P2/Mutex/Mutex.cpp</label>
+        <link refid="_mutex_8cpp"/>
+      </node>
+      <node id="136">
+        <label>Software/SE2P2/Serial/Serial.cpp</label>
+        <link refid="_serial_8cpp"/>
+      </node>
+      <node id="125">
+        <label>Software/SE2P2/HAL/Addresses.h</label>
+        <link refid="Addresses.h"/>
+        <childnode refid="126" relation="include">
+        </childnode>
+        <childnode refid="131" relation="include">
+        </childnode>
+        <childnode refid="134" relation="include">
+        </childnode>
+        <childnode refid="135" relation="include">
+        </childnode>
+        <childnode refid="129" relation="include">
+        </childnode>
+      </node>
+      <node id="131">
+        <label>Software/SE2P2/HAL/HALSensorik.h</label>
+        <link refid="_h_a_l_sensorik_8h"/>
+        <childnode refid="132" relation="include">
+        </childnode>
+        <childnode refid="133" relation="include">
+        </childnode>
+      </node>
+      <node id="135">
+        <label>Software/SE2P2/Serial/Serial.h</label>
+        <link refid="_serial_8h"/>
+        <childnode refid="136" relation="include">
+        </childnode>
+        <childnode refid="128" relation="include">
+        </childnode>
+        <childnode refid="130" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="_addresses_8h_1a57314fe3306fd02b396aedcdc58749ec" prot="public" static="no">
+        <name>DIO_BASE</name>
+        <initializer>0x300</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" line="14" column="9" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_addresses_8h_1a75c06dd12f0060ca328bf82ba2103ec2" prot="public" static="no">
+        <name>DIO_OFFS_A</name>
+        <initializer>0x00</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" line="15" column="9" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_addresses_8h_1abc7b19477102fe9e63b88c77b0c16e24" prot="public" static="no">
+        <name>DIO_OFFS_B</name>
+        <initializer>0x01</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" line="16" column="9" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_addresses_8h_1a186d39b18319d4f9f9f500228760f89a" prot="public" static="no">
+        <name>DIO_OFFS_C</name>
+        <initializer>0x02</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" line="17" column="9" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_addresses_8h_1a30bfb5a58855ac19adc4c8dba22a7d38" prot="public" static="no">
+        <name>DIO_OFFS_CTRL</name>
+        <initializer>0x03</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" line="18" column="9" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_addresses_8h_1af824185ae470a5224858823e20bd7326" prot="public" static="no">
+        <name>CTRL_CODE</name>
+        <initializer>0x10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" line="20" column="9" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_addresses_8h_1add6d2693f5d356b091088437148f939b" prot="public" static="no">
+        <name>BIT_0</name>
+        <initializer>0x01</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" line="23" column="9" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_addresses_8h_1aec9fa7211b7c9a686f2cd522cad7989d" prot="public" static="no">
+        <name>BIT_1</name>
+        <initializer>0x02</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" line="24" column="9" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_addresses_8h_1ab94e068b5073d729aad6b2aeb613916c" prot="public" static="no">
+        <name>BIT_2</name>
+        <initializer>0x04</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" line="25" column="9" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_addresses_8h_1a2cad0186598ab53983a3bca9b09b0a51" prot="public" static="no">
+        <name>BIT_3</name>
+        <initializer>0x08</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" line="26" column="9" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_addresses_8h_1a3506434dff748a6be0d75a338a95e673" prot="public" static="no">
+        <name>BIT_4</name>
+        <initializer>0x10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" line="27" column="9" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_addresses_8h_1aae7fda97814f05bfe68c0f6bb2ef9f11" prot="public" static="no">
+        <name>BIT_5</name>
+        <initializer>0x20</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" line="28" column="9" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_addresses_8h_1a7ecb78fe8c01d9722a06f10691495309" prot="public" static="no">
+        <name>BIT_6</name>
+        <initializer>0x40</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" line="29" column="9" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_addresses_8h_1a4ad58adf84157aebea2a98cc9402212a" prot="public" static="no">
+        <name>BIT_7</name>
+        <initializer>0x80</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" line="30" column="9" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_addresses_8h_1ad76d1750a6cdeebd506bfcd6752554d2" prot="public" static="no">
+        <name>ON</name>
+        <initializer>true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" line="32" column="9" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_addresses_8h_1a29e413f6725b2ba32d165ffaa35b01e5" prot="public" static="no">
+        <name>OFF</name>
+        <initializer>false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" line="33" column="9" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_addresses_8h_1a3b52f0e29439f92226eb230c6f75d2f5" prot="public" static="no">
+        <name>OFFS_INT_STATUS</name>
+        <initializer>0x0F</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" line="40" column="9" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_addresses_8h_1a0b5b0eef49b4662eee6d6ca045e7539d" prot="public" static="no">
+        <name>PB_STATUS</name>
+        <initializer>0x02</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" line="41" column="9" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_addresses_8h_1a829d677f2fdcd0292167b481b9ead0e2" prot="public" static="no">
+        <name>PC_STATUS</name>
+        <initializer>0x08</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" line="42" column="9" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_addresses_8h_1a831ee2c7b4d31fea5fde541c679babf6" prot="public" static="no">
+        <name>OFFS_INT_CTRL</name>
+        <initializer>0x0B</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" line="44" column="9" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_addresses_8h_1a1c95e5f0dc750ae3419baba7ccda3fa5" prot="public" static="no">
+        <name>PB_CTRL</name>
+        <initializer>0x02</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" line="45" column="9" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_addresses_8h_1a28edef93d8feb032aa3c3c22fcec3b2b" prot="public" static="no">
+        <name>PC_CTRL</name>
+        <initializer>0x04</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" line="46" column="9" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_addresses_8h_1a83a3ac2016039af1774c2a6432e0a75a" prot="public" static="no">
+        <name>AIO_BASE</name>
+        <initializer>0x320</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" line="49" column="9" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_addresses_8h_1ad2d94f2d99df266b7a7b039eeb0a0d48" prot="public" static="no">
+        <name>AIO_OFFS_A</name>
+        <initializer>0x02</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" line="50" column="9" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_addresses_8h_1af807e3e9966e5f9418fb557211d1d0c2" prot="public" static="no">
+        <name>AIO_GET_VAL</name>
+        <initializer>0x10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" line="51" column="9" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_addresses_8h_1ac349c0bdc8c9da24119671c4d1b438cc" prot="public" static="no">
+        <name>AIO_PORT_A</name>
+        <initializer>(<ref refid="_addresses_8h_1a83a3ac2016039af1774c2a6432e0a75a" kindref="member">AIO_BASE</ref> + <ref refid="_addresses_8h_1ad2d94f2d99df266b7a7b039eeb0a0d48" kindref="member">AIO_OFFS_A</ref>)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" line="52" column="9" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>Adresses.h</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/><sp/>Created<sp/>on:<sp/>02.10.2013</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Author:<sp/>Jannik<sp/>Schick<sp/>(2063265)</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Philipp<sp/>Kloth<sp/>(2081738)</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Rutkay<sp/>Kuepelikilinc<sp/>(2081831)</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Natalia<sp/>Duske<sp/>(2063265)</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>ADDRESSES_H_</highlight></codeline>
+<codeline lineno="12"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>ADDRESSES_H_</highlight></codeline>
+<codeline lineno="13"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="_addresses_8h_1a57314fe3306fd02b396aedcdc58749ec" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DIO_BASE<sp/>0x300<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Base<sp/>address</highlight></codeline>
+<codeline lineno="15" refid="_addresses_8h_1a75c06dd12f0060ca328bf82ba2103ec2" refkind="member"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>DIO_OFFS_A<sp/>0x00<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Port<sp/>A<sp/>offset</highlight></codeline>
+<codeline lineno="16" refid="_addresses_8h_1abc7b19477102fe9e63b88c77b0c16e24" refkind="member"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>DIO_OFFS_B<sp/>0x01<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Port<sp/>B<sp/>offset</highlight></codeline>
+<codeline lineno="17" refid="_addresses_8h_1a186d39b18319d4f9f9f500228760f89a" refkind="member"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>DIO_OFFS_C<sp/>0x02<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Port<sp/>C<sp/>offset</highlight></codeline>
+<codeline lineno="18" refid="_addresses_8h_1a30bfb5a58855ac19adc4c8dba22a7d38" refkind="member"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>DIO_OFFS_CTRL<sp/>0x03<sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Control<sp/>register<sp/>offset</highlight></codeline>
+<codeline lineno="19"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20" refid="_addresses_8h_1af824185ae470a5224858823e20bd7326" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CTRL_CODE<sp/>0x10</highlight></codeline>
+<codeline lineno="21"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>BIT_X<sp/>is<sp/>set<sp/>to<sp/>one</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="_addresses_8h_1add6d2693f5d356b091088437148f939b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BIT_0<sp/>0x01</highlight></codeline>
+<codeline lineno="24" refid="_addresses_8h_1aec9fa7211b7c9a686f2cd522cad7989d" refkind="member"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>BIT_1<sp/>0x02</highlight></codeline>
+<codeline lineno="25" refid="_addresses_8h_1ab94e068b5073d729aad6b2aeb613916c" refkind="member"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>BIT_2<sp/>0x04</highlight></codeline>
+<codeline lineno="26" refid="_addresses_8h_1a2cad0186598ab53983a3bca9b09b0a51" refkind="member"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>BIT_3<sp/>0x08</highlight></codeline>
+<codeline lineno="27" refid="_addresses_8h_1a3506434dff748a6be0d75a338a95e673" refkind="member"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>BIT_4<sp/>0x10</highlight></codeline>
+<codeline lineno="28" refid="_addresses_8h_1aae7fda97814f05bfe68c0f6bb2ef9f11" refkind="member"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>BIT_5<sp/>0x20</highlight></codeline>
+<codeline lineno="29" refid="_addresses_8h_1a7ecb78fe8c01d9722a06f10691495309" refkind="member"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>BIT_6<sp/>0x40</highlight></codeline>
+<codeline lineno="30" refid="_addresses_8h_1a4ad58adf84157aebea2a98cc9402212a" refkind="member"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>BIT_7<sp/>0x80</highlight></codeline>
+<codeline lineno="31"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="_addresses_8h_1ad76d1750a6cdeebd506bfcd6752554d2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ON<sp/>true</highlight></codeline>
+<codeline lineno="33" refid="_addresses_8h_1a29e413f6725b2ba32d165ffaa35b01e5" refkind="member"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>OFF<sp/>false</highlight></codeline>
+<codeline lineno="34"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="37"><highlight class="comment"><sp/>*<sp/>interrupt<sp/>specific</highlight></codeline>
+<codeline lineno="38"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="_addresses_8h_1a3b52f0e29439f92226eb230c6f75d2f5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>OFFS_INT_STATUS<sp/>0x0F</highlight></codeline>
+<codeline lineno="41" refid="_addresses_8h_1a0b5b0eef49b4662eee6d6ca045e7539d" refkind="member"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>PB_STATUS<sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x02</highlight></codeline>
+<codeline lineno="42" refid="_addresses_8h_1a829d677f2fdcd0292167b481b9ead0e2" refkind="member"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>PC_STATUS<sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x08</highlight></codeline>
+<codeline lineno="43"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44" refid="_addresses_8h_1a831ee2c7b4d31fea5fde541c679babf6" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>OFFS_INT_CTRL<sp/><sp/><sp/>0x0B</highlight></codeline>
+<codeline lineno="45" refid="_addresses_8h_1a1c95e5f0dc750ae3419baba7ccda3fa5" refkind="member"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>PB_CTRL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x02</highlight></codeline>
+<codeline lineno="46" refid="_addresses_8h_1a28edef93d8feb032aa3c3c22fcec3b2b" refkind="member"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>PC_CTRL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x04</highlight></codeline>
+<codeline lineno="47"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="comment">//AIO<sp/>Card</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49" refid="_addresses_8h_1a83a3ac2016039af1774c2a6432e0a75a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AIO_BASE<sp/><sp/><sp/><sp/>0x320</highlight></codeline>
+<codeline lineno="50" refid="_addresses_8h_1ad2d94f2d99df266b7a7b039eeb0a0d48" refkind="member"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>AIO_OFFS_A<sp/><sp/>0x02</highlight></codeline>
+<codeline lineno="51" refid="_addresses_8h_1af807e3e9966e5f9418fb557211d1d0c2" refkind="member"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>AIO_GET_VAL<sp/>0x10</highlight></codeline>
+<codeline lineno="52" refid="_addresses_8h_1ac349c0bdc8c9da24119671c4d1b438cc" refkind="member"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>AIO_PORT_A<sp/><sp/>(AIO_BASE<sp/>+<sp/>AIO_OFFS_A)</highlight></codeline>
+<codeline lineno="53"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>ADDRESSES_H_<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/Addresses.h"/>
+  </compounddef>
+</doxygen>

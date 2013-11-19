@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="defines__6f_8js" kind="file">
+    <compoundname>defines_6f.js</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="defines__6f_8js_1ad01a7523f103d6242ef9b0451861231e" prot="public" static="no" mutable="no">
+        <type>var</type>
+        <definition>var searchData</definition>
+        <argsstring></argsstring>
+        <name>searchData</name>
+        <initializer>=
+[
+  [&apos;off&apos;,[&apos;<ref refid="_addresses_8h_1a29e413f6725b2ba32d165ffaa35b01e5" kindref="member">OFF</ref>&apos;,[&apos;../_addresses_8h.html#a29e413f6725b2ba32d165ffaa35b01e5&apos;,1,&apos;Addresses.h&apos;]]],
+  [&apos;on&apos;,[&apos;<ref refid="_addresses_8h_1ad76d1750a6cdeebd506bfcd6752554d2" kindref="member">ON</ref>&apos;,[&apos;../_addresses_8h.html#ad76d1750a6cdeebd506bfcd6752554d2&apos;,1,&apos;Addresses.h&apos;]]],
+  [&apos;one_5fsec&apos;,[&apos;<ref refid="_thread_8h_1a03e15d7304e93f627db115d4a82e85cd" kindref="member">ONE_SEC</ref>&apos;,[&apos;../_thread_8h.html#a03e15d7304e93f627db115d4a82e85cd&apos;,1,&apos;Thread.h&apos;]]]
+]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Documentation/Doxygen/html/search/defines_6f.js" line="1" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Documentation/Doxygen/html/search/defines_6f.js" bodystart="1" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">var<sp/><ref refid="all__61_8js_1ad01a7523f103d6242ef9b0451861231e" kindref="member">searchData</ref>=</highlight></codeline>
+<codeline lineno="2"><highlight class="normal">[</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"><sp/><sp/>[</highlight><highlight class="stringliteral">&apos;off&apos;</highlight><highlight class="normal">,[</highlight><highlight class="stringliteral">&apos;OFF&apos;</highlight><highlight class="normal">,[</highlight><highlight class="stringliteral">&apos;../_addresses_8h.html#a29e413f6725b2ba32d165ffaa35b01e5&apos;</highlight><highlight class="normal">,1,</highlight><highlight class="stringliteral">&apos;Addresses.h&apos;</highlight><highlight class="normal">]]],</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"><sp/><sp/>[</highlight><highlight class="stringliteral">&apos;on&apos;</highlight><highlight class="normal">,[</highlight><highlight class="stringliteral">&apos;ON&apos;</highlight><highlight class="normal">,[</highlight><highlight class="stringliteral">&apos;../_addresses_8h.html#ad76d1750a6cdeebd506bfcd6752554d2&apos;</highlight><highlight class="normal">,1,</highlight><highlight class="stringliteral">&apos;Addresses.h&apos;</highlight><highlight class="normal">]]],</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"><sp/><sp/>[</highlight><highlight class="stringliteral">&apos;one_5fsec&apos;</highlight><highlight class="normal">,[</highlight><highlight class="stringliteral">&apos;ONE_SEC&apos;</highlight><highlight class="normal">,[</highlight><highlight class="stringliteral">&apos;../_thread_8h.html#a03e15d7304e93f627db115d4a82e85cd&apos;</highlight><highlight class="normal">,1,</highlight><highlight class="stringliteral">&apos;Thread.h&apos;</highlight><highlight class="normal">]]]</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">];</highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Documentation/Doxygen/html/search/defines_6f.js"/>
+  </compounddef>
+</doxygen>

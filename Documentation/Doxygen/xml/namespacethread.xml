@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="namespacethread" kind="namespace">
+    <compoundname>thread</compoundname>
+    <innerclass refid="classthread_1_1_h_a_w_thread" prot="public">thread::HAWThread</innerclass>
+    <innerclass refid="classthread_1_1_thread" prot="public">thread::Thread</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><ref refid="classthread_1_1_h_a_w_thread" kindref="compound">HAWThread</ref> class. Encapsulates the most important features of a thread. This serves as a basis for further development. For example, priorities could be passed as constructor argument. </para>    </detaileddescription>
+    <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAW/HAWThread.cpp" line="18" column="1"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,372 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="_test_8cpp" kind="file">
+    <compoundname>Test.cpp</compoundname>
+    <includes refid="_thread_8h" local="yes">../Thread.h</includes>
+    <includes refid="_test_8h" local="yes">Test.h</includes>
+    <includes local="no">iostream</includes>
+    <includes local="no">unistd.h</includes>
+    <includes refid="_s_e2_p2_2_h_a_w_2_h_waccess_8h" local="yes">../HAW/HWaccess.h</includes>
+    <includes refid="_addresses_8h" local="yes">../HAL/Addresses.h</includes>
+    <incdepgraph>
+      <node id="337">
+        <label>sys/stat.h</label>
+      </node>
+      <node id="332">
+        <label>stdint.h</label>
+      </node>
+      <node id="335">
+        <label>stdlib.h</label>
+      </node>
+      <node id="338">
+        <label>fcntl.h</label>
+      </node>
+      <node id="319">
+        <label>../Thread.h</label>
+        <link refid="_thread_8h"/>
+        <childnode refid="320" relation="include">
+        </childnode>
+      </node>
+      <node id="325">
+        <label>../HAL/HALAktorik.h</label>
+        <link refid="_h_a_l_aktorik_8h"/>
+        <childnode refid="326" relation="include">
+        </childnode>
+        <childnode refid="327" relation="include">
+        </childnode>
+        <childnode refid="330" relation="include">
+        </childnode>
+        <childnode refid="331" relation="include">
+        </childnode>
+        <childnode refid="332" relation="include">
+        </childnode>
+        <childnode refid="333" relation="include">
+        </childnode>
+      </node>
+      <node id="322">
+        <label>pthread.h</label>
+      </node>
+      <node id="336">
+        <label>sys/types.h</label>
+      </node>
+      <node id="326">
+        <label>../Mutex/Mutex.h</label>
+        <link refid="_mutex_8h"/>
+        <childnode refid="322" relation="include">
+        </childnode>
+      </node>
+      <node id="324">
+        <label>Test.h</label>
+        <link refid="_test_8h"/>
+        <childnode refid="325" relation="include">
+        </childnode>
+        <childnode refid="334" relation="include">
+        </childnode>
+      </node>
+      <node id="331">
+        <label>unistd.h</label>
+      </node>
+      <node id="329">
+        <label>hw/inout.h</label>
+      </node>
+      <node id="321">
+        <label>iostream.h</label>
+      </node>
+      <node id="318">
+        <label>Software/SE2P2/Test/Test.cpp</label>
+        <link refid="Test.cpp"/>
+        <childnode refid="319" relation="include">
+        </childnode>
+        <childnode refid="324" relation="include">
+        </childnode>
+        <childnode refid="333" relation="include">
+        </childnode>
+        <childnode refid="331" relation="include">
+        </childnode>
+        <childnode refid="327" relation="include">
+        </childnode>
+        <childnode refid="330" relation="include">
+        </childnode>
+      </node>
+      <node id="320">
+        <label>HAWThread.h</label>
+        <link refid="_h_a_w_thread_8h"/>
+        <childnode refid="321" relation="include">
+        </childnode>
+        <childnode refid="322" relation="include">
+        </childnode>
+        <childnode refid="323" relation="include">
+        </childnode>
+      </node>
+      <node id="333">
+        <label>iostream</label>
+      </node>
+      <node id="323">
+        <label>sys/neutrino.h</label>
+      </node>
+      <node id="327">
+        <label>../HAW/HWaccess.h</label>
+        <link refid="_s_e2_p2_2_h_a_w_2_h_waccess_8h"/>
+        <childnode refid="328" relation="include">
+        </childnode>
+        <childnode refid="323" relation="include">
+        </childnode>
+        <childnode refid="329" relation="include">
+        </childnode>
+      </node>
+      <node id="330">
+        <label>Addresses.h</label>
+        <link refid="_addresses_8h"/>
+      </node>
+      <node id="328">
+        <label>stdio.h</label>
+      </node>
+      <node id="334">
+        <label>../Serial/Serial.h</label>
+        <link refid="_serial_8h"/>
+        <childnode refid="327" relation="include">
+        </childnode>
+        <childnode refid="330" relation="include">
+        </childnode>
+        <childnode refid="331" relation="include">
+        </childnode>
+        <childnode refid="328" relation="include">
+        </childnode>
+        <childnode refid="335" relation="include">
+        </childnode>
+        <childnode refid="336" relation="include">
+        </childnode>
+        <childnode refid="337" relation="include">
+        </childnode>
+        <childnode refid="338" relation="include">
+        </childnode>
+        <childnode refid="326" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="_test_8cpp_1aa204ec58d846f2354e6bd239460db89f" prot="public" static="no">
+        <name>MSG_LENGTH</name>
+        <initializer>20</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/Test/Test.cpp" line="19" column="9" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/Test/Test.cpp" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_test_8cpp_1a15ba033dbe556975bfeb6caa3a046753" prot="public" static="no">
+        <name>SLEEP_ONE_SEC</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/Test/Test.cpp" line="20" column="9" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/Test/Test.cpp" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_test_8cpp_1a16b15eb1be25e2590567f87fdcc5fe0e" prot="public" static="no">
+        <name>TEST_MESSAGES</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/Test/Test.cpp" line="22" column="9" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/Test/Test.cpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_test_8cpp_1ada74e7db007a68e763f20c17f2985356" prot="public" static="no">
+        <name>READ</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/Test/Test.cpp" line="23" column="9" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/Test/Test.cpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>Test.cpp</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/><sp/>Created<sp/>on:<sp/>17.10.2013</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Author:<sp/>Jannik<sp/>Schick<sp/>(2063265)</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Philipp<sp/>Kloth<sp/>(2081738)</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Rutkay<sp/>Kuepelikilinc<sp/>(2081831)</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Natalia<sp/>Duske<sp/>(2063265)</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../Thread.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_test_8h" kindref="compound">Test.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;unistd.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../HAW/HWaccess.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../HAL/Addresses.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MSG_LENGTH<sp/>20</highlight></codeline>
+<codeline lineno="20"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>SLEEP_ONE_SEC<sp/>1</highlight></codeline>
+<codeline lineno="21"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TEST_MESSAGES</highlight></codeline>
+<codeline lineno="23"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>READ</highlight></codeline>
+<codeline lineno="24"><highlight class="preprocessor"></highlight><highlight class="comment">//#define<sp/>WRITE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><ref refid="class_test_1a99f2bbfac6c95612322b0f10e607ebe5" kindref="member">Test::Test</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO<sp/>Auto-generated<sp/>constructor<sp/>stub</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><ref refid="class_test_1a2b0a62f1e667bbe8d8cb18d785bfa991" kindref="member">Test::~Test</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO<sp/>Auto-generated<sp/>destructor<sp/>stub</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="38"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_test_1a118c64b69e753289df5f97556e751e8a" kindref="member">Test::componentTest</ref>(<ref refid="class_h_a_l_aktorik" kindref="compound">HALAktorik</ref>*<sp/>hal)<sp/>{</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>hal-&gt;<ref refid="class_h_a_l_aktorik_1a28e4f18950c87e3a6adccb88e87d631a" kindref="member">led_Q1</ref>(<ref refid="_addresses_8h_1ad76d1750a6cdeebd506bfcd6752554d2" kindref="member">ON</ref>);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>TEST_MESSAGES</highlight></codeline>
+<codeline lineno="41"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;LED<sp/>Q1<sp/>on&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="43"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>sleep(<ref refid="_test_8cpp_1a15ba033dbe556975bfeb6caa3a046753" kindref="member">SLEEP_ONE_SEC</ref>);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>hal-&gt;<ref refid="class_h_a_l_aktorik_1a28e4f18950c87e3a6adccb88e87d631a" kindref="member">led_Q1</ref>(<ref refid="_addresses_8h_1a29e413f6725b2ba32d165ffaa35b01e5" kindref="member">OFF</ref>);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>TEST_MESSAGES</highlight></codeline>
+<codeline lineno="46"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;LED<sp/>Q1<sp/>off&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="48"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>sleep(<ref refid="_test_8cpp_1a15ba033dbe556975bfeb6caa3a046753" kindref="member">SLEEP_ONE_SEC</ref>);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>hal-&gt;<ref refid="class_h_a_l_aktorik_1ae32a42f9de09de7d150f7a676b135d6c" kindref="member">led_Q2</ref>(<ref refid="_addresses_8h_1ad76d1750a6cdeebd506bfcd6752554d2" kindref="member">ON</ref>);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>TEST_MESSAGES</highlight></codeline>
+<codeline lineno="51"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;LED<sp/>Q2<sp/>on&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="53"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>sleep(<ref refid="_test_8cpp_1a15ba033dbe556975bfeb6caa3a046753" kindref="member">SLEEP_ONE_SEC</ref>);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>hal-&gt;<ref refid="class_h_a_l_aktorik_1ae32a42f9de09de7d150f7a676b135d6c" kindref="member">led_Q2</ref>(<ref refid="_addresses_8h_1a29e413f6725b2ba32d165ffaa35b01e5" kindref="member">OFF</ref>);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>TEST_MESSAGES</highlight></codeline>
+<codeline lineno="56"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;LED<sp/>Q2<sp/>off&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="58"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>sleep(<ref refid="_test_8cpp_1a15ba033dbe556975bfeb6caa3a046753" kindref="member">SLEEP_ONE_SEC</ref>);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>hal-&gt;<ref refid="class_h_a_l_aktorik_1a76d14c80220995490f526ef77c389111" kindref="member">led_Start</ref>(<ref refid="_addresses_8h_1ad76d1750a6cdeebd506bfcd6752554d2" kindref="member">ON</ref>);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>TEST_MESSAGES</highlight></codeline>
+<codeline lineno="61"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;LED<sp/>Start<sp/>on&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="63"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>sleep(<ref refid="_test_8cpp_1a15ba033dbe556975bfeb6caa3a046753" kindref="member">SLEEP_ONE_SEC</ref>);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>hal-&gt;<ref refid="class_h_a_l_aktorik_1a76d14c80220995490f526ef77c389111" kindref="member">led_Start</ref>(<ref refid="_addresses_8h_1a29e413f6725b2ba32d165ffaa35b01e5" kindref="member">OFF</ref>);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>TEST_MESSAGES</highlight></codeline>
+<codeline lineno="66"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;LED<sp/>Start<sp/>off&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="68"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>sleep(<ref refid="_test_8cpp_1a15ba033dbe556975bfeb6caa3a046753" kindref="member">SLEEP_ONE_SEC</ref>);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>hal-&gt;<ref refid="class_h_a_l_aktorik_1a4dec7b3441ba3967fc7c56c7f8dbb1ff" kindref="member">led_Reset</ref>(<ref refid="_addresses_8h_1ad76d1750a6cdeebd506bfcd6752554d2" kindref="member">ON</ref>);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>TEST_MESSAGES</highlight></codeline>
+<codeline lineno="71"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;LED<sp/>Reset<sp/>on&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="73"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>sleep(<ref refid="_test_8cpp_1a15ba033dbe556975bfeb6caa3a046753" kindref="member">SLEEP_ONE_SEC</ref>);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>hal-&gt;<ref refid="class_h_a_l_aktorik_1a4dec7b3441ba3967fc7c56c7f8dbb1ff" kindref="member">led_Reset</ref>(<ref refid="_addresses_8h_1a29e413f6725b2ba32d165ffaa35b01e5" kindref="member">OFF</ref>);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>TEST_MESSAGES</highlight></codeline>
+<codeline lineno="76"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;LED<sp/>Reset<sp/>off&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="78"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>sleep(<ref refid="_test_8cpp_1a15ba033dbe556975bfeb6caa3a046753" kindref="member">SLEEP_ONE_SEC</ref>);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>hal-&gt;<ref refid="class_h_a_l_aktorik_1ad0a2847f65bf5c04265a8eda42d6efe6" kindref="member">greenLigths</ref>(<ref refid="_addresses_8h_1ad76d1750a6cdeebd506bfcd6752554d2" kindref="member">ON</ref>);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>TEST_MESSAGES</highlight></codeline>
+<codeline lineno="81"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;green<sp/>on&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="83"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>sleep(<ref refid="_test_8cpp_1a15ba033dbe556975bfeb6caa3a046753" kindref="member">SLEEP_ONE_SEC</ref>);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>hal-&gt;<ref refid="class_h_a_l_aktorik_1ad0a2847f65bf5c04265a8eda42d6efe6" kindref="member">greenLigths</ref>(<ref refid="_addresses_8h_1a29e413f6725b2ba32d165ffaa35b01e5" kindref="member">OFF</ref>);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>TEST_MESSAGES</highlight></codeline>
+<codeline lineno="86"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;green<sp/>off&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="88"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>sleep(<ref refid="_test_8cpp_1a15ba033dbe556975bfeb6caa3a046753" kindref="member">SLEEP_ONE_SEC</ref>);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>hal-&gt;<ref refid="class_h_a_l_aktorik_1aad58daf98ce2e64c18ca220fe6b93bd2" kindref="member">yellowLigths</ref>(<ref refid="_addresses_8h_1ad76d1750a6cdeebd506bfcd6752554d2" kindref="member">ON</ref>);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>TEST_MESSAGES</highlight></codeline>
+<codeline lineno="91"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;yellow<sp/>on&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="93"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>sleep(<ref refid="_test_8cpp_1a15ba033dbe556975bfeb6caa3a046753" kindref="member">SLEEP_ONE_SEC</ref>);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>hal-&gt;<ref refid="class_h_a_l_aktorik_1aad58daf98ce2e64c18ca220fe6b93bd2" kindref="member">yellowLigths</ref>(<ref refid="_addresses_8h_1a29e413f6725b2ba32d165ffaa35b01e5" kindref="member">OFF</ref>);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>TEST_MESSAGES</highlight></codeline>
+<codeline lineno="96"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;yellow<sp/>off&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="98"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>sleep(<ref refid="_test_8cpp_1a15ba033dbe556975bfeb6caa3a046753" kindref="member">SLEEP_ONE_SEC</ref>);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>hal-&gt;<ref refid="class_h_a_l_aktorik_1a39aa3258cdc96175dc1638d5d76f4fec" kindref="member">redLigths</ref>(<ref refid="_addresses_8h_1ad76d1750a6cdeebd506bfcd6752554d2" kindref="member">ON</ref>);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>TEST_MESSAGES</highlight></codeline>
+<codeline lineno="101"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;red<sp/>on&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="103"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>sleep(<ref refid="_test_8cpp_1a15ba033dbe556975bfeb6caa3a046753" kindref="member">SLEEP_ONE_SEC</ref>);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>hal-&gt;<ref refid="class_h_a_l_aktorik_1a39aa3258cdc96175dc1638d5d76f4fec" kindref="member">redLigths</ref>(<ref refid="_addresses_8h_1a29e413f6725b2ba32d165ffaa35b01e5" kindref="member">OFF</ref>);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>TEST_MESSAGES</highlight></codeline>
+<codeline lineno="106"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;red<sp/>off&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="108"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>sleep(<ref refid="_test_8cpp_1a15ba033dbe556975bfeb6caa3a046753" kindref="member">SLEEP_ONE_SEC</ref>);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>hal-&gt;<ref refid="class_h_a_l_aktorik_1a28f6c111b47b2a91b2f0b40b5355b283" kindref="member">switchOnOff</ref>(<ref refid="_addresses_8h_1ad76d1750a6cdeebd506bfcd6752554d2" kindref="member">ON</ref>);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>TEST_MESSAGES</highlight></codeline>
+<codeline lineno="111"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;switch<sp/>open&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="113"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>sleep(<ref refid="_test_8cpp_1a15ba033dbe556975bfeb6caa3a046753" kindref="member">SLEEP_ONE_SEC</ref>);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>hal-&gt;<ref refid="class_h_a_l_aktorik_1a28f6c111b47b2a91b2f0b40b5355b283" kindref="member">switchOnOff</ref>(<ref refid="_addresses_8h_1a29e413f6725b2ba32d165ffaa35b01e5" kindref="member">OFF</ref>);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>TEST_MESSAGES</highlight></codeline>
+<codeline lineno="116"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;switch<sp/>close&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="118"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>sleep(<ref refid="_test_8cpp_1a15ba033dbe556975bfeb6caa3a046753" kindref="member">SLEEP_ONE_SEC</ref>);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>hal-&gt;<ref refid="class_h_a_l_aktorik_1a826479036fecba7751da649d7f6cd797" kindref="member">engine_rigth</ref>();</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>TEST_MESSAGES</highlight></codeline>
+<codeline lineno="121"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;engine<sp/>right&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="123"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>sleep(<ref refid="_test_8cpp_1a15ba033dbe556975bfeb6caa3a046753" kindref="member">SLEEP_ONE_SEC</ref>);</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>hal-&gt;<ref refid="class_h_a_l_aktorik_1a8b36149a576b3d4842ef3f05dba6c958" kindref="member">engine_stop</ref>();</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>TEST_MESSAGES</highlight></codeline>
+<codeline lineno="126"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;engine<sp/>stop&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="128"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>sleep(<ref refid="_test_8cpp_1a15ba033dbe556975bfeb6caa3a046753" kindref="member">SLEEP_ONE_SEC</ref>);</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>hal-&gt;<ref refid="class_h_a_l_aktorik_1a3febe317f574530a79aaecf5228acdd0" kindref="member">engine_start</ref>();</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>TEST_MESSAGES</highlight></codeline>
+<codeline lineno="131"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;engine<sp/>start&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="133"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>hal-&gt;<ref refid="class_h_a_l_aktorik_1aa962e7d5821f483e8fe64fe092be01cf" kindref="member">engine_left</ref>();</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>TEST_MESSAGES</highlight></codeline>
+<codeline lineno="135"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;engine<sp/>left&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="137"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>sleep(<ref refid="_test_8cpp_1a15ba033dbe556975bfeb6caa3a046753" kindref="member">SLEEP_ONE_SEC</ref>);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>hal-&gt;<ref refid="class_h_a_l_aktorik_1a8b36149a576b3d4842ef3f05dba6c958" kindref="member">engine_stop</ref>();</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>TEST_MESSAGES</highlight></codeline>
+<codeline lineno="140"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;engine<sp/>stop&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="142"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>sleep(<ref refid="_test_8cpp_1a15ba033dbe556975bfeb6caa3a046753" kindref="member">SLEEP_ONE_SEC</ref>);</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/>hal-&gt;<ref refid="class_h_a_l_aktorik_1a3febe317f574530a79aaecf5228acdd0" kindref="member">engine_start</ref>();</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>TEST_MESSAGES</highlight></codeline>
+<codeline lineno="145"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;engine<sp/>start&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="147"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>sleep(<ref refid="_test_8cpp_1a15ba033dbe556975bfeb6caa3a046753" kindref="member">SLEEP_ONE_SEC</ref>);</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/>hal-&gt;<ref refid="class_h_a_l_aktorik_1a5de35c820a4f8e501e3b698d5cf3ae9d" kindref="member">engine_slow</ref>(<ref refid="_addresses_8h_1ad76d1750a6cdeebd506bfcd6752554d2" kindref="member">ON</ref>);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>TEST_MESSAGES</highlight></codeline>
+<codeline lineno="150"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;engine<sp/>slow<sp/>on&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="152"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>sleep(<ref refid="_test_8cpp_1a15ba033dbe556975bfeb6caa3a046753" kindref="member">SLEEP_ONE_SEC</ref>);</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>hal-&gt;<ref refid="class_h_a_l_aktorik_1a5de35c820a4f8e501e3b698d5cf3ae9d" kindref="member">engine_slow</ref>(<ref refid="_addresses_8h_1a29e413f6725b2ba32d165ffaa35b01e5" kindref="member">OFF</ref>);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>TEST_MESSAGES</highlight></codeline>
+<codeline lineno="155"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;engine<sp/>slow<sp/>off&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="157"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>sleep(<ref refid="_test_8cpp_1a15ba033dbe556975bfeb6caa3a046753" kindref="member">SLEEP_ONE_SEC</ref>);</highlight></codeline>
+<codeline lineno="158"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="163"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_test_1ad27b04e088e07fba8b3c44f333a8237b" kindref="member">Test::serialTest</ref>(<ref refid="class_serial" kindref="compound">Serial</ref>*<sp/>serial){</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>READ</highlight></codeline>
+<codeline lineno="166"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>msgIn[<ref refid="_test_8cpp_1aa204ec58d846f2354e6bd239460db89f" kindref="member">MSG_LENGTH</ref>];</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/>serial-&gt;<ref refid="class_serial_1aaffa99b4312d4fbf3212a1e47a2cc1cb" kindref="member">read_serial</ref>((</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)msgIn,<sp/><ref refid="_test_8cpp_1aa204ec58d846f2354e6bd239460db89f" kindref="member">MSG_LENGTH</ref>);</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;Nachricht:<sp/>%s\n&quot;</highlight><highlight class="normal">,<sp/>msgIn);</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="170"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>WRITE</highlight></codeline>
+<codeline lineno="172"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>msgOut<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;Hallo<sp/>Maschine\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/>serial-&gt;<ref refid="class_serial_1a46886e43b42a069ee9abd4de18e32ea2" kindref="member">write_serial</ref>(msgOut,<sp/><ref refid="_test_8cpp_1aa204ec58d846f2354e6bd239460db89f" kindref="member">MSG_LENGTH</ref>);</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>TEST_MESSAGES</highlight></codeline>
+<codeline lineno="175"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;send<sp/>Message&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="177"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="178"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/Test/Test.cpp"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="_test_8h" kind="file">
+    <compoundname>Test.h</compoundname>
+    <includes refid="_h_a_l_aktorik_8h" local="yes">../HAL/HALAktorik.h</includes>
+    <includes refid="_serial_8h" local="yes">../Serial/Serial.h</includes>
+    <includedby refid="_test_8cpp" local="yes">Software/SE2P2/Test/Test.cpp</includedby>
+    <includedby refid="_thread_8cpp" local="yes">Software/SE2P2/Thread.cpp</includedby>
+    <incdepgraph>
+      <node id="355">
+        <label>sys/stat.h</label>
+      </node>
+      <node id="350">
+        <label>stdint.h</label>
+      </node>
+      <node id="353">
+        <label>stdlib.h</label>
+      </node>
+      <node id="356">
+        <label>fcntl.h</label>
+      </node>
+      <node id="341">
+        <label>../HAL/HALAktorik.h</label>
+        <link refid="_h_a_l_aktorik_8h"/>
+        <childnode refid="342" relation="include">
+        </childnode>
+        <childnode refid="344" relation="include">
+        </childnode>
+        <childnode refid="348" relation="include">
+        </childnode>
+        <childnode refid="349" relation="include">
+        </childnode>
+        <childnode refid="350" relation="include">
+        </childnode>
+        <childnode refid="351" relation="include">
+        </childnode>
+      </node>
+      <node id="343">
+        <label>pthread.h</label>
+      </node>
+      <node id="354">
+        <label>sys/types.h</label>
+      </node>
+      <node id="342">
+        <label>../Mutex/Mutex.h</label>
+        <link refid="_mutex_8h"/>
+        <childnode refid="343" relation="include">
+        </childnode>
+      </node>
+      <node id="340">
+        <label>Software/SE2P2/Test/Test.h</label>
+        <link refid="Test.h"/>
+        <childnode refid="341" relation="include">
+        </childnode>
+        <childnode refid="352" relation="include">
+        </childnode>
+      </node>
+      <node id="349">
+        <label>unistd.h</label>
+      </node>
+      <node id="347">
+        <label>hw/inout.h</label>
+      </node>
+      <node id="351">
+        <label>iostream</label>
+      </node>
+      <node id="346">
+        <label>sys/neutrino.h</label>
+      </node>
+      <node id="344">
+        <label>../HAW/HWaccess.h</label>
+        <link refid="_s_e2_p2_2_h_a_w_2_h_waccess_8h"/>
+        <childnode refid="345" relation="include">
+        </childnode>
+        <childnode refid="346" relation="include">
+        </childnode>
+        <childnode refid="347" relation="include">
+        </childnode>
+      </node>
+      <node id="348">
+        <label>Addresses.h</label>
+        <link refid="_addresses_8h"/>
+      </node>
+      <node id="345">
+        <label>stdio.h</label>
+      </node>
+      <node id="352">
+        <label>../Serial/Serial.h</label>
+        <link refid="_serial_8h"/>
+        <childnode refid="344" relation="include">
+        </childnode>
+        <childnode refid="348" relation="include">
+        </childnode>
+        <childnode refid="349" relation="include">
+        </childnode>
+        <childnode refid="345" relation="include">
+        </childnode>
+        <childnode refid="353" relation="include">
+        </childnode>
+        <childnode refid="354" relation="include">
+        </childnode>
+        <childnode refid="355" relation="include">
+        </childnode>
+        <childnode refid="356" relation="include">
+        </childnode>
+        <childnode refid="342" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="359">
+        <label>Software/SE2P2/Thread.cpp</label>
+        <link refid="_thread_8cpp"/>
+      </node>
+      <node id="357">
+        <label>Software/SE2P2/Test/Test.h</label>
+        <link refid="Test.h"/>
+        <childnode refid="358" relation="include">
+        </childnode>
+        <childnode refid="359" relation="include">
+        </childnode>
+      </node>
+      <node id="358">
+        <label>Software/SE2P2/Test/Test.cpp</label>
+        <link refid="_test_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="class_test" prot="public">Test</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>Test.h</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/><sp/>Created<sp/>on:<sp/>17.10.2013</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Author:<sp/>Rutkay</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>TEST_H_</highlight></codeline>
+<codeline lineno="9"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>TEST_H_</highlight></codeline>
+<codeline lineno="10"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../HAL/HALAktorik.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../Serial/Serial.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="class_test" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_test" kindref="compound">Test</ref><sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_test_1a99f2bbfac6c95612322b0f10e607ebe5" kindref="member">Test</ref>();</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="class_test_1a2b0a62f1e667bbe8d8cb18d785bfa991" kindref="member">~Test</ref>();</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_test_1a118c64b69e753289df5f97556e751e8a" kindref="member">componentTest</ref>(<ref refid="class_h_a_l_aktorik" kindref="compound">HALAktorik</ref>*<sp/>hal);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_test_1ad27b04e088e07fba8b3c44f333a8237b" kindref="member">serialTest</ref>(<ref refid="class_serial" kindref="compound">Serial</ref>*<sp/>serial);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>TEST_H_<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/Test/Test.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="_s_e2_p2_2_h_a_w_2_h_waccess_8h" kind="file">
+    <compoundname>HWaccess.h</compoundname>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">sys/neutrino.h</includes>
+    <includes local="no">hw/inout.h</includes>
+    <includedby refid="_h_a_l_aktorik_8h" local="yes">Software/SE2P2/HAL/HALAktorik.h</includedby>
+    <includedby refid="_h_a_l_sensorik_8h" local="yes">Software/SE2P2/HAL/HALSensorik.h</includedby>
+    <includedby refid="_mutex_8cpp" local="yes">Software/SE2P2/Mutex/Mutex.cpp</includedby>
+    <includedby refid="_serial_8h" local="yes">Software/SE2P2/Serial/Serial.h</includedby>
+    <includedby refid="_test_8cpp" local="yes">Software/SE2P2/Test/Test.cpp</includedby>
+    <incdepgraph>
+      <node id="218">
+        <label>hw/inout.h</label>
+      </node>
+      <node id="217">
+        <label>sys/neutrino.h</label>
+      </node>
+      <node id="215">
+        <label>Software/SE2P2/HAW/HWaccess.h</label>
+        <link refid="SE2P2/HAW/HWaccess.h"/>
+        <childnode refid="216" relation="include">
+        </childnode>
+        <childnode refid="217" relation="include">
+        </childnode>
+        <childnode refid="218" relation="include">
+        </childnode>
+      </node>
+      <node id="216">
+        <label>stdio.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="226">
+        <label>Software/SE2P2/HAL/HALSensorik.cpp</label>
+        <link refid="_h_a_l_sensorik_8cpp"/>
+      </node>
+      <node id="220">
+        <label>Software/SE2P2/HAL/HALAktorik.h</label>
+        <link refid="_h_a_l_aktorik_8h"/>
+        <childnode refid="221" relation="include">
+        </childnode>
+        <childnode refid="222" relation="include">
+        </childnode>
+        <childnode refid="224" relation="include">
+        </childnode>
+      </node>
+      <node id="224">
+        <label>Software/SE2P2/Thread.cpp</label>
+        <link refid="_thread_8cpp"/>
+      </node>
+      <node id="227">
+        <label>Software/SE2P2/main.cc</label>
+        <link refid="main_8cc"/>
+      </node>
+      <node id="222">
+        <label>Software/SE2P2/Test/Test.h</label>
+        <link refid="_test_8h"/>
+        <childnode refid="223" relation="include">
+        </childnode>
+        <childnode refid="224" relation="include">
+        </childnode>
+      </node>
+      <node id="221">
+        <label>Software/SE2P2/HAL/HALAktorik.cpp</label>
+        <link refid="_h_a_l_aktorik_8cpp"/>
+      </node>
+      <node id="223">
+        <label>Software/SE2P2/Test/Test.cpp</label>
+        <link refid="_test_8cpp"/>
+      </node>
+      <node id="228">
+        <label>Software/SE2P2/Mutex/Mutex.cpp</label>
+        <link refid="_mutex_8cpp"/>
+      </node>
+      <node id="230">
+        <label>Software/SE2P2/Serial/Serial.cpp</label>
+        <link refid="_serial_8cpp"/>
+      </node>
+      <node id="219">
+        <label>Software/SE2P2/HAW/HWaccess.h</label>
+        <link refid="SE2P2/HAW/HWaccess.h"/>
+        <childnode refid="220" relation="include">
+        </childnode>
+        <childnode refid="225" relation="include">
+        </childnode>
+        <childnode refid="228" relation="include">
+        </childnode>
+        <childnode refid="229" relation="include">
+        </childnode>
+        <childnode refid="223" relation="include">
+        </childnode>
+      </node>
+      <node id="225">
+        <label>Software/SE2P2/HAL/HALSensorik.h</label>
+        <link refid="_h_a_l_sensorik_8h"/>
+        <childnode refid="226" relation="include">
+        </childnode>
+        <childnode refid="227" relation="include">
+        </childnode>
+      </node>
+      <node id="229">
+        <label>Software/SE2P2/Serial/Serial.h</label>
+        <link refid="_serial_8h"/>
+        <childnode refid="230" relation="include">
+        </childnode>
+        <childnode refid="222" relation="include">
+        </childnode>
+        <childnode refid="224" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>Steuerung<sp/>ob<sp/>Simulation<sp/>oder<sp/>HW<sp/>Plattform<sp/>(C<sp/>Interface)</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>Diese<sp/>Datei<sp/>MUSS<sp/>ueberall<sp/>includiert<sp/>werden,<sp/>wo<sp/>auf<sp/>die<sp/>HW<sp/>zugegriffen<sp/>wird.</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>Ueber<sp/>SIMULATION<sp/>wird<sp/>zwischen<sp/>Simulation<sp/>und<sp/>HW<sp/>umgeschaltet</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/>Damit<sp/>die<sp/>Aenderungen<sp/>beachtet<sp/>werden,<sp/>muss<sp/>Check<sp/>Dependencies<sp/>On/Off<sp/>-&gt;<sp/>Check<sp/>User<sp/>Headers<sp/>Only</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/>gesetzt<sp/>sein.</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/>Zur<sp/>Not<sp/>:<sp/>Ein<sp/>Clean<sp/>auf<sp/>das<sp/>Projekt<sp/>ausführen</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//#define<sp/>SIMULATION</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Die<sp/>drei<sp/>folgenden<sp/>includes<sp/>dürfen<sp/>nur<sp/>in<sp/>dieser<sp/>Datei<sp/>stehen</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sys/neutrino.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;hw/inout.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>SIMULATION</highlight></codeline>
+<codeline lineno="27"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#include<sp/>&lt;ioaccess.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="29"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">//<sp/>End<sp/>of<sp/>File</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAW/HWaccess.h"/>
+  </compounddef>
+</doxygen>

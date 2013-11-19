@@ -1,0 +1,187 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="_serial_8cpp" kind="file">
+    <compoundname>Serial.cpp</compoundname>
+    <includes refid="_serial_8h" local="yes">Serial.h</includes>
+    <incdepgraph>
+      <node id="295">
+        <label>sys/stat.h</label>
+      </node>
+      <node id="293">
+        <label>stdlib.h</label>
+      </node>
+      <node id="296">
+        <label>fcntl.h</label>
+      </node>
+      <node id="298">
+        <label>pthread.h</label>
+      </node>
+      <node id="294">
+        <label>sys/types.h</label>
+      </node>
+      <node id="297">
+        <label>../Mutex/Mutex.h</label>
+        <link refid="_mutex_8h"/>
+        <childnode refid="298" relation="include">
+        </childnode>
+      </node>
+      <node id="292">
+        <label>unistd.h</label>
+      </node>
+      <node id="290">
+        <label>hw/inout.h</label>
+      </node>
+      <node id="285">
+        <label>Software/SE2P2/Serial/Serial.cpp</label>
+        <link refid="Serial.cpp"/>
+        <childnode refid="286" relation="include">
+        </childnode>
+      </node>
+      <node id="289">
+        <label>sys/neutrino.h</label>
+      </node>
+      <node id="287">
+        <label>../HAW/HWaccess.h</label>
+        <link refid="_s_e2_p2_2_h_a_w_2_h_waccess_8h"/>
+        <childnode refid="288" relation="include">
+        </childnode>
+        <childnode refid="289" relation="include">
+        </childnode>
+        <childnode refid="290" relation="include">
+        </childnode>
+      </node>
+      <node id="291">
+        <label>../HAL/Addresses.h</label>
+        <link refid="_addresses_8h"/>
+      </node>
+      <node id="288">
+        <label>stdio.h</label>
+      </node>
+      <node id="286">
+        <label>Serial.h</label>
+        <link refid="_serial_8h"/>
+        <childnode refid="287" relation="include">
+        </childnode>
+        <childnode refid="291" relation="include">
+        </childnode>
+        <childnode refid="292" relation="include">
+        </childnode>
+        <childnode refid="288" relation="include">
+        </childnode>
+        <childnode refid="293" relation="include">
+        </childnode>
+        <childnode refid="294" relation="include">
+        </childnode>
+        <childnode refid="295" relation="include">
+        </childnode>
+        <childnode refid="296" relation="include">
+        </childnode>
+        <childnode refid="297" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="_serial_8cpp_1a6f8059414f0228f0256115e024eeed4b" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int fd</definition>
+        <argsstring></argsstring>
+        <name>fd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/Serial/Serial.cpp" line="13" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/Serial/Serial.cpp" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>Serial.cpp</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/><sp/>Created<sp/>on:<sp/>02.10.2013</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Author:<sp/>Jannik<sp/>Schick<sp/>(2063265)</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Philipp<sp/>Kloth<sp/>(2081738)</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Rutkay<sp/>Kuepelikilinc<sp/>(2081831)</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Natalia<sp/>Duske<sp/>(2063265)</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_serial_8h" kindref="compound">Serial.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_serial_8cpp_1a6f8059414f0228f0256115e024eeed4b" kindref="member">fd</ref>;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><ref refid="class_mutex" kindref="compound">Mutex</ref>*<sp/>Serial::Serialmutex<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="class_mutex" kindref="compound">Mutex</ref>();</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><ref refid="class_serial" kindref="compound">Serial</ref>*<sp/>Serial::instance<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal">Serial::Serial()<sp/>{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO<sp/>Auto-generated<sp/>constructor<sp/>stub</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal">Serial::~Serial()<sp/>{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/>instance;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>instance<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO<sp/>Auto-generated<sp/>destructor<sp/>stub</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><ref refid="class_serial" kindref="compound">Serial</ref>*<sp/><ref refid="class_serial_1a586999e4d3b21aa0f527f4f1b30d98b5" kindref="member">Serial::getInstance</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>Serialmutex-&gt;<ref refid="class_mutex_1ad91be808bf0a60a16f10b897ec246d3a" kindref="member">lock</ref>();</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(instance<sp/>==<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Zugriffsrechte<sp/>fuer<sp/>den<sp/>Zugriff<sp/>auf<sp/>die<sp/>HW<sp/>holen</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(-1<sp/>==<sp/>ThreadCtl(_NTO_TCTL_IO,<sp/>0))<sp/>{</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>perror(</highlight><highlight class="stringliteral">&quot;ThreadCtl<sp/>access<sp/>failed\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>NULL;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>instance<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="class_serial" kindref="compound">Serial</ref>();</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>Serialmutex-&gt;<ref refid="class_mutex_1a546a5b797ba29959357586aa2b3740a8" kindref="member">unlock</ref>();</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>instance;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_serial_1a8fb59fe5f1eaf5113c6024cc01aca666" kindref="member">Serial::open_serial</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>device)<sp/>{</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>O_NOCTTY:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>If<sp/>set,<sp/>and<sp/>path<sp/>identifies<sp/>a<sp/>terminal<sp/>device,<sp/>the<sp/>open()<sp/>function</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>doesn&apos;t<sp/>cause<sp/>the<sp/>terminal<sp/>device<sp/>to<sp/>become<sp/>the<sp/>controlling<sp/>terminal<sp/>for</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>process.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>fd<sp/>=<sp/>open(device,<sp/>O_RDWR<sp/>|<sp/>O_NOCTTY);<sp/></highlight><highlight class="comment">//<sp/>O_NOBLOCK<sp/>=&gt;<sp/>nicht<sp/>blockierend</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>fd;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="62"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_serial_1ac1421277839c8c7c57b2d3757a27b005" kindref="member">Serial::close_serial</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(close(fd)<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>perror(</highlight><highlight class="stringliteral">&quot;close<sp/>failed&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>fd<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal">ssize_t<sp/><ref refid="class_serial_1a46886e43b42a069ee9abd4de18e32ea2" kindref="member">Serial::write_serial</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>buf,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>nbytes)<sp/>{</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>ssize_t<sp/>returnV;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>returnV<sp/>=<sp/>write(fd,<sp/>buf,<sp/>nbytes);</highlight><highlight class="comment">//<sp/>s.<sp/>open,<sp/>Sendepuffer,<sp/>Anzahl<sp/>der<sp/>zu<sp/>schreibenden<sp/>Bytes</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(returnV<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>perror(</highlight><highlight class="stringliteral">&quot;write<sp/>failed&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>usleep(200000);<sp/></highlight><highlight class="comment">//<sp/>min.<sp/>Zeit<sp/>zwischen<sp/>2<sp/>Nachrichten</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>returnV;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="88"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_serial_1aaffa99b4312d4fbf3212a1e47a2cc1cb" kindref="member">Serial::read_serial</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>buf,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>length)<sp/>{</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>returnV<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(returnV<sp/>&lt;<sp/>length){</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>returnV<sp/>+=<sp/>read(fd,<sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)buf<sp/>+returnV,<sp/>length-returnV);<sp/></highlight><highlight class="comment">//blockieren,<sp/>bis<sp/>etwas<sp/>gesendet<sp/>wurde</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;gelesen:<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/>returnV);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(returnV<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>perror(</highlight><highlight class="stringliteral">&quot;read<sp/>failed&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>returnV;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/Serial/Serial.cpp"/>
+  </compounddef>
+</doxygen>

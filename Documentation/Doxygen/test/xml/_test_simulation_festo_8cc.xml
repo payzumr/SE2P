@@ -1,0 +1,196 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="_test_simulation_festo_8cc" kind="file">
+    <compoundname>TestSimulationFesto.cc</compoundname>
+    <includes local="no">cstdlib</includes>
+    <includes local="no">iostream</includes>
+    <includes local="no">unistd.h</includes>
+    <includes local="no">errno.h</includes>
+    <includes refid="_test_simulation_festo_2_h_waccess_8h" local="yes">HWaccess.h</includes>
+    <incdepgraph>
+      <node id="102">
+        <label>Software/TestSimulationFesto/TestSimulationFesto.cc</label>
+        <link refid="TestSimulationFesto.cc"/>
+        <childnode refid="103" relation="include">
+        </childnode>
+        <childnode refid="104" relation="include">
+        </childnode>
+        <childnode refid="105" relation="include">
+        </childnode>
+        <childnode refid="106" relation="include">
+        </childnode>
+        <childnode refid="107" relation="include">
+        </childnode>
+      </node>
+      <node id="106">
+        <label>errno.h</label>
+      </node>
+      <node id="111">
+        <label>ioaccess.h</label>
+      </node>
+      <node id="105">
+        <label>unistd.h</label>
+      </node>
+      <node id="110">
+        <label>hw/inout.h</label>
+      </node>
+      <node id="103">
+        <label>cstdlib</label>
+      </node>
+      <node id="104">
+        <label>iostream</label>
+      </node>
+      <node id="109">
+        <label>sys/neutrino.h</label>
+      </node>
+      <node id="107">
+        <label>HWaccess.h</label>
+        <link refid="_test_simulation_festo_2_h_waccess_8h"/>
+        <childnode refid="108" relation="include">
+        </childnode>
+        <childnode refid="109" relation="include">
+        </childnode>
+        <childnode refid="110" relation="include">
+        </childnode>
+        <childnode refid="111" relation="include">
+        </childnode>
+      </node>
+      <node id="108">
+        <label>stdio.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="_test_simulation_festo_8cc_1a43bae56ba813b69f37719556fa3eac30" prot="public" static="no">
+        <name>D_IOBASE</name>
+        <initializer>0x300</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/TestSimulationFesto/TestSimulationFesto.cc" line="24" column="9" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/TestSimulationFesto/TestSimulationFesto.cc" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_test_simulation_festo_8cc_1a9a1b849aa1b49d42235368ce38c89822" prot="public" static="no">
+        <name>DIGITAL_CARD_CONTROL</name>
+        <initializer>(<ref refid="_test_simulation_festo_8cc_1a43bae56ba813b69f37719556fa3eac30" kindref="member">D_IOBASE</ref> + 0x03)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/TestSimulationFesto/TestSimulationFesto.cc" line="25" column="9" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/TestSimulationFesto/TestSimulationFesto.cc" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_test_simulation_festo_8cc_1a777ecd8094eb40bec7862d3aafa428a1" prot="public" static="no">
+        <name>DIGITAL_CARD_CROUP0_PORTA</name>
+        <initializer>(<ref refid="_test_simulation_festo_8cc_1a43bae56ba813b69f37719556fa3eac30" kindref="member">D_IOBASE</ref> + 0x00)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/TestSimulationFesto/TestSimulationFesto.cc" line="26" column="9" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/TestSimulationFesto/TestSimulationFesto.cc" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="_test_simulation_festo_8cc_1a0ddf1224851353fc92bfbff6f499fa97" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int main</definition>
+        <argsstring>(int argc, char *argv[])</argsstring>
+        <name>main</name>
+        <param>
+          <type>int</type>
+          <declname>argc</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>argv</declname>
+          <array>[]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/TestSimulationFesto/TestSimulationFesto.cc" line="30" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/TestSimulationFesto/TestSimulationFesto.cc" bodystart="30" bodyend="67"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>Kleines<sp/>Beispielprogramm<sp/>fuer<sp/>den<sp/>Zugriff<sp/>auf<sp/>die<sp/>Festo<sp/>Simulationsumgebung</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>der<sp/>Transferstrecke<sp/>und<sp/>die<sp/>Transferstrecke<sp/>selbst.</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>Voraussetzungen:</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>Die<sp/>Bibliotheken<sp/>und<sp/>Header<sp/>Files<sp/>mussen<sp/>in<sp/>in<sp/>der<sp/>Entwicklungs-</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>umgebung<sp/>eingepfegt<sp/>sein.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>Die<sp/>Bibliothek<sp/>ioaccess<sp/>muss<sp/>im<sp/>Projekt<sp/>eingebunden<sp/>sein<sp/>via</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Project-&gt;Properties<sp/>:<sp/>QNX<sp/>C/C++<sp/>Project<sp/>:<sp/>Linker<sp/>:<sp/>Extra<sp/>libraries</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstdlib&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include&lt;unistd.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;errno.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Die<sp/>Header<sp/>Datei<sp/>HWaccess.h<sp/>steuert<sp/>den<sp/>Zugriff<sp/>auf<sp/>die<sp/>HW<sp/>bzw.<sp/>Simulation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Sie<sp/>muss<sp/>in<sp/>jeder<sp/>Datei<sp/>stehen,<sp/>die<sp/>auf<sp/>die<sp/>HW<sp/>zugreift</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_test_simulation_festo_2_h_waccess_8h" kindref="compound">HWaccess.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Port<sp/>der<sp/>Digitalen<sp/>IO<sp/>Karte<sp/>(s.<sp/>Datenblatt)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>D_IOBASE<sp/>0x300<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Anfangsadresse<sp/>Ports</highlight></codeline>
+<codeline lineno="25"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>DIGITAL_CARD_CONTROL<sp/>(D_IOBASE<sp/>+<sp/>0x03)<sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Adresse<sp/>von<sp/>Card<sp/>Control</highlight></codeline>
+<codeline lineno="26"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>DIGITAL_CARD_CROUP0_PORTA<sp/>(D_IOBASE<sp/>+<sp/>0x00)<sp/>//<sp/>Adresse<sp/>von<sp/>Port<sp/>A</highlight></codeline>
+<codeline lineno="27"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">std;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="main_8cc_1a0ddf1224851353fc92bfbff6f499fa97" kindref="member">main</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>argc,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*argv[])<sp/>{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>SIMULATION</highlight></codeline>
+<codeline lineno="32"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Simulation<sp/>aktiv&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Zum<sp/>Aufbau<sp/>der<sp/>Verbindung<sp/>muss<sp/>Die<sp/>Festo<sp/>Simulation<sp/>schon<sp/>laufen.&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>IOaccess_open();<sp/></highlight><highlight class="comment">//<sp/>Baue<sp/>die<sp/>Verbindung<sp/>zur<sp/>Simulation<sp/>auf</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="36"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Simpler<sp/>Test<sp/>des<sp/>HW<sp/>Zugriffs<sp/>ohne<sp/>Klassen,<sp/>Pattern<sp/>etc.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Reicht<sp/>nicht<sp/>fuer<sp/>den<sp/>ersten<sp/>Meilenstein<sp/>aus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Zugriffsrechte<sp/>fuer<sp/>den<sp/>Zugriff<sp/>auf<sp/>die<sp/>HW<sp/>holen</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(-1<sp/>==<sp/>ThreadCtl(_NTO_TCTL_IO,<sp/>0))<sp/>{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>perror(</highlight><highlight class="stringliteral">&quot;ThreadCtl<sp/>access<sp/>failed\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>-1;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Initialisierung<sp/>der<sp/>Digitalen<sp/>IO<sp/>Karte</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>out8(<ref refid="_test_simulation_festo_8cc_1a9a1b849aa1b49d42235368ce38c89822" kindref="member">DIGITAL_CARD_CONTROL</ref>,<sp/>0x82);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Treibe<sp/>die<sp/>Ampel</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>count<sp/>=<sp/>0;<sp/>count<sp/>&lt;<sp/>20;<sp/>count<sp/>++)<sp/>{</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;rot&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>out8(<ref refid="_test_simulation_festo_8cc_1a43bae56ba813b69f37719556fa3eac30" kindref="member">D_IOBASE</ref>,<sp/>0x80);</highlight><highlight class="comment">//rot</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sleep(1);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;gelb&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>out8(<ref refid="_test_simulation_festo_8cc_1a43bae56ba813b69f37719556fa3eac30" kindref="member">D_IOBASE</ref>,<sp/>0x40);</highlight><highlight class="comment">//gelb</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sleep(1);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;gruen&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>out8(<ref refid="_test_simulation_festo_8cc_1a43bae56ba813b69f37719556fa3eac30" kindref="member">D_IOBASE</ref>,<sp/>0x20);</highlight><highlight class="comment">//gruen</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sleep(1);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Test<sp/>beendet&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>SIMULATION</highlight></codeline>
+<codeline lineno="65"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>IOaccess_close();<sp/></highlight><highlight class="comment">//<sp/>Schlieﬂe<sp/>die<sp/>Verbindung<sp/>zur<sp/>Simulation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="67"><highlight class="preprocessor"></highlight><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/TestSimulationFesto/TestSimulationFesto.cc"/>
+  </compounddef>
+</doxygen>

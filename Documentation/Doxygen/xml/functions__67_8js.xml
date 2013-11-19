@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="functions__67_8js" kind="file">
+    <compoundname>functions_67.js</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="functions__67_8js_1ad01a7523f103d6242ef9b0451861231e" prot="public" static="no" mutable="no">
+        <type>var</type>
+        <definition>var searchData</definition>
+        <argsstring></argsstring>
+        <name>searchData</name>
+        <initializer>=
+[
+  [&apos;getinstance&apos;,[&apos;getInstance&apos;,[&apos;../class_h_a_l.html#a78f22148fbdcbdb8d7a1db6cf772ec7a&apos;,1,&apos;HAL::getInstance()&apos;],[&apos;../class_serial.html#a586999e4d3b21aa0f527f4f1b30d98b5&apos;,1,&apos;<ref refid="class_serial_1a586999e4d3b21aa0f527f4f1b30d98b5" kindref="member">Serial::getInstance</ref>()&apos;]]],
+  [&apos;greenligths&apos;,[&apos;greenLigths&apos;,[&apos;../class_h_a_l.html#aa2bef4f85d48f145321027735d5d87b2&apos;,1,&apos;HAL&apos;]]]
+]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Documentation/Doxygen/html/search/functions_67.js" line="1" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Documentation/Doxygen/html/search/functions_67.js" bodystart="1" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">var<sp/><ref refid="all__61_8js_1ad01a7523f103d6242ef9b0451861231e" kindref="member">searchData</ref>=</highlight></codeline>
+<codeline lineno="2"><highlight class="normal">[</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"><sp/><sp/>[</highlight><highlight class="stringliteral">&apos;getinstance&apos;</highlight><highlight class="normal">,[</highlight><highlight class="stringliteral">&apos;getInstance&apos;</highlight><highlight class="normal">,[</highlight><highlight class="stringliteral">&apos;../class_h_a_l.html#a78f22148fbdcbdb8d7a1db6cf772ec7a&apos;</highlight><highlight class="normal">,1,</highlight><highlight class="stringliteral">&apos;HAL::getInstance()&apos;</highlight><highlight class="normal">],[</highlight><highlight class="stringliteral">&apos;../class_serial.html#a586999e4d3b21aa0f527f4f1b30d98b5&apos;</highlight><highlight class="normal">,1,</highlight><highlight class="stringliteral">&apos;Serial::getInstance()&apos;</highlight><highlight class="normal">]]],</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"><sp/><sp/>[</highlight><highlight class="stringliteral">&apos;greenligths&apos;</highlight><highlight class="normal">,[</highlight><highlight class="stringliteral">&apos;greenLigths&apos;</highlight><highlight class="normal">,[</highlight><highlight class="stringliteral">&apos;../class_h_a_l.html#aa2bef4f85d48f145321027735d5d87b2&apos;</highlight><highlight class="normal">,1,</highlight><highlight class="stringliteral">&apos;HAL&apos;</highlight><highlight class="normal">]]]</highlight></codeline>
+<codeline lineno="5"><highlight class="normal">];</highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Documentation/Doxygen/html/search/functions_67.js"/>
+  </compounddef>
+</doxygen>

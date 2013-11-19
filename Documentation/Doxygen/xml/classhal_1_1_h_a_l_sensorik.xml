@@ -1,0 +1,474 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="classhal_1_1_h_a_l_sensorik" kind="class" prot="public">
+    <compoundname>hal::HALSensorik</compoundname>
+    <basecompoundref refid="classthread_1_1_h_a_w_thread" prot="public" virt="non-virtual">thread::HAWThread</basecompoundref>
+    <includes refid="_h_a_l_sensorik_8h" local="no">HALSensorik.h</includes>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classhal_1_1_h_a_l_sensorik_1a84833cae6bff48e5b593db3885a4c8b6" prot="private" static="yes" mutable="no">
+        <type><ref refid="classhal_1_1_h_a_l_sensorik" kindref="compound">HALSensorik</ref> *</type>
+        <definition>hal::HALSensorik * hal::HALSensorik::instance</definition>
+        <argsstring></argsstring>
+        <name>instance</name>
+        <initializer>= NULL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" line="26" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhal_1_1_h_a_l_sensorik_1abdcb7755cec38d612f5a44eaf986e007" prot="private" static="yes" mutable="no">
+        <type><ref refid="class_mutex" kindref="compound">Mutex</ref> *</type>
+        <definition>Mutex * hal::HALSensorik::HAL_Smutex</definition>
+        <argsstring></argsstring>
+        <name>HAL_Smutex</name>
+        <initializer>= new <ref refid="class_mutex" kindref="compound">Mutex</ref>()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" line="27" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhal_1_1_h_a_l_sensorik_1a3ac40138c8c70fc9a0e2fecc40f1355c" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hal::HALSensorik::isrChid</definition>
+        <argsstring></argsstring>
+        <name>isrChid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" line="29" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhal_1_1_h_a_l_sensorik_1a9dd5fee83a87a1a15180cfb3b25ce50c" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hal::HALSensorik::interruptId</definition>
+        <argsstring></argsstring>
+        <name>interruptId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" line="30" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhal_1_1_h_a_l_sensorik_1aa9ee31565c40a0b60b8772839926ff4f" prot="private" static="no" mutable="no">
+        <type>struct sigevent</type>
+        <definition>struct sigevent hal::HALSensorik::event</definition>
+        <argsstring></argsstring>
+        <name>event</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" line="30" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhal_1_1_h_a_l_sensorik_1a81e0cdb27cb5d2b9a4f4fcba8185d0f5" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hal::HALSensorik::signalChid</definition>
+        <argsstring></argsstring>
+        <name>signalChid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" line="33" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhal_1_1_h_a_l_sensorik_1ac5e2acb44ddb63f2d59fe56d37c24ad2" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hal::HALSensorik::signalCoid</definition>
+        <argsstring></argsstring>
+        <name>signalCoid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" line="34" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhal_1_1_h_a_l_sensorik_1aa1ddd80d25668029865a0eb8dd3c6cef" prot="private" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t hal::HALSensorik::portBstatus</definition>
+        <argsstring></argsstring>
+        <name>portBstatus</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" line="36" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhal_1_1_h_a_l_sensorik_1a4a717b8753931327546fba24f2927638" prot="private" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t hal::HALSensorik::portCstatus</definition>
+        <argsstring></argsstring>
+        <name>portCstatus</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" line="37" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhal_1_1_h_a_l_sensorik_1a58942ae83801a8e255cd50ff5400eeef" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hal::HALSensorik::portB_0</definition>
+        <argsstring></argsstring>
+        <name>portB_0</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" line="39" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhal_1_1_h_a_l_sensorik_1a597bc06d188e5c70f7ca96a75f03b032" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hal::HALSensorik::portB_1</definition>
+        <argsstring></argsstring>
+        <name>portB_1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" line="40" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhal_1_1_h_a_l_sensorik_1ab76d70d2973c5cabc7fd2e2279b38f3a" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hal::HALSensorik::portB_3</definition>
+        <argsstring></argsstring>
+        <name>portB_3</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" line="42" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhal_1_1_h_a_l_sensorik_1aec20b37b93b483d2fd36255da7f0f5c6" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hal::HALSensorik::portB_4</definition>
+        <argsstring></argsstring>
+        <name>portB_4</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" line="43" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhal_1_1_h_a_l_sensorik_1aedf7d5cf77e39b654244479958e741fe" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hal::HALSensorik::portB_5</definition>
+        <argsstring></argsstring>
+        <name>portB_5</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" line="44" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhal_1_1_h_a_l_sensorik_1a134e0e98d09490fa705a90c10d7ed811" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hal::HALSensorik::portB_6</definition>
+        <argsstring></argsstring>
+        <name>portB_6</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" line="45" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhal_1_1_h_a_l_sensorik_1ad069bc4758cde444690d8644cf318c97" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hal::HALSensorik::portB_7</definition>
+        <argsstring></argsstring>
+        <name>portB_7</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" line="46" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhal_1_1_h_a_l_sensorik_1a7b5bc910f9e360d7cc660e5f350e33e7" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hal::HALSensorik::portC_7</definition>
+        <argsstring></argsstring>
+        <name>portC_7</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" line="51" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhal_1_1_h_a_l_sensorik_1ab867c58e223c41fbdb8b999d8443212d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hal::HALSensorik::HALSensorik</definition>
+        <argsstring>()</argsstring>
+        <name>HALSensorik</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" line="53" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.cpp" bodystart="54" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="classhal_1_1_h_a_l_sensorik_1abcaffeb6560e75b8c3c3f3b79a456305" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hal::HALSensorik::initInterrupts</definition>
+        <argsstring>()</argsstring>
+        <name>initInterrupts</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" line="67" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.cpp" bodystart="92" bodyend="128"/>
+      </memberdef>
+      <memberdef kind="function" id="classhal_1_1_h_a_l_sensorik_1a6f9794070d159a676bec3b14f33f30a1" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hal::HALSensorik::printSensorChanges</definition>
+        <argsstring>(int code, int val)</argsstring>
+        <name>printSensorChanges</name>
+        <param>
+          <type>int</type>
+          <declname>code</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>code</parametername>
+<parametername>:</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>get the Code from Pulse Message </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>val</parametername>
+<parametername>:</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>get&apos;s the value from Pulse Message Shows the State of the Sensor if any Sensor makes an Interrupt </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" line="68" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.cpp" bodystart="175" bodyend="270"/>
+      </memberdef>
+      <memberdef kind="function" id="classhal_1_1_h_a_l_sensorik_1a869e8915e934b30793b348f89e514004" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hal::HALSensorik::set_timer</definition>
+        <argsstring>()</argsstring>
+        <name>set_timer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" line="69" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.cpp" bodystart="272" bodyend="291"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhal_1_1_h_a_l_sensorik_1ada6e5356ac7cb8c825b2e29ce05fe577" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hal::HALSensorik::~HALSensorik</definition>
+        <argsstring>()</argsstring>
+        <name>~HALSensorik</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" line="56" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.cpp" bodystart="88" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="function" id="classhal_1_1_h_a_l_sensorik_1a80e7e02d7386fddda972a5e0204adda7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int hal::HALSensorik::getHeight</definition>
+        <argsstring>()</argsstring>
+        <name>getHeight</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Write 0x10 on Register 0x02 waits till Bit 7 gets high and read value from 0x02 <simplesect kind="return"><para>the high </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" line="58" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.cpp" bodystart="298" bodyend="310"/>
+      </memberdef>
+      <memberdef kind="function" id="classhal_1_1_h_a_l_sensorik_1ad6e436cb90415ce45f6ff9e0dc1fd257" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hal::HALSensorik::stop</definition>
+        <argsstring>()</argsstring>
+        <name>stop</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Detach the Connection and Interrupt Destroy the Channel </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" line="60" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.cpp" bodystart="133" bodyend="147"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classhal_1_1_h_a_l_sensorik_1abc582093d8a3f9c78a1c975826ba1cc1" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhal_1_1_h_a_l_sensorik" kindref="compound">HALSensorik</ref> *</type>
+        <definition>hal::HALSensorik * hal::HALSensorik::getInstance</definition>
+        <argsstring>()</argsstring>
+        <name>getInstance</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" line="57" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.cpp" bodystart="73" bodyend="86"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhal_1_1_h_a_l_sensorik_1a6c51f9dbce318491f593d7040dd905d0" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void hal::HALSensorik::execute</definition>
+        <argsstring>(void *arg)</argsstring>
+        <name>execute</name>
+        <reimplements refid="classthread_1_1_h_a_w_thread_1ae565cb73c096b246664bd2474b9c8907">execute</reimplements>
+        <param>
+          <type>void *</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>to be implemented in the derived class. The application programmer has to write his own loop. He can check bool <ref refid="classthread_1_1_h_a_w_thread_1a46e9f127856f36917b3a8a345b7be5ee" kindref="member">isStopped()</ref> to see if the thread should exit the loop. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" line="63" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.cpp" bodystart="152" bodyend="169"/>
+      </memberdef>
+      <memberdef kind="function" id="classhal_1_1_h_a_l_sensorik_1a71061f6dbeb0f7f4b5ab9cc29c97fbd5" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void hal::HALSensorik::shutdown</definition>
+        <argsstring>()</argsstring>
+        <name>shutdown</name>
+        <reimplements refid="classthread_1_1_h_a_w_thread_1a843ee9493a41cec7e932fdec67a3b244">shutdown</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>this function must be implemented in the derived class. The function is called once after the thread has been stopped. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" line="64" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.cpp" bodystart="149" bodyend="150"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>hal::HALSensorik</label>
+        <link refid="classhal_1_1_h_a_l_sensorik"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>thread::HAWThread</label>
+        <link refid="classthread_1_1_h_a_w_thread"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="4">
+        <label>hal::HALSensorik</label>
+        <link refid="classhal_1_1_h_a_l_sensorik"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>thread::HAWThread</label>
+        <link refid="classthread_1_1_h_a_w_thread"/>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" line="24" column="1" bodyfile="C:/Users/Nata/Documents/SEP2/sourcetree/Software/SE2P2/HAL/HALSensorik.h" bodystart="24" bodyend="70"/>
+    <listofallmembers>
+      <member refid="classthread_1_1_h_a_w_thread_1ab692f3a55b92623653d8213793ba4ebb" prot="protected" virt="non-virtual"><scope>hal::HALSensorik</scope><name>Arg</name></member>
+      <member refid="classthread_1_1_h_a_w_thread_1a368c07a801fb8f5e7bb181d2453df4be" prot="protected" virt="non-virtual"><scope>hal::HALSensorik</scope><name>Arg</name></member>
+      <member refid="classthread_1_1_h_a_w_thread_1a4c480261e3236c90c8de73be55650ba4" prot="public" virt="non-virtual"><scope>hal::HALSensorik</scope><name>cont</name></member>
+      <member refid="classthread_1_1_h_a_w_thread_1a044da2e1a8884a3e2764f9f1863863c7" prot="protected" virt="non-virtual"><scope>hal::HALSensorik</scope><name>entryPoint</name></member>
+      <member refid="classhal_1_1_h_a_l_sensorik_1aa9ee31565c40a0b60b8772839926ff4f" prot="private" virt="non-virtual"><scope>hal::HALSensorik</scope><name>event</name></member>
+      <member refid="classhal_1_1_h_a_l_sensorik_1a6c51f9dbce318491f593d7040dd905d0" prot="protected" virt="virtual"><scope>hal::HALSensorik</scope><name>execute</name></member>
+      <member refid="classhal_1_1_h_a_l_sensorik_1a80e7e02d7386fddda972a5e0204adda7" prot="public" virt="non-virtual"><scope>hal::HALSensorik</scope><name>getHeight</name></member>
+      <member refid="classhal_1_1_h_a_l_sensorik_1abc582093d8a3f9c78a1c975826ba1cc1" prot="public" virt="non-virtual"><scope>hal::HALSensorik</scope><name>getInstance</name></member>
+      <member refid="classhal_1_1_h_a_l_sensorik_1abdcb7755cec38d612f5a44eaf986e007" prot="private" virt="non-virtual"><scope>hal::HALSensorik</scope><name>HAL_Smutex</name></member>
+      <member refid="classhal_1_1_h_a_l_sensorik_1ab867c58e223c41fbdb8b999d8443212d" prot="private" virt="non-virtual"><scope>hal::HALSensorik</scope><name>HALSensorik</name></member>
+      <member refid="classthread_1_1_h_a_w_thread_1a7ae3280c8aee6ae6536c736a20d92e8d" prot="public" virt="non-virtual"><scope>hal::HALSensorik</scope><name>HAWThread</name></member>
+      <member refid="classthread_1_1_h_a_w_thread_1a18f2a0cc61833e98b18e56ea541fa38b" prot="public" virt="non-virtual"><scope>hal::HALSensorik</scope><name>hold</name></member>
+      <member refid="classhal_1_1_h_a_l_sensorik_1abcaffeb6560e75b8c3c3f3b79a456305" prot="private" virt="non-virtual"><scope>hal::HALSensorik</scope><name>initInterrupts</name></member>
+      <member refid="classhal_1_1_h_a_l_sensorik_1a84833cae6bff48e5b593db3885a4c8b6" prot="private" virt="non-virtual"><scope>hal::HALSensorik</scope><name>instance</name></member>
+      <member refid="classhal_1_1_h_a_l_sensorik_1a9dd5fee83a87a1a15180cfb3b25ce50c" prot="private" virt="non-virtual"><scope>hal::HALSensorik</scope><name>interruptId</name></member>
+      <member refid="classhal_1_1_h_a_l_sensorik_1a3ac40138c8c70fc9a0e2fecc40f1355c" prot="private" virt="non-virtual"><scope>hal::HALSensorik</scope><name>isrChid</name></member>
+      <member refid="classthread_1_1_h_a_w_thread_1a46e9f127856f36917b3a8a345b7be5ee" prot="protected" virt="non-virtual"><scope>hal::HALSensorik</scope><name>isStopped</name></member>
+      <member refid="classthread_1_1_h_a_w_thread_1a4732efa3445c499f1723971acc07863f" prot="public" virt="non-virtual"><scope>hal::HALSensorik</scope><name>join</name></member>
+      <member refid="classhal_1_1_h_a_l_sensorik_1a58942ae83801a8e255cd50ff5400eeef" prot="private" virt="non-virtual"><scope>hal::HALSensorik</scope><name>portB_0</name></member>
+      <member refid="classhal_1_1_h_a_l_sensorik_1a597bc06d188e5c70f7ca96a75f03b032" prot="private" virt="non-virtual"><scope>hal::HALSensorik</scope><name>portB_1</name></member>
+      <member refid="classhal_1_1_h_a_l_sensorik_1ab76d70d2973c5cabc7fd2e2279b38f3a" prot="private" virt="non-virtual"><scope>hal::HALSensorik</scope><name>portB_3</name></member>
+      <member refid="classhal_1_1_h_a_l_sensorik_1aec20b37b93b483d2fd36255da7f0f5c6" prot="private" virt="non-virtual"><scope>hal::HALSensorik</scope><name>portB_4</name></member>
+      <member refid="classhal_1_1_h_a_l_sensorik_1aedf7d5cf77e39b654244479958e741fe" prot="private" virt="non-virtual"><scope>hal::HALSensorik</scope><name>portB_5</name></member>
+      <member refid="classhal_1_1_h_a_l_sensorik_1a134e0e98d09490fa705a90c10d7ed811" prot="private" virt="non-virtual"><scope>hal::HALSensorik</scope><name>portB_6</name></member>
+      <member refid="classhal_1_1_h_a_l_sensorik_1ad069bc4758cde444690d8644cf318c97" prot="private" virt="non-virtual"><scope>hal::HALSensorik</scope><name>portB_7</name></member>
+      <member refid="classhal_1_1_h_a_l_sensorik_1aa1ddd80d25668029865a0eb8dd3c6cef" prot="private" virt="non-virtual"><scope>hal::HALSensorik</scope><name>portBstatus</name></member>
+      <member refid="classhal_1_1_h_a_l_sensorik_1a7b5bc910f9e360d7cc660e5f350e33e7" prot="private" virt="non-virtual"><scope>hal::HALSensorik</scope><name>portC_7</name></member>
+      <member refid="classhal_1_1_h_a_l_sensorik_1a4a717b8753931327546fba24f2927638" prot="private" virt="non-virtual"><scope>hal::HALSensorik</scope><name>portCstatus</name></member>
+      <member refid="classhal_1_1_h_a_l_sensorik_1a6f9794070d159a676bec3b14f33f30a1" prot="private" virt="non-virtual"><scope>hal::HALSensorik</scope><name>printSensorChanges</name></member>
+      <member refid="classthread_1_1_h_a_w_thread_1a9a3e17be59877d350e310eb19c52679b" prot="protected" virt="non-virtual"><scope>hal::HALSensorik</scope><name>run</name></member>
+      <member refid="classhal_1_1_h_a_l_sensorik_1a869e8915e934b30793b348f89e514004" prot="private" virt="non-virtual"><scope>hal::HALSensorik</scope><name>set_timer</name></member>
+      <member refid="classhal_1_1_h_a_l_sensorik_1a71061f6dbeb0f7f4b5ab9cc29c97fbd5" prot="protected" virt="virtual"><scope>hal::HALSensorik</scope><name>shutdown</name></member>
+      <member refid="classthread_1_1_h_a_w_thread_1a5124385e940aa8d52510a4be10af173c" prot="protected" virt="non-virtual"><scope>hal::HALSensorik</scope><name>shutdownAll</name></member>
+      <member refid="classhal_1_1_h_a_l_sensorik_1a81e0cdb27cb5d2b9a4f4fcba8185d0f5" prot="private" virt="non-virtual"><scope>hal::HALSensorik</scope><name>signalChid</name></member>
+      <member refid="classhal_1_1_h_a_l_sensorik_1ac5e2acb44ddb63f2d59fe56d37c24ad2" prot="private" virt="non-virtual"><scope>hal::HALSensorik</scope><name>signalCoid</name></member>
+      <member refid="classthread_1_1_h_a_w_thread_1ae08d268c337511a1e67fbbeefcb1e89d" prot="public" virt="non-virtual"><scope>hal::HALSensorik</scope><name>start</name></member>
+      <member refid="classhal_1_1_h_a_l_sensorik_1ad6e436cb90415ce45f6ff9e0dc1fd257" prot="public" virt="non-virtual"><scope>hal::HALSensorik</scope><name>stop</name></member>
+      <member refid="classhal_1_1_h_a_l_sensorik_1ada6e5356ac7cb8c825b2e29ce05fe577" prot="public" virt="non-virtual"><scope>hal::HALSensorik</scope><name>~HALSensorik</name></member>
+      <member refid="classthread_1_1_h_a_w_thread_1a84706dda23aa384a43ced901381e795b" prot="public" virt="virtual"><scope>hal::HALSensorik</scope><name>~HAWThread</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
