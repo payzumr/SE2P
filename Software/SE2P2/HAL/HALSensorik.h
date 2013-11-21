@@ -37,26 +37,14 @@ private:
 	uint8_t portBstatus;
 	uint8_t portCstatus;
 
-	bool portB_0;
-	bool portB_1;
-//	bool portB_2;
-	bool portB_3;
-	bool portB_4;
-	bool portB_5;
-	bool portB_6;
-	bool portB_7;
-
-//	bool portC_4;
-//	bool portC_5;
-//	bool portC_6;
-	bool portC_7;
-
 	HALSensorik();
 
+	void initInterrupts();
 public:
 	~HALSensorik();
 	static HALSensorik* getInstance();
 	int getHeight();
+	int getSignalChid();
 
 	void stop(); // HAWThread: stop -> virtual
 
@@ -64,9 +52,6 @@ protected:
 	virtual void execute(void* arg);
 	virtual void shutdown();
 
-private:
-	void initInterrupts();
-	void setSensorChanges(int code, int val);
 };
 }
 
