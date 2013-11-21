@@ -44,8 +44,10 @@ int main(int argc, char *argv[]) {
 MachineState* ma = MachineState::getInstance();
 	cout << "hey2" << endl;
 	HALSensorik* sens = HALSensorik::getInstance();
+	Dispatcher* disp = Dispatcher::getInstance();
 	//Thread starten (void execute() wird aufgerufen)
 	sens->start(NULL);
+	disp->start(NULL);
 	thread.start(NULL);
 
 	string quit;

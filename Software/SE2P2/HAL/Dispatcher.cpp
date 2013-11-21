@@ -11,6 +11,7 @@ using namespace hal;
 
 Dispatcher* Dispatcher::instance = NULL;
 Mutex* Dispatcher::dispatcher_mutex = new Mutex();
+
 Dispatcher::Dispatcher() {
 	HALSensorik* HALs = HALSensorik::getInstance();
 	signalChid = HALs->getSignalChid();
@@ -34,7 +35,9 @@ Dispatcher* Dispatcher::getInstance() {
 
 	return instance;
 }
+void Dispatcher::shutdown(){
 
+}
 void Dispatcher::execute(void* arg){
 	struct _pulse pulse;
 		while (!isStopped()) {
@@ -126,7 +129,7 @@ void Dispatcher::setSensorChanges(int code, int val) {
 			//cout << "Werkstueck in Auslauf" << endl;
 			MState->SensExit = true;
 			portB_7 = true;
-		} else if ((val & BIT_1) && portB_7) {
+		} else if ((val & BIT_7) && portB_7) {
 			//cout << "Werkstueck nicht mehr in Auslauf" << endl;
 			MState->SensExit = false;
 			portB_7 = false;
