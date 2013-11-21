@@ -162,8 +162,8 @@ void hal::HALSensorik::execute(void *arg) {
 			exit(EXIT_FAILURE);
 		}
 		setSensorChanges(pulse.code, pulse.value.sival_int);
-		//printf("|   %X   |   %2X   |", pulse.code, pulse.value.sival_int);
-		//cout << endl;
+//		printf("|   %X   |   %2X   |", pulse.code, pulse.value.sival_int);
+//		cout << endl;
 	}
 }
 /**
@@ -196,13 +196,6 @@ void hal::HALSensorik::setSensorChanges(int code, int val) {
 			MState->SensHeight = false;
 			portB_1 = false;
 		}
-//		if ((val & BIT_2) && !portB_2) {
-//			cout << "Werkstueck im Toleranzbereich" << endl;
-//			portB_2 = true;
-//		} else if (((val & BIT_2) == 0) && portB_2) {
-//			cout << "Werkstueck nicht im Toleranzbereich" << endl;
-//			portB_2 = false;
-//		}
 		if (((val & BIT_3) == 0) && !portB_3) {
 			//cout << "Werkstueck in Weiche" << endl;
 			MState->SensSwitch = true;
@@ -243,7 +236,7 @@ void hal::HALSensorik::setSensorChanges(int code, int val) {
 			//cout << "Werkstueck in Auslauf" << endl;
 			MState->SensExit = true;
 			portB_7 = true;
-		} else if ((val & BIT_1) && portB_7) {
+		} else if ((val & BIT_7) && portB_7) {
 			//cout << "Werkstueck nicht mehr in Auslauf" << endl;
 			MState->SensExit = false;
 			portB_7 = false;
@@ -254,26 +247,14 @@ void hal::HALSensorik::setSensorChanges(int code, int val) {
 			cout << "Starttaste gedrueckt" << endl;
 //			portC_4 = true;
 		}
-//		 else if (((val & BIT_4) == 0) && portC_4) {
-//			cout << "Starttaste losgelassen" << endl;
-//			portC_4 = false;
-//		}
 		if ((val & BIT_5) == 0) {
 			cout << "Stoptaste gedrueckt" << endl;
 //			portC_5 = true;
 		}
-//		 else if ((val & BIT_5) && portC_5) {
-//			cout << "Stoptaste losgelassen" << endl;
-//			portC_5 = false;
-//		}
 		if (val & BIT_6) {
 			cout << "Resettaste gedrueckt" << endl;
 //			portC_6 = true;
 		}
-//		 else if (((val & BIT_6) == 0) && portC_6) {
-//			cout << "Resettaste losgelassen" << endl;
-//			portC_6 = false;
-//		}
 		if (((val & BIT_7) == 0) && !portC_7) {
 			cout << "E-stop gedrueckt" << endl;
 			portC_7 = true;
@@ -281,116 +262,15 @@ void hal::HALSensorik::setSensorChanges(int code, int val) {
 			cout << "E-stop nicht mehr gedrueckt" << endl;
 			portC_7 = false;
 		}
-
 	}
 }
-
-/*
-void hal::HALSensorik::setSensorChanges(int code, int val) {
-
-	if (code == 2) {
-		if (((val & BIT_0) == 0) && !portB_0) {
-			cout << "Werkstueck in Einlauf" << endl;
-			portB_0 = true;
-		} else if ((val & BIT_0) && portB_0) {
-			cout << "Werkstueck nicht mehr in Einlauf" << endl;
-			portB_0 = false;
-		}
-		if (((val & BIT_1) == 0) && !portB_1) {
-			cout << "Werkstueck in Hoehenmessung" << endl;
-			printf("AD PORT: %d \n",getHeight());
-			portB_1 = true;
-		} else if ((val & BIT_1) && portB_1) {
-			cout << "Werkstueck nicht mehr in Hoehenmessung" << endl;
-			portB_1 = false;
-		}
-//		if ((val & BIT_2) && !portB_2) {
-//			cout << "Werkstueck im Toleranzbereich" << endl;
-//			portB_2 = true;
-//		} else if (((val & BIT_2) == 0) && portB_2) {
-//			cout << "Werkstueck nicht im Toleranzbereich" << endl;
-//			portB_2 = false;
-//		}
-		if (((val & BIT_3) == 0) && !portB_3) {
-			cout << "Werkstueck in Weiche" << endl;
-			portB_3 = true;
-		} else if ((val & BIT_3) && portB_3) {
-			cout << "Werkstueck nicht mehr in Weiche" << endl;
-			portB_3 = false;
-		}
-		if ((val & BIT_4) && !portB_4) {
-			cout << "Werkstueck Metall" << endl;
-			portB_4 = true;
-		} else if (((val & BIT_4) == 0) && portB_4) {
-			cout << "Metallwerkstueck hat messung verlassen" << endl;
-			portB_4 = false;
-		}
-		if ((val & BIT_5) && !portB_5) {
-			cout << "Weiche offen" << endl;
-			portB_5 = true;
-		} else if (((val & BIT_5) == 0) && portB_5) {
-			cout << "Weiche wieder zu" << endl;
-			portB_5 = false;
-		}
-		if (((val & BIT_6) == 0) && !portB_6) {
-			cout << "Rutsche ist voll" << endl;
-			portB_6 = true;
-		} else if ((val & BIT_6) && portB_6) {
-			cout << "Rutsche nicht mehr voll" << endl;
-			portB_6 = false;
-		}
-		if (((val & BIT_7) == 0) && !portB_7) {
-			cout << "Werkstueck in Auslauf" << endl;
-			portB_7 = true;
-		} else if ((val & BIT_1) && portB_7) {
-			cout << "Werkstueck nicht mehr in Auslauf" << endl;
-			portB_7 = false;
-		}
-
-	} else if (code == 8) {
-		if (val & BIT_4) {
-			cout << "Starttaste gedrueckt" << endl;
-//			portC_4 = true;
-		}
-//		 else if (((val & BIT_4) == 0) && portC_4) {
-//			cout << "Starttaste losgelassen" << endl;
-//			portC_4 = false;
-//		}
-		if ((val & BIT_5) == 0) {
-			cout << "Stoptaste gedrueckt" << endl;
-//			portC_5 = true;
-		}
-//		 else if ((val & BIT_5) && portC_5) {
-//			cout << "Stoptaste losgelassen" << endl;
-//			portC_5 = false;
-//		}
-		if (val & BIT_6) {
-			cout << "Resettaste gedrueckt" << endl;
-//			portC_6 = true;
-		}
-//		 else if (((val & BIT_6) == 0) && portC_6) {
-//			cout << "Resettaste losgelassen" << endl;
-//			portC_6 = false;
-//		}
-		if (((val & BIT_7) == 0) && !portC_7) {
-			cout << "E-stop gedrueckt" << endl;
-			portC_7 = true;
-		} else if ((val & BIT_7) && portC_7) {
-			cout << "E-stop nicht mehr gedrueckt" << endl;
-			portC_7 = false;
-		}
-
-	}
-}
-*/
-
 /**
  * Write 0x10 on Register 0x02
  * waits till  Bit 7 gets high and read value from 0x02
  * @return the high
  *
  */
-	int hal::HALSensorik::getHeight(){
+int hal::HALSensorik::getHeight(){
 		int heigth = -1;
 		int i;
 		out8(AIO_PORT_A, AIO_GET_VAL);
@@ -401,8 +281,7 @@ void hal::HALSensorik::setSensorChanges(int code, int val) {
 			}
 		}
 		return heigth;
-
-	}
+}
 
 
 
