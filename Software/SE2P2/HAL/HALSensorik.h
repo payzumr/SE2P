@@ -12,6 +12,7 @@
 #include "../HAW/HAWThread.h"
 #include "../Mutex/Mutex.h"
 #include "../HAW/HWaccess.h"
+#include "MachineState.h"
 #include "Addresses.h"
 #include <unistd.h>
 #include <stdint.h>
@@ -65,8 +66,7 @@ protected:
 
 private:
 	void initInterrupts();
-	void printSensorChanges(int code, int val);
-	void hal::HALSensorik::set_timer();
+	void setSensorChanges(int code, int val);
 };
 }
 

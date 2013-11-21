@@ -13,6 +13,7 @@
 #define ONE_SEC 1
 
 #include "HAWThread.h"
+#include "MachineState.h"
 
 namespace thread {
 

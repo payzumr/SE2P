@@ -15,6 +15,7 @@
 #include "ioaccess.h"
 #include "HALSensorik.h"
 #include <string>
+#include "MachineState.h"
 
 #include "Thread.h"
 #define TEST_TIME 25
@@ -24,13 +25,12 @@ using namespace hal;
 using namespace std;
 
 int main(int argc, char *argv[]) {
-
+ cout << "hey1" << endl;
 #ifdef SIMULATION
 	cout << "Simulation aktiv" << endl;
 	cout << "Zum Aufbau der Verbindung muss Die Festo Simulation schon laufen." << endl;
 	IOaccess_open(); // Baue die Verbindung zur Simulation auf
 #endif
-
 
 	// Zugriffsrechte fuer den Zugriff auf die HW holen
 	if (-1 == ThreadCtl(_NTO_TCTL_IO, 0)) {
@@ -41,10 +41,12 @@ int main(int argc, char *argv[]) {
 	
 	//Neues Objekt der Klasse Thread anlegen
 	Thread thread;
+MachineState* ma = MachineState::getInstance();
+	cout << "hey2" << endl;
 	HALSensorik* sens = HALSensorik::getInstance();
 	//Thread starten (void execute() wird aufgerufen)
-	thread.start(NULL);
 	sens->start(NULL);
+	thread.start(NULL);
 
 	string quit;
 	do{

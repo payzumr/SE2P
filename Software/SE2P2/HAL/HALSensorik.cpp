@@ -55,7 +55,6 @@ hal::HALSensorik::HALSensorik() {
 	//make sure HAL object is already created
 	//	hal::HALSensorik::getInstance();
 	initInterrupts();
-
 	//create channel for dispatcher
 	signalChid = ChannelCreate(0);
 	if (signalChid == -1) {
@@ -162,7 +161,7 @@ void hal::HALSensorik::execute(void *arg) {
 			perror("SensorCtrl: MsgReceivePulse");
 			exit(EXIT_FAILURE);
 		}
-		printSensorChanges(pulse.code, pulse.value.sival_int);
+		setSensorChanges(pulse.code, pulse.value.sival_int);
 		//printf("|   %X   |   %2X   |", pulse.code, pulse.value.sival_int);
 		//cout << endl;
 	}
@@ -172,7 +171,122 @@ void hal::HALSensorik::execute(void *arg) {
  * @param val: get's the value from Pulse Message
  * Shows the State of the Sensor if any Sensor makes an Interrupt
  */
-void hal::HALSensorik::printSensorChanges(int code, int val) {
+
+void hal::HALSensorik::setSensorChanges(int code, int val) {
+
+    MachineState* MState = MachineState::getInstance();
+	if (code == 2) {
+		if (((val & BIT_0) == 0) && !portB_0) {
+			//cout << "Werkstueck in Einlauf" << endl;
+			MState->SensEntry = true;
+			portB_0 = true;
+		} else if ((val & BIT_0) && portB_0) {
+			//cout << "Werkstueck nicht mehr in Einlauf" << endl;
+			MState->SensEntry = false;
+			portB_0 = false;
+		}
+		if (((val & BIT_1) == 0) && !portB_1) {
+			//cout << "Werkstueck in Hoehenmessung" << endl;
+			//printf("AD PORT: %d \n",getHeight());
+			MState->SensHeight = true;
+			MState->height = getHeight();
+			portB_1 = true;
+		} else if ((val & BIT_1) && portB_1) {
+			//cout << "Werkstueck nicht mehr in Hoehenmessung" << endl;
+			MState->SensHeight = false;
+			portB_1 = false;
+		}
+//		if ((val & BIT_2) && !portB_2) {
+//			cout << "Werkstueck im Toleranzbereich" << endl;
+//			portB_2 = true;
+//		} else if (((val & BIT_2) == 0) && portB_2) {
+//			cout << "Werkstueck nicht im Toleranzbereich" << endl;
+//			portB_2 = false;
+//		}
+		if (((val & BIT_3) == 0) && !portB_3) {
+			//cout << "Werkstueck in Weiche" << endl;
+			MState->SensSwitch = true;
+			portB_3 = true;
+		} else if ((val & BIT_3) && portB_3) {
+			//cout << "Werkstueck nicht mehr in Weiche" << endl;
+			MState->SensSwitch = false;
+			portB_3 = false;
+		}
+		if ((val & BIT_4) && !portB_4) {
+			//cout << "Werkstueck Metall" << endl;
+			MState->SensMetall = true;
+			portB_4 = true;
+		} else if (((val & BIT_4) == 0) && portB_4) {
+			//cout << "Metallwerkstueck hat messung verlassen" << endl;
+			MState->SensMetall = false;
+			portB_4 = false;
+		}
+		if ((val & BIT_5) && !portB_5) {
+			//cout << "Weiche offen" << endl;
+			MState->SwitchOpen = true;
+			portB_5 = true;
+		} else if (((val & BIT_5) == 0) && portB_5) {
+			//cout << "Weiche wieder zu" << endl;
+			MState->SwitchOpen = false;
+			portB_5 = false;
+		}
+		if (((val & BIT_6) == 0) && !portB_6) {
+			//cout << "Rutsche ist voll" << endl;
+			MState->SensSlip = true;
+			portB_6 = true;
+		} else if ((val & BIT_6) && portB_6) {
+			//cout << "Rutsche nicht mehr voll" << endl;
+			MState->SensSlip = false;
+			portB_6 = false;
+		}
+		if (((val & BIT_7) == 0) && !portB_7) {
+			//cout << "Werkstueck in Auslauf" << endl;
+			MState->SensExit = true;
+			portB_7 = true;
+		} else if ((val & BIT_1) && portB_7) {
+			//cout << "Werkstueck nicht mehr in Auslauf" << endl;
+			MState->SensExit = false;
+			portB_7 = false;
+		}
+
+	} else if (code == 8) {
+		if (val & BIT_4) {
+			cout << "Starttaste gedrueckt" << endl;
+//			portC_4 = true;
+		}
+//		 else if (((val & BIT_4) == 0) && portC_4) {
+//			cout << "Starttaste losgelassen" << endl;
+//			portC_4 = false;
+//		}
+		if ((val & BIT_5) == 0) {
+			cout << "Stoptaste gedrueckt" << endl;
+//			portC_5 = true;
+		}
+//		 else if ((val & BIT_5) && portC_5) {
+//			cout << "Stoptaste losgelassen" << endl;
+//			portC_5 = false;
+//		}
+		if (val & BIT_6) {
+			cout << "Resettaste gedrueckt" << endl;
+//			portC_6 = true;
+		}
+//		 else if (((val & BIT_6) == 0) && portC_6) {
+//			cout << "Resettaste losgelassen" << endl;
+//			portC_6 = false;
+//		}
+		if (((val & BIT_7) == 0) && !portC_7) {
+			cout << "E-stop gedrueckt" << endl;
+			portC_7 = true;
+		} else if ((val & BIT_7) && portC_7) {
+			cout << "E-stop nicht mehr gedrueckt" << endl;
+			portC_7 = false;
+		}
+
+	}
+}
+
+/*
+void hal::HALSensorik::setSensorChanges(int code, int val) {
 
 	if (code == 2) {
 		if (((val & BIT_0) == 0) && !portB_0) {
@@ -268,27 +382,8 @@ void hal::HALSensorik::printSensorChanges(int code, int val) {
 
 	}
 }
+*/
 
-	void hal::HALSensorik::set_timer(){
-        timer_t timerid;
-        struct itimerspec timer;
-        struct sigevent   timerEvent;
-
-        /* Init Pulse and creat Timer */
-        SIGEV_PULSE_INIT (&timerEvent, isr_coid, SIGEV_PULSE_PRIO_INHERIT, 0, 0);
-        if (timer_create (CLOCK_REALTIME, &timerEvent, &timerid) == -1) {
-            Logger(ERROR) << "Can't create Timer for Height Sensor";
-            exit (EXIT_FAILURE);
-        }
-
-        /* Fill Timerstructure */
-        timer.it_value.tv_sec = 0;
-        timer.it_value.tv_nsec = DURATION_HEIGHT_MEASUREMENT;
-        timer.it_interval.tv_sec = 0;
-        timer.it_interval.tv_nsec = 0;
-
-        timer_settime (timerid, 0, &timer, NULL);
-	}
 /**
  * Write 0x10 on Register 0x02
  * waits till  Bit 7 gets high and read value from 0x02

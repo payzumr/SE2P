@@ -46,6 +46,8 @@ void Thread::shutdown() {
 void Thread::execute(void *arg) {
 	HALAktorik* hal = HALAktorik::getInstance();
 	Serial* serial = Serial::getInstance();
+
+	MachineState* M = MachineState::getInstance();
 	if (serial->open_serial("/dev/ser1") < 0) {
 			perror("open call failed");
 	}
@@ -53,6 +55,9 @@ void Thread::execute(void *arg) {
 	Test test;
 
 	while(!isStopped()){
+		cout << "gogo" << endl;
+		M->showMachineState();
+		sleep(1);
 		//test.componentTest(hal);
 		//test.serialTest(serial);
 		//sleep(10);
