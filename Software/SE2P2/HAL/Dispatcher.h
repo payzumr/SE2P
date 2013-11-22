@@ -14,6 +14,7 @@
 #include "MachineState.h"
 #include "Addresses.h"
 #include "Mutex.h"
+#include "Controller.h"
 
 class Dispatcher: public thread::HAWThread {
 private:

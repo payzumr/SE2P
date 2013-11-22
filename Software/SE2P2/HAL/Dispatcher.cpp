@@ -11,6 +11,8 @@ using namespace hal;
 
 Dispatcher* Dispatcher::instance = NULL;
 Mutex* Dispatcher::dispatcher_mutex = new Mutex();
+Controller* controller = new Controller;
+
 Dispatcher::Dispatcher() {
 	HALSensorik* HALs = HALSensorik::getInstance();
 	signalChid = HALs->getSignalChid();
@@ -34,8 +36,11 @@ Dispatcher* Dispatcher::getInstance() {
 
 	return instance;
 }
+void Dispatcher::shutdown(){
 
+}
 void Dispatcher::execute(void* arg){
+	controller->init();
 	struct _pulse pulse;
 		while (!isStopped()) {
 			if (-1 == MsgReceivePulse(signalChid, &pulse, sizeof(pulse), NULL)) {
@@ -62,10 +67,12 @@ void Dispatcher::setSensorChanges(int code, int val) {
 		if (((val & BIT_0) == 0) && !portB_0) {
 			//cout << "Werkstueck in Einlauf" << endl;
 			MState->SensEntry = true;
+			controller->inEinlauf();
 			portB_0 = true;
 		} else if ((val & BIT_0) && portB_0) {
 			//cout << "Werkstueck nicht mehr in Einlauf" << endl;
 			MState->SensEntry = false;
+			controller->einlaufVerlassen();
 			portB_0 = false;
 		}
 		if (((val & BIT_1) == 0) && !portB_1) {
@@ -73,6 +80,7 @@ void Dispatcher::setSensorChanges(int code, int val) {
 			//printf("AD PORT: %d \n",getHeight());
 			MState->SensHeight = true;
 			MState->height = HALs->getHeight();
+			controller->inHohenmessung();
 			portB_1 = true;
 		} else if ((val & BIT_1) && portB_1) {
 			//cout << "Werkstueck nicht mehr in Hoehenmessung" << endl;
@@ -98,6 +106,7 @@ void Dispatcher::setSensorChanges(int code, int val) {
 		if ((val & BIT_4) && !portB_4) {
 			//cout << "Werkstueck Metall" << endl;
 			MState->SensMetall = true;
+			controller->metallSetzen();
 			portB_4 = true;
 		} else if (((val & BIT_4) == 0) && portB_4) {
 			//cout << "Metallwerkstueck hat messung verlassen" << endl;
@@ -116,6 +125,8 @@ void Dispatcher::setSensorChanges(int code, int val) {
 		if (((val & BIT_6) == 0) && !portB_6) {
 			//cout << "Rutsche ist voll" << endl;
 			MState->SensSlip = true;
+			controller->printPuk(0);
+			controller->printPuk(1);
 			portB_6 = true;
 		} else if ((val & BIT_6) && portB_6) {
 			//cout << "Rutsche nicht mehr voll" << endl;
@@ -126,7 +137,7 @@ void Dispatcher::setSensorChanges(int code, int val) {
 			//cout << "Werkstueck in Auslauf" << endl;
 			MState->SensExit = true;
 			portB_7 = true;
-		} else if ((val & BIT_1) && portB_7) {
+		} else if ((val & BIT_7) && portB_7) {
 			//cout << "Werkstueck nicht mehr in Auslauf" << endl;
 			MState->SensExit = false;
 			portB_7 = false;
