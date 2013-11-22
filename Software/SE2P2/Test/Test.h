@@ -9,7 +9,10 @@
 #define TEST_H_
 
 #include "../HAL/HALAktorik.h"
+#include "../HAL/HALSensorik.h"
 #include "../Serial/Serial.h"
+
+using namespace hal;
 
 class Test {
 public:
@@ -19,6 +22,7 @@ public:
 
 	virtual void componentTest(HALAktorik* hal);
 	virtual void serialTest(Serial* serial);
+	void sensorikPulseTest(HALSensorik* halS);
 };
 
 #endif /* TEST_H_ */
