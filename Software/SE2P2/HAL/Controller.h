@@ -13,26 +13,41 @@
 #include "HALAktorik.h"
 #include "MachineState.h"
 #include "Addresses.h"
+#include "PukType.h"
 
-#define N_PUKS 10
+#define N_PUKS 2
 
 class Controller {
+
+private:
+	void fehlerAufgetreten();
 public:
 	struct puk{
+		int pukIdentifier;
+		pukType type;
 		int stelle;
-		int hohe;
+		int hohe1;
+		int hohe2;
 		bool metall;
 	} pukArr[N_PUKS];
 
 	int pukZeiger;
+	int anzahlPuks;
+	int pukIdentifier;
+	bool fehlerFlag;
 
 	Controller();
 	virtual ~Controller();
 	void init();
-	void inEinlauf();
-	void einlaufVerlassen();
-	void inHohenmessung();
+	void eintrittEinlauf();
+	void austrittEinlauf();
+	void eintrittHohenmessung();
+	void austrittHohenmessung();
 	void metallSetzen();
+	void eintrittWeiche();
+	void austrittWeiche();
+	void eintrittAuslauf();
+	void austrittAuslauf();
 
 	void printPuk(int puk);
 };

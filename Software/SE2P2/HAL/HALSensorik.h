@@ -14,6 +14,7 @@
 #include "../HAW/HWaccess.h"
 #include "MachineState.h"
 #include "Addresses.h"
+#include "Dispatcher.h"
 #include <unistd.h>
 #include <stdint.h>
 #include <time.h>
@@ -45,6 +46,7 @@ public:
 	static HALSensorik* getInstance();
 	int getHeight();
 	int getSignalChid();
+	int getSignalCoid();
 
 	void stop(); // HAWThread: stop -> virtual
 
