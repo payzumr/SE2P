@@ -35,8 +35,10 @@ private:
 
 //	bool portC_4;
 //	bool portC_5;
-//	bool portC_6;
+	bool portC_6;
 	bool portC_7;
+
+	bool not_aus_reset;
 
 	void setSensorChanges(int code, int val);
 public:

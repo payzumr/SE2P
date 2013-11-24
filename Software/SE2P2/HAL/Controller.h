@@ -14,6 +14,7 @@
 #include "MachineState.h"
 #include "Addresses.h"
 #include "PukType.h"
+#include "PetriDefines.h"
 
 #define N_PUKS 2
 
@@ -39,6 +40,8 @@ public:
 	Controller();
 	virtual ~Controller();
 	void init();
+	void neustart();
+	//sensoren
 	void eintrittEinlauf();
 	void austrittEinlauf();
 	void eintrittHohenmessung();
@@ -48,6 +51,10 @@ public:
 	void austrittWeiche();
 	void eintrittAuslauf();
 	void austrittAuslauf();
+
+	//tasten
+	void notAusGedruckt();
+	void notAusNichtGedruckt();
 
 	void printPuk(int puk);
 };

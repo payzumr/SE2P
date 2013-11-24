@@ -26,17 +26,27 @@ void Controller::init() {
 	for (; i < N_PUKS; i++) {
 		pukArr[i].pukIdentifier = 0;
 		pukArr[i].type = undefiniert;
-		pukArr[i].stelle = 0;
+		pukArr[i].stelle = S0;
 		pukArr[i].hohe1 = 0;
 		pukArr[i].hohe2 = 0;
 	}
+}
+
+void Controller::neustart(){
+	init();
+	HALa->greenLigths(OFF);
+	HALa->yellowLigths(OFF);
+	HALa->redLigths(OFF);
+	HALa->engine_slow(OFF);
+	HALa->engine_start();
+	HALa->switchOnOff(OFF);
 }
 
 void Controller::eintrittEinlauf() {
 	if (++anzahlPuks == N_PUKS + 1) {
 		fehlerAufgetreten();
 	} else {
-		pukArr[pukZeiger].stelle = 1;
+		pukArr[pukZeiger].stelle = S1;
 		pukZeiger = (pukZeiger + 1) % N_PUKS;
 		pukArr[pukZeiger].pukIdentifier = pukIdentifier;
 		pukIdentifier++;
@@ -47,47 +57,55 @@ void Controller::eintrittEinlauf() {
 }
 void Controller::austrittEinlauf() {
 	int puk = 0;
-	while (pukArr[puk].stelle != 1) {
+	while (pukArr[puk].stelle != S1) {
 		puk++;
 	}
-	pukArr[puk].stelle = 2;
+	pukArr[puk].stelle = S2;
 	//	printPuk(puk);
 }
 
 void Controller::eintrittHohenmessung() {
 	HALa->engine_slow(ON);
 	int puk = 0;
-	while (pukArr[puk].stelle != 2) {
+	while (pukArr[puk].stelle != S2 && puk <= N_PUKS) {
 		puk++;
+		if (puk == N_PUKS) {
+			fehlerFlag = true;
+		}
 	}
-	pukArr[puk].stelle = 3;
-	//	printPuk(puk);
+
+	if (!fehlerFlag) {
+		pukArr[puk].stelle = S3;
+		//	printPuk(puk);
 #ifdef SIMULATION
-	if (Mstat->height >= 60000 && Mstat->height <= 70000) {
-		pukArr[puk].stelle = 4;
-	}
+		if (Mstat->height >= 60000 && Mstat->height <= 70000) {
+			pukArr[puk].stelle = S4;
+		}
 #endif
-	//	if (Mstat->height >= 60000 && Mstat->height <= 70000) {//hoher puk
-	//
-	//	}
-	//	if (Mstat->height >= 60000 && Mstat->height <= 70000) {//niedriger puk
-	//
-	//	}
-	//	if (Mstat->height >= 60000 && Mstat->height <= 70000) {//puk mit loch
-	//
-	//	}
+		//	if (Mstat->height >= 60000 && Mstat->height <= 70000) {//hoher puk
+		//
+		//	}
+		//	if (Mstat->height >= 60000 && Mstat->height <= 70000) {//niedriger puk
+		//
+		//	}
+		//	if (Mstat->height >= 60000 && Mstat->height <= 70000) {//puk mit loch
+		//
+		//	}
+	} else {
+		fehlerAufgetreten();
+	}
 }
 
 void Controller::austrittHohenmessung() {
 	HALa->engine_slow(OFF);
 #ifdef SIMULATION
-	HALa->switchOnOff(ON);
+	//HALa->switchOnOff(ON);
 #endif
 }
 
 void Controller::metallSetzen() {
 	int puk = 0;
-	while (pukArr[puk].stelle != 4 && puk <= N_PUKS) {
+	while (pukArr[puk].stelle != S4 && puk <= N_PUKS) {
 		puk++;
 		if (puk == N_PUKS) {
 			fehlerFlag = true;
@@ -104,24 +122,24 @@ void Controller::metallSetzen() {
 void Controller::eintrittWeiche() {
 	int puk = 0;
 	printPuk(puk);
-	while ((pukArr[puk].stelle != 4 && pukArr[puk].stelle != 5
-			&& pukArr[puk].stelle != 6) && puk <= N_PUKS) {
+	while ((pukArr[puk].stelle != S4 && pukArr[puk].stelle != S5
+			&& pukArr[puk].stelle != S6) && puk <= N_PUKS) {
 		puk++;
 		if (puk == N_PUKS) {
 			fehlerFlag = true;
 		}
 	}
 	if (!fehlerFlag) {
-		if (pukArr[puk].stelle == 4 && pukArr[puk].type == mitMetall) {
-			pukArr[puk].stelle = 8;
+		if (pukArr[puk].stelle == S4 && pukArr[puk].type == mitMetall) {
+			pukArr[puk].stelle = S8;
 			HALa->switchOnOff(ON);
-		} else if (pukArr[puk].stelle == 4) {
-			pukArr[puk].stelle = 8;//auf 7 zurucksetzen!!!!!!!!!!!!!!!!!!!!!!!!!
+		} else if (pukArr[puk].stelle == S4) {
+			pukArr[puk].stelle = S8;//auf 7 zurucksetzen!!!!!!!!!!!!!!!!!!!!!!!!!
 			HALa->switchOnOff(ON);
-		} else if (pukArr[puk].stelle == 5) {
-			pukArr[puk].stelle = 8;
+		} else if (pukArr[puk].stelle == S5) {
+			pukArr[puk].stelle = S8;
 			HALa->switchOnOff(ON);
-		} else if (pukArr[puk].stelle == 6) {
+		} else if (pukArr[puk].stelle == S6) {
 
 		}
 		printPuk(puk);
@@ -132,7 +150,7 @@ void Controller::eintrittWeiche() {
 }
 void Controller::austrittWeiche() {
 	int puk = 0;
-	while ((pukArr[puk].stelle != 7 && pukArr[puk].stelle != 8) && puk
+	while ((pukArr[puk].stelle != S7 && pukArr[puk].stelle != S8) && puk
 			<= N_PUKS) {
 		puk++;
 		if (puk == N_PUKS) {
@@ -140,10 +158,10 @@ void Controller::austrittWeiche() {
 		}
 	}
 	if (!fehlerFlag) {
-		if (pukArr[puk].stelle == 7) {
-			pukArr[puk].stelle = 9;
+		if (pukArr[puk].stelle == S7) {
+			pukArr[puk].stelle = S9;
 		} else {
-			pukArr[puk].stelle = 10;
+			pukArr[puk].stelle = S10;
 		}
 	} else {
 		fehlerAufgetreten();
@@ -152,7 +170,7 @@ void Controller::austrittWeiche() {
 }
 void Controller::eintrittAuslauf() {
 	int puk = 0;
-	while ((pukArr[puk].stelle != 9 && pukArr[puk].stelle != 10) && puk
+	while ((pukArr[puk].stelle != S9 && pukArr[puk].stelle != S10) && puk
 			<= N_PUKS) {
 		puk++;
 		if (puk == N_PUKS) {
@@ -160,23 +178,35 @@ void Controller::eintrittAuslauf() {
 		}
 	}
 	if (!fehlerFlag) {
-		if (pukArr[puk].stelle == 9) {
-			pukArr[puk].stelle = 12;
+		if (pukArr[puk].stelle == S9) {
+			pukArr[puk].stelle = S12;
 		} else {
 			HALa->engine_stop();
 			HALa->greenLigths(OFF);
 			HALa->yellowLigths(ON);
-			pukArr[puk].stelle = 11;
+			pukArr[puk].stelle = S11;
 		}
 	} else {
 		fehlerAufgetreten();
 	}
 }
 
+//tasten
+void Controller::notAusGedruckt() {
+	HALa->engine_stop();
+	HALa->redLigths(ON);
+	HALa->greenLigths(OFF);
+	HALa->yellowLigths(OFF);
+	init();
+	printf("Not-Aus gedrueckt! Band muss abgeraumt werden!\n");
+
+}
+
 void Controller::fehlerAufgetreten() {
 	HALa->engine_stop();
 	HALa->redLigths(ON);
 	HALa->greenLigths(OFF);
+	HALa->yellowLigths(OFF);
 	init();
 	printf("Fehler Aufgetreten! Band muss abgeraumt werden!\n");
 }
