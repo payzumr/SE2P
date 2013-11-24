@@ -55,8 +55,8 @@ void Thread::execute(void *arg) {
 	Test test;
 
 	while(!isStopped()){
-		cout << "gogo" << endl;
-		M->showMachineState();
+		//cout << "gogo" << endl;
+		//M->showMachineState();
 		sleep(5);
 		//test.componentTest(hal);
 		//test.serialTest(serial);

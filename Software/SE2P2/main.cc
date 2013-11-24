@@ -3,9 +3,9 @@
  *
  *  Created on: 02.10.2013
  *      Author: Jannik Schick (2063265)
-                Philipp Kloth (2081738)
-                Rutkay Kuepelikilinc (2081831)
-                Natalia Duske (2063265)
+ Philipp Kloth (2081738)
+ Rutkay Kuepelikilinc (2081831)
+ Natalia Duske (2063265)
  */
 
 #include <cstdlib>
@@ -25,10 +25,10 @@ using namespace hal;
 using namespace std;
 
 int main(int argc, char *argv[]) {
- cout << "hey1" << endl;
 #ifdef SIMULATION
 	cout << "Simulation aktiv" << endl;
-	cout << "Zum Aufbau der Verbindung muss Die Festo Simulation schon laufen." << endl;
+	cout << "Zum Aufbau der Verbindung muss Die Festo Simulation schon laufen."
+			<< endl;
 	IOaccess_open(); // Baue die Verbindung zur Simulation auf
 #endif
 
@@ -38,11 +38,9 @@ int main(int argc, char *argv[]) {
 		return -1;
 	}
 
-	
 	//Neues Objekt der Klasse Thread anlegen
 	Thread thread;
-MachineState* ma = MachineState::getInstance();
-	cout << "hey2" << endl;
+	MachineState* ma = MachineState::getInstance();
 	HALSensorik* sens = HALSensorik::getInstance();
 	Dispatcher* disp = Dispatcher::getInstance();
 	//Thread starten (void execute() wird aufgerufen)
@@ -51,9 +49,9 @@ MachineState* ma = MachineState::getInstance();
 	thread.start(NULL);
 
 	string quit;
-	do{
+	do {
 		cin >> quit;
-	}while(quit != "q");
+	} while (quit != "q");
 
 	//Thread beenden (void shutdown() wird aufgerufen)
 	sens->stop();

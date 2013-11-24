@@ -17,8 +17,7 @@ Mutex* hal::HALSensorik::HAL_Smutex = new Mutex();
 /**
  * boolen for Port Status
  */
-bool portB_0, portB_1, portB_2, portB_3, portB_4, portB_5, portB_6, portB_7 = false;
-bool portC_4, portC_6, portC_5, portC_7 = false;
+
 
 const struct sigevent* ISR(void* arg, int id) {
 	struct sigevent *event = (struct sigevent *) arg;
@@ -51,6 +50,11 @@ const struct sigevent* ISR(void* arg, int id) {
 }
 
 hal::HALSensorik::HALSensorik() {
+	// Initialisierung der Digitalen IO Karte
+		out8(DIO_BASE + DIO_OFFS_CTRL, 0x8A);
+		out8(DIO_BASE + DIO_OFFS_A, 0x00);
+		out8(DIO_BASE + DIO_OFFS_C, 0x00);
+
 	//make sure HAL object is already created
 	//	hal::HALSensorik::getInstance();
 	initInterrupts();
@@ -139,9 +143,9 @@ void hal::HALSensorik::stop() {
 		perror("SensorCtrl: ChannelDestroy isrChid failed");
 	}
 	//in Simulation: bleibt hier haengen
-	if (InterruptDetach(interruptId) == -1) {
-		perror("SensorCtrl: InterruptDetach failed");
-	}
+//	if (InterruptDetach(interruptId) == -1) {
+//		perror("SensorCtrl: InterruptDetach failed");
+//	}
 
 	if (-1 == ConnectDetach(signalCoid)) {
 		perror("SensorCtrl: ConnectDetach ConnectDetach failed");
@@ -298,4 +302,8 @@ int hal::HALSensorik::getHeight() {
 }
 int hal::HALSensorik::getSignalChid(){
 	return signalChid;
+}
+
+int hal::HALSensorik::getSignalCoid(){
+	return signalCoid;
 }
