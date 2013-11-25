@@ -12,17 +12,17 @@ MachineState* MachineState::instance = NULL;
 
 MachineState::MachineState() {
 
-/*
-	instance->SensEntry = false;
-	instance->SensExit = false;
 
-	instance->SensHeight = false;
-	instance->SensMetall = false;
-	instance->SensSlip = false;
-	instance->SensSwitch = false;
-	instance->SwitchOpen = false;
-	instance->height = 0;
-	*/
+	SensEntry = false;
+	SensExit = false;
+
+	SensHeight = false;
+	SensMetall = false;
+	SensSlip = false;
+	SensSwitch = false;
+	SwitchOpen = false;
+	height = 0;
+
 
 }
 
@@ -62,5 +62,6 @@ void MachineState::showMachineState(){
 		   instance->SensMetall,
 		   instance->SensSlip,
 		   instance->SwitchOpen,
+		   instance->E_Stop,
 		   instance->height);
 }
