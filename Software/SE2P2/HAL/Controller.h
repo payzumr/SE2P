@@ -21,40 +21,40 @@
 class Controller {
 
 private:
-	void fehlerAufgetreten();
+	void errorFound();
 public:
 	struct puk{
 		int pukIdentifier;
 		pukType type;
-		int stelle;
-		int hohe1;
-		int hohe2;
+		int place;
+		int height1;
+		int height2;
 		bool metall;
 	} pukArr[N_PUKS];
 
-	int pukZeiger;
-	int anzahlPuks;
+	int pukPointer;
+	int numOfPuks;
 	int pukIdentifier;
-	bool fehlerFlag;
+	bool errorFlag;
 
 	Controller();
 	virtual ~Controller();
 	void init();
-	void neustart();
+	void reset();
 	//sensoren
-	void eintrittEinlauf();
-	void austrittEinlauf();
-	void eintrittHohenmessung();
-	void austrittHohenmessung();
-	void metallSetzen();
-	void eintrittWeiche();
-	void austrittWeiche();
-	void eintrittAuslauf();
-	void austrittAuslauf();
+	void entryStartSens();
+	void exitStartSens();
+	void entryHeightMessure();
+	void exitHeightMessure();
+	void metalFound();
+	void entrySwitch();
+	void exitSwitch();
+	void entryFinishSens();
+	void exitFinishSens();
 
 	//tasten
-	void notAusGedruckt();
-	void notAusNichtGedruckt();
+	void EStopPressed();
+	void EStopReleased();
 
 	void printPuk(int puk);
 };

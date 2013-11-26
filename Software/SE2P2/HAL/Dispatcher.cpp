@@ -1,8 +1,11 @@
 /*
  * Dispatcher.cpp
  *
- *  Created on: 21.11.2013
- *      Author: Jannik
+ *  Created on: 02.10.2013
+ *      Author: Jannik Schick (2063265)
+ *              Philipp Kloth (2081738)
+ *              Rutkay Kuepelikilinc (2081831)
+ *              Natalia Duske (2063265)
  */
 
 #include "Dispatcher.h"
@@ -80,12 +83,12 @@ void Dispatcher::setSensorChanges(int code, int val) {
 			if (((val & BIT_0) == 0) && !portB_0) {
 				cout << "Werkstueck in Einlauf" << endl;
 				MState->SensEntry = true;
-				controller->eintrittEinlauf();
+				controller->entryStartSens();
 				portB_0 = true;
 			} else if ((val & BIT_0) && portB_0) {
 				cout << "Werkstueck nicht mehr in Einlauf" << endl;
 				MState->SensEntry = false;
-				controller->austrittEinlauf();
+				controller->exitStartSens();
 				portB_0 = false;
 			}
 			if (((val & BIT_1) == 0) && !portB_1) {
@@ -93,12 +96,12 @@ void Dispatcher::setSensorChanges(int code, int val) {
 				//printf("AD PORT: %d \n",getHeight());
 				MState->SensHeight = true;
 				MState->height = HALs->getHeight();
-				controller->eintrittHohenmessung();
+				controller->entryHeightMessure();
 				portB_1 = true;
 			} else if ((val & BIT_1) && portB_1) {
 				cout << "Werkstueck nicht mehr in Hoehenmessung" << endl;
 				MState->SensHeight = false;
-				controller->austrittHohenmessung();
+				controller->exitHeightMessure();
 				portB_1 = false;
 			}
 			//		if ((val & BIT_2) && !portB_2) {
@@ -111,18 +114,18 @@ void Dispatcher::setSensorChanges(int code, int val) {
 			if (((val & BIT_3) == 0) && !portB_3) {
 				cout << "Werkstueck in Weiche" << endl;
 				MState->SensSwitch = true;
-				controller->eintrittWeiche();
+				controller->entrySwitch();
 				portB_3 = true;
 			} else if ((val & BIT_3) && portB_3) {
 				cout << "Werkstueck nicht mehr in Weiche" << endl;
 				MState->SensSwitch = false;
-				controller->austrittWeiche();
+				controller->exitSwitch();
 				portB_3 = false;
 			}
 			if ((val & BIT_4) && !portB_4) {
 				cout << "Werkstueck Metall" << endl;
 				MState->SensMetall = true;
-				controller->metallSetzen();
+				controller->metalFound();
 				portB_4 = true;
 			} else if (((val & BIT_4) == 0) && portB_4) {
 				cout << "Metallwerkstueck hat messung verlassen" << endl;
@@ -152,7 +155,7 @@ void Dispatcher::setSensorChanges(int code, int val) {
 			if (((val & BIT_7) == 0) && !portB_7) {
 				cout << "Werkstueck in Auslauf" << endl;
 				MState->SensExit = true;
-				controller->eintrittAuslauf();
+				controller->entryFinishSens();
 				portB_7 = true;
 			} else if ((val & BIT_7) && portB_7) {
 				cout << "Werkstueck nicht mehr in Auslauf" << endl;
@@ -180,7 +183,7 @@ void Dispatcher::setSensorChanges(int code, int val) {
 
 			if (((val & BIT_7) == 0) && !portC_7) {
 				cout << "E-stop gedrueckt" << endl;
-				controller->notAusGedruckt();
+				controller->EStopPressed();
 				portC_7 = true;
 			}
 
@@ -189,7 +192,7 @@ void Dispatcher::setSensorChanges(int code, int val) {
 		if ((val & BIT_6) && not_aus_reset) {
 			cout << "Resettaste gedrueckt" << endl;
 			not_aus_reset = false;
-			controller->neustart();
+			controller->reset();
 			//			portC_6 = true;
 		}
 		//		 else if (((val & BIT_6) == 0) && portC_6) {
