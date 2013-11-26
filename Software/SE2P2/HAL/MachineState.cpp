@@ -57,6 +57,7 @@ void MachineState::showMachineState(){
 		   "Werkstueck Metall: %d \n"
 		   "Rutsche voll: %d \n"
 		   "Weiche offen: %d  \n"
+		   "E Stop gedrückt: %d \n"
 		   "Hoehe: %d \n",
 		   instance->SensEntry,
 		   instance->SensExit,
