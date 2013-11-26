@@ -225,9 +225,9 @@ void Test::sensorikPulseTest(HALSensorik* halS){
 	MsgSendPulse(i_coid, SIGEV_PULSE_PRIO_INHERIT, PortA, HOEHENMESSUNG);
 	M->showMachineState();
 	if(M->SensEntry == false && M->SensHeight == true && M->SensSwitch == false && M->SensMetall == false && M->SwitchOpen == false && M->SensSlip == false && M->SensExit == false){
-		cout << "Testergebniss Einlauf: OK" << endl;
+		cout << "Testergebniss Hoehenmessung: OK" << endl;
 	}else{
-		cout << "Testergebniss Einlauf: Failed" << endl;
+		cout << "Testergebniss Hoehenmessung: Failed" << endl;
 	}
 	sleep(2);
 
@@ -236,9 +236,9 @@ void Test::sensorikPulseTest(HALSensorik* halS){
 	MsgSendPulse(i_coid, SIGEV_PULSE_PRIO_INHERIT, PortA, W_IN_WEICHE);
 	M->showMachineState();
 	if(M->SensEntry == false && M->SensHeight == false && M->SensSwitch == true && M->SensMetall == false && M->SwitchOpen == false && M->SensSlip == false && M->SensExit == false){
-		cout << "Testergebniss Einlauf: OK" << endl;
+		cout << "Testergebniss Weiche: OK" << endl;
 	}else{
-		cout << "Testergebniss Einlauf: Failed" << endl;
+		cout << "Testergebniss Weiche: Failed" << endl;
 	}
 	sleep(2);
 
@@ -247,9 +247,9 @@ void Test::sensorikPulseTest(HALSensorik* halS){
 	MsgSendPulse(i_coid, SIGEV_PULSE_PRIO_INHERIT, PortA, METALLSENSOR);
 	M->showMachineState();
 	if(M->SensEntry == false && M->SensHeight == false && M->SensSwitch == false && M->SensMetall == true && M->SwitchOpen == false && M->SensSlip == false && M->SensExit == false){
-		cout << "Testergebniss Einlauf: OK" << endl;
+		cout << "Testergebniss Metallsensor: OK" << endl;
 	}else{
-		cout << "Testergebniss Einlauf: Failed" << endl;
+		cout << "Testergebniss Metallsensor: Failed" << endl;
 	}
 	sleep(2);
 
@@ -258,9 +258,9 @@ void Test::sensorikPulseTest(HALSensorik* halS){
 	MsgSendPulse(i_coid, SIGEV_PULSE_PRIO_INHERIT, PortA, WEICHEOFFEN);
 	M->showMachineState();
 	if(M->SensEntry == false && M->SensHeight == false && M->SensSwitch == false && M->SensMetall == false && M->SwitchOpen == true && M->SensSlip == false && M->SensExit == false){
-		cout << "Testergebniss Einlauf: OK" << endl;
+		cout << "Testergebniss Weiche offen: OK" << endl;
 	}else{
-		cout << "Testergebniss Einlauf: Failed" << endl;
+		cout << "Testergebniss Weiche offen: Failed" << endl;
 	}
 	sleep(2);
 
@@ -269,9 +269,9 @@ void Test::sensorikPulseTest(HALSensorik* halS){
 	MsgSendPulse(i_coid, SIGEV_PULSE_PRIO_INHERIT, PortA, RUTSCHEVOLL);
 	M->showMachineState();
 	if(M->SensEntry == false && M->SensHeight == false && M->SensSwitch == false && M->SensMetall == false && M->SwitchOpen == false && M->SensSlip == true && M->SensExit == false){
-		cout << "Testergebniss Einlauf: OK" << endl;
+		cout << "Testergebniss Rutsche: OK" << endl;
 	}else{
-		cout << "Testergebniss Einlauf: Failed" << endl;
+		cout << "Testergebniss Rutsche: Failed" << endl;
 	}
 	sleep(2);
 
@@ -280,9 +280,9 @@ void Test::sensorikPulseTest(HALSensorik* halS){
 	MsgSendPulse(i_coid, SIGEV_PULSE_PRIO_INHERIT, PortA, AUSLAUF);
 	M->showMachineState();
 	if(M->SensEntry == false && M->SensHeight == false && M->SensSwitch == false && M->SensMetall == false && M->SwitchOpen == false && M->SensSlip == false && M->SensExit == true){
-		cout << "Testergebniss Einlauf: OK" << endl;
+		cout << "Testergebniss Auslauf: OK" << endl;
 	}else{
-		cout << "Testergebniss Einlauf: Failed" << endl;
+		cout << "Testergebniss Auslauf: Failed" << endl;
 	}
 	sleep(2);
 	//Port B
