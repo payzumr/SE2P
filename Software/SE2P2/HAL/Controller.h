@@ -16,7 +16,7 @@
 #include "PukType.h"
 #include "PetriDefines.h"
 
-#define N_PUKS 2
+#define N_PUKS 7
 
 class Controller {
 
@@ -47,12 +47,16 @@ public:
 	void entryHeightMessure();
 	void exitHeightMessure();
 	void metalFound();
+	void entrySlide();
+	void exitSlide();
 	void entrySwitch();
 	void exitSwitch();
 	void entryFinishSens();
 	void exitFinishSens();
 
 	//tasten
+	void stopPressed();
+	void startPressed();
 	void EStopPressed();
 	void EStopReleased();
 

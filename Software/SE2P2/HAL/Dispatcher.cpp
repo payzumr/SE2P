@@ -77,6 +77,7 @@ void Dispatcher::execute(void* arg) {
 void Dispatcher::setSensorChanges(int code, int val) {
 	MachineState* MState = MachineState::getInstance();
 	HALSensorik* HALs = HALSensorik::getInstance();
+	HALAktorik* HALa = HALAktorik::getInstance();
 	//printf("portC7 %d\n", portC_7);
 	if (!portC_7 && !not_aus_reset) {
 		if (code == 2) {
@@ -144,12 +145,12 @@ void Dispatcher::setSensorChanges(int code, int val) {
 			if (((val & BIT_6) == 0) && !portB_6) {
 				cout << "Rutsche ist voll" << endl;
 				MState->SensSlip = true;
-				controller->printPuk(0);
-				controller->printPuk(1);
+				controller->entrySlide();
 				portB_6 = true;
 			} else if ((val & BIT_6) && portB_6) {
 				cout << "Rutsche nicht mehr voll" << endl;
 				MState->SensSlip = false;
+				controller->exitSlide();
 				portB_6 = false;
 			}
 			if (((val & BIT_7) == 0) && !portB_7) {
@@ -166,6 +167,7 @@ void Dispatcher::setSensorChanges(int code, int val) {
 		} else if (code == 8) {
 			if (val & BIT_4) {
 				cout << "Starttaste gedrueckt" << endl;
+				HALa->engine_start();
 				//			portC_4 = true;
 			}
 			//		 else if (((val & BIT_4) == 0) && portC_4) {
@@ -174,12 +176,18 @@ void Dispatcher::setSensorChanges(int code, int val) {
 			//		}
 			if ((val & BIT_5) == 0) {
 				cout << "Stoptaste gedrueckt" << endl;
+				HALa->engine_stop();
 				//			portC_5 = true;
 			}
 			//		 else if ((val & BIT_5) && portC_5) {
 			//			cout << "Stoptaste losgelassen" << endl;
 			//			portC_5 = false;
 			//		}
+			if ((val & BIT_6)) {
+						cout << "Resettaste gedrueckt" << endl;
+						controller->reset();
+						//			portC_6 = true;
+					}
 
 			if (((val & BIT_7) == 0) && !portC_7) {
 				cout << "E-stop gedrueckt" << endl;

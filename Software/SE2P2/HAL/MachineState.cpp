@@ -65,6 +65,6 @@ void MachineState::showMachineState(){
 		   instance->SensMetall,
 		   instance->SensSlip,
 		   instance->SwitchOpen,
-		   instance->E_Stop,
+		   //instance->E_Stop,
 		   instance->height);
 }

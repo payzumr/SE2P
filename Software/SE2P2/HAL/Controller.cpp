@@ -35,18 +35,19 @@ void Controller::init() {
 	}
 }
 
-void Controller::reset(){
+void Controller::reset() {
 	init();
 	HALa->greenLigths(OFF);
 	HALa->yellowLigths(OFF);
 	HALa->redLigths(OFF);
 	HALa->engine_slow(OFF);
-	HALa->engine_start();
 	HALa->switchOnOff(OFF);
 }
 
 void Controller::entryStartSens() {
 	if (++numOfPuks == N_PUKS + 1) {
+
+		printf("Fehler in entryStartSens\n");
 		errorFound();
 	} else {
 		pukArr[pukPointer].place = S1;
@@ -56,6 +57,7 @@ void Controller::entryStartSens() {
 
 		HALa->greenLigths(ON);
 		HALa->engine_rigth();
+		HALa->engine_start();
 	}
 }
 void Controller::exitStartSens() {
@@ -85,18 +87,29 @@ void Controller::entryHeightMessure() {
 			pukArr[puk].place = S4;
 		}
 #endif
-		//	if (Mstat->height >= 60000 && Mstat->height <= 70000) {//hoher puk
-		//
-		//	}
-		//	if (Mstat->height >= 60000 && Mstat->height <= 70000) {//niedriger puk
-		//
-		//	}
-		//	if (Mstat->height >= 60000 && Mstat->height <= 70000) {//puk mit loch
-		//
-		//	}
+		if (Mstat->height >= 3400 && Mstat->height <= 3800) {//flacher puk
+			pukArr[puk].place = S4;
+			pukArr[puk].type = mitLoch;
+			pukArr[puk].height1 = Mstat->height;
+
+		}
+		if (Mstat->height >= 2700 && Mstat->height <= 2850) {//hoher puk
+			pukArr[puk].place = S6;
+			pukArr[puk].type = flach;
+			pukArr[puk].height1 = Mstat->height;
+
+		}
+		if (Mstat->height >= 2000 && Mstat->height <= 2600) {//puk mit loch
+			pukArr[puk].place = S5;
+			pukArr[puk].type = hoch;
+			pukArr[puk].height1 = Mstat->height;
+		}
 	} else {
+
+		printf("Fehler in entryHeightMessure\n");
 		errorFound();
 	}
+	printPuk(puk);
 }
 
 void Controller::exitHeightMessure() {
@@ -118,13 +131,48 @@ void Controller::metalFound() {
 		pukArr[puk].metall = true;
 		pukArr[puk].type = mitMetall;
 	} else {
+
+		printf("Fehler in metalFound\n");
 		errorFound();
 	}
 }
 
+void Controller::entrySlide() {
+	int puk = 0;
+	while (pukArr[puk].place != S6 && puk <= N_PUKS) {
+		puk++;
+		if (puk == N_PUKS) {
+			errorFlag = true;
+		}
+	}
+	if (!errorFlag) {
+		pukArr[puk].pukIdentifier = 0;
+		pukArr[puk].type = undefiniert;
+		pukArr[puk].place = S0;
+		pukArr[puk].height1 = 0;
+		pukArr[puk].height2 = 0;
+		pukArr[puk].metall = false;
+	} else {
+		printf("Fehler in entrySlide\n");
+		errorFound();
+	}
+}
+void Controller::exitSlide() {
+	bool conveyerEmpty = false;
+	int puk = 0;
+		while (pukArr[puk].place == S0 && puk <= N_PUKS) {
+			puk++;
+			if (puk == N_PUKS) {
+				conveyerEmpty = true;
+			}
+		}
+		if (conveyerEmpty) {
+			reset();
+		}
+}
+
 void Controller::entrySwitch() {
 	int puk = 0;
-	printPuk(puk);
 	while ((pukArr[puk].place != S4 && pukArr[puk].place != S5
 			&& pukArr[puk].place != S6) && puk <= N_PUKS) {
 		puk++;
@@ -137,7 +185,7 @@ void Controller::entrySwitch() {
 			pukArr[puk].place = S8;
 			HALa->switchOnOff(ON);
 		} else if (pukArr[puk].place == S4) {
-			pukArr[puk].place = S8;//auf 7 zurucksetzen!!!!!!!!!!!!!!!!!!!!!!!!!
+			pukArr[puk].place = S7;//auf 7 zurucksetzen!!!!!!!!!!!!!!!!!!!!!!!!!
 			HALa->switchOnOff(ON);
 		} else if (pukArr[puk].place == S5) {
 			pukArr[puk].place = S8;
@@ -148,13 +196,14 @@ void Controller::entrySwitch() {
 		printPuk(puk);
 
 	} else {
+		printf("Fehler in entrySwitch\n");
 		errorFound();
 	}
 }
 void Controller::exitSwitch() {
 	int puk = 0;
-	while ((pukArr[puk].place != S7 && pukArr[puk].place != S8) && puk
-			<= N_PUKS) {
+	while ((pukArr[puk].place != S7 && pukArr[puk].place != S8
+			&& pukArr[puk].place != S6) && puk <= N_PUKS) {
 		puk++;
 		if (puk == N_PUKS) {
 			errorFlag = true;
@@ -167,6 +216,7 @@ void Controller::exitSwitch() {
 			pukArr[puk].place = S10;
 		}
 	} else {
+		printf("Fehler in exitSwitch\n");
 		errorFound();
 	}
 	HALa->switchOnOff(OFF);
@@ -190,6 +240,7 @@ void Controller::entryFinishSens() {
 			pukArr[puk].place = S11;
 		}
 	} else {
+		printf("Fehler in entryFinishSensor\n");
 		errorFound();
 	}
 }
