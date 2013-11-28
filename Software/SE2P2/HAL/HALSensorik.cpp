@@ -177,8 +177,8 @@ void hal::HALSensorik::execute(void *arg) {
 
 /**
  * Write 0x10 on Register 0x02
- * waits till  Bit 7 gets high and read value from 0x02
- * @return the high
+ * waits till  Bit 7 gets tall and read value from 0x02
+ * @return the tall
  *
  */
 int hal::HALSensorik::getHeight() {

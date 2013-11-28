@@ -44,15 +44,6 @@ void Dispatcher::shutdown() {
 }
 void Dispatcher::execute(void* arg) {
 	controller->init();
-	portB_0 = false;
-	portB_1 = false;
-	portB_3 = false;
-	portB_4 = false;
-	portB_5 = false;
-	portB_6 = false;
-	portB_7 = false;
-	portC_6 = false;
-	portC_7 = false;
 	not_aus_reset = false;
 	struct _pulse pulse;
 	while (!isStopped()) {
@@ -78,138 +69,98 @@ void Dispatcher::setSensorChanges(int code, int val) {
 	MachineState* MState = MachineState::getInstance();
 	HALSensorik* HALs = HALSensorik::getInstance();
 	HALAktorik* HALa = HALAktorik::getInstance();
-	//printf("portC7 %d\n", portC_7);
-	if (!portC_7 && !not_aus_reset) {
-		if (code == 2) {
-			if (((val & BIT_0) == 0) && !portB_0) {
+	if (!e_stop && !not_aus_reset) {
+		if (code == SENSORS) {
+			if (!(val & BIT_0) && !MState->SensEntry) {
 				cout << "Werkstueck in Einlauf" << endl;
 				MState->SensEntry = true;
 				controller->entryStartSens();
-				portB_0 = true;
-			} else if ((val & BIT_0) && portB_0) {
+			} else if ((val & BIT_0) && MState->SensEntry) {
 				cout << "Werkstueck nicht mehr in Einlauf" << endl;
 				MState->SensEntry = false;
 				controller->exitStartSens();
-				portB_0 = false;
 			}
-			if (((val & BIT_1) == 0) && !portB_1) {
+			if (!(val & BIT_1) && !MState->SensHeight) {
 				cout << "Werkstueck in Hoehenmessung" << endl;
-				//printf("AD PORT: %d \n",getHeight());
 				MState->SensHeight = true;
 				MState->height = HALs->getHeight();
 				controller->entryHeightMessure();
-				portB_1 = true;
-			} else if ((val & BIT_1) && portB_1) {
+			} else if ((val & BIT_1) && MState->SensHeight) {
 				cout << "Werkstueck nicht mehr in Hoehenmessung" << endl;
 				MState->SensHeight = false;
 				controller->exitHeightMessure();
-				portB_1 = false;
 			}
-			//		if ((val & BIT_2) && !portB_2) {
-			//			cout << "Werkstueck im Toleranzbereich" << endl;
-			//			portB_2 = true;
-			//		} else if (((val & BIT_2) == 0) && portB_2) {
-			//			cout << "Werkstueck nicht im Toleranzbereich" << endl;
-			//			portB_2 = false;
-			//		}
-			if (((val & BIT_3) == 0) && !portB_3) {
+			if (!(val & BIT_3) && !MState->SensSwitch) {
 				cout << "Werkstueck in Weiche" << endl;
 				MState->SensSwitch = true;
 				controller->entrySwitch();
-				portB_3 = true;
-			} else if ((val & BIT_3) && portB_3) {
+			} else if ((val & BIT_3) && MState->SensSwitch) {
 				cout << "Werkstueck nicht mehr in Weiche" << endl;
 				MState->SensSwitch = false;
 				controller->exitSwitch();
-				portB_3 = false;
 			}
-			if ((val & BIT_4) && !portB_4) {
+			if ((val & BIT_4) && !MState->SensMetall) {
 				cout << "Werkstueck Metall" << endl;
 				MState->SensMetall = true;
 				controller->metalFound();
-				portB_4 = true;
-			} else if (((val & BIT_4) == 0) && portB_4) {
+			} else if (!(val & BIT_4) && MState->SensMetall) {
 				cout << "Metallwerkstueck hat messung verlassen" << endl;
 				MState->SensMetall = false;
-				portB_4 = false;
 			}
-			if ((val & BIT_5) && !portB_5) {
+			if ((val & BIT_5) && !MState->SwitchOpen) {
 				cout << "Weiche offen" << endl;
 				MState->SwitchOpen = true;
-				portB_5 = true;
-			} else if (((val & BIT_5) == 0) && portB_5) {
+			} else if (!(val & BIT_5) && MState->SwitchOpen) {
 				cout << "Weiche wieder zu" << endl;
 				MState->SwitchOpen = false;
-				portB_5 = false;
 			}
-			if (((val & BIT_6) == 0) && !portB_6) {
+			if (!(val & BIT_6) && !MState->SensSlip) {
 				cout << "Rutsche ist voll" << endl;
 				MState->SensSlip = true;
 				controller->entrySlide();
-				portB_6 = true;
-			} else if ((val & BIT_6) && portB_6) {
+			} else if ((val & BIT_6) && MState->SensSlip) {
 				cout << "Rutsche nicht mehr voll" << endl;
 				MState->SensSlip = false;
 				controller->exitSlide();
-				portB_6 = false;
 			}
-			if (((val & BIT_7) == 0) && !portB_7) {
+			if (!(val & BIT_7) && !MState->SensExit) {
 				cout << "Werkstueck in Auslauf" << endl;
 				MState->SensExit = true;
 				controller->entryFinishSens();
-				portB_7 = true;
-			} else if ((val & BIT_7) && portB_7) {
+			} else if ((val & BIT_7) && MState->SensExit) {
 				cout << "Werkstueck nicht mehr in Auslauf" << endl;
 				MState->SensExit = false;
-				portB_7 = false;
 			}
-
-		} else if (code == 8) {
-			if (val & BIT_4) {
+		} else if (code == BUTTONS) {
+			if (val & START) {
 				cout << "Starttaste gedrueckt" << endl;
 				HALa->engine_start();
-				//			portC_4 = true;
 			}
-			//		 else if (((val & BIT_4) == 0) && portC_4) {
-			//			cout << "Starttaste losgelassen" << endl;
-			//			portC_4 = false;
-			//		}
-			if ((val & BIT_5) == 0) {
+			if (!(val & STOP)) {
 				cout << "Stoptaste gedrueckt" << endl;
 				HALa->engine_stop();
-				//			portC_5 = true;
 			}
-			//		 else if ((val & BIT_5) && portC_5) {
-			//			cout << "Stoptaste losgelassen" << endl;
-			//			portC_5 = false;
-			//		}
-			if ((val & BIT_6)) {
-						cout << "Resettaste gedrueckt" << endl;
-						controller->reset();
-						//			portC_6 = true;
+			if ((val & RESET)) {
+				cout << "Resettaste gedrueckt" << endl;
+				controller->reset();
 					}
 
-			if (((val & BIT_7) == 0) && !portC_7) {
+			if (!(val & E_STOP) && !e_stop) {
 				cout << "E-stop gedrueckt" << endl;
 				controller->EStopPressed();
-				portC_7 = true;
+				e_stop = true;
 			}
 
 		}
-	} else if (code == 8) {
-		if ((val & BIT_6) && not_aus_reset) {
+	} else if (code == BUTTONS) {
+		if ((val & RESET) && not_aus_reset) {
 			cout << "Resettaste gedrueckt" << endl;
 			not_aus_reset = false;
 			controller->reset();
-			//			portC_6 = true;
 		}
-		//		 else if (((val & BIT_6) == 0) && portC_6) {
-		//			cout << "Resettaste losgelassen" << endl;
-		//			portC_6 = false;
-		//		}
-		if ((val & BIT_7) && portC_7) {
+		if ((val & E_STOP) && e_stop) {
 			cout << "E-stop nicht mehr gedrueckt" << endl;
-			portC_7 = false;
+			e_stop = false;
 			not_aus_reset = true;
 		}
 	}

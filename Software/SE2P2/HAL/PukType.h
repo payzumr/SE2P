@@ -12,11 +12,11 @@
 #define PUKTYPE_H_
 
 enum pukType{
-	undefiniert = -1,
-	flach = 0,
-	hoch = 1,
-	mitLoch = 2,
-	mitMetall = 3,
+	undefined = -1,
+	flat = 0,
+	tall = 1,
+	withHole = 2,
+	withMetal = 3,
 };
 
 #endif /* PUKTYPE_H_ */

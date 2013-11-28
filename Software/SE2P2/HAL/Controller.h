@@ -16,13 +16,13 @@
 #include "PukType.h"
 #include "PetriDefines.h"
 
+
 #define N_PUKS 7
 
 class Controller {
 
 private:
 	void errorFound();
-public:
 	struct puk{
 		int pukIdentifier;
 		pukType type;
@@ -32,13 +32,15 @@ public:
 		bool metall;
 	} pukArr[N_PUKS];
 
+
 	int pukPointer;
 	int numOfPuks;
 	int pukIdentifier;
 	bool errorFlag;
 
+public:
 	Controller();
-	virtual ~Controller();
+	~Controller();
 	void init();
 	void reset();
 	//sensoren

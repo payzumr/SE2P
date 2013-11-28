@@ -10,6 +10,7 @@
 
 #ifndef THREAD_H_
 #define THREAD_H_
+
 #define ONE_SEC 1
 
 #include "HAWThread.h"
@@ -29,7 +30,6 @@ public:
     virtual void shutdown(); 
 
 };
-
 }
 
 #endif /* THREAD_H_ */

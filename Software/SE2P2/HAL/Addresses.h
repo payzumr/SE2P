@@ -29,6 +29,13 @@
 #define BIT_6 0x40
 #define BIT_7 0x80
 
+#define SENSORS 2
+#define BUTTONS 8
+#define RESET 0x40
+#define E_STOP 0x80
+#define STOP 0x20
+#define START 0x10
+
 #define ON true
 #define OFF false
 

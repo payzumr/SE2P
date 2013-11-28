@@ -9,8 +9,13 @@
  */
 
 #include "Controller.h"
+
+using namespace hal;
+
 HALAktorik* HALa = HALAktorik::getInstance();
 MachineState* Mstat = MachineState::getInstance();
+
+
 Controller::Controller() {
 	// TODO Auto-generated constructor stub
 
@@ -28,7 +33,7 @@ void Controller::init() {
 	int i = 0;
 	for (; i < N_PUKS; i++) {
 		pukArr[i].pukIdentifier = 0;
-		pukArr[i].type = undefiniert;
+		pukArr[i].type = undefined;
 		pukArr[i].place = S0;
 		pukArr[i].height1 = 0;
 		pukArr[i].height2 = 0;
@@ -81,27 +86,21 @@ void Controller::entryHeightMessure() {
 
 	if (!errorFlag) {
 		pukArr[puk].place = S3;
-		//	printPuk(puk);
-#ifdef SIMULATION
-		if (Mstat->height >= 60000 && Mstat->height <= 70000) {
-			pukArr[puk].place = S4;
-		}
-#endif
 		if (Mstat->height >= 3400 && Mstat->height <= 3800) {//flacher puk
 			pukArr[puk].place = S4;
-			pukArr[puk].type = mitLoch;
+			pukArr[puk].type = withHole;
 			pukArr[puk].height1 = Mstat->height;
 
 		}
 		if (Mstat->height >= 2700 && Mstat->height <= 2850) {//hoher puk
 			pukArr[puk].place = S6;
-			pukArr[puk].type = flach;
+			pukArr[puk].type = flat;
 			pukArr[puk].height1 = Mstat->height;
 
 		}
 		if (Mstat->height >= 2000 && Mstat->height <= 2600) {//puk mit loch
 			pukArr[puk].place = S5;
-			pukArr[puk].type = hoch;
+			pukArr[puk].type = tall;
 			pukArr[puk].height1 = Mstat->height;
 		}
 	} else {
@@ -129,7 +128,7 @@ void Controller::metalFound() {
 	}
 	if (!errorFlag) {
 		pukArr[puk].metall = true;
-		pukArr[puk].type = mitMetall;
+		pukArr[puk].type = withMetal;
 	} else {
 
 		printf("Fehler in metalFound\n");
@@ -139,6 +138,7 @@ void Controller::metalFound() {
 
 void Controller::entrySlide() {
 	int puk = 0;
+	printPuk(puk);
 	while (pukArr[puk].place != S6 && puk <= N_PUKS) {
 		puk++;
 		if (puk == N_PUKS) {
@@ -147,7 +147,7 @@ void Controller::entrySlide() {
 	}
 	if (!errorFlag) {
 		pukArr[puk].pukIdentifier = 0;
-		pukArr[puk].type = undefiniert;
+		pukArr[puk].type = undefined;
 		pukArr[puk].place = S0;
 		pukArr[puk].height1 = 0;
 		pukArr[puk].height2 = 0;
@@ -168,6 +168,7 @@ void Controller::exitSlide() {
 		}
 		if (conveyerEmpty) {
 			reset();
+			HALa->engine_stop();
 		}
 }
 
@@ -181,7 +182,7 @@ void Controller::entrySwitch() {
 		}
 	}
 	if (!errorFlag) {
-		if (pukArr[puk].place == S4 && pukArr[puk].type == mitMetall) {
+		if (pukArr[puk].place == S4 && pukArr[puk].type == withMetal) {
 			pukArr[puk].place = S8;
 			HALa->switchOnOff(ON);
 		} else if (pukArr[puk].place == S4) {
@@ -212,7 +213,7 @@ void Controller::exitSwitch() {
 	if (!errorFlag) {
 		if (pukArr[puk].place == S7) {
 			pukArr[puk].place = S9;
-		} else {
+		} else if(pukArr[puk].place == S8){
 			pukArr[puk].place = S10;
 		}
 	} else {
@@ -233,10 +234,12 @@ void Controller::entryFinishSens() {
 	if (!errorFlag) {
 		if (pukArr[puk].place == S9) {
 			pukArr[puk].place = S12;
+			HALa->engine_stop();
 		} else {
 			HALa->engine_stop();
 			HALa->greenLigths(OFF);
-			HALa->yellowLigths(ON);
+
+
 			pukArr[puk].place = S11;
 		}
 	} else {

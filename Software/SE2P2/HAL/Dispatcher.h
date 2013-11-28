@@ -27,25 +27,14 @@ private:
 
 	int signalChid;
 
-	bool portB_0;
-	bool portB_1;
-//	bool portB_2;
-	bool portB_3;
-	bool portB_4;
-	bool portB_5;
-	bool portB_6;
-	bool portB_7;
-
-//	bool portC_4;
-//	bool portC_5;
 	bool portC_6;
-	bool portC_7;
+	bool e_stop;
 
 	bool not_aus_reset;
 
 	void setSensorChanges(int code, int val);
-public:
 	Dispatcher();
+public:
 	static Dispatcher* getInstance();
 	virtual ~Dispatcher();
 
