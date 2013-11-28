@@ -15,6 +15,7 @@
 #include "Addresses.h"
 #include "PukType.h"
 #include "PetriDefines.h"
+#include "Blinki.h"
 
 
 #define N_PUKS 7

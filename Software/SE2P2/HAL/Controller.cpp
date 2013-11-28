@@ -223,6 +223,7 @@ void Controller::exitSwitch() {
 	HALa->switchOnOff(OFF);
 }
 void Controller::entryFinishSens() {
+Blinki* blink = Blinki::getInstance();
 	int puk = 0;
 	while ((pukArr[puk].place != S9 && pukArr[puk].place != S10) && puk
 			<= N_PUKS) {
@@ -235,10 +236,19 @@ void Controller::entryFinishSens() {
 		if (pukArr[puk].place == S9) {
 			pukArr[puk].place = S12;
 			HALa->engine_stop();
+			blink->start(NULL);
+						sleep(10);
+						blink->stop();
+						blink->join();
+
 		} else {
 			HALa->engine_stop();
 			HALa->greenLigths(OFF);
-
+			printf("########88\n");
+			blink->start(NULL);
+			sleep(10);
+			blink->stop();
+			blink->join();
 
 			pukArr[puk].place = S11;
 		}

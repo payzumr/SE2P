@@ -16,6 +16,7 @@ Mutex* Timer::Timer_mutex = new Mutex();
 Timer* Timer::instance = NULL;
 
 Timer::Timer() {
+	/*
 	channelID = ChannelCreate(0);
 		if (channelID == -1) {
 			perror("Dispatcher: ChannelCreate signalChid failed");
@@ -27,13 +28,20 @@ Timer::Timer() {
 			perror("Dispatcher: ConnectAttach signalCoid failed");
 			exit(EXIT_FAILURE);
 		}
-
+*/
 }
 
 Timer::~Timer() {
 	// TODO Auto-generated destructor stub
 	delete instance;
 	instance = NULL;
+}
+
+void Timer::execute(void* args){
+
+}
+void Timer::shutdown(){
+
 }
 
 Timer* Timer::getInstance() {
