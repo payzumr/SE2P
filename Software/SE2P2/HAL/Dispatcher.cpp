@@ -10,11 +10,17 @@
 
 #include "Dispatcher.h"
 
+using namespace thread;
 using namespace hal;
 
 Dispatcher* Dispatcher::instance = NULL;
 Mutex* Dispatcher::dispatcher_mutex = new Mutex();
-Controller* controller = new Controller;
+//Controller* controller = Controller::getInstance();
+Controller* controller = new Controller();
+
+MachineState* MState = MachineState::getInstance();
+HALSensorik* HALs = HALSensorik::getInstance();
+Timer* timr = Timer::getInstance();
 
 Dispatcher::Dispatcher() {
 	HALSensorik* HALs = HALSensorik::getInstance();
@@ -43,6 +49,7 @@ void Dispatcher::shutdown() {
 
 }
 void Dispatcher::execute(void* arg) {
+	printf("hallo hier bin ich\n");
 	controller->init();
 	not_aus_reset = false;
 	struct _pulse pulse;
@@ -54,9 +61,9 @@ void Dispatcher::execute(void* arg) {
 			perror("SensorCtrl: MsgReceivePulse");
 			exit(EXIT_FAILURE);
 		}
-
+if(!MState->imLauf){
 		setSensorChanges(pulse.code, pulse.value.sival_int);
-
+}
 	}
 }
 
@@ -66,8 +73,6 @@ void Dispatcher::execute(void* arg) {
  * Shows the State of the Sensor if any Sensor makes an Interrupt
  */
 void Dispatcher::setSensorChanges(int code, int val) {
-	MachineState* MState = MachineState::getInstance();
-	HALSensorik* HALs = HALSensorik::getInstance();
 	HALAktorik* HALa = HALAktorik::getInstance();
 	if (!e_stop && !not_aus_reset) {
 		if (code == SENSORS) {
@@ -76,11 +81,13 @@ void Dispatcher::setSensorChanges(int code, int val) {
 				MState->SensEntry = true;
 				controller->entryStartSens();
 			} else if ((val & BIT_0) && MState->SensEntry) {
+				testzeitD = timr->testzeit;
 				cout << "Werkstueck nicht mehr in Einlauf" << endl;
 				MState->SensEntry = false;
 				controller->exitStartSens();
 			}
 			if (!(val & BIT_1) && !MState->SensHeight) {
+				printf("Laufzeit: %d\n", timr->testzeit-testzeitD);
 				cout << "Werkstueck in Hoehenmessung" << endl;
 				MState->SensHeight = true;
 				MState->height = HALs->getHeight();
@@ -143,7 +150,7 @@ void Dispatcher::setSensorChanges(int code, int val) {
 			if ((val & RESET)) {
 				cout << "Resettaste gedrueckt" << endl;
 				controller->reset();
-					}
+			}
 
 			if (!(val & E_STOP) && !e_stop) {
 				cout << "E-stop gedrueckt" << endl;

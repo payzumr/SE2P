@@ -24,6 +24,7 @@ MachineState::MachineState() {
 	SensSlip = false;
 	SensSwitch = false;
 	SwitchOpen = false;
+	imLauf = true;
 	height = 0;
 
 
@@ -68,4 +69,15 @@ void MachineState::showMachineState(){
 		   instance->SwitchOpen,
 		   //instance->E_Stop,
 		   instance->height);
+}
+
+void MachineState::showTimes(){
+	printf("entry to height fast: %d \n"
+			   "height to switch fast: %d \n"
+			   "switch to exit fast: %d \n"
+				"in height time: %d \n",
+			   entryToHeight_f,
+			   heightToSwitch_f,
+			   switchToExit_f,
+			   inHeigthTime);
 }

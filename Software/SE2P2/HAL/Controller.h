@@ -16,13 +16,17 @@
 #include "PukType.h"
 #include "PetriDefines.h"
 #include "Blinki.h"
+#include "Timer.h"
 
 
-#define N_PUKS 7
 
 class Controller {
 
 private:
+
+//	static Controller* instance;
+//	static Mutex* Controller_mutex;
+
 	void errorFound();
 	struct puk{
 		int pukIdentifier;
@@ -41,6 +45,9 @@ private:
 
 public:
 	Controller();
+
+//	static Controller* getInstance();
+
 	~Controller();
 	void init();
 	void reset();

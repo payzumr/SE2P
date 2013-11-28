@@ -11,6 +11,9 @@
 #ifndef PETRIDEFINES_H_
 #define PETRIDEFINES_H_
 
+
+#define N_PUKS 7
+
 #define S0 0
 #define S1 1 /* Eingangsbereich */
 #define S2 2 /* Anfang Band1 */

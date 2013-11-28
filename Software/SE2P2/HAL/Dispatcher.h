@@ -18,6 +18,7 @@
 #include "Addresses.h"
 #include "Mutex.h"
 #include "Controller.h"
+#include "Timer.h"
 
 class Dispatcher: public thread::HAWThread {
 private:
@@ -37,6 +38,9 @@ private:
 public:
 	static Dispatcher* getInstance();
 	virtual ~Dispatcher();
+
+	//testwert:
+	long testzeitD;
 
 protected:
 	virtual void execute(void* arg);
