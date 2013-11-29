@@ -35,9 +35,18 @@ public:
 	bool SensMetall;
 	bool SensSlip;
 	bool SwitchOpen;
+	bool imLauf;
 	int height;
 
+	//times
+	int entryToHeight_f;
+	int heightToSwitch_f;
+	int switchToExit_f;
+
+	int inHeigthTime;
+
 	void showMachineState();
+	void showTimes();
 };
 
 #endif /* MACHINESTATE_H_ */

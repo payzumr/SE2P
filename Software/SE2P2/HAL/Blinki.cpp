@@ -52,7 +52,6 @@ void hal::Blinki::shutdown(){}
 void hal::Blinki::blinkGelb()
 {
 HALAktorik* Hala = HALAktorik::getInstance();
-	printf("########\n");
  Hala->yellowLigths(ON);
  usleep(500000);
  Hala->yellowLigths(OFF);

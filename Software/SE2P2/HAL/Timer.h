@@ -20,9 +20,11 @@
 #include <sys/siginfo.h>
 #include <sys/neutrino.h>
 #include <time.h>
+#include "PetriDefines.h"
 
 
 namespace thread{
+#define N_TIMER N_PUKS
 
 class Timer: public HAWThread {
 private:
@@ -34,11 +36,14 @@ private:
 	int channelID;
 
 	void initTimer();
-
+	void countDownTimer();
 
 public:
 	static Timer* getInstance();
 	virtual ~Timer();
+	int timerArr[N_TIMER];
+
+	long testzeit;
 protected:
 
 	virtual void execute(void* args);

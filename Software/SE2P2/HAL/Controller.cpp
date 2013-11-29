@@ -14,8 +14,11 @@ using namespace hal;
 
 HALAktorik* HALa = HALAktorik::getInstance();
 MachineState* Mstat = MachineState::getInstance();
+thread::Timer* timer = thread::Timer::getInstance();
 
 
+//Mutex* Controller::Controller_mutex = new Mutex();
+//Controller* Controller::instance = NULL;
 Controller::Controller() {
 	// TODO Auto-generated constructor stub
 
@@ -24,6 +27,21 @@ Controller::Controller() {
 Controller::~Controller() {
 	// TODO Auto-generated destructor stub
 }
+//Controller* Controller::getInstance() {
+//
+//	Controller_mutex->lock();
+//	if (instance == NULL) {
+//		// Zugriffsrechte fuer den Zugriff auf die HW holen
+//		if (-1 == ThreadCtl(_NTO_TCTL_IO, 0)) {
+//			perror("ThreadCtl access failed\n");
+//			return NULL;
+//		}
+//		instance = new Controller();
+//	}
+//	Controller_mutex->unlock();
+//	return instance;
+//
+//}
 
 void Controller::init() {
 	errorFlag = false;
@@ -71,6 +89,7 @@ void Controller::exitStartSens() {
 		puk++;
 	}
 	pukArr[puk].place = S2;
+	timer->timerArr[puk] = Mstat->entryToHeight_f;
 	//	printPuk(puk);
 }
 
@@ -85,6 +104,7 @@ void Controller::entryHeightMessure() {
 	}
 
 	if (!errorFlag) {
+	timer->timerArr[puk] = -1;
 		pukArr[puk].place = S3;
 		if (Mstat->height >= 3400 && Mstat->height <= 3800) {//flacher puk
 			pukArr[puk].place = S4;
@@ -244,7 +264,6 @@ Blinki* blink = Blinki::getInstance();
 		} else {
 			HALa->engine_stop();
 			HALa->greenLigths(OFF);
-			printf("########88\n");
 			blink->start(NULL);
 			sleep(10);
 			blink->stop();
