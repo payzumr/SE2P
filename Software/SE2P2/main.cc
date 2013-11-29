@@ -16,6 +16,7 @@
 #include "HALSensorik.h"
 #include <string>
 #include "MachineState.h"
+#include "Initialisation.h"
 
 #include "Thread.h"
 #define TEST_TIME 25
@@ -31,6 +32,10 @@ int main(int argc, char *argv[]) {
 			<< endl;
 	IOaccess_open(); // Baue die Verbindung zur Simulation auf
 #endif
+	// Initialisierung der Digitalen IO Karte
+		out8(DIO_BASE + DIO_OFFS_CTRL, 0x8A);
+		out8(DIO_BASE + DIO_OFFS_A, 0x00);
+		out8(DIO_BASE + DIO_OFFS_C, 0x00);
 
 	// Zugriffsrechte fuer den Zugriff auf die HW holen
 	if (-1 == ThreadCtl(_NTO_TCTL_IO, 0)) {
@@ -38,16 +43,25 @@ int main(int argc, char *argv[]) {
 		return -1;
 	}
 
+
+
 	//Neues Objekt der Klasse Thread anlegen
 	Thread thread;
 	MachineState* ma = MachineState::getInstance();
 	HALSensorik* sens = HALSensorik::getInstance();
-	Dispatcher* disp = Dispatcher::getInstance();
+	Initialisation* init = Initialisation::getInstance();
 	//Thread starten (void execute() wird aufgerufen)
 	sens->start(NULL);
-	disp->start(NULL);
+	init->start(NULL);
 	thread.start(NULL);
+	while(ma->imLauf){
+		sleep(1);
+	}
+	init->stop();
+	init->join();
 
+	Dispatcher* disp = Dispatcher::getInstance();
+	disp->start(NULL);
 	string quit;
 	do {
 		cin >> quit;

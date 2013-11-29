@@ -202,7 +202,7 @@ void Test::sensorikPulseTest(HALSensorik* halS){
 	MachineState* M = MachineState::getInstance();
 
 	int i_coid;
-	i_coid = halS->getCoid();
+	i_coid = halS->getSignalCoid();
 
 	cout << "Sensorik Pulse Test Start!" << endl;
 	cout << "Machine State vor Test" << endl;
@@ -305,13 +305,13 @@ void Test::sensorikPulseTest(HALSensorik* halS){
 	sleep(2);
 
 
-	cout << "E-Stoptaste" << endl;
-	MsgSendPulse(i_coid, SIGEV_PULSE_PRIO_INHERIT, PortB, ESTOPTASTE);
-	M->showMachineState();	
-	if(M->SensEntry == false && M->SensHeight == false && M->SensSwitch == false && M->SensMetall == false && M->SwitchOpen == false && M->SensSlip == false && M->SensExit == false && M->E_Stop == true){
-		cout << "Testergebniss E-Stop: OK" << endl;
-	}else{
-		cout << "Testergebniss E-Stop: Failed" << endl;
-	}
-	sleep(2);
+//	cout << "E-Stoptaste" << endl;
+//	MsgSendPulse(i_coid, SIGEV_PULSE_PRIO_INHERIT, PortB, ESTOPTASTE);
+//	M->showMachineState();
+//	if(M->SensEntry == false && M->SensHeight == false && M->SensSwitch == false && M->SensMetall == false && M->SwitchOpen == false && M->SensSlip == false && M->SensExit == false && M->E_Stop == true){
+//		cout << "Testergebniss E-Stop: OK" << endl;
+//	}else{
+//		cout << "Testergebniss E-Stop: Failed" << endl;
+//	}
+//	sleep(2);
 }
