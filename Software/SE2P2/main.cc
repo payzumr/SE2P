@@ -17,6 +17,7 @@
 #include <string>
 #include "MachineState.h"
 #include "Initialisation.h"
+#include "Timer.h"
 
 #include "Thread.h"
 #define TEST_TIME 25
@@ -47,18 +48,22 @@ int main(int argc, char *argv[]) {
 
 	//Neues Objekt der Klasse Thread anlegen
 	Thread thread;
+	Timer* timer = Timer::getInstance();
 	MachineState* ma = MachineState::getInstance();
 	HALSensorik* sens = HALSensorik::getInstance();
 	Initialisation* init = Initialisation::getInstance();
 	//Thread starten (void execute() wird aufgerufen)
+	timer->start(NULL);
 	sens->start(NULL);
-	init->start(NULL);
 	thread.start(NULL);
-	while(ma->imLauf){
+	init->start(NULL);
+	while(ma->DispatcherGo){
 		sleep(1);
 	}
 	init->stop();
 	init->join();
+
+
 
 	Dispatcher* disp = Dispatcher::getInstance();
 	disp->start(NULL);
@@ -70,6 +75,8 @@ int main(int argc, char *argv[]) {
 	//Thread beenden (void shutdown() wird aufgerufen)
 	sens->stop();
 	thread.stop();
+	timer->stop();
+	timer->join();
 	sens->join();
 	thread.join();
 

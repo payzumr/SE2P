@@ -18,6 +18,8 @@
 #include <stdint.h>
 #include <iostream>
 
+#define SLIDE_TIME 1500
+
 class MachineState {
 private:
 	static MachineState* instance;
@@ -35,8 +37,10 @@ public:
 	bool SensMetall;
 	bool SensSlip;
 	bool SwitchOpen;
-	bool imLauf;
 	int height;
+
+	bool DispatcherGo;
+	bool InitRound;
 
 	//times
 	int entryToHeight_f;
@@ -45,6 +49,12 @@ public:
 
 	int inHeigthTime;
 
+	int slideTime;
+	int turnaroundTime;
+
+	int slowTimeAdd;
+	int heightFast;
+	int heightSlow;
 	void showMachineState();
 	void showTimes();
 };

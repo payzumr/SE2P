@@ -19,8 +19,6 @@ Mutex* Dispatcher::dispatcher_mutex = new Mutex();
 Controller* controller = new Controller();
 
 MachineState* MState = MachineState::getInstance();
-HALSensorik* HALs = HALSensorik::getInstance();
-Timer* timr = Timer::getInstance();
 
 Dispatcher::Dispatcher() {
 	HALSensorik* HALs = HALSensorik::getInstance();
@@ -61,9 +59,9 @@ void Dispatcher::execute(void* arg) {
 			perror("SensorCtrl: MsgReceivePulse");
 			exit(EXIT_FAILURE);
 		}
-if(!MState->imLauf){
+		//if(!MState->imLauf){
 		setSensorChanges(pulse.code, pulse.value.sival_int);
-}
+		//}
 	}
 }
 
@@ -74,20 +72,21 @@ if(!MState->imLauf){
  */
 void Dispatcher::setSensorChanges(int code, int val) {
 	HALAktorik* HALa = HALAktorik::getInstance();
+	HALSensorik* HALs = HALSensorik::getInstance();
+	Timer* tim = Timer::getInstance();
+
 	if (!e_stop && !not_aus_reset) {
 		if (code == SENSORS) {
 			if (!(val & BIT_0) && !MState->SensEntry) {
-				cout << "Werkstueck in Einlauf" << endl;
+				cout << "D:Werkstueck in Einlauf" << endl;
 				MState->SensEntry = true;
 				controller->entryStartSens();
 			} else if ((val & BIT_0) && MState->SensEntry) {
-				testzeitD = timr->testzeit;
 				cout << "Werkstueck nicht mehr in Einlauf" << endl;
 				MState->SensEntry = false;
 				controller->exitStartSens();
 			}
 			if (!(val & BIT_1) && !MState->SensHeight) {
-				printf("Laufzeit: %d\n", timr->testzeit-testzeitD);
 				cout << "Werkstueck in Hoehenmessung" << endl;
 				MState->SensHeight = true;
 				MState->height = HALs->getHeight();
@@ -171,4 +170,6 @@ void Dispatcher::setSensorChanges(int code, int val) {
 			not_aus_reset = true;
 		}
 	}
+
+	tim->showTimeArray();
 }

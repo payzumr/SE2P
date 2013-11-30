@@ -25,6 +25,7 @@
 
 namespace thread{
 #define N_TIMER N_PUKS
+#define SWITCH_OPEN_TIME 6000;
 
 class Timer: public HAWThread {
 private:
@@ -41,7 +42,16 @@ private:
 public:
 	static Timer* getInstance();
 	virtual ~Timer();
+
+	void setTimer(int timer, int value);
+	void resetTimer();
+	void addSlowTime(int puk);
+	void showTimeArray();
+
 	int timerArr[N_TIMER];
+	int slideTimer;
+	int turnaroundTimer;
+	int switchTimer;
 
 	long testzeit;
 protected:

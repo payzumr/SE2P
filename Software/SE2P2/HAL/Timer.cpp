@@ -15,11 +15,13 @@ using namespace thread;
 Mutex* Timer::Timer_mutex = new Mutex();
 Timer* Timer::instance = NULL;
 
-
 Timer::Timer() {
+
 	for (int i = 0; i < N_TIMER; i++) {
 		timerArr[i] = -1;
 	}
+	slideTimer = -1;
+	turnaroundTimer = -1;
 
 	channelID = ChannelCreate(0);
 	if (channelID == -1) {
@@ -63,15 +65,44 @@ void Timer::shutdown() {
 }
 
 void Timer::countDownTimer() {
-HALAktorik* HALak = HALAktorik::getInstance();
+	HALAktorik* HALak = HALAktorik::getInstance();
 	for (int i = 0; i < N_TIMER; i++) {
 		if (timerArr[i] > 0) {
 			timerArr[i] -= 1;
 		}
-		if(timerArr[i] == 0){
+		if (timerArr[i] == 0) {
+			printf("Timeout: Fehlerzustand Puk! Nr: %d\n", i);
 			HALak->engine_stop();
 			HALak->redLigths(ON);
+			timerArr[i] = -1;
 		}
+	}
+	if (slideTimer != -1) {
+		slideTimer -= 1;
+	}
+	if (slideTimer == 0) {
+		printf("Timeout: Fehlerzustand Rutsche voll!\n");
+		HALak->engine_stop();
+		HALak->redLigths(ON);
+		slideTimer = -1;
+	}
+
+	if (turnaroundTimer != -1) {
+		turnaroundTimer -= 1;
+	}
+	if (turnaroundTimer == 0) {
+		printf("Timeout: Werkstueck umdrehen!\n");
+		HALak->engine_stop();
+		HALak->redLigths(ON);
+		turnaroundTimer = -1;
+	}
+
+	if (switchTimer != -1) {
+		switchTimer -= 1;
+	}
+	if (switchTimer == 0) {
+		HALak->switchOnOff(OFF);
+		switchTimer = -1;
 	}
 }
 
@@ -90,7 +121,26 @@ Timer* Timer::getInstance() {
 	return instance;
 
 }
+void Timer::setTimer(int timer, int value) {
+	timerArr[timer] = value;
+}
+void Timer::resetTimer() {
+	for (int i = 0; i < N_TIMER; i++) {
+		timerArr[i] = -1;
+	}
+	slideTimer = -1;
+	turnaroundTimer = -1;
+}
 
+void Timer::addSlowTime(int puk) {
+	MachineState* mach = MachineState::getInstance();
+	for (int i = 0; i < N_TIMER; i++) {
+		if (i != puk && timerArr[i] != -1) {
+			printf("slowtimeadd\n");
+			timerArr[i] += mach->slowTimeAdd;
+		}
+	}
+}
 void Timer::initTimer() {
 
 	timer_t timerid;
@@ -107,5 +157,12 @@ void Timer::initTimer() {
 	timer.it_interval.tv_sec = 0;
 	timer.it_interval.tv_nsec = 1000000;
 	timer_settime(timerid, 0, &timer, NULL);
+}
+
+void Timer::showTimeArray() {
+	int i = 0;
+	for (; i < N_TIMER; i++) {
+		printf("PukTimer %d = %d\n", i, timerArr[i]);
+	}
 }
 

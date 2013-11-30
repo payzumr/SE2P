@@ -143,9 +143,9 @@ void hal::HALSensorik::stop() {
 		perror("SensorCtrl: ChannelDestroy isrChid failed");
 	}
 	//in Simulation: bleibt hier haengen
-//	if (InterruptDetach(interruptId) == -1) {
-//		perror("SensorCtrl: InterruptDetach failed");
-//	}
+	if (InterruptDetach(interruptId) == -1) {
+		perror("SensorCtrl: InterruptDetach failed");
+	}
 
 	if (-1 == ConnectDetach(signalCoid)) {
 		perror("SensorCtrl: ConnectDetach ConnectDetach failed");
@@ -160,10 +160,11 @@ void hal::HALSensorik::shutdown() {
 }
 
 void hal::HALSensorik::execute(void *arg) {
-
+	printf("11111\n");
 	struct _pulse pulse;
 	while (!isStopped()) {
 		if (-1 == MsgReceivePulse(isrChid, &pulse, sizeof(pulse), NULL)) {
+			printf("22222\n");
 			if (isStopped()) {
 				break; // channel destroyed, Thread ending
 			}
