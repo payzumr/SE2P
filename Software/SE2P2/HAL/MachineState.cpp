@@ -24,8 +24,9 @@ MachineState::MachineState() {
 	SensSlip = false;
 	SensSwitch = false;
 	SwitchOpen = false;
-	DispatcherGo = true;
 	InitRound = false;
+	running = false;
+	DispatcherGo = true;
 	height = 0;
 
 

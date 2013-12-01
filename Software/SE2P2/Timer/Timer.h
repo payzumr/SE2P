@@ -52,6 +52,7 @@ public:
 	int slideTimer;
 	int turnaroundTimer;
 	int switchTimer;
+	int slowTimer;
 
 	long testzeit;
 protected:

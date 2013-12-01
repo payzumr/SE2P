@@ -37,6 +37,7 @@ public:
 	bool SensMetall;
 	bool SensSlip;
 	bool SwitchOpen;
+	bool running;
 	int height;
 
 	bool DispatcherGo;

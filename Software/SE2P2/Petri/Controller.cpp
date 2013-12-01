@@ -84,6 +84,7 @@ void Controller::entryStartSens() {
 		HALa->greenLigths(ON);
 		HALa->engine_rigth();
 		HALa->engine_start();
+		Mstat->running = true;
 	}
 }
 void Controller::exitStartSens() {
@@ -92,7 +93,7 @@ void Controller::exitStartSens() {
 		puk++;
 	}
 	pukArr[puk].place = S2;
-	timer->setTimer(puk, Mstat->entryToHeight_f);//timerArr[puk] = Mstat->entryToHeight_f;
+	timer->setTimer(puk, (Mstat->entryToHeight_f + timer->slowTimer));//timerArr[puk] = Mstat->entryToHeight_f;
 }
 
 void Controller::entryHeightMessure() {
@@ -109,6 +110,7 @@ void Controller::entryHeightMessure() {
 	}
 
 	if (!errorFlag) {
+		timer->slowTimer = Mstat->inHeigthTime;
 		timer->setTimer(puk, Mstat->inHeigthTime);//timerArr[puk] = Mstat->inHeigthTime;
 		timer->addSlowTime(puk);
 		pukArr[puk].place = S3;
@@ -218,6 +220,7 @@ void Controller::exitSlide() {
 	if (conveyerEmpty) {
 		reset();
 		HALa->engine_stop();
+		Mstat->running = false;
 	}
 }
 
@@ -300,6 +303,7 @@ void Controller::entryFinishSens() {
 		if (pukArr[puk].place == S9) {
 			pukArr[puk].place = S12;
 			HALa->engine_stop();
+			Mstat->running = false;
 			blink->start((void*)YELLOW);
 			sleep(10);
 			blink->stop();
@@ -307,6 +311,7 @@ void Controller::entryFinishSens() {
 
 		} else {
 			HALa->engine_stop();
+			Mstat->running = false;
 			HALa->greenLigths(OFF);
 			pukArr[puk].place = S11;
 		}
