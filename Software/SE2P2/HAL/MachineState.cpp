@@ -15,7 +15,7 @@ MachineState* MachineState::instance = NULL;
 
 MachineState::MachineState() {
 
-
+	slideTime = SLIDE_TIME;
 	SensEntry = false;
 	SensExit = false;
 
@@ -24,7 +24,8 @@ MachineState::MachineState() {
 	SensSlip = false;
 	SensSwitch = false;
 	SwitchOpen = false;
-	imLauf = true;
+	DispatcherGo = true;
+	InitRound = false;
 	height = 0;
 
 
@@ -75,9 +76,11 @@ void MachineState::showTimes(){
 	printf("entry to height fast: %d \n"
 			   "height to switch fast: %d \n"
 			   "switch to exit fast: %d \n"
-				"in height time: %d \n",
+				"in height time: %d \n"
+			"Slow Time Add: %d \n",
 			   entryToHeight_f,
 			   heightToSwitch_f,
 			   switchToExit_f,
-			   inHeigthTime);
+			   inHeigthTime,
+			   slowTimeAdd);
 }

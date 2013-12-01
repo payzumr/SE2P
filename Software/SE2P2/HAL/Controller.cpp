@@ -16,9 +16,6 @@ HALAktorik* HALa = HALAktorik::getInstance();
 MachineState* Mstat = MachineState::getInstance();
 thread::Timer* timer = thread::Timer::getInstance();
 
-
-//Mutex* Controller::Controller_mutex = new Mutex();
-//Controller* Controller::instance = NULL;
 Controller::Controller() {
 	// TODO Auto-generated constructor stub
 
@@ -27,21 +24,6 @@ Controller::Controller() {
 Controller::~Controller() {
 	// TODO Auto-generated destructor stub
 }
-//Controller* Controller::getInstance() {
-//
-//	Controller_mutex->lock();
-//	if (instance == NULL) {
-//		// Zugriffsrechte fuer den Zugriff auf die HW holen
-//		if (-1 == ThreadCtl(_NTO_TCTL_IO, 0)) {
-//			perror("ThreadCtl access failed\n");
-//			return NULL;
-//		}
-//		instance = new Controller();
-//	}
-//	Controller_mutex->unlock();
-//	return instance;
-//
-//}
 
 void Controller::init() {
 	errorFlag = false;
@@ -59,6 +41,7 @@ void Controller::init() {
 }
 
 void Controller::reset() {
+	timer->resetTimer();
 	init();
 	HALa->greenLigths(OFF);
 	HALa->yellowLigths(OFF);
@@ -89,7 +72,7 @@ void Controller::exitStartSens() {
 		puk++;
 	}
 	pukArr[puk].place = S2;
-	timer->timerArr[puk] = Mstat->entryToHeight_f;
+	timer->setTimer(puk, Mstat->entryToHeight_f);//timerArr[puk] = Mstat->entryToHeight_f;
 	//	printPuk(puk);
 }
 
@@ -100,12 +83,21 @@ void Controller::entryHeightMessure() {
 		puk++;
 		if (puk == N_PUKS) {
 			errorFlag = true;
+			cout << "Error found in entryHeigthMessure()" << endl;
 		}
 	}
 
 	if (!errorFlag) {
-	timer->timerArr[puk] = -1;
+		timer->setTimer(puk, Mstat->inHeigthTime);//timerArr[puk] = Mstat->inHeigthTime;
+		timer->addSlowTime(puk);
 		pukArr[puk].place = S3;
+
+#ifdef SIMULATION
+		if (Mstat->height >= 60000 && Mstat->height <= 70000) {
+			pukArr[puk].place = S4; //<-- anpassen manuell
+		}
+#endif
+
 		if (Mstat->height >= 3400 && Mstat->height <= 3800) {//flacher puk
 			pukArr[puk].place = S4;
 			pukArr[puk].type = withHole;
@@ -132,6 +124,12 @@ void Controller::entryHeightMessure() {
 }
 
 void Controller::exitHeightMessure() {
+	int puk = N_PUKS-1;
+	while ((pukArr[puk].place != S4 && pukArr[puk].place != S5
+			&& pukArr[puk].place != S6) && puk >= -1) {
+		puk--;
+	}
+	timer->setTimer(puk, Mstat->heightToSwitch_f);//timerArr[puk] = Mstat->heightToSwitch_f;
 	HALa->engine_slow(OFF);
 #ifdef SIMULATION
 	//HALa->switchOnOff(ON);
@@ -144,6 +142,7 @@ void Controller::metalFound() {
 		puk++;
 		if (puk == N_PUKS) {
 			errorFlag = true;
+			cout << "Error found in metalFound()" << endl;
 		}
 	}
 	if (!errorFlag) {
@@ -158,14 +157,17 @@ void Controller::metalFound() {
 
 void Controller::entrySlide() {
 	int puk = 0;
-	printPuk(puk);
 	while (pukArr[puk].place != S6 && puk <= N_PUKS) {
 		puk++;
 		if (puk == N_PUKS) {
 			errorFlag = true;
+			cout << "Error found in entrySlide()" << endl;
 		}
 	}
+	printPuk(puk);
 	if (!errorFlag) {
+		timer->setTimer(puk, -1);
+		timer->slideTimer = SLIDE_TIME;
 		pukArr[puk].pukIdentifier = 0;
 		pukArr[puk].type = undefined;
 		pukArr[puk].place = S0;
@@ -178,18 +180,19 @@ void Controller::entrySlide() {
 	}
 }
 void Controller::exitSlide() {
+	timer->slideTimer = -1;
 	bool conveyerEmpty = false;
 	int puk = 0;
-		while (pukArr[puk].place == S0 && puk <= N_PUKS) {
-			puk++;
-			if (puk == N_PUKS) {
-				conveyerEmpty = true;
-			}
+	while (pukArr[puk].place == S0 && puk <= N_PUKS) {
+		puk++;
+		if (puk == N_PUKS) {
+			conveyerEmpty = true;
 		}
-		if (conveyerEmpty) {
-			reset();
-			HALa->engine_stop();
-		}
+	}
+	if (conveyerEmpty) {
+		reset();
+		HALa->engine_stop();
+	}
 }
 
 void Controller::entrySwitch() {
@@ -199,18 +202,23 @@ void Controller::entrySwitch() {
 		puk++;
 		if (puk == N_PUKS) {
 			errorFlag = true;
+			cout << "Error found in entrySwitch()" << endl;
 		}
 	}
 	if (!errorFlag) {
+		timer->setTimer(puk, -1);//timerArr[puk] = -1;
 		if (pukArr[puk].place == S4 && pukArr[puk].type == withMetal) {
 			pukArr[puk].place = S8;
 			HALa->switchOnOff(ON);
+			timer->switchTimer = SWITCH_OPEN_TIME;
 		} else if (pukArr[puk].place == S4) {
 			pukArr[puk].place = S7;//auf 7 zurucksetzen!!!!!!!!!!!!!!!!!!!!!!!!!
 			HALa->switchOnOff(ON);
+			timer->switchTimer = SWITCH_OPEN_TIME;
 		} else if (pukArr[puk].place == S5) {
 			pukArr[puk].place = S8;
 			HALa->switchOnOff(ON);
+			timer->switchTimer = SWITCH_OPEN_TIME;
 		} else if (pukArr[puk].place == S6) {
 
 		}
@@ -222,44 +230,48 @@ void Controller::entrySwitch() {
 	}
 }
 void Controller::exitSwitch() {
-	int puk = 0;
+	int puk = N_PUKS-1;
 	while ((pukArr[puk].place != S7 && pukArr[puk].place != S8
-			&& pukArr[puk].place != S6) && puk <= N_PUKS) {
-		puk++;
-		if (puk == N_PUKS) {
+			&& pukArr[puk].place != S6) && puk >= -1) {
+		puk--;
+		if (puk == -1) {
 			errorFlag = true;
+			cout << "Error found in exitSwitch()" << endl;
 		}
 	}
+	timer->setTimer(puk, Mstat->switchToExit_f);//timerArr[puk] = Mstat->switchToExit_f;
 	if (!errorFlag) {
 		if (pukArr[puk].place == S7) {
 			pukArr[puk].place = S9;
-		} else if(pukArr[puk].place == S8){
+		} else if (pukArr[puk].place == S8) {
 			pukArr[puk].place = S10;
 		}
 	} else {
 		printf("Fehler in exitSwitch\n");
 		errorFound();
 	}
-	HALa->switchOnOff(OFF);
+//	HALa->switchOnOff(OFF);
 }
 void Controller::entryFinishSens() {
-Blinki* blink = Blinki::getInstance();
+	Blinki* blink = Blinki::getInstance();
 	int puk = 0;
 	while ((pukArr[puk].place != S9 && pukArr[puk].place != S10) && puk
 			<= N_PUKS) {
 		puk++;
 		if (puk == N_PUKS) {
 			errorFlag = true;
+			cout << "Error found in entryFinishSens()" << endl;
 		}
 	}
 	if (!errorFlag) {
+		timer->setTimer(puk, -1);//timerArr[puk] = -1;
 		if (pukArr[puk].place == S9) {
 			pukArr[puk].place = S12;
 			HALa->engine_stop();
 			blink->start(NULL);
-						sleep(10);
-						blink->stop();
-						blink->join();
+			sleep(10);
+			blink->stop();
+			blink->join();
 
 		} else {
 			HALa->engine_stop();

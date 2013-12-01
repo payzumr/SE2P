@@ -40,6 +40,7 @@ Initialisation* Initialisation::getInstance() {
 	return instance;
 }
 void Initialisation::shutdown() {
+
 }
 void Initialisation::execute(void* arg) {
 	struct _pulse pulse;
@@ -84,15 +85,28 @@ void Initialisation::setSensorChanges(int code, int val) {
 		}
 		if (!(val & BIT_1) && !MState->SensHeight) {
 			MState->entryToHeight_f = timr->testzeit - testzeitD;
+#ifdef SIMULATION
+			MState->entryToHeight_f += 300;
+#endif
 			testzeitD = timr->testzeit;
-
-			HALa->engine_slow(ON);
+			if (MState->InitRound) {
+				HALa->engine_slow(ON);
+			}
 #ifdef DEBUG
 			cout << "Werkstueck in Hoehenmessung" << endl;
 #endif
 			MState->SensHeight = true;
 		} else if ((val & BIT_1) && MState->SensHeight) {
-			MState->inHeigthTime = timr->testzeit - testzeitD;
+			if (!MState->InitRound) {
+				MState->heightFast = timr->testzeit - testzeitD;
+			} else {
+				MState->heightSlow = timr->testzeit - testzeitD;
+				MState->inHeigthTime = timr->testzeit - testzeitD;
+#ifdef SIMULATION
+				MState->inHeigthTime += 300;
+#endif
+				MState->slowTimeAdd = MState->heightSlow-MState->heightFast;
+			}
 			HALa->engine_slow(OFF);
 			testzeitD = timr->testzeit;
 
@@ -102,7 +116,10 @@ void Initialisation::setSensorChanges(int code, int val) {
 			MState->SensHeight = false;
 		}
 		if (!(val & BIT_3) && !MState->SensSwitch) {
-				MState->heightToSwitch_f = timr->testzeit - testzeitD;
+			MState->heightToSwitch_f = timr->testzeit - testzeitD;
+#ifdef SIMULATION
+			MState->heightToSwitch_f += 300;
+#endif
 			HALa->switchOnOff(ON);
 #ifdef DEBUG
 			cout << "Werkstueck in Weiche" << endl;
@@ -118,18 +135,25 @@ void Initialisation::setSensorChanges(int code, int val) {
 		}
 		if (!(val & BIT_7) && !MState->SensExit) {
 			MState->switchToExit_f = timr->testzeit - testzeitD;
-			MState->imLauf = false;
+#ifdef SIMULATION
+			MState->switchToExit_f += 300;
+#endif
+			if(MState->InitRound){
+			MState->DispatcherGo = false;
+			}
 #ifdef DEBUG
 			MState->showTimes();
 			cout << "Werkstueck in Auslauf" << endl;
 #endif
 			HALa->engine_stop();
 			MState->SensExit = true;
+			MState->showTimes();
 		} else if ((val & BIT_7) && MState->SensExit) {
 #ifdef DEBUG
 			cout << "Werkstueck nicht mehr in Auslauf" << endl;
 #endif
 			MState->SensExit = false;
+				MState->InitRound = true;
 
 		}
 	}
