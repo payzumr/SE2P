@@ -41,6 +41,34 @@ Serial* Serial::getInstance() {
 	return instance;
 }
 
+void Serial::execute(void* arg){
+
+
+	if (instance->open_serial("/dev/ser1") < 0) {
+			perror("open call failed");
+	}
+
+	if((int) arg == READ){
+		char* msgIn[MSG_LENGTH];
+		instance->read_serial((void*)msgIn, MSG_LENGTH);
+		printf("Nachricht: %s\n", msgIn);
+	}
+	else if((int) arg == WRITE)
+	{
+		char* msgOut = "Hallo Maschine\n";
+		instance->write_serial(msgOut, MSG_LENGTH);
+	}
+
+
+}
+
+void Serial::shutdown(){
+
+	close_serial();
+	cout << "shutdown Serial..." << endl;
+
+}
+
 /**
  * This method opens a connection via a serial port.
  * @param device: serial port that is connected to an other device

@@ -39,6 +39,18 @@
 #define ON true
 #define OFF false
 
+//FlaschLights
+#define REDSLOW 1
+#define REDFAST 2
+#define YELLOW 3
+
+#define DEBUG_MESSAGE
+#define DEBUG_TIMER
+
+
+//Serial
+#define WRITE 1
+#define READ 2
 
 /*
  * interrupt specific

@@ -12,6 +12,8 @@
 
 using namespace hal;
 
+Controller* Controller::instance = NULL;
+Mutex* Controller::controller_mutex = new Mutex();
 HALAktorik* HALa = HALAktorik::getInstance();
 MachineState* Mstat = MachineState::getInstance();
 thread::Timer* timer = thread::Timer::getInstance();
@@ -24,6 +26,22 @@ Controller::Controller() {
 Controller::~Controller() {
 	// TODO Auto-generated destructor stub
 }
+
+Controller* Controller::getInstance() {
+	controller_mutex->lock();
+	if (instance == NULL) {
+		// Zugriffsrechte fuer den Zugriff auf die HW holen
+		if (-1 == ThreadCtl(_NTO_TCTL_IO, 0)) {
+			perror("ThreadCtl access failed\n");
+			return NULL;
+		}
+		instance = new Controller();
+	}
+	controller_mutex->unlock();
+
+	return instance;
+}
+
 
 void Controller::init() {
 	errorFlag = false;
@@ -53,7 +71,9 @@ void Controller::reset() {
 void Controller::entryStartSens() {
 	if (++numOfPuks == N_PUKS + 1) {
 
-		printf("Fehler in entryStartSens\n");
+#ifdef DEBUG_MESSAGE
+		cout << "Error found in entryStartSens()" << endl;
+#endif
 		errorFound();
 	} else {
 		pukArr[pukPointer].place = S1;
@@ -73,7 +93,6 @@ void Controller::exitStartSens() {
 	}
 	pukArr[puk].place = S2;
 	timer->setTimer(puk, Mstat->entryToHeight_f);//timerArr[puk] = Mstat->entryToHeight_f;
-	//	printPuk(puk);
 }
 
 void Controller::entryHeightMessure() {
@@ -83,7 +102,9 @@ void Controller::entryHeightMessure() {
 		puk++;
 		if (puk == N_PUKS) {
 			errorFlag = true;
+#ifdef DEBUG_MESSAGE
 			cout << "Error found in entryHeigthMessure()" << endl;
+#endif
 		}
 	}
 
@@ -116,8 +137,9 @@ void Controller::entryHeightMessure() {
 			pukArr[puk].height1 = Mstat->height;
 		}
 	} else {
-
-		printf("Fehler in entryHeightMessure\n");
+#ifdef DEBUG_MESSAGE
+		cout << "Fehler in entryHeightMessure" << endl;
+#endif
 		errorFound();
 	}
 	printPuk(puk);
@@ -131,9 +153,6 @@ void Controller::exitHeightMessure() {
 	}
 	timer->setTimer(puk, Mstat->heightToSwitch_f);//timerArr[puk] = Mstat->heightToSwitch_f;
 	HALa->engine_slow(OFF);
-#ifdef SIMULATION
-	//HALa->switchOnOff(ON);
-#endif
 }
 
 void Controller::metalFound() {
@@ -142,15 +161,18 @@ void Controller::metalFound() {
 		puk++;
 		if (puk == N_PUKS) {
 			errorFlag = true;
+#ifdef DEBUG_MESSAGE
 			cout << "Error found in metalFound()" << endl;
+#endif
 		}
 	}
 	if (!errorFlag) {
 		pukArr[puk].metall = true;
 		pukArr[puk].type = withMetal;
 	} else {
-
-		printf("Fehler in metalFound\n");
+#ifdef DEBUG_MESSAGE
+		cout << "Fehler in metalFound" << endl;
+#endif
 		errorFound();
 	}
 }
@@ -161,7 +183,9 @@ void Controller::entrySlide() {
 		puk++;
 		if (puk == N_PUKS) {
 			errorFlag = true;
+#ifdef DEBUG_MESSAGE
 			cout << "Error found in entrySlide()" << endl;
+#endif
 		}
 	}
 	printPuk(puk);
@@ -175,7 +199,9 @@ void Controller::entrySlide() {
 		pukArr[puk].height2 = 0;
 		pukArr[puk].metall = false;
 	} else {
-		printf("Fehler in entrySlide\n");
+#ifdef DEBUG_MESSAGE
+		cout << "Fehler in entrySlide" << endl;
+#endif
 		errorFound();
 	}
 }
@@ -202,7 +228,9 @@ void Controller::entrySwitch() {
 		puk++;
 		if (puk == N_PUKS) {
 			errorFlag = true;
+#ifdef DEBUG_MESSAGE
 			cout << "Error found in entrySwitch()" << endl;
+#endif
 		}
 	}
 	if (!errorFlag) {
@@ -225,7 +253,9 @@ void Controller::entrySwitch() {
 		printPuk(puk);
 
 	} else {
-		printf("Fehler in entrySwitch\n");
+#ifdef DEBUG_MESSAGE
+		cout << "Fehler in entrySwitch" << endl;
+#endif
 		errorFound();
 	}
 }
@@ -236,7 +266,9 @@ void Controller::exitSwitch() {
 		puk--;
 		if (puk == -1) {
 			errorFlag = true;
+#ifdef DEBUG_MESSAGE
 			cout << "Error found in exitSwitch()" << endl;
+#endif
 		}
 	}
 	timer->setTimer(puk, Mstat->switchToExit_f);//timerArr[puk] = Mstat->switchToExit_f;
@@ -247,10 +279,8 @@ void Controller::exitSwitch() {
 			pukArr[puk].place = S10;
 		}
 	} else {
-		printf("Fehler in exitSwitch\n");
 		errorFound();
 	}
-//	HALa->switchOnOff(OFF);
 }
 void Controller::entryFinishSens() {
 	Blinki* blink = Blinki::getInstance();
@@ -260,7 +290,9 @@ void Controller::entryFinishSens() {
 		puk++;
 		if (puk == N_PUKS) {
 			errorFlag = true;
+#ifdef DEBUG_MESSAGE
 			cout << "Error found in entryFinishSens()" << endl;
+#endif
 		}
 	}
 	if (!errorFlag) {
@@ -268,7 +300,7 @@ void Controller::entryFinishSens() {
 		if (pukArr[puk].place == S9) {
 			pukArr[puk].place = S12;
 			HALa->engine_stop();
-			blink->start(NULL);
+			blink->start((void*)YELLOW);
 			sleep(10);
 			blink->stop();
 			blink->join();
@@ -276,19 +308,12 @@ void Controller::entryFinishSens() {
 		} else {
 			HALa->engine_stop();
 			HALa->greenLigths(OFF);
-			blink->start(NULL);
-			sleep(10);
-			blink->stop();
-			blink->join();
-
 			pukArr[puk].place = S11;
 		}
 	} else {
-		printf("Fehler in entryFinishSensor\n");
 		errorFound();
 	}
 }
-
 //tasten
 void Controller::EStopPressed() {
 	HALa->engine_stop();
@@ -297,7 +322,6 @@ void Controller::EStopPressed() {
 	HALa->yellowLigths(OFF);
 	init();
 	printf("Not-Aus gedrueckt! Band muss abgeraumt werden!\n");
-
 }
 
 void Controller::errorFound() {

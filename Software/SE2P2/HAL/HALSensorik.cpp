@@ -157,6 +157,7 @@ void hal::HALSensorik::stop() {
 }
 
 void hal::HALSensorik::shutdown() {
+	cout << "shutdown HALSensorik..." << endl;
 }
 
 void hal::HALSensorik::execute(void *arg) {

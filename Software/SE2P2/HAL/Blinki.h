@@ -30,7 +30,9 @@ private:
 public:
 	~Blinki();
 	static Blinki* getInstance();
-	void blinkGelb();
+	void flashYellow();
+	void flashRedSlow();
+	void flashRedFast();
 
 protected:
 	virtual void execute(void* arg);

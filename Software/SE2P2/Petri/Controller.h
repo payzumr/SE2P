@@ -24,8 +24,8 @@ class Controller {
 
 private:
 
-//	static Controller* instance;
-//	static Mutex* Controller_mutex;
+	static Controller* instance;
+	static Mutex* controller_mutex;
 
 	void errorFound();
 	struct puk{
@@ -43,10 +43,10 @@ private:
 	int pukIdentifier;
 	bool errorFlag;
 
-public:
 	Controller();
+public:
 
-//	static Controller* getInstance();
+    static Controller* getInstance();
 
 	~Controller();
 	void init();

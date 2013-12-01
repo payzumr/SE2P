@@ -61,6 +61,7 @@ void Timer::execute(void* args) {
 	}
 }
 void Timer::shutdown() {
+	cout << "shutdown Timer..." << endl;
 
 }
 
@@ -136,7 +137,9 @@ void Timer::addSlowTime(int puk) {
 	MachineState* mach = MachineState::getInstance();
 	for (int i = 0; i < N_TIMER; i++) {
 		if (i != puk && timerArr[i] != -1) {
+#ifdef DEBUG_TIMER
 			printf("slowtimeadd\n");
+#endif
 			timerArr[i] += mach->slowTimeAdd;
 		}
 	}

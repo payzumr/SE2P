@@ -41,20 +41,47 @@ hal::Blinki* hal::Blinki::getInstance() {
 void hal::Blinki::execute(void* arg){
 
 	while(!isStopped()){
-
-	blinkGelb();
+	switch((int) arg){
+	case REDFAST: flashRedFast();
+	case REDSLOW: flashRedSlow();
+	case YELLOW: flashYellow();
+	}
 	}
 }
 
-void hal::Blinki::shutdown(){}
+void hal::Blinki::shutdown(){
+	HALAktorik* Hala = HALAktorik::getInstance();
+	Hala->yellowLigths(OFF);
+	Hala->redLigths(OFF);
+	cout << "shutdown Blinki..." << endl;
+
+}
 
 
-void hal::Blinki::blinkGelb()
+void hal::Blinki::flashYellow()
 {
 HALAktorik* Hala = HALAktorik::getInstance();
  Hala->yellowLigths(ON);
- usleep(500000);
+ sleep(1);
  Hala->yellowLigths(OFF);
- usleep(500000);
+ sleep(1);
+}
+
+void hal::Blinki::flashRedSlow()
+{
+HALAktorik* Hala = HALAktorik::getInstance();
+ Hala->redLigths(ON);
+ sleep(2);
+ Hala->redLigths(OFF);
+ sleep(2);
+}
+
+void hal::Blinki::flashRedFast()
+{
+HALAktorik* Hala = HALAktorik::getInstance();
+ Hala->redLigths(ON);
+ sleep(1);
+ Hala->redLigths(OFF);
+ sleep(1);
 }
 

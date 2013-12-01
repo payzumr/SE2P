@@ -40,6 +40,7 @@ Initialisation* Initialisation::getInstance() {
 	return instance;
 }
 void Initialisation::shutdown() {
+	cout << "shutdown Initialisation..." << endl;
 
 }
 void Initialisation::execute(void* arg) {
@@ -65,12 +66,11 @@ void Initialisation::execute(void* arg) {
  */
 void Initialisation::setSensorChanges(int code, int val) {
 	MachineState* MState = MachineState::getInstance();
-	HALSensorik* HALs = HALSensorik::getInstance();
 	Timer* timr = Timer::getInstance();
 	HALAktorik* HALa = HALAktorik::getInstance();
 	if (code == SENSORS) {
 		if (!(val & BIT_0) && !MState->SensEntry) {
-#ifdef DEBUG
+#ifdef DEBUG_MESSAGE
 			cout << "Werkstueck in Einlauf" << endl;
 #endif
 			MState->SensEntry = true;
@@ -78,7 +78,7 @@ void Initialisation::setSensorChanges(int code, int val) {
 			HALa->engine_start();
 		} else if ((val & BIT_0) && MState->SensEntry) {
 			testzeitD = timr->testzeit;
-#ifdef DEBUG
+#ifdef DEBUG_MESSAGE
 			cout << "Werkstueck nicht mehr in Einlauf" << endl;
 #endif
 			MState->SensEntry = false;
@@ -92,7 +92,7 @@ void Initialisation::setSensorChanges(int code, int val) {
 			if (MState->InitRound) {
 				HALa->engine_slow(ON);
 			}
-#ifdef DEBUG
+#ifdef DEBUG_MESSAGE
 			cout << "Werkstueck in Hoehenmessung" << endl;
 #endif
 			MState->SensHeight = true;
@@ -110,7 +110,7 @@ void Initialisation::setSensorChanges(int code, int val) {
 			HALa->engine_slow(OFF);
 			testzeitD = timr->testzeit;
 
-#ifdef DEBUG
+#ifdef DEBUG_MESSAGE
 			cout << "Werkstueck nicht mehr in Hoehenmessung" << endl;
 #endif
 			MState->SensHeight = false;
@@ -121,13 +121,13 @@ void Initialisation::setSensorChanges(int code, int val) {
 			MState->heightToSwitch_f += 300;
 #endif
 			HALa->switchOnOff(ON);
-#ifdef DEBUG
+#ifdef DEBUG_MESSAGE
 			cout << "Werkstueck in Weiche" << endl;
 #endif
 			MState->SensSwitch = true;
 		} else if ((val & BIT_3) && MState->SensSwitch) {
 			testzeitD = timr->testzeit;
-#ifdef DEBUG
+#ifdef DEBUG_MESSAGE
 			cout << "Werkstueck nicht mehr in Weiche" << endl;
 #endif
 			MState->SensSwitch = false;
@@ -141,7 +141,7 @@ void Initialisation::setSensorChanges(int code, int val) {
 			if(MState->InitRound){
 			MState->DispatcherGo = false;
 			}
-#ifdef DEBUG
+#ifdef DEBUG_MESSAGE
 			MState->showTimes();
 			cout << "Werkstueck in Auslauf" << endl;
 #endif
@@ -149,7 +149,7 @@ void Initialisation::setSensorChanges(int code, int val) {
 			MState->SensExit = true;
 			MState->showTimes();
 		} else if ((val & BIT_7) && MState->SensExit) {
-#ifdef DEBUG
+#ifdef DEBUG_MESSAGE
 			cout << "Werkstueck nicht mehr in Auslauf" << endl;
 #endif
 			MState->SensExit = false;
