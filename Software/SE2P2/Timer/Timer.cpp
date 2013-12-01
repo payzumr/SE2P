@@ -44,6 +44,7 @@ Timer::~Timer() {
 }
 
 void Timer::execute(void* args) {
+	MachineState* Mst = MachineState::getInstance();
 	testzeit = 0;
 	initTimer();
 	struct _pulse pulse;
@@ -56,7 +57,9 @@ void Timer::execute(void* args) {
 			exit(EXIT_FAILURE);
 		}
 		testzeit += 1;
+		if(Mst->running){
 		countDownTimer();
+		}
 
 	}
 }
@@ -104,6 +107,10 @@ void Timer::countDownTimer() {
 	if (switchTimer == 0) {
 		HALak->switchOnOff(OFF);
 		switchTimer = -1;
+	}
+
+	if(slowTimer != -1){
+		slowTimer -=1;
 	}
 }
 
