@@ -9,6 +9,11 @@
  */
 
 #include "Serial.h"
+#include <fcntl.h>
+#include <termios.h>
+#include <string>
+#include <pthread.h>
+#include <unistd.h>
 
 int fd;
 
@@ -16,7 +21,20 @@ Mutex* Serial::Serialmutex = new Mutex();
 Serial* Serial::instance = NULL;
 
 Serial::Serial() {
-	// TODO Auto-generated constructor stub
+
+    fd = open_serial("dev/Ser1");
+    struct termios ts;
+    tcflush(fd, TCIOFLUSH);
+    tcgetattr(fd, &ts);
+    cfsetispeed(&ts, B19200); // input baut rate
+    cfsetospeed(&ts, B19200); // output baut rate
+    ts.c_cflag &= ~CSIZE; // clear number of data bits
+    ts.c_cflag &= ~CSTOPB;
+    ts.c_cflag &= ~PARENB; // clear number of data bits
+    ts.c_cflag |= CS8; // clear number of data bits
+    ts.c_cflag |= CREAD;
+    ts.c_cflag |= CLOCAL;
+    tcsetattr(fd, TCSANOW, &ts); // TCSANOW : The change is made immediately.
 
 }
 
@@ -48,18 +66,10 @@ void Serial::execute(void* arg){
 			perror("open call failed");
 	}
 
-	if((int) arg == READ){
 		char* msgIn[MSG_LENGTH];
-		instance->read_serial((void*)msgIn, MSG_LENGTH);
+		struct packet p;
+		instance->read_serial(p);
 		printf("Nachricht: %s\n", msgIn);
-	}
-	else if((int) arg == WRITE)
-	{
-		char* msgOut = "Hallo Maschine\n";
-		instance->write_serial(msgOut, MSG_LENGTH);
-	}
-
-
 }
 
 void Serial::shutdown(){
@@ -98,9 +108,16 @@ void Serial::close_serial() {
  * @param 	buf: data
  * 			nbytes: number of bytes
  */
-ssize_t Serial::write_serial(void* buf, size_t nbytes) {
+ssize_t Serial::write_serial(struct Controller::puk* puk, STATUS s ) {
 	ssize_t returnV;
-	returnV = write(fd, buf, nbytes);// s. open, Sendepuffer, Anzahl der zu schreibenden Bytes
+	struct packet* p;
+	p->PukId = puk->pukIdentifier;
+	p->height1 = puk->height1;
+	p->st = s;
+	p->type = puk->type;
+
+
+	returnV = write(fd, &p , sizeof(p));// s. open, Sendepuffer, Anzahl der zu schreibenden Bytes
 	if (returnV < 0) {
 		perror("write failed");
 	}
@@ -113,15 +130,24 @@ ssize_t Serial::write_serial(void* buf, size_t nbytes) {
  * @param 	buf: buffer for incoming data
  * 			lentgh: number of bytes
  */
-int Serial::read_serial(void* buf, int length) {
+int Serial::read_serial(struct packet p) {
 	int returnV = 0;
-	while(returnV < length){
-	returnV += read(fd, (void*)buf +returnV, length-returnV); //blockieren, bis etwas gesendet wurde
+	while(returnV < sizeof(p)){
+	returnV += read(fd, &p + returnV, sizeof(p)-returnV); //blockieren, bis etwas gesendet wurde
 	printf("gelesen: %d\n", returnV);
 	}
 	if (returnV < 0) {
 		perror("read failed");
 	}
+	printPacket(&p);
+
 	return returnV;
+}
+
+void Serial::printPacket(struct packet* p){
+	printf("Status: ", (p->st == Stop)? "Stop" : "Data", "\n",
+		   "PukId: %d\n" , p->PukId,
+		   "Puktype: ", (p->type == tall) ? "tall\n" : (p->type == withHole) ? "withHole\n" : "withMetal\n",
+		   "Hoehe: %d", p->height1);
 }
 

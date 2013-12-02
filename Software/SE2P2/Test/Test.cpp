@@ -181,13 +181,13 @@ void Test::serialTest(Serial* serial){
 
 #ifdef READ
 	char* msgIn[MSG_LENGTH];
-	serial->read_serial((void*)msgIn, MSG_LENGTH);
+	//serial->read_serial((void*)msgIn, MSG_LENGTH);
 	printf("Nachricht: %s\n", msgIn);
 #endif
 
 #ifdef WRITE
 	char* msgOut = "Hallo Maschine\n";
-	serial->write_serial(msgOut, MSG_LENGTH);
+	//serial->write_serial(msgOut, MSG_LENGTH);
 #ifdef TEST_MESSAGES
 	cout << "send Message" << endl;
 #endif

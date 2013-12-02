@@ -19,6 +19,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include "../Mutex/Mutex.h"
+#include "Controller.h"
 
 #define MSG_LENGTH 20
 
@@ -30,13 +31,25 @@ private:
 	Serial();
 	~Serial();
 public:
+	enum STATUS{ Stop, Data };
+
+	struct packet{
+		STATUS st;
+		int PukId;
+		int height1;
+		pukType type;
+
+		uint32_t checksum;
+	};
+
 	static Serial* getInstance();
 
 
 	int open_serial(char* device);
 	void close_serial();
-	ssize_t write_serial(void* buf, size_t nbytes);
-	int read_serial(void* buf, int length);
+	ssize_t write_serial(struct Controller::puk* p, STATUS s);
+	int read_serial(struct packet p);
+	void printPacket(struct packet* p);
 
 protected:
 	virtual void execute(void* arg);

@@ -28,14 +28,6 @@ private:
 	static Mutex* controller_mutex;
 
 	void errorFound();
-	struct puk{
-		int pukIdentifier;
-		pukType type;
-		int place;
-		int height1;
-		int height2;
-		bool metall;
-	} pukArr[N_PUKS];
 
 
 	int pukPointer;
@@ -45,6 +37,14 @@ private:
 
 	Controller();
 public:
+	struct puk{
+		int pukIdentifier;
+		pukType type;
+		int place;
+		int height1;
+		int height2;
+		bool metall;
+	} pukArr[N_PUKS];
 
     static Controller* getInstance();
 
