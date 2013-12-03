@@ -86,8 +86,9 @@ void Initialisation::setSensorChanges(int code, int val) {
 		if (!(val & BIT_1) && !MState->SensHeight) {
 			MState->entryToHeight_f = timr->testzeit - testzeitD;
 #ifdef SIMULATION
-			MState->entryToHeight_f += 300;
+			MState->entryToHeight_f += 200;
 #endif
+			MState->entryToHeight_f += 100;
 			testzeitD = timr->testzeit;
 			if (MState->InitRound) {
 				HALa->engine_slow(ON);
@@ -103,9 +104,10 @@ void Initialisation::setSensorChanges(int code, int val) {
 				MState->heightSlow = timr->testzeit - testzeitD;
 				MState->inHeigthTime = timr->testzeit - testzeitD;
 #ifdef SIMULATION
-				MState->inHeigthTime += 300;
+				MState->inHeigthTime += 200;
 #endif
-				MState->slowTimeAdd = MState->heightSlow-MState->heightFast;
+				MState->inHeigthTime += 100;
+				MState->slowTimeAdd = MState->heightSlow - MState->heightFast;
 			}
 			HALa->engine_slow(OFF);
 			testzeitD = timr->testzeit;
@@ -118,8 +120,9 @@ void Initialisation::setSensorChanges(int code, int val) {
 		if (!(val & BIT_3) && !MState->SensSwitch) {
 			MState->heightToSwitch_f = timr->testzeit - testzeitD;
 #ifdef SIMULATION
-			MState->heightToSwitch_f += 300;
+			MState->heightToSwitch_f += 200;
 #endif
+			MState->heightToSwitch_f += 100;
 			HALa->switchOnOff(ON);
 #ifdef DEBUG_MESSAGE
 			cout << "Werkstueck in Weiche" << endl;
@@ -131,15 +134,15 @@ void Initialisation::setSensorChanges(int code, int val) {
 			cout << "Werkstueck nicht mehr in Weiche" << endl;
 #endif
 			MState->SensSwitch = false;
-			HALa->switchOnOff(OFF);
 		}
 		if (!(val & BIT_7) && !MState->SensExit) {
 			MState->switchToExit_f = timr->testzeit - testzeitD;
 #ifdef SIMULATION
-			MState->switchToExit_f += 300;
+			MState->switchToExit_f += 200;
 #endif
-			if(MState->InitRound){
-			MState->DispatcherGo = false;
+			MState->switchToExit_f += 100;
+			if (MState->InitRound) {
+				MState->DispatcherGo = false;
 			}
 #ifdef DEBUG_MESSAGE
 			MState->showTimes();
@@ -153,7 +156,7 @@ void Initialisation::setSensorChanges(int code, int val) {
 			cout << "Werkstueck nicht mehr in Auslauf" << endl;
 #endif
 			MState->SensExit = false;
-				MState->InitRound = true;
+			MState->InitRound = true;
 
 		}
 	}

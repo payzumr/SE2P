@@ -25,7 +25,8 @@
 
 namespace thread{
 #define N_TIMER N_PUKS
-#define SWITCH_OPEN_TIME 6000;
+#define SWITCH_OPEN_TIME 1000;
+
 
 class Timer: public HAWThread {
 private:

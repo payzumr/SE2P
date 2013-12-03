@@ -112,6 +112,9 @@ void Controller::entryHeightMessure() {
 	if (!errorFlag) {
 		timer->slowTimer = Mstat->inHeigthTime;
 		timer->setTimer(puk, Mstat->inHeigthTime);//timerArr[puk] = Mstat->inHeigthTime;
+		if(timer->switchTimer>=0){
+			timer->switchTimer += timer->slowTimer;
+		}
 		timer->addSlowTime(puk);
 		pukArr[puk].place = S3;
 
@@ -274,7 +277,7 @@ void Controller::exitSwitch() {
 #endif
 		}
 	}
-	timer->setTimer(puk, Mstat->switchToExit_f);//timerArr[puk] = Mstat->switchToExit_f;
+	timer->setTimer(puk, Mstat->switchToExit_f + timer->slowTimer);//timerArr[puk] = Mstat->switchToExit_f;
 	if (!errorFlag) {
 		if (pukArr[puk].place == S7) {
 			pukArr[puk].place = S9;

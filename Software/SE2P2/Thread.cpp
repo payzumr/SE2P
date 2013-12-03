@@ -49,18 +49,28 @@ void Thread::execute(void *arg) {
 
 	MachineState* M = MachineState::getInstance();
 	if (serial->open_serial("/dev/ser1") < 0) {
-			perror("open call failed");
+		perror("open call failed");
 	}
 
 	Test test;
+	serial->start(NULL);
 
-	while(!isStopped()){
-		//cout << "gogo" << endl;
-		//M->showMachineState();
-		//test.componentTest(hal);
-		sleep(5);
-		//test.serialTest(serial);
-		//sleep(10);
+	while (!isStopped()) {
+		cout << "5" << endl;
+		sleep(1);
+		cout << "4" << endl;
+		sleep(1);
+		cout << "3" << endl;
+		sleep(1);
+		cout << "2" << endl;
+		sleep(1);
+		cout << "1" << endl;
+		sleep(1);
+
+		test.serialTest(serial);
+
+		cout << "wait 10 sec" << endl;
+		sleep(10);
 	}
 
 }

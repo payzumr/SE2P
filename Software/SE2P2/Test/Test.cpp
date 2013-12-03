@@ -15,6 +15,7 @@
 #include <unistd.h>
 #include "../HAW/HWaccess.h"
 #include "../HAL/Addresses.h"
+#include "Controller.h"
 
 #define MSG_LENGTH 20
 #define SLEEP_ONE_SEC 1
@@ -179,19 +180,16 @@ void Test::componentTest(HALAktorik* hal) {
  */
 void Test::serialTest(Serial* serial){
 
-#ifdef READ
-	char* msgIn[MSG_LENGTH];
-	//serial->read_serial((void*)msgIn, MSG_LENGTH);
-	printf("Nachricht: %s\n", msgIn);
-#endif
+	struct Controller::puk* p;
+	p->height1 = 2500;
+	p->height2 = 0;
+	p->metall = true;
+	p->place = 1;
+	p->pukIdentifier = 99;
+	p->type = withMetal;
 
-#ifdef WRITE
-	char* msgOut = "Hallo Maschine\n";
-	//serial->write_serial(msgOut, MSG_LENGTH);
-#ifdef TEST_MESSAGES
-	cout << "send Message" << endl;
-#endif
-#endif
+
+	serial->write_serial(p, Serial::Data );
 
 }
 
@@ -315,3 +313,4 @@ void Test::sensorikPulseTest(HALSensorik* halS){
 //	}
 //	sleep(2);
 }
+
