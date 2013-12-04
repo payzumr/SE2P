@@ -179,17 +179,19 @@ void Test::componentTest(HALAktorik* hal) {
  *
  */
 void Test::serialTest(Serial* serial){
-
-	struct Controller::puk* p;
-	p->height1 = 2500;
-	p->height2 = 0;
-	p->metall = true;
-	p->place = 1;
-	p->pukIdentifier = 99;
-	p->type = withMetal;
+	struct Controller::puk p;
 
 
-	serial->write_serial(p, Serial::Data );
+	p.height1 = 2500;
+	p.height2 = 0;
+	p.metall = true;
+	p.place = 1;
+	p.pukIdentifier = 99;
+	p.type = withMetal;
+
+
+	//serial->write_serial(&p, Serial::Data );
+
 
 }
 

@@ -53,7 +53,7 @@ void Thread::execute(void *arg) {
 	}
 
 	Test test;
-	serial->start(NULL);
+	//serial->start(NULL);
 
 	while (!isStopped()) {
 		cout << "5" << endl;
@@ -62,15 +62,12 @@ void Thread::execute(void *arg) {
 		sleep(1);
 		cout << "3" << endl;
 		sleep(1);
-		cout << "2" << endl;
-		sleep(1);
-		cout << "1" << endl;
-		sleep(1);
 
 		test.serialTest(serial);
 
 		cout << "wait 10 sec" << endl;
 		sleep(10);
+
 	}
 
 }

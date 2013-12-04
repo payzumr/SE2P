@@ -36,6 +36,8 @@
 #define STOP 0x20
 #define START 0x10
 
+#define ESTOPBUTTON 0x20
+
 #define ON true
 #define OFF false
 

@@ -50,6 +50,17 @@ int main(int argc, char *argv[]) {
 
 	//Neues Objekt der Klasse Thread anlegen
 	Thread thread;
+	thread.start(NULL);
+
+	string quit;
+	do {
+		cin >> quit;
+	} while (quit != "q");
+	thread.stop();
+	thread.join();
+
+
+	/*
 	Timer* timer = Timer::getInstance();
 	MachineState* ma = MachineState::getInstance();
 	HALSensorik* sens = HALSensorik::getInstance();
@@ -57,7 +68,7 @@ int main(int argc, char *argv[]) {
 	//Thread starten (void execute() wird aufgerufen)
 	timer->start(NULL);
 	sens->start(NULL);
-	thread.start(NULL);
+	//thread.start(NULL);
 	init->start(NULL);
 	while(ma->DispatcherGo){
 		sleep(1);
@@ -76,11 +87,14 @@ int main(int argc, char *argv[]) {
 
 	//Thread beenden (void shutdown() wird aufgerufen)
 	sens->stop();
-	thread.stop();
+	//thread.stop();
 	timer->stop();
 	timer->join();
 	sens->join();
-	thread.join();
+	//thread.join();
+	 *
+	 * */
+
 
 #ifdef SIMULATION
 	IOaccess_close(); // Schliesse die Verbindung zur Simulation
