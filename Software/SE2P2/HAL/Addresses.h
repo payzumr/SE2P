@@ -11,6 +11,9 @@
 #ifndef ADDRESSES_H_
 #define ADDRESSES_H_
 
+#define BAND_1
+//#define BAND_2
+
 #define DIO_BASE 0x300          // Base address
 #define DIO_OFFS_A 0x00         // Port A offset
 #define DIO_OFFS_B 0x01         // Port B offset

@@ -110,12 +110,13 @@ void Serial::close_serial() {
  * @param 	buf: data
  * 			nbytes: number of bytes
  */
-ssize_t Serial::write_serial_puk(struct Controller::puk* puk, STATUS s) {
+
+ssize_t Serial::write_serial_puk(struct Controller1::puk* puk, uint8_t s) {
 	ssize_t returnV;
 	struct packet p;
-	p.PukId = puk->pukIdentifier;
+	p.pukId = puk->pukIdentifier;
 	p.height1 = puk->height1;
-	p.status = 1;
+	p.status = s;
 	p.type = puk->type;
 
 	printf("Groesse:  : %d \n", sizeof(p));
@@ -129,6 +130,10 @@ ssize_t Serial::write_serial_puk(struct Controller::puk* puk, STATUS s) {
 	return returnV;
 
 }
+/**
+ * Status = 1
+ *
+ */
 
 ssize_t Serial::write_serial_stop() {
 	ssize_t returnVal;
@@ -137,7 +142,8 @@ ssize_t Serial::write_serial_stop() {
 	p.status = 1;
 	p.height1 = 0;
 	p.type = 0;
-	p.PukId = 0;
+	p.pukId = 0;
+	p.acktype = 0;
 
 	returnVal = write(fd, &p, sizeof(p));
 	if (returnVal < 0) {
@@ -145,10 +151,34 @@ ssize_t Serial::write_serial_stop() {
 	}
 	return returnVal;
 }
+/*
+ * Ack Types
+ * Status 3
+ * 1 = Band 2 ready
+ * 2 = Band 2 not ready
+ */
 
 ssize_t Serial::write_serial_ack(uint8_t ack) {
 	ssize_t returnVal;
+	struct packet p;
 
+	p.status = 3;
+	p.height1 = 0;
+	p.type = 0;
+	p.pukId = 0;
+
+	switch (ack) {
+	case (1):
+		p.acktype = 1;
+		break;
+	case (2):
+		p.acktype = 2;
+	}
+
+	returnVal = write(fd, &p, sizeof(p));
+	if (returnVal < 0) {
+		perror("write failed");
+	}
 	return returnVal;
 }
 
@@ -158,6 +188,10 @@ ssize_t Serial::write_serial_ack(uint8_t ack) {
  * 			lentgh: number of bytes
  */
 int Serial::read_serial(struct packet p) {
+#ifdef BAND_1
+	Controller1* con = Controller1::getInstance();
+#endif
+
 	HALSensorik* hal_S = HALSensorik::getInstance();
 
 	int i_coid;
@@ -173,21 +207,34 @@ int Serial::read_serial(struct packet p) {
 		printPacket(&p);
 
 	}
-		switch (p.status) {
-		case (1):
-			MsgSendPulse(i_coid, SIGEV_PULSE_PRIO_INHERIT, BUTTONS, ESTOPBUTTON);
-			//e-stopp betätigen
-		case (2):
-			break;//puk daten eintragen
-		case (3):
-			break;//ack bearbeiten
+	/*
+	 * 1= E-Stop 2=Data 3=Ack
+	 */
+	switch (p.status) {
+	case (1):
+		MsgSendPulse(i_coid, SIGEV_PULSE_PRIO_INHERIT, BUTTONS, ESTOPBUTTON);
+	case (2):
+		if (con->pukArr[0].pukIdentifier == -1) {
+			write_serial_ack(2);
+		}else{
+			con->pukArr[0].pukIdentifier = p.pukId;
+			con->pukArr[0].height1 = p.height1;
+			(p.type == 1)? con->pukArr[0].type = tall:(p.type == 2)? con->pukArr[0].type = withHole : con->pukArr[0].type = withMetal;
+			write_serial_ack(1);
+			//starten
 		}
-		return returnV;
+	case (3):
+			if(p.acktype == 1){
+				con->ack = false;
+			}
+		break;//ack bearbeiten
+	}
+	return returnV;
 }
 
 void Serial::printPacket(struct packet* p) {
 
-	printf("Status: %d\n PukId: %d\n Puktype: %d\n Hoehe: %d\n", p->status,
-			p->PukId, p->type, p->height1);
+	printf("Status: %d\n PukId: %d\n Puktype: %d\n Hoehe: %d\n ACKtype: %d\n", p->status,
+			p->pukId, p->type, p->height1, p->acktype);
 }
 

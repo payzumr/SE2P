@@ -174,6 +174,8 @@ void hal::HALSensorik::execute(void *arg) {
 		}
 
 		MsgSendPulse(signalCoid, SIGEV_PULSE_PRIO_INHERIT, pulse.code, pulse.value.sival_int);
+
+
 	}
 }
 

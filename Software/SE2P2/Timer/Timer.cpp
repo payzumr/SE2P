@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
+#include "HALAktorik.h"
 
 using namespace thread;
 
@@ -22,6 +23,7 @@ Timer::Timer() {
 	}
 	slideTimer = -1;
 	turnaroundTimer = -1;
+	endTimer = -1;
 
 	channelID = ChannelCreate(0);
 	if (channelID == -1) {
@@ -57,8 +59,8 @@ void Timer::execute(void* args) {
 			exit(EXIT_FAILURE);
 		}
 		testzeit += 1;
-		if(Mst->running){
-		countDownTimer();
+		if (Mst->running) {
+			countDownTimer();
 		}
 
 	}
@@ -94,7 +96,7 @@ void Timer::countDownTimer() {
 	if (turnaroundTimer != -1) {
 		turnaroundTimer -= 1;
 	}
-	if (turnaroundTimer == 0) {
+	if (turnaroundTimer == 0) {//nochmal angucken ob andere timer ablaufen
 		printf("Timeout: Werkstueck umdrehen!\n");
 		HALak->engine_stop();
 		HALak->redLigths(ON);
@@ -109,8 +111,16 @@ void Timer::countDownTimer() {
 		switchTimer = -1;
 	}
 
-	if(slowTimer != -1){
-		slowTimer -=1;
+	if (slowTimer != -1) {
+		slowTimer -= 1;
+	}
+
+	if (endTimer != -1) {
+		endTimer -= 1;
+	}
+	if (endTimer == 0) {
+		HALak->engine_stop();
+		endTimer = -1;
 	}
 }
 

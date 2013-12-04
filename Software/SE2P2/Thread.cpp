@@ -55,17 +55,18 @@ void Thread::execute(void *arg) {
 	Test test;
 	//serial->start(NULL);
 
+	//hal->engine_rigth();
 	while (!isStopped()) {
-		cout << "5" << endl;
-		sleep(1);
-		cout << "4" << endl;
-		sleep(1);
-		cout << "3" << endl;
-		sleep(1);
-
-		test.serialTest(serial);
-
-		cout << "wait 10 sec" << endl;
+//		cout << "5" << endl;
+//		sleep(1);
+//		cout << "4" << endl;
+//		sleep(1);
+//		cout << "3" << endl;
+//		sleep(1);
+//
+//		test.serialTest(serial);
+//
+//		cout << "wait 10 sec" << endl;
 		sleep(10);
 
 	}

@@ -26,6 +26,7 @@
 namespace thread{
 #define N_TIMER N_PUKS
 #define SWITCH_OPEN_TIME 1000;
+#define END_TIMER 1000;
 
 
 class Timer: public HAWThread {
@@ -54,6 +55,7 @@ public:
 	int turnaroundTimer;
 	int switchTimer;
 	int slowTimer;
+	int endTimer;
 
 	long testzeit;
 protected:

@@ -19,6 +19,7 @@
 #include <iostream>
 
 #define SLIDE_TIME 1500
+#define TURN_TIME 10000
 
 class MachineState {
 private:
@@ -38,6 +39,7 @@ public:
 	bool SensSlip;
 	bool SwitchOpen;
 	bool running;
+	bool turnAround;
 	int height;
 
 	bool DispatcherGo;

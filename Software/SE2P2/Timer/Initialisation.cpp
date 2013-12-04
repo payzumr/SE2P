@@ -9,6 +9,8 @@
  */
 
 #include "Initialisation.h"
+#include "HALAktorik.h"
+#include "HALSensorik.h"
 
 using namespace thread;
 using namespace hal;
@@ -84,6 +86,7 @@ void Initialisation::setSensorChanges(int code, int val) {
 			MState->SensEntry = false;
 		}
 		if (!(val & BIT_1) && !MState->SensHeight) {
+			printf("hohe: %d\n", HALSensorik::getInstance()->getHeight());
 			MState->entryToHeight_f = timr->testzeit - testzeitD;
 #ifdef SIMULATION
 			MState->entryToHeight_f += 200;
@@ -136,7 +139,10 @@ void Initialisation::setSensorChanges(int code, int val) {
 			MState->SensSwitch = false;
 		}
 		if (!(val & BIT_7) && !MState->SensExit) {
+
 			MState->switchToExit_f = timr->testzeit - testzeitD;
+
+			HALa->switchOnOff(OFF);
 #ifdef SIMULATION
 			MState->switchToExit_f += 200;
 #endif
@@ -148,6 +154,7 @@ void Initialisation::setSensorChanges(int code, int val) {
 			MState->showTimes();
 			cout << "Werkstueck in Auslauf" << endl;
 #endif
+
 			HALa->engine_stop();
 			MState->SensExit = true;
 			MState->showTimes();

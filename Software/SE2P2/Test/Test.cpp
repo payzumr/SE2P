@@ -15,7 +15,7 @@
 #include <unistd.h>
 #include "../HAW/HWaccess.h"
 #include "../HAL/Addresses.h"
-#include "Controller.h"
+#include "Controller1.h"
 
 #define MSG_LENGTH 20
 #define SLEEP_ONE_SEC 1
@@ -179,7 +179,7 @@ void Test::componentTest(HALAktorik* hal) {
  *
  */
 void Test::serialTest(Serial* serial){
-	struct Controller::puk p;
+	struct Controller1::puk p;
 
 
 	p.height1 = 2500;

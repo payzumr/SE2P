@@ -20,7 +20,9 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include "../Mutex/Mutex.h"
-#include "Controller.h"
+//#ifdef BAND_1
+#include "Controller1.h"
+//#endif
 
 #define MSG_LENGTH 20
 
@@ -36,9 +38,10 @@ public:
 
 	struct packet{
 		uint8_t status; //1=Stop;2=Data;3=Ack
-		uint8_t PukId;
+		uint8_t pukId;
 		uint16_t height1;
 		uint8_t type; //1=metall;2=ohneMetall;3=undefined
+		uint8_t acktype; //1 ready 2 not ready
 	};
 
 	static Serial* getInstance();
@@ -46,7 +49,9 @@ public:
 
 	int open_serial(char* device);
 	void close_serial();
-	ssize_t write_serial_puk(struct Controller::puk* p, STATUS s);
+//#ifdef BAND_1
+	ssize_t write_serial_puk(struct Controller1::puk* p, uint8_t s);
+//#endif
 	ssize_t write_serial_stop();
 	ssize_t write_serial_ack(uint8_t ack);
 	int read_serial(struct packet p);

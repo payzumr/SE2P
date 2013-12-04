@@ -18,6 +18,7 @@
 #include "MachineState.h"
 #include "Initialisation.h"
 #include "Timer.h"
+#include "Serial.h"
 
 #include "Thread.h"
 #define TEST_TIME 25
@@ -49,25 +50,25 @@ int main(int argc, char *argv[]) {
 
 
 	//Neues Objekt der Klasse Thread anlegen
-	Thread thread;
-	thread.start(NULL);
+//	Thread thread;
+//	thread.start(NULL);
+//
+//	string quit;
+//	do {
+//		cin >> quit;
+//	} while (quit != "q");
+//	thread.stop();
+//	thread.join();
 
-	string quit;
-	do {
-		cin >> quit;
-	} while (quit != "q");
-	thread.stop();
-	thread.join();
 
 
-	/*
 	Timer* timer = Timer::getInstance();
-	MachineState* ma = MachineState::getInstance();
 	HALSensorik* sens = HALSensorik::getInstance();
+	MachineState* ma = MachineState::getInstance();
 	Initialisation* init = Initialisation::getInstance();
 	//Thread starten (void execute() wird aufgerufen)
-	timer->start(NULL);
 	sens->start(NULL);
+	timer->start(NULL);
 	//thread.start(NULL);
 	init->start(NULL);
 	while(ma->DispatcherGo){
@@ -79,6 +80,8 @@ int main(int argc, char *argv[]) {
 
 
 	Dispatcher* disp = Dispatcher::getInstance();
+	Serial* seri = Serial::getInstance();
+	seri->start(NULL);
 	disp->start(NULL);
 	string quit;
 	do {
@@ -87,13 +90,13 @@ int main(int argc, char *argv[]) {
 
 	//Thread beenden (void shutdown() wird aufgerufen)
 	sens->stop();
+	seri->stop();
 	//thread.stop();
 	timer->stop();
 	timer->join();
 	sens->join();
+	seri->join();
 	//thread.join();
-	 *
-	 * */
 
 
 #ifdef SIMULATION

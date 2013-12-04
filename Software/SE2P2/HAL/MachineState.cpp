@@ -16,6 +16,7 @@ MachineState* MachineState::instance = NULL;
 MachineState::MachineState() {
 
 	slideTime = SLIDE_TIME;
+	turnaroundTime = TURN_TIME;
 	SensEntry = false;
 	SensExit = false;
 
@@ -27,6 +28,7 @@ MachineState::MachineState() {
 	InitRound = false;
 	running = false;
 	DispatcherGo = true;
+	turnAround = false;
 	height = 0;
 
 

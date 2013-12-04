@@ -9,9 +9,12 @@
  */
 
 #include "Dispatcher.h"
+#include "HALAktorik.h"
 
 using namespace thread;
 using namespace hal;
+
+
 
 Dispatcher* Dispatcher::instance = NULL;
 Mutex* Dispatcher::dispatcher_mutex = new Mutex();
@@ -48,7 +51,12 @@ void Dispatcher::shutdown() {
 
 }
 void Dispatcher::execute(void* arg) {
-	Controller* controller = Controller::getInstance();
+//#ifdef BAND_1
+	Controller1* controller = Controller1::getInstance();
+//#endif
+#ifdef BAND_2
+	Controller2* controller = Controller2::getInstance();
+#endif
 	printf("hallo hier bin ich\n");
 	controller->init();
 	not_aus_reset = false;
@@ -70,7 +78,9 @@ void Dispatcher::execute(void* arg) {
  * Shows the State of the Sensor if any Sensor makes an Interrupt
  */
 void Dispatcher::setSensorChanges(int code, int val) {
-	Controller* controller = Controller::getInstance();
+#ifdef BAND_1
+	Controller1* controller = Controller1::getInstance();
+#endif
 	HALAktorik* HALa = HALAktorik::getInstance();
 	HALSensorik* HALs = HALSensorik::getInstance();
 	Timer* tim = Timer::getInstance();
@@ -211,6 +221,6 @@ void Dispatcher::setSensorChanges(int code, int val) {
 		}
 	}
 #ifdef DEBUG_TIMER
-	tim->showTimeArray();
+	//tim->showTimeArray();
 #endif
 }

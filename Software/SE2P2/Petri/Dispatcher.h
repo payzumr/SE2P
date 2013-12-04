@@ -17,7 +17,7 @@
 #include "MachineState.h"
 #include "Addresses.h"
 #include "Mutex.h"
-#include "Controller.h"
+#include "Controller1.h"
 #include "Timer.h"
 
 class Dispatcher: public thread::HAWThread {
