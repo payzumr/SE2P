@@ -65,6 +65,12 @@ void Controller1::init() {
 	}
 }
 
+/**
+ * Reset Bitmask erstellen und diese in der HAL Aktorik implementieren!!!!
+ *
+ *
+ */
+
 void Controller1::reset() {
 	timer->resetTimer();
 	init();
@@ -129,7 +135,6 @@ void Controller1::entryHeightMessure() {
 			pukArr[puk].place = S4; //<-- anpassen manuell
 		}
 #endif
-
 		if (Mstat->height >= 3400 && Mstat->height <= 3800) {//flacher puk
 			pukArr[puk].place = S4;
 			pukArr[puk].type = withHole;
@@ -140,7 +145,6 @@ void Controller1::entryHeightMessure() {
 			pukArr[puk].place = S6;
 			pukArr[puk].type = flat;
 			pukArr[puk].height1 = Mstat->height;
-
 		}
 		if (Mstat->height >= 2000 && Mstat->height <= 2600) {//puk mit loch
 			pukArr[puk].place = S5;
@@ -360,8 +364,7 @@ void Controller1::handover(int puk) {
 	pukArr[puk].place = S13;
 
 	while (ack) {
-		ser->write_serial_puk(&pukArr[puk], (uint8_t) 2);
-		usleep(50000);
+		ser->write_serial_puk(&pukArr[puk]);
 	}
 }
 //tasten

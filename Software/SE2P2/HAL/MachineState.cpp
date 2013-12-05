@@ -17,18 +17,23 @@ MachineState::MachineState() {
 
 	slideTime = SLIDE_TIME;
 	turnaroundTime = TURN_TIME;
+
+	/**
+	 * Sensor States default is false
+	 */
 	SensEntry = false;
 	SensExit = false;
-
 	SensHeight = false;
 	SensMetall = false;
 	SensSlip = false;
 	SensSwitch = false;
 	SwitchOpen = false;
 	InitRound = false;
+
 	running = false;
 	DispatcherGo = true;
 	turnAround = false;
+
 	height = 0;
 
 

@@ -48,5 +48,7 @@ public:
     void led_Reset(bool state);
     //Switch
 	void switchOnOff(bool state);
+
+	void resetAktorik();
 };
 #endif /* HAL_H_ */

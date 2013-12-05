@@ -245,3 +245,10 @@ void HALAktorik::engine_start() {
 	out8(DIO_BASE + DIO_OFFS_A, val & ~BIT_3);
 	HALmutex->unlock();
 }
+
+void HALAktorik::resetAktorik(){
+	HALmutex->lock();
+	out8(DIO_BASE + DIO_OFFS_A, RESET);
+	HALmutex->unlock();
+
+}

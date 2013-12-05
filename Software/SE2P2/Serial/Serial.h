@@ -20,11 +20,8 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include "../Mutex/Mutex.h"
-//#ifdef BAND_1
 #include "Controller1.h"
-//#endif
 
-#define MSG_LENGTH 20
 
 class Serial: public thread::HAWThread {
 private:
@@ -49,9 +46,7 @@ public:
 
 	int open_serial(char* device);
 	void close_serial();
-//#ifdef BAND_1
-	ssize_t write_serial_puk(struct Controller1::puk* p, uint8_t s);
-//#endif
+	ssize_t write_serial_puk(struct Controller1::puk* p);
 	ssize_t write_serial_stop();
 	ssize_t write_serial_ack(uint8_t ack);
 	int read_serial(struct packet p);

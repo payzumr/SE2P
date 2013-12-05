@@ -14,12 +14,18 @@
 #define BAND_1
 //#define BAND_2
 
+/**
+ * Base Adressen and Offsets for the Ports
+ */
 #define DIO_BASE 0x300          // Base address
 #define DIO_OFFS_A 0x00         // Port A offset
 #define DIO_OFFS_B 0x01         // Port B offset
 #define DIO_OFFS_C 0x02         // Port C offset
 #define DIO_OFFS_CTRL 0x03      // Control register offset
 
+/**
+ * Code to start the HeightMessure
+ */
 #define CTRL_CODE 0x10
 
 // BIT_X is set to one
@@ -32,6 +38,12 @@
 #define BIT_6 0x40
 #define BIT_7 0x80
 
+#define RESET 0x0
+
+
+/**
+ * Defines for Dispatcher
+ */
 #define SENSORS 2
 #define BUTTONS 8
 #define RESET 0x40
@@ -48,7 +60,11 @@
 #define REDSLOW 1
 #define REDFAST 2
 #define YELLOW 3
+#define GREEN 4
 
+/**
+ * Defines to able or disable Debug Messages
+ */
 #define DEBUG_MESSAGE
 #define DEBUG_TIMER
 

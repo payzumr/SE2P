@@ -33,6 +33,7 @@ public:
 	void flashYellow();
 	void flashRedSlow();
 	void flashRedFast();
+	void flashGreenIni();
 
 protected:
 	virtual void execute(void* arg);

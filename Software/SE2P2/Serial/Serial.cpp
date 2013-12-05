@@ -67,10 +67,8 @@ void Serial::execute(void* arg) {
 		perror("open call failed");
 	}
 	while (!isStopped()) {
-		char* msgIn[MSG_LENGTH];
 		struct packet p;
 		instance->read_serial(p);
-		printf("Nachricht: %s\n", msgIn);
 	}
 }
 
@@ -111,18 +109,15 @@ void Serial::close_serial() {
  * 			nbytes: number of bytes
  */
 
-ssize_t Serial::write_serial_puk(struct Controller1::puk* puk, uint8_t s) {
+ssize_t Serial::write_serial_puk(struct Controller1::puk* puk) {
 	ssize_t returnV;
 	struct packet p;
 	p.pukId = puk->pukIdentifier;
 	p.height1 = puk->height1;
-	p.status = s;
+	p.status = 2;
 	p.type = puk->type;
 
-	printf("Groesse:  : %d \n", sizeof(p));
-	//printPacket(p);
 	returnV = write(fd, &p, sizeof(p));// s. open, Sendepuffer, Anzahl der zu schreibenden Bytes
-	printf("returnv %d\n", returnV);
 	if (returnV < 0) {
 		perror("write failed");
 	}
@@ -149,6 +144,7 @@ ssize_t Serial::write_serial_stop() {
 	if (returnVal < 0) {
 		perror("write failed");
 	}
+	usleep(200000); // min. Zeit zwischen 2 Nachrichten
 	return returnVal;
 }
 /*
@@ -179,6 +175,7 @@ ssize_t Serial::write_serial_ack(uint8_t ack) {
 	if (returnVal < 0) {
 		perror("write failed");
 	}
+	usleep(200000); // min. Zeit zwischen 2 Nachrichten
 	return returnVal;
 }
 
@@ -203,9 +200,7 @@ int Serial::read_serial(struct packet p) {
 		if (returnV < 0) {
 			perror("read failed");
 		}
-
 		printPacket(&p);
-
 	}
 	/*
 	 * 1= E-Stop 2=Data 3=Ack
@@ -226,8 +221,10 @@ int Serial::read_serial(struct packet p) {
 	case (3):
 			if(p.acktype == 1){
 				con->ack = false;
+			}else{
+				usleep(5000);
 			}
-		break;//ack bearbeiten
+
 	}
 	return returnV;
 }

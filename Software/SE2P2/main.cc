@@ -19,11 +19,10 @@
 #include "Initialisation.h"
 #include "Timer.h"
 #include "Serial.h"
+#include "Blinki.h"
 
 #include "Thread.h"
 #define TEST_TIME 25
-
-
 
 using namespace thread;
 using namespace hal;
@@ -37,9 +36,9 @@ int main(int argc, char *argv[]) {
 	IOaccess_open(); // Baue die Verbindung zur Simulation auf
 #endif
 	// Initialisierung der Digitalen IO Karte
-		out8(DIO_BASE + DIO_OFFS_CTRL, 0x8A);
-		out8(DIO_BASE + DIO_OFFS_A, 0x00);
-		out8(DIO_BASE + DIO_OFFS_C, 0x00);
+	out8(DIO_BASE + DIO_OFFS_CTRL, 0x8A);
+	out8(DIO_BASE + DIO_OFFS_A, 0x00);
+	out8(DIO_BASE + DIO_OFFS_C, 0x00);
 
 	// Zugriffsrechte fuer den Zugriff auf die HW holen
 	if (-1 == ThreadCtl(_NTO_TCTL_IO, 0)) {
@@ -47,57 +46,54 @@ int main(int argc, char *argv[]) {
 		return -1;
 	}
 
+	/*
+	 //Neues Objekt der Klasse Thread anlegen
+	 Thread thread;
+	 //Thread starten (void execute() wird aufgerufen)
+	 thread.start(NULL);
 
+	 string quit;
+	 do {
+	 cin >> quit;
+	 } while (quit != "q");
+	 thread.stop();
+	 thread.join();
+	 */
 
-	//Neues Objekt der Klasse Thread anlegen
-//	Thread thread;
-//	thread.start(NULL);
-//
-//	string quit;
-//	do {
-//		cin >> quit;
-//	} while (quit != "q");
-//	thread.stop();
-//	thread.join();
-
-
-
-	Timer* timer = Timer::getInstance();
-	HALSensorik* sens = HALSensorik::getInstance();
-	MachineState* ma = MachineState::getInstance();
-	Initialisation* init = Initialisation::getInstance();
-	//Thread starten (void execute() wird aufgerufen)
-	sens->start(NULL);
-	timer->start(NULL);
-	//thread.start(NULL);
-	init->start(NULL);
-	while(ma->DispatcherGo){
+	/*
+	 * Sensorik und Initalisation starten für den Initialisierungslauf
+	 */
+	Blinki::getInstance()->start((void*)GREEN);
+	HALSensorik::getInstance()->start(NULL);
+	Timer::getInstance()->start(NULL);
+	Initialisation::getInstance()->start(NULL);
+	//Warten auf den Abschluss der Initialisierung
+	while (MachineState::getInstance()->DispatcherGo) {
 		sleep(1);
 	}
-	init->stop();
-	init->join();
+	//Threads für die Initalisierung beenden
+	Initialisation::getInstance()->stop();
+	Blinki::getInstance()->stop();
+	Blinki::getInstance()->join();
+	Initialisation::getInstance()->join();
 
-
-
-	Dispatcher* disp = Dispatcher::getInstance();
-	Serial* seri = Serial::getInstance();
-	seri->start(NULL);
-	disp->start(NULL);
+	//Dispatcher und somit das eigentliche Programm starten
+	Dispatcher::getInstance()->start(NULL);
+	Serial::getInstance()->start(NULL);
 	string quit;
 	do {
 		cin >> quit;
 	} while (quit != "q");
 
-	//Thread beenden (void shutdown() wird aufgerufen)
-	sens->stop();
-	seri->stop();
-	//thread.stop();
-	timer->stop();
-	timer->join();
-	sens->join();
-	seri->join();
-	//thread.join();
+	//Threads beenden (void shutdown() wird aufgerufen)
+	HALSensorik::getInstance()->stop();
+	Serial::getInstance()->stop();
+	Timer::getInstance()->stop();
 
+	//Threads joinen (auf Beendigung warten)
+	HALSensorik::getInstance()->join();
+	Serial::getInstance()->join();
+	Timer::getInstance()->join();
 
 #ifdef SIMULATION
 	IOaccess_close(); // Schliesse die Verbindung zur Simulation
