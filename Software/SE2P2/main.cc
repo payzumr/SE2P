@@ -63,7 +63,7 @@ int main(int argc, char *argv[]) {
 	/*
 	 * Sensorik und Initalisation starten für den Initialisierungslauf
 	 */
-	Blinki::getInstance()->start((void*)GREEN);
+	//Blinki::getInstance()->start((void*)GREEN);
 	HALSensorik::getInstance()->start(NULL);
 	Timer::getInstance()->start(NULL);
 	Initialisation::getInstance()->start(NULL);
@@ -73,8 +73,8 @@ int main(int argc, char *argv[]) {
 	}
 	//Threads für die Initalisierung beenden
 	Initialisation::getInstance()->stop();
-	Blinki::getInstance()->stop();
-	Blinki::getInstance()->join();
+	//Blinki::getInstance()->stop();
+	//Blinki::getInstance()->join();
 	Initialisation::getInstance()->join();
 
 	//Dispatcher und somit das eigentliche Programm starten

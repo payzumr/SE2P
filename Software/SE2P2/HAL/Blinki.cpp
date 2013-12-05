@@ -39,16 +39,21 @@ hal::Blinki* hal::Blinki::getInstance() {
 
 void hal::Blinki::execute(void* arg) {
 
+	cout << "Blinki startet" << endl;
 	while (!isStopped()) {
 		switch ((int) arg) {
 		case REDFAST:
 			flashRedFast();
+			break;
 		case REDSLOW:
 			flashRedSlow();
+			break;
 		case YELLOW:
 			flashYellow();
+			break;
 		case GREEN:
 			flashGreenIni();
+			break;
 		}
 	}
 }

@@ -91,7 +91,7 @@ void Initialisation::setSensorChanges(int code, int val) {
 #ifdef SIMULATION
 			MState->entryToHeight_f += 200;
 #endif
-			MState->entryToHeight_f += 100;
+			MState->entryToHeight_f += 300;
 			testzeitD = timr->testzeit;
 			if (MState->InitRound) {
 				HALa->engine_slow(ON);
@@ -109,7 +109,7 @@ void Initialisation::setSensorChanges(int code, int val) {
 #ifdef SIMULATION
 				MState->inHeigthTime += 200;
 #endif
-				MState->inHeigthTime += 100;
+				MState->inHeigthTime += 300;
 				MState->slowTimeAdd = MState->heightSlow - MState->heightFast;
 			}
 			HALa->engine_slow(OFF);
@@ -125,7 +125,7 @@ void Initialisation::setSensorChanges(int code, int val) {
 #ifdef SIMULATION
 			MState->heightToSwitch_f += 200;
 #endif
-			MState->heightToSwitch_f += 100;
+			MState->heightToSwitch_f += 300;
 			HALa->switchOnOff(ON);
 #ifdef DEBUG_MESSAGE
 			cout << "Werkstueck in Weiche" << endl;
@@ -146,7 +146,7 @@ void Initialisation::setSensorChanges(int code, int val) {
 #ifdef SIMULATION
 			MState->switchToExit_f += 200;
 #endif
-			MState->switchToExit_f += 100;
+			MState->switchToExit_f += 300;
 			if (MState->InitRound) {
 				MState->DispatcherGo = false;
 			}

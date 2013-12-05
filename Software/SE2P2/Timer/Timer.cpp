@@ -59,8 +59,19 @@ void Timer::execute(void* args) {
 			exit(EXIT_FAILURE);
 		}
 		testzeit += 1;
+
 		if (Mst->running) {
 			countDownTimer();
+		}
+
+		if (turnaroundTimer != -1) {
+			turnaroundTimer -= 1;
+		}
+		if (turnaroundTimer == 0) {//nochmal angucken ob andere timer ablaufen
+			printf("Timeout: Werkstueck umdrehen!\n");
+			HALAktorik::getInstance()->engine_stop();
+			HALAktorik::getInstance()->redLigths(ON);
+			turnaroundTimer = -1;
 		}
 
 	}
@@ -91,16 +102,6 @@ void Timer::countDownTimer() {
 		HALak->engine_stop();
 		HALak->redLigths(ON);
 		slideTimer = -1;
-	}
-
-	if (turnaroundTimer != -1) {
-		turnaroundTimer -= 1;
-	}
-	if (turnaroundTimer == 0) {//nochmal angucken ob andere timer ablaufen
-		printf("Timeout: Werkstueck umdrehen!\n");
-		HALak->engine_stop();
-		HALak->redLigths(ON);
-		turnaroundTimer = -1;
 	}
 
 	if (switchTimer != -1) {

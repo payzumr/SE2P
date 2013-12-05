@@ -135,18 +135,18 @@ void Controller1::entryHeightMessure() {
 			pukArr[puk].place = S4; //<-- anpassen manuell
 		}
 #endif
-		if (Mstat->height >= 3400 && Mstat->height <= 3800) {//flacher puk
+		if (Mstat->height >= 3400 && Mstat->height <= 3800) {
 			pukArr[puk].place = S4;
 			pukArr[puk].type = withHole;
 			pukArr[puk].height1 = Mstat->height;
 
 		}
-		if (Mstat->height >= 2700 && Mstat->height <= 2850) {//hoher puk
+		if (Mstat->height >= 2800 && Mstat->height <= 3400) {
 			pukArr[puk].place = S6;
 			pukArr[puk].type = flat;
 			pukArr[puk].height1 = Mstat->height;
 		}
-		if (Mstat->height >= 2000 && Mstat->height <= 2600) {//puk mit loch
+		if (Mstat->height >= 2000 && Mstat->height <= 2800) {
 			pukArr[puk].place = S5;
 			pukArr[puk].type = tall;
 			pukArr[puk].height1 = Mstat->height;
@@ -292,8 +292,6 @@ void Controller1::exitSwitch() {
 	}
 }
 void Controller1::entryFinishSens() {
-
-	Blinki* blink = Blinki::getInstance();
 	int puk = 0;
 	while ((pukArr[puk].place != S9 && pukArr[puk].place != S10
 			&& pukArr[puk].place != S11) && puk <= N_PUKS) {
@@ -305,9 +303,11 @@ void Controller1::entryFinishSens() {
 #endif
 		}
 	}
+	printPuk(puk);
 	if (!errorFlag) {
 		timer->setTimer(puk, -1);//timerArr[puk] = -1;
 		if (pukArr[puk].place == S9) {
+			cout << "S9..." << endl;
 			pukArr[puk].place = S12;
 			stopConveyer();
 
@@ -317,19 +317,23 @@ void Controller1::entryFinishSens() {
 			startConveyer();
 
 		} else if (pukArr[puk].place == S11) {
+			cout << "S11..." << endl;
 			pukArr[puk].place = S12;
 			stopConveyer();
 
 			handover(puk);
 
 			Mstat->turnAround = false;
-			blink->stop();
-			blink->join();
+			Blinki::getInstance()->stop();
+			Blinki::getInstance()->join();
 			resetPuk(puk);
 			startConveyer();
 		} else if (pukArr[puk].place == S10) {
+			cout << "S10..." << endl;
 			stopConveyer();
-			blink->start((void*) YELLOW);
+			printf("Ich soll gleich blinken\)");
+			HALAktorik::getInstance()->yellowLigths(ON);
+			Blinki::getInstance()->start((void*) YELLOW);
 			timer->turnaroundTimer = TURN_TIME;
 			Mstat->turnAround = true;
 
@@ -362,7 +366,7 @@ void Controller1::exitFinishSens() {
 
 void Controller1::handover(int puk) {
 	pukArr[puk].place = S13;
-
+	ack = true;
 	while (ack) {
 		ser->write_serial_puk(&pukArr[puk]);
 	}
