@@ -21,6 +21,7 @@ MachineState::MachineState() {
 	/**
 	 * Sensor States default is false
 	 */
+	machineIsOn = false;
 	SensEntry = false;
 	SensExit = false;
 	SensHeight = false;
@@ -29,6 +30,11 @@ MachineState::MachineState() {
 	SensSwitch = false;
 	SwitchOpen = false;
 	InitRound = false;
+
+	bandBelegt = false;
+	goingBack = false;
+	isMetal = false;
+	sortOut = false;
 
 	running = false;
 	DispatcherGo = true;
