@@ -89,7 +89,8 @@ hal::HALSensorik* hal::HALSensorik::getInstance() {
 }
 
 hal::HALSensorik::~HALSensorik() {
-	// TODO Auto-generated destructor stub
+	delete instance;
+	instance = NULL;
 }
 
 void hal::HALSensorik::initInterrupts() {

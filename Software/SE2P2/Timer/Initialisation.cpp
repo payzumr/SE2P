@@ -25,6 +25,8 @@ Initialisation::Initialisation() {
 }
 
 Initialisation::~Initialisation() {
+	delete instance;
+	instance = NULL;
 
 }
 Initialisation* Initialisation::getInstance() {
@@ -71,21 +73,21 @@ void Initialisation::setSensorChanges(int code, int val) {
 	Timer* timr = Timer::getInstance();
 	HALAktorik* HALa = HALAktorik::getInstance();
 	if (code == SENSORS) {
-		if (!(val & BIT_0) && !MState->SensEntry) {
+		if (!(val & BIT_0) && !MState->sensEntry) {
 #ifdef DEBUG_MESSAGE
 			cout << "Werkstueck in Einlauf" << endl;
 #endif
-			MState->SensEntry = true;
+			MState->sensEntry = true;
 			HALa->engine_rigth();
 			HALa->engine_start();
-		} else if ((val & BIT_0) && MState->SensEntry) {
+		} else if ((val & BIT_0) && MState->sensEntry) {
 			testzeitD = timr->testzeit;
 #ifdef DEBUG_MESSAGE
 			cout << "Werkstueck nicht mehr in Einlauf" << endl;
 #endif
-			MState->SensEntry = false;
+			MState->sensEntry = false;
 		}
-		if (!(val & BIT_1) && !MState->SensHeight) {
+		if (!(val & BIT_1) && !MState->sensHeight) {
 			printf("hohe: %d\n", HALSensorik::getInstance()->getHeight());
 			MState->entryToHeight_f = timr->testzeit - testzeitD;
 #ifdef SIMULATION
@@ -93,15 +95,15 @@ void Initialisation::setSensorChanges(int code, int val) {
 #endif
 			MState->entryToHeight_f += 300;
 			testzeitD = timr->testzeit;
-			if (MState->InitRound) {
+			if (MState->initRound) {
 				HALa->engine_slow(ON);
 			}
 #ifdef DEBUG_MESSAGE
 			cout << "Werkstueck in Hoehenmessung" << endl;
 #endif
-			MState->SensHeight = true;
-		} else if ((val & BIT_1) && MState->SensHeight) {
-			if (!MState->InitRound) {
+			MState->sensHeight = true;
+		} else if ((val & BIT_1) && MState->sensHeight) {
+			if (!MState->initRound) {
 				MState->heightFast = timr->testzeit - testzeitD;
 			} else {
 				MState->heightSlow = timr->testzeit - testzeitD;
@@ -118,9 +120,9 @@ void Initialisation::setSensorChanges(int code, int val) {
 #ifdef DEBUG_MESSAGE
 			cout << "Werkstueck nicht mehr in Hoehenmessung" << endl;
 #endif
-			MState->SensHeight = false;
+			MState->sensHeight = false;
 		}
-		if (!(val & BIT_3) && !MState->SensSwitch) {
+		if (!(val & BIT_3) && !MState->sensSwitch) {
 			MState->heightToSwitch_f = timr->testzeit - testzeitD;
 #ifdef SIMULATION
 			MState->heightToSwitch_f += 200;
@@ -130,15 +132,15 @@ void Initialisation::setSensorChanges(int code, int val) {
 #ifdef DEBUG_MESSAGE
 			cout << "Werkstueck in Weiche" << endl;
 #endif
-			MState->SensSwitch = true;
-		} else if ((val & BIT_3) && MState->SensSwitch) {
+			MState->sensSwitch = true;
+		} else if ((val & BIT_3) && MState->sensSwitch) {
 			testzeitD = timr->testzeit;
 #ifdef DEBUG_MESSAGE
 			cout << "Werkstueck nicht mehr in Weiche" << endl;
 #endif
-			MState->SensSwitch = false;
+			MState->sensSwitch = false;
 		}
-		if (!(val & BIT_7) && !MState->SensExit) {
+		if (!(val & BIT_7) && !MState->sensExit) {
 
 			MState->switchToExit_f = timr->testzeit - testzeitD;
 
@@ -147,8 +149,8 @@ void Initialisation::setSensorChanges(int code, int val) {
 			MState->switchToExit_f += 200;
 #endif
 			MState->switchToExit_f += 300;
-			if (MState->InitRound) {
-				MState->DispatcherGo = false;
+			if (MState->initRound) {
+				MState->dispatcherGo = false;
 			}
 #ifdef DEBUG_MESSAGE
 			MState->showTimes();
@@ -156,14 +158,14 @@ void Initialisation::setSensorChanges(int code, int val) {
 #endif
 
 			HALa->engine_stop();
-			MState->SensExit = true;
+			MState->sensExit = true;
 			MState->showTimes();
-		} else if ((val & BIT_7) && MState->SensExit) {
+		} else if ((val & BIT_7) && MState->sensExit) {
 #ifdef DEBUG_MESSAGE
 			cout << "Werkstueck nicht mehr in Auslauf" << endl;
 #endif
-			MState->SensExit = false;
-			MState->InitRound = true;
+			MState->sensExit = false;
+			MState->initRound = true;
 
 		}
 	}

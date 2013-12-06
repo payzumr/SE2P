@@ -14,22 +14,18 @@
 using namespace thread;
 using namespace hal;
 
-
-
 Dispatcher* Dispatcher::instance = NULL;
 Mutex* Dispatcher::dispatcher_mutex = new Mutex();
-//Controller* controller = new Controller();
 
 MachineState* MState = MachineState::getInstance();
 
 Dispatcher::Dispatcher() {
-	HALSensorik* HALs = HALSensorik::getInstance();
-	signalChid = HALs->getSignalChid();
-
+	signalChid = HALSensorik::getInstance()->getSignalChid();
 }
 
 Dispatcher::~Dispatcher() {
-	// TODO Auto-generated destructor stub
+	delete instance;
+	instance = NULL;
 }
 Dispatcher* Dispatcher::getInstance() {
 	dispatcher_mutex->lock();
@@ -46,19 +42,19 @@ Dispatcher* Dispatcher::getInstance() {
 	return instance;
 }
 void Dispatcher::shutdown() {
-
 	cout << "shutdown the Dispatcher..." << endl;
-
 }
 void Dispatcher::execute(void* arg) {
-//#ifdef BAND_1
-	Controller1* controller = Controller1::getInstance();
-//#endif
-#ifdef BAND_2
-	Controller2* controller = Controller2::getInstance();
+#ifdef BAND_1
+	Controller1::getInstance()->init();
 #endif
-	printf("hallo hier bin ich\n");
-	controller->init();
+#ifdef BAND_2
+	Controller2::getInstance()->init();
+#endif
+
+#ifdef DEBUG_MESSAGE
+	cout << "Dispatcher gestartet" << endl;
+#endif
 	not_aus_reset = false;
 	struct _pulse pulse;
 	while (!isStopped()) {
@@ -81,146 +77,163 @@ void Dispatcher::setSensorChanges(int code, int val) {
 #ifdef BAND_1
 	Controller1* controller = Controller1::getInstance();
 #endif
-	HALAktorik* HALa = HALAktorik::getInstance();
-	HALSensorik* HALs = HALSensorik::getInstance();
-	Timer* tim = Timer::getInstance();
-
-	if (!e_stop && !not_aus_reset) {
+#ifdef BAND_2
+	Controller2* controller = Controller2::getInstance();
+#endif
+	if (MState->machineIsOn && !controller->errorFlag) {
 		if (code == SENSORS) {
-			if (!(val & BIT_0) && !MState->SensEntry) {
+			if (!(val & BIT_0) && !MState->sensEntry) {
 #ifdef DEBUG_MESSAGE
 				cout << "D:Werkstueck in Einlauf" << endl;
 #endif
-				MState->SensEntry = true;
+				MState->sensEntry = true;
 				controller->entryStartSens();
-			} else if ((val & BIT_0) && MState->SensEntry) {
+			} else if ((val & BIT_0) && MState->sensEntry) {
 #ifdef DEBUG_MESSAGE
 				cout << "Werkstueck nicht mehr in Einlauf" << endl;
 #endif
-				MState->SensEntry = false;
+				MState->sensEntry = false;
 				controller->exitStartSens();
 			}
-			if (!(val & BIT_1) && !MState->SensHeight) {
+			if (!(val & BIT_1) && !MState->sensHeight) {
 #ifdef DEBUG_MESSAGE
 				cout << "Werkstueck in Hoehenmessung" << endl;
 #endif
-				MState->SensHeight = true;
-				MState->height = HALs->getHeight();
+				MState->height = HALSensorik::getInstance()->getHeight();
+				MState->sensHeight = true;
 				controller->entryHeightMessure();
-			} else if ((val & BIT_1) && MState->SensHeight) {
+			} else if ((val & BIT_1) && MState->sensHeight) {
 #ifdef DEBUG_MESSAGE
 				cout << "Werkstueck nicht mehr in Hoehenmessung" << endl;
 #endif
-				MState->SensHeight = false;
+				MState->sensHeight = false;
 				controller->exitHeightMessure();
 			}
-			if (!(val & BIT_3) && !MState->SensSwitch) {
+			if (!(val & BIT_3) && !MState->sensSwitch) {
 #ifdef DEBUG_MESSAGE
 				cout << "Werkstueck in Weiche" << endl;
 #endif
-				MState->SensSwitch = true;
+				MState->sensSwitch = true;
 				controller->entrySwitch();
-			} else if ((val & BIT_3) && MState->SensSwitch) {
+			} else if ((val & BIT_3) && MState->sensSwitch) {
 #ifdef DEBUG_MESSAGE
 				cout << "Werkstueck nicht mehr in Weiche" << endl;
 #endif
-				MState->SensSwitch = false;
+				MState->sensSwitch = false;
 				controller->exitSwitch();
 			}
-			if ((val & BIT_4) && !MState->SensMetall) {
+			if ((val & BIT_4) && !MState->sensMetall) {
 #ifdef DEBUG_MESSAGE
 				cout << "Werkstueck Metall" << endl;
 #endif
-				MState->SensMetall = true;
+				MState->sensMetall = true;
 				controller->metalFound();
-			} else if (!(val & BIT_4) && MState->SensMetall) {
+			} else if (!(val & BIT_4) && MState->sensMetall) {
 #ifdef DEBUG_MESSAGE
 				cout << "Metallwerkstueck hat messung verlassen" << endl;
 #endif
-				MState->SensMetall = false;
+				MState->sensMetall = false;
 			}
-			if ((val & BIT_5) && !MState->SwitchOpen) {
+			if ((val & BIT_5) && !MState->switchOpen) {
 #ifdef DEBUG_MESSAGE
 				cout << "Weiche offen" << endl;
 #endif
-				MState->SwitchOpen = true;
-			} else if (!(val & BIT_5) && MState->SwitchOpen) {
+				MState->switchOpen = true;
+			} else if (!(val & BIT_5) && MState->switchOpen) {
 #ifdef DEBUG_MESSAGE
 				cout << "Weiche wieder zu" << endl;
 #endif
-				MState->SwitchOpen = false;
+				MState->switchOpen = false;
 			}
-			if (!(val & BIT_6) && !MState->SensSlip) {
+			if (!(val & BIT_6) && !MState->sensSlip) {
 #ifdef DEBUG_MESSAGE
 				cout << "Rutsche ist voll" << endl;
 #endif
-				MState->SensSlip = true;
+				MState->sensSlip = true;
 				controller->entrySlide();
-			} else if ((val & BIT_6) && MState->SensSlip) {
+			} else if ((val & BIT_6) && MState->sensSlip) {
 #ifdef DEBUG_MESSAGE
 				cout << "Rutsche nicht mehr voll" << endl;
 #endif
-				MState->SensSlip = false;
+				MState->sensSlip = false;
 				controller->exitSlide();
 			}
-			if (!(val & BIT_7) && !MState->SensExit) {
+			if (!(val & BIT_7) && !MState->sensExit) {
 #ifdef DEBUG_MESSAGE
 				cout << "Werkstueck in Auslauf" << endl;
 #endif
-				MState->SensExit = true;
+				MState->sensExit = true;
 				controller->entryFinishSens();
-			} else if ((val & BIT_7) && MState->SensExit) {
+			} else if ((val & BIT_7) && MState->sensExit) {
 #ifdef DEBUG_MESSAGE
 				cout << "Werkstueck nicht mehr in Auslauf" << endl;
 #endif
-				MState->SensExit = false;
+				MState->sensExit = false;
 			}
 		} else if (code == BUTTONS) {
-			if (val & START) {
-#ifdef DEBUG_MESSAGE
-				cout << "Starttaste gedrueckt" << endl;
-#endif
-				HALa->engine_start();
-			}
 			if (!(val & STOP)) {
 #ifdef DEBUG_MESSAGE
 				cout << "Stoptaste gedrueckt" << endl;
 #endif
-				HALa->engine_stop();
-			}
-			if ((val & RESET)) {
-#ifdef DEBUG_MESSAGE
-				cout << "Resettaste gedrueckt" << endl;
-#endif
+				HALAktorik::getInstance()->resetAktorik();
 				controller->reset();
+				MState->machineIsOn = false;
 			}
+			if (!(val & E_STOP)) {
+#ifdef DEBUG_MESSAGE
+				cout << "E-stop gedrueckt" << endl;
+#endif
 
-			if (!(val & E_STOP) && !e_stop) {
+				controller->EStopPressed();
+				e_stop = true;
+			}
+		}
+	} else if (!MState->machineIsOn && (code == BUTTONS)) {
+
+			if (val & START) {
+#ifdef DEBUG_MESSAGE
+				cout << "Starttaste gedrueckt" << endl;
+#endif
+				HALAktorik::getInstance()->greenLigths(ON);
+				MState->machineIsOn = true;
+			}
+	}else if(MState->machineIsOn && controller->errorFlag && (code == BUTTONS)){
+
+		if ((val & RESET)) {
+#ifdef DEBUG_MESSAGE
+			cout << "Resettaste gedrueckt" << endl;
+#endif
+			controller->reset();
+			HALAktorik::getInstance()->greenLigths(ON);
+		}
+	}else if(MState->machineIsOn && !e_stop && (code == BUTTONS)){
+
+			if (!(val & E_STOP)) {
 #ifdef DEBUG_MESSAGE
 				cout << "E-stop gedrueckt" << endl;
 #endif
 				controller->EStopPressed();
 				e_stop = true;
 			}
-
-		}
-	} else if (code == BUTTONS) {
-		if ((val & RESET) && not_aus_reset) {
-#ifdef DEBUG_MESSAGE
-			cout << "Resettaste gedrueckt" << endl;
-#endif
-			not_aus_reset = false;
-			controller->reset();
-		}
-		if ((val & E_STOP) && e_stop) {
+	}else if(MState->machineIsOn && e_stop &&(code == BUTTONS)){
+		if ((val & E_STOP)) {
 #ifdef DEBUG_MESSAGE
 			cout << "E-stop nicht mehr gedrueckt" << endl;
 #endif
+			//zurück zum alten zustand? oder alles auf 0 setzen?????
 			e_stop = false;
-			not_aus_reset = true;
 		}
+	}else if(MState->machineIsOn && (code == BUTTONS)){
+			if (!(val & STOP)) {
+#ifdef DEBUG_MESSAGE
+				cout << "Stoptaste gedrueckt" << endl;
+#endif
+				HALAktorik::getInstance()->resetAktorik();
+				controller->reset();
+				MState->machineIsOn = false;
+			}
 	}
 #ifdef DEBUG_TIMER
-	//tim->showTimeArray();
+	// Timer::getInstance()->showTimeArray();
 #endif
 }

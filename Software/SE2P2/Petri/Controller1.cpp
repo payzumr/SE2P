@@ -14,7 +14,6 @@
 #include "HALSensorik.h"
 #include "HALAktorik.h"
 #include "MachineState.h"
-#include "Blinki.h"
 #include "Timer.h"
 #include "Serial.h"
 using namespace hal;
@@ -25,6 +24,7 @@ HALAktorik* HALa = HALAktorik::getInstance();
 MachineState* Mstat = MachineState::getInstance();
 Serial* ser = Serial::getInstance();
 thread::Timer* timer = thread::Timer::getInstance();
+Blinki* blink = new Blinki();
 
 Controller1::Controller1() {
 	ack = true;
@@ -32,7 +32,8 @@ Controller1::Controller1() {
 }
 
 Controller1::~Controller1() {
-	// TODO Auto-generated destructor stub
+	delete instance;
+	instance = NULL;
 }
 
 Controller1* Controller1::getInstance() {
@@ -70,15 +71,14 @@ void Controller1::init() {
  *
  *
  */
-
 void Controller1::reset() {
 	timer->resetTimer();
 	init();
-	HALa->greenLigths(OFF);
-	HALa->yellowLigths(OFF);
-	HALa->redLigths(OFF);
-	HALa->engine_slow(OFF);
-	HALa->switchOnOff(OFF);
+	HALAktorik::getInstance()->resetAktorik();
+	if (errorFlag) {
+		blink->stop();
+		blink->join();
+	}
 }
 
 void Controller1::entryStartSens() {
@@ -139,7 +139,6 @@ void Controller1::entryHeightMessure() {
 			pukArr[puk].place = S4;
 			pukArr[puk].type = withHole;
 			pukArr[puk].height1 = Mstat->height;
-
 		}
 		if (Mstat->height >= 2800 && Mstat->height <= 3400) {
 			pukArr[puk].place = S6;
@@ -307,7 +306,6 @@ void Controller1::entryFinishSens() {
 	if (!errorFlag) {
 		timer->setTimer(puk, -1);//timerArr[puk] = -1;
 		if (pukArr[puk].place == S9) {
-			cout << "S9..." << endl;
 			pukArr[puk].place = S12;
 			stopConveyer();
 
@@ -317,23 +315,20 @@ void Controller1::entryFinishSens() {
 			startConveyer();
 
 		} else if (pukArr[puk].place == S11) {
-			cout << "S11..." << endl;
 			pukArr[puk].place = S12;
 			stopConveyer();
 
 			handover(puk);
 
 			Mstat->turnAround = false;
-			Blinki::getInstance()->stop();
-			Blinki::getInstance()->join();
+			blink->stop();
+			blink->join();
 			resetPuk(puk);
 			startConveyer();
 		} else if (pukArr[puk].place == S10) {
-			cout << "S10..." << endl;
 			stopConveyer();
-			printf("Ich soll gleich blinken\)");
 			HALAktorik::getInstance()->yellowLigths(ON);
-			Blinki::getInstance()->start((void*) YELLOW);
+			blink->start((void*) YELLOW);
 			timer->turnaroundTimer = TURN_TIME;
 			Mstat->turnAround = true;
 
@@ -384,6 +379,7 @@ void Controller1::EStopPressed() {
 
 void Controller1::errorFound() {
 	HALa->engine_stop();
+	blink->start((void *) REDFAST);
 	HALa->redLigths(ON);
 	HALa->greenLigths(OFF);
 	HALa->yellowLigths(OFF);

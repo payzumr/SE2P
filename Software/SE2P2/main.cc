@@ -63,18 +63,19 @@ int main(int argc, char *argv[]) {
 	/*
 	 * Sensorik und Initalisation starten für den Initialisierungslauf
 	 */
-	//Blinki::getInstance()->start((void*)GREEN);
+	Blinki* blink = new Blinki();
+	blink->start((void*)GREEN);
 	HALSensorik::getInstance()->start(NULL);
 	Timer::getInstance()->start(NULL);
 	Initialisation::getInstance()->start(NULL);
 	//Warten auf den Abschluss der Initialisierung
-	while (MachineState::getInstance()->DispatcherGo) {
+	while (MachineState::getInstance()->dispatcherGo) {
 		sleep(1);
 	}
 	//Threads für die Initalisierung beenden
 	Initialisation::getInstance()->stop();
-	//Blinki::getInstance()->stop();
-	//Blinki::getInstance()->join();
+	blink->stop();
+	blink->join();
 	Initialisation::getInstance()->join();
 
 	//Dispatcher und somit das eigentliche Programm starten

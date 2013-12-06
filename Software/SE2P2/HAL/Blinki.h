@@ -24,12 +24,9 @@ namespace hal{
 class Blinki: public thread::HAWThread  {
 
 private:
-	static Blinki* instance;
-	static Mutex* Blinki_mutex;
-	Blinki();
 public:
+	Blinki();
 	~Blinki();
-	static Blinki* getInstance();
 	void flashYellow();
 	void flashRedSlow();
 	void flashRedFast();

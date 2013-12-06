@@ -12,6 +12,7 @@
 #include "PukType.h"
 #include "Addresses.h"
 #include "PetriDefines.h"
+#include "Blinki.h"
 
 
 
@@ -28,10 +29,10 @@ private:
 	int pukPointer;
 	int numOfPuks;
 	int pukIdentifier;
-	bool errorFlag;
 
 	Controller1();
 public:
+	bool errorFlag;
 	struct puk{
 		int pukIdentifier;
 		pukType type;
