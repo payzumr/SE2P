@@ -7,16 +7,10 @@
 
 #ifndef CONTROLLER2_H_
 #define CONTROLLER2_H_
-#include "../HAW/HAWThread.h"
-#include "../HAW/HWaccess.h"
-#include "HALSensorik.h"
-#include "HALAktorik.h"
-#include "MachineState.h"
-#include "Addresses.h"
+#include "Mutex.h"
 #include "PukType.h"
+#include "Addresses.h"
 #include "PetriDefines.h"
-#include "Blinki.h"
-#include "Timer.h"
 
 
 
@@ -70,6 +64,10 @@ public:
 	void EStopPressed();
 	void EStopReleased();
 
+
+	void resetPuk(int puk);
+	void stopConveyer();
+	void startConveyer();
 	void printPuk(int puk);
 };
 

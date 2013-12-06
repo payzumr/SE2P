@@ -19,7 +19,7 @@
 #include <iostream>
 
 #define SLIDE_TIME 1500
-#define TURN_TIME 10000
+#define TURN_TIME 5000
 
 class MachineState {
 private:
@@ -31,6 +31,9 @@ public:
 	virtual ~MachineState();
 	static MachineState* getInstance();
 
+	int height;
+
+	bool machineIsOn;
 	bool SensEntry;
 	bool SensExit;
 	bool SensHeight;
@@ -40,8 +43,13 @@ public:
 	bool SwitchOpen;
 	bool running;
 	bool turnAround;
-	int height;
+	//Band 2
+	bool bandBelegt;
+	bool goingBack;
+	bool isMetal;
+	bool sortOut;
 
+	//initilisation
 	bool DispatcherGo;
 	bool InitRound;
 
