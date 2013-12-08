@@ -23,6 +23,7 @@ public:
 	virtual void componentTest(HALAktorik* hal);
 	virtual void serialTest(Serial* serial);
 	void sensorikPulseTest(HALSensorik* halS);
+	void controllerTest();
 };
 
 #endif /* TEST_H_ */

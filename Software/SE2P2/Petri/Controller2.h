@@ -21,13 +21,11 @@ private:
 	static Controller2* instance;
 	static Mutex* controller2_mutex;
 
-	void errorFound();
 
 
 	int pukPointer;
 	int numOfPuks;
 	int pukIdentifier;
-	bool errorFlag;
 
 	Controller2();
 public:
@@ -40,7 +38,11 @@ public:
 		bool metall;
 	} pukArr[N_PUKS];
 
+	bool ack;
+
     static Controller2* getInstance();
+	bool errorFlag;
+	void errorFound();
 
 	~Controller2();
 	void init();

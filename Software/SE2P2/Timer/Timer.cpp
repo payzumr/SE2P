@@ -63,14 +63,17 @@ void Timer::execute(void* args) {
 		if (Mst->running) {
 			countDownTimer();
 		}
-
 		if (turnaroundTimer != -1) {
 			turnaroundTimer -= 1;
 		}
 		if (turnaroundTimer == 0) {//nochmal angucken ob andere timer ablaufen
 			printf("Timeout: Werkstueck umdrehen!\n");
-			HALAktorik::getInstance()->engine_stop();
-			HALAktorik::getInstance()->redLigths(ON);
+#ifdef BAND_1
+		Controller1::getInstance()->errorFound();
+#endif
+#ifdef BAND_2
+		Controller2::getInstance()->errorFound();
+#endif
 			turnaroundTimer = -1;
 		}
 
@@ -78,7 +81,6 @@ void Timer::execute(void* args) {
 }
 void Timer::shutdown() {
 	cout << "shutdown Timer..." << endl;
-
 }
 
 void Timer::countDownTimer() {
@@ -89,9 +91,15 @@ void Timer::countDownTimer() {
 		}
 		if (timerArr[i] == 0) {
 			printf("Timeout: Fehlerzustand Puk! Nr: %d\n", i);
-			HALak->engine_stop();
-			HALak->redLigths(ON);
-			timerArr[i] = -1;
+#ifdef BAND_1
+		Controller1* control = Controller1::getInstance();
+#endif
+#ifdef BAND_2
+		Controller2* control = Controller2::getInstance();
+#endif
+		control->errorFlag = true;
+		control->errorFound();
+		timerArr[i] = -1;
 		}
 	}
 	if (slideTimer != -1) {
@@ -99,8 +107,12 @@ void Timer::countDownTimer() {
 	}
 	if (slideTimer == 0) {
 		printf("Timeout: Fehlerzustand Rutsche voll!\n");
-		HALak->engine_stop();
-		HALak->redLigths(ON);
+#ifdef BAND_1
+		Controller1::getInstance()->errorFound();
+#endif
+#ifdef BAND_2
+		Controller2::getInstance()->errorFound();
+#endif
 		slideTimer = -1;
 	}
 
@@ -116,12 +128,17 @@ void Timer::countDownTimer() {
 		slowTimer -= 1;
 	}
 
+	if (endTimer == 0) {
+#ifdef BAND_1
+		Controller1::getInstance()->errorFound();
+#endif
+#ifdef BAND_2
+		Controller2::getInstance()->errorFound();
+#endif
+		endTimer = -1;
+	}
 	if (endTimer != -1) {
 		endTimer -= 1;
-	}
-	if (endTimer == 0) {
-		HALak->engine_stop();
-		endTimer = -1;
 	}
 }
 

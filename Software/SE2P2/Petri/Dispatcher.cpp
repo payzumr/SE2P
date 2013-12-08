@@ -55,7 +55,6 @@ void Dispatcher::execute(void* arg) {
 #ifdef DEBUG_MESSAGE
 	cout << "Dispatcher gestartet" << endl;
 #endif
-	not_aus_reset = false;
 	struct _pulse pulse;
 	while (!isStopped()) {
 		if (-1 == MsgReceivePulse(signalChid, &pulse, sizeof(pulse), NULL)) {
@@ -168,6 +167,7 @@ void Dispatcher::setSensorChanges(int code, int val) {
 #ifdef DEBUG_MESSAGE
 				cout << "Werkstueck nicht mehr in Auslauf" << endl;
 #endif
+				controller->exitFinishSens();
 				MState->sensExit = false;
 			}
 		} else if (code == BUTTONS) {
@@ -190,50 +190,50 @@ void Dispatcher::setSensorChanges(int code, int val) {
 		}
 	} else if (!MState->machineIsOn && (code == BUTTONS)) {
 
-			if (val & START) {
+		if (val & START) {
 #ifdef DEBUG_MESSAGE
-				cout << "Starttaste gedrueckt" << endl;
+			cout << "Starttaste gedrueckt" << endl;
 #endif
-				HALAktorik::getInstance()->greenLigths(ON);
-				MState->machineIsOn = true;
-			}
-	}else if(MState->machineIsOn && controller->errorFlag && (code == BUTTONS)){
+			HALAktorik::getInstance()->greenLigths(ON);
+			MState->machineIsOn = true;
+		}
+	} else if (MState->machineIsOn && controller->errorFlag && !e_stop
+			&& (code == BUTTONS)) {
 
 		if ((val & RESET)) {
 #ifdef DEBUG_MESSAGE
 			cout << "Resettaste gedrueckt" << endl;
 #endif
 			controller->reset();
-			HALAktorik::getInstance()->greenLigths(ON);
 		}
-	}else if(MState->machineIsOn && !e_stop && (code == BUTTONS)){
+	} else if (MState->machineIsOn && !e_stop && (code == BUTTONS)) {
 
-			if (!(val & E_STOP)) {
+		if (!(val & E_STOP)) {
 #ifdef DEBUG_MESSAGE
-				cout << "E-stop gedrueckt" << endl;
+			cout << "E-stop gedrueckt" << endl;
 #endif
-				controller->EStopPressed();
-				e_stop = true;
-			}
-	}else if(MState->machineIsOn && e_stop &&(code == BUTTONS)){
+			controller->EStopPressed();
+			e_stop = true;
+		}
+	} else if (MState->machineIsOn && e_stop && (code == BUTTONS)) {
 		if ((val & E_STOP)) {
 #ifdef DEBUG_MESSAGE
 			cout << "E-stop nicht mehr gedrueckt" << endl;
 #endif
-			//zurück zum alten zustand? oder alles auf 0 setzen?????
 			e_stop = false;
 		}
-	}else if(MState->machineIsOn && (code == BUTTONS)){
-			if (!(val & STOP)) {
+	} else if (MState->machineIsOn && (code == BUTTONS)) {
+		if (!(val & STOP)) {
 #ifdef DEBUG_MESSAGE
-				cout << "Stoptaste gedrueckt" << endl;
+			cout << "Stoptaste gedrueckt" << endl;
 #endif
-				HALAktorik::getInstance()->resetAktorik();
-				controller->reset();
-				MState->machineIsOn = false;
-			}
+			HALAktorik::getInstance()->resetAktorik();
+			controller->reset();
+			MState->machineIsOn = false;
+		}
 	}
 #ifdef DEBUG_TIMER
+	//printf("Maschine ist : %d\n", MState->machineIsOn);
 	// Timer::getInstance()->showTimeArray();
 #endif
 }

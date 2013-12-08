@@ -16,19 +16,17 @@
 #include "MachineState.h"
 #include "Timer.h"
 #include "Serial.h"
+#include "LightControl.h"
 using namespace hal;
 
 Controller1* Controller1::instance = NULL;
 Mutex* Controller1::controller1_mutex = new Mutex();
 HALAktorik* HALa = HALAktorik::getInstance();
 MachineState* Mstat = MachineState::getInstance();
-Serial* ser = Serial::getInstance();
 thread::Timer* timer = thread::Timer::getInstance();
-Blinki* blink = new Blinki();
 
 Controller1::Controller1() {
 	ack = true;
-
 }
 
 Controller1::~Controller1() {
@@ -52,7 +50,6 @@ Controller1* Controller1::getInstance() {
 }
 
 void Controller1::init() {
-	errorFlag = false;
 	numOfPuks = 0;
 	pukPointer = 0;
 	pukIdentifier = 0;
@@ -60,7 +57,7 @@ void Controller1::init() {
 	for (; i < N_PUKS; i++) {
 		pukArr[i].pukIdentifier = 0;
 		pukArr[i].type = undefined;
-		pukArr[i].place = S0;
+		pukArr[i].place = CONVEYOROCCUPIED;
 		pukArr[i].height1 = 0;
 		pukArr[i].height2 = 0;
 	}
@@ -73,12 +70,11 @@ void Controller1::init() {
  */
 void Controller1::reset() {
 	timer->resetTimer();
-	init();
+	errorFlag = false;
+	MachineState::getInstance()->stopLigth = true;
 	HALAktorik::getInstance()->resetAktorik();
-	if (errorFlag) {
-		blink->stop();
-		blink->join();
-	}
+	HALAktorik::getInstance()->greenLigths(ON);
+	cout << "Reset pusht! Machine is ready" << endl;
 }
 
 void Controller1::entryStartSens() {
@@ -89,7 +85,7 @@ void Controller1::entryStartSens() {
 #endif
 		errorFound();
 	} else {
-		pukArr[pukPointer].place = S1;
+		pukArr[pukPointer].place = CONVEYOREMPTY;
 		pukPointer = (pukPointer + 1) % N_PUKS;
 		pukArr[pukPointer].pukIdentifier = pukIdentifier;
 		pukIdentifier++;
@@ -101,17 +97,17 @@ void Controller1::entryStartSens() {
 }
 void Controller1::exitStartSens() {
 	int puk = 0;
-	while (pukArr[puk].place != S1) {
+	while (pukArr[puk].place != CONVEYOREMPTY) {
 		puk++;
 	}
-	pukArr[puk].place = S2;
+	pukArr[puk].place = CONVEYORBEGINNING;
 	timer->setTimer(puk, (Mstat->entryToHeight_f + timer->slowTimer));//timerArr[puk] = Mstat->entryToHeight_f;
 }
 
 void Controller1::entryHeightMessure() {
 	HALa->engine_slow(ON);
 	int puk = 0;
-	while (pukArr[puk].place != S2 && puk <= N_PUKS) {
+	while (pukArr[puk].place != CONVEYORBEGINNING && puk <= N_PUKS) {
 		puk++;
 		if (puk == N_PUKS) {
 			errorFlag = true;
@@ -128,25 +124,25 @@ void Controller1::entryHeightMessure() {
 			timer->switchTimer += timer->slowTimer;
 		}
 		timer->addSlowTime(puk);
-		pukArr[puk].place = S3;
+		pukArr[puk].place = INHEIGHTMEASURE;
 
 #ifdef SIMULATION
 		if (Mstat->height >= 60000 && Mstat->height <= 70000) {
-			pukArr[puk].place = S4; //<-- anpassen manuell
+			pukArr[puk].place = HOLEPUKHM; //<-- anpassen manuell
 		}
 #endif
 		if (Mstat->height >= 3400 && Mstat->height <= 3800) {
-			pukArr[puk].place = S4;
+			pukArr[puk].place = HOLEPUKHM;
 			pukArr[puk].type = withHole;
 			pukArr[puk].height1 = Mstat->height;
 		}
 		if (Mstat->height >= 2800 && Mstat->height <= 3400) {
-			pukArr[puk].place = S6;
+			pukArr[puk].place = FLATPUKHM;
 			pukArr[puk].type = flat;
 			pukArr[puk].height1 = Mstat->height;
 		}
 		if (Mstat->height >= 2000 && Mstat->height <= 2800) {
-			pukArr[puk].place = S5;
+			pukArr[puk].place = NONHOLEPUKHM;
 			pukArr[puk].type = tall;
 			pukArr[puk].height1 = Mstat->height;
 		}
@@ -161,17 +157,17 @@ void Controller1::entryHeightMessure() {
 
 void Controller1::exitHeightMessure() {
 	int puk = N_PUKS - 1;
-	while ((pukArr[puk].place != S4 && pukArr[puk].place != S5
-			&& pukArr[puk].place != S6) && puk >= -1) {
+	while ((pukArr[puk].place != HOLEPUKHM && pukArr[puk].place != NONHOLEPUKHM
+			&& pukArr[puk].place != FLATPUKHM) && puk >= -1) {
 		puk--;
 	}
-	timer->setTimer(puk, Mstat->heightToSwitch_f);//timerArr[puk] = Mstat->heightToSwitch_f;
+	timer->setTimer(puk, Mstat->heightToSwitch_f);
 	HALa->engine_slow(OFF);
 }
 
 void Controller1::metalFound() {
 	int puk = 0;
-	while (pukArr[puk].place != S4 && puk <= N_PUKS) {
+	while (pukArr[puk].place != HOLEPUKHM && puk <= N_PUKS) {
 		puk++;
 		if (puk == N_PUKS) {
 			errorFlag = true;
@@ -193,7 +189,7 @@ void Controller1::metalFound() {
 
 void Controller1::entrySlide() {
 	int puk = 0;
-	while (pukArr[puk].place != S6 && puk <= N_PUKS) {
+	while (pukArr[puk].place != FLATPUKHM && puk <= N_PUKS) {
 		puk++;
 		if (puk == N_PUKS) {
 			errorFlag = true;
@@ -217,7 +213,7 @@ void Controller1::exitSlide() {
 	timer->slideTimer = -1;
 	bool conveyerEmpty = false;
 	int puk = 0;
-	while (pukArr[puk].place == S0 && puk <= N_PUKS) {
+	while (pukArr[puk].place == CONVEYOROCCUPIED && puk <= N_PUKS) {
 		puk++;
 		if (puk == N_PUKS) {
 			conveyerEmpty = true;
@@ -231,8 +227,8 @@ void Controller1::exitSlide() {
 
 void Controller1::entrySwitch() {
 	int puk = 0;
-	while ((pukArr[puk].place != S4 && pukArr[puk].place != S5
-			&& pukArr[puk].place != S6) && puk <= N_PUKS) {
+	while ((pukArr[puk].place != HOLEPUKHM && pukArr[puk].place != NONHOLEPUKHM
+			&& pukArr[puk].place != FLATPUKHM) && puk <= N_PUKS) {
 		puk++;
 		if (puk == N_PUKS) {
 			errorFlag = true;
@@ -243,19 +239,19 @@ void Controller1::entrySwitch() {
 	}
 	if (!errorFlag) {
 		timer->setTimer(puk, -1);//timerArr[puk] = -1;
-		if (pukArr[puk].place == S4 && pukArr[puk].type == withMetal) {
-			pukArr[puk].place = S8;
+		if (pukArr[puk].place == HOLEPUKHM && pukArr[puk].type == withMetal) {
+			pukArr[puk].place = INSWITCHNONHOLEMETAL;
 			HALa->switchOnOff(ON);
 			timer->switchTimer = SWITCH_OPEN_TIME;
-		} else if (pukArr[puk].place == S4) {
-			pukArr[puk].place = S7;//auf 7 zurucksetzen!!!!!!!!!!!!!!!!!!!!!!!!!
+		} else if (pukArr[puk].place == HOLEPUKHM) {
+			pukArr[puk].place = INSWITCHNONMETAL;//auf 7 zurucksetzen!!!!!!!!!!!!!!!!!!!!!!!!!
 			HALa->switchOnOff(ON);
 			timer->switchTimer = SWITCH_OPEN_TIME;
-		} else if (pukArr[puk].place == S5) {
-			pukArr[puk].place = S8;
+		} else if (pukArr[puk].place == NONHOLEPUKHM) {
+			pukArr[puk].place = INSWITCHNONHOLEMETAL;
 			HALa->switchOnOff(ON);
 			timer->switchTimer = SWITCH_OPEN_TIME;
-		} else if (pukArr[puk].place == S6) {
+		} else if (pukArr[puk].place == FLATPUKHM) {
 
 		}
 		printPuk(puk);
@@ -269,8 +265,9 @@ void Controller1::entrySwitch() {
 }
 void Controller1::exitSwitch() {
 	int puk = N_PUKS - 1;
-	while ((pukArr[puk].place != S7 && pukArr[puk].place != S8
-			&& pukArr[puk].place != S6) && puk >= -1) {
+	while ((pukArr[puk].place != INSWITCHNONMETAL && pukArr[puk].place
+			!= INSWITCHNONHOLEMETAL && pukArr[puk].place != FLATPUKHM) && puk
+			>= -1) {
 		puk--;
 		if (puk == -1) {
 			errorFlag = true;
@@ -281,10 +278,10 @@ void Controller1::exitSwitch() {
 	}
 	timer->setTimer(puk, Mstat->switchToExit_f + timer->slowTimer);//timerArr[puk] = Mstat->switchToExit_f;
 	if (!errorFlag) {
-		if (pukArr[puk].place == S7) {
-			pukArr[puk].place = S9;
-		} else if (pukArr[puk].place == S8) {
-			pukArr[puk].place = S10;
+		if (pukArr[puk].place == INSWITCHNONMETAL) {
+			pukArr[puk].place = STARTEXITPARTHOLE;
+		} else if (pukArr[puk].place == INSWITCHNONHOLEMETAL) {
+			pukArr[puk].place = STARTEXITNONPARTHOLEMETAL;
 		}
 	} else {
 		errorFound();
@@ -292,8 +289,9 @@ void Controller1::exitSwitch() {
 }
 void Controller1::entryFinishSens() {
 	int puk = 0;
-	while ((pukArr[puk].place != S9 && pukArr[puk].place != S10
-			&& pukArr[puk].place != S11) && puk <= N_PUKS) {
+	while ((pukArr[puk].place != STARTEXITPARTHOLE && pukArr[puk].place
+			!= STARTEXITNONPARTHOLEMETAL && pukArr[puk].place != TURNPLACECE)
+			&& puk <= N_PUKS) {
 		puk++;
 		if (puk == N_PUKS) {
 			errorFlag = true;
@@ -305,37 +303,32 @@ void Controller1::entryFinishSens() {
 	printPuk(puk);
 	if (!errorFlag) {
 		timer->setTimer(puk, -1);//timerArr[puk] = -1;
-		if (pukArr[puk].place == S9) {
-			pukArr[puk].place = S12;
+		if (pukArr[puk].place == STARTEXITPARTHOLE) {
+			pukArr[puk].place = EXIT;
 			stopConveyer();
 
 			handover(puk);
 
-			//resetPuk(puk);
 			startConveyer();
 
-		} else if (pukArr[puk].place == S11) {
-			pukArr[puk].place = S12;
+		} else if (pukArr[puk].place == TURNPLACECE) {
+			timer->turnaroundTimer = -1;
+			pukArr[puk].place = EXIT;
 			stopConveyer();
 
 			handover(puk);
 
 			Mstat->turnAround = false;
-			blink->stop();
-			blink->join();
-			resetPuk(puk);
+			Mstat->stopLigth = true;
+			HALa->greenLigths(ON);
 			startConveyer();
-		} else if (pukArr[puk].place == S10) {
+		} else if (pukArr[puk].place == STARTEXITNONPARTHOLEMETAL) {
 			stopConveyer();
-			HALAktorik::getInstance()->yellowLigths(ON);
-			blink->start((void*) YELLOW);
 			timer->turnaroundTimer = TURN_TIME;
 			Mstat->turnAround = true;
-
+			Mstat->yellow = true;
 			HALa->greenLigths(OFF);
-			pukArr[puk].place = S11;
-		} else if (pukArr[puk].place != S11) {
-
+			pukArr[puk].place = TURNPLACECE;
 		}
 	} else {
 		errorFound();
@@ -343,34 +336,47 @@ void Controller1::entryFinishSens() {
 }
 void Controller1::exitFinishSens() {
 	if (!Mstat->turnAround) {
-		printf("exit finish\n");
-		bool conveyerEmpty = false;
 		int puk = 0;
-		while (puk <= N_PUKS) {
+		while (pukArr[puk].place != WAITFORCONVEYOR2 && puk <= N_PUKS) {
 			puk++;
 			if (puk == N_PUKS) {
-				conveyerEmpty = true;
+				errorFlag = true;
 			}
 		}
-		if (conveyerEmpty) {
-			reset();
-			stopConveyer();
+		printf("error is == %d\n", errorFlag);
+		if (!errorFlag) {
+
+			resetPuk(puk);
+			cout << "huhu1" << endl;
+
+			bool conveyerEmpty = false;
+			int puk = 0;
+			while (pukArr[puk].place == CONVEYOROCCUPIED && puk <= N_PUKS) {
+				puk++;
+				if (puk == N_PUKS) {
+					conveyerEmpty = true;
+				}
+			}
+			if (conveyerEmpty) {
+				timer->endTimer = END_TIMER;
+			}
 		}
 	}
 }
 
 void Controller1::handover(int puk) {
-	pukArr[puk].place = S13;
+	pukArr[puk].place = WAITFORCONVEYOR2;
 	ack = true;
 	while (ack) {
-		ser->write_serial_puk(&pukArr[puk]);
+		Serial::getInstance()->write_serial_puk(&pukArr[puk]);
 	}
 }
 //tasten
 void Controller1::EStopPressed() {
-	ser->write_serial_stop();
-	HALa->engine_stop();
-	HALa->redLigths(ON);
+	Serial::getInstance()->write_serial_stop();
+	stopConveyer();
+	errorFlag = true;
+	MachineState::getInstance()->redFast = true;
 	HALa->greenLigths(OFF);
 	HALa->yellowLigths(OFF);
 	init();
@@ -378,12 +384,12 @@ void Controller1::EStopPressed() {
 }
 
 void Controller1::errorFound() {
-	HALa->engine_stop();
-	blink->start((void *) REDFAST);
-	HALa->redLigths(ON);
+	stopConveyer();
 	HALa->greenLigths(OFF);
 	HALa->yellowLigths(OFF);
+	MachineState::getInstance()->redFast = true;
 	init();
+	//ordentliche Fehlerausgaben
 	printf("Fehler Aufgetreten! Band muss abgeraumt werden!\n");
 }
 
@@ -407,7 +413,7 @@ void Controller1::resetPuk(int puk) {
 	timer->setTimer(puk, -1);
 	pukArr[puk].pukIdentifier = 0;
 	pukArr[puk].type = undefined;
-	pukArr[puk].place = S0;
+	pukArr[puk].place = CONVEYOROCCUPIED;
 	pukArr[puk].height1 = 0;
 	pukArr[puk].height2 = 0;
 	pukArr[puk].metall = false;

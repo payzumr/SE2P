@@ -50,13 +50,6 @@ const struct sigevent* ISR(void* arg, int id) {
 }
 
 hal::HALSensorik::HALSensorik() {
-	// Initialisierung der Digitalen IO Karte
-		out8(DIO_BASE + DIO_OFFS_CTRL, 0x8A);
-		out8(DIO_BASE + DIO_OFFS_A, 0x00);
-		out8(DIO_BASE + DIO_OFFS_C, 0x00);
-
-	//make sure HAL object is already created
-	//	hal::HALSensorik::getInstance();
 	initInterrupts();
 	//create channel for dispatcher
 	signalChid = ChannelCreate(0);
@@ -166,7 +159,6 @@ void hal::HALSensorik::execute(void *arg) {
 	struct _pulse pulse;
 	while (!isStopped()) {
 		if (-1 == MsgReceivePulse(isrChid, &pulse, sizeof(pulse), NULL)) {
-			printf("22222\n");
 			if (isStopped()) {
 				break; // channel destroyed, Thread ending
 			}

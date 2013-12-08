@@ -19,7 +19,7 @@
 #include "Initialisation.h"
 #include "Timer.h"
 #include "Serial.h"
-#include "Blinki.h"
+#include "LightControl.h"
 
 #include "Thread.h"
 #define TEST_TIME 25
@@ -63,20 +63,20 @@ int main(int argc, char *argv[]) {
 	/*
 	 * Sensorik und Initalisation starten für den Initialisierungslauf
 	 */
-	Blinki* blink = new Blinki();
-	blink->start((void*)GREEN);
 	HALSensorik::getInstance()->start(NULL);
 	Timer::getInstance()->start(NULL);
 	Initialisation::getInstance()->start(NULL);
+	LightControl::getInstance()->start(NULL);
+	MachineState::getInstance()->green = true;
 	//Warten auf den Abschluss der Initialisierung
 	while (MachineState::getInstance()->dispatcherGo) {
 		sleep(1);
 	}
+	MachineState::getInstance()->stopLigth = true;
 	//Threads für die Initalisierung beenden
 	Initialisation::getInstance()->stop();
-	blink->stop();
-	blink->join();
 	Initialisation::getInstance()->join();
+
 
 	//Dispatcher und somit das eigentliche Programm starten
 	Dispatcher::getInstance()->start(NULL);

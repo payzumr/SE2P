@@ -149,9 +149,6 @@ void Initialisation::setSensorChanges(int code, int val) {
 			MState->switchToExit_f += 200;
 #endif
 			MState->switchToExit_f += 300;
-			if (MState->initRound) {
-				MState->dispatcherGo = false;
-			}
 #ifdef DEBUG_MESSAGE
 			MState->showTimes();
 			cout << "Werkstueck in Auslauf" << endl;
@@ -164,9 +161,13 @@ void Initialisation::setSensorChanges(int code, int val) {
 #ifdef DEBUG_MESSAGE
 			cout << "Werkstueck nicht mehr in Auslauf" << endl;
 #endif
+			if (MState->initRound) {
+				MState->dispatcherGo = false;
+			}
 			MState->sensExit = false;
 			MState->initRound = true;
 
 		}
 	}
+	MState->goingBackTimer = MState->entryToHeight_f + MState->heightToSwitch_f;
 }

@@ -12,7 +12,6 @@
 #include "PukType.h"
 #include "Addresses.h"
 #include "PetriDefines.h"
-#include "Blinki.h"
 
 
 
@@ -23,7 +22,6 @@ private:
 	static Controller1* instance;
 	static Mutex* controller1_mutex;
 
-	void errorFound();
 
 
 	int pukPointer;
@@ -32,6 +30,7 @@ private:
 
 	Controller1();
 public:
+	void errorFound();
 	bool errorFlag;
 	struct puk{
 		int pukIdentifier;

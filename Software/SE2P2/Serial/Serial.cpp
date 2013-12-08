@@ -14,6 +14,7 @@
 #include <string>
 #include <pthread.h>
 #include <unistd.h>
+#include "Timer.h"
 
 using namespace hal;
 
@@ -23,7 +24,7 @@ Mutex* Serial::Serialmutex = new Mutex();
 Serial* Serial::instance = NULL;
 
 Serial::Serial() {
-	/*
+
 	 fd = open_serial("dev/Ser1");
 	 struct termios ts;
 	 tcflush(fd, TCIOFLUSH);
@@ -37,7 +38,7 @@ Serial::Serial() {
 	 ts.c_cflag |= CREAD;
 	 ts.c_cflag |= CLOCAL;
 	 tcsetattr(fd, TCSANOW, &ts); // TCSANOW : The change is made immediately.
-	 */
+
 }
 
 Serial::~Serial() {
@@ -110,6 +111,7 @@ void Serial::close_serial() {
  */
 
 ssize_t Serial::write_serial_puk(struct Controller1::puk* puk) {
+	cout << " send puk"  << endl;
 	ssize_t returnV;
 	struct packet p;
 	p.pukId = puk->pukIdentifier;
@@ -131,6 +133,7 @@ ssize_t Serial::write_serial_puk(struct Controller1::puk* puk) {
  */
 
 ssize_t Serial::write_serial_stop() {
+	cout << " send stop"  << endl;
 	ssize_t returnVal;
 
 	struct packet p;
@@ -155,6 +158,7 @@ ssize_t Serial::write_serial_stop() {
  */
 
 ssize_t Serial::write_serial_ack(uint8_t ack) {
+	cout << " send ack"  << endl;
 	ssize_t returnVal;
 	struct packet p;
 
@@ -175,7 +179,7 @@ ssize_t Serial::write_serial_ack(uint8_t ack) {
 	if (returnVal < 0) {
 		perror("write failed");
 	}
-	usleep(200000); // min. Zeit zwischen 2 Nachrichten
+	usleep(500000); // min. Zeit zwischen 2 Nachrichten
 	return returnVal;
 }
 
@@ -187,6 +191,9 @@ ssize_t Serial::write_serial_ack(uint8_t ack) {
 int Serial::read_serial(struct packet p) {
 #ifdef BAND_1
 	Controller1* con = Controller1::getInstance();
+#endif
+#ifdef BAND_2
+	Controller2* con = Controller2::getInstance();
 #endif
 
 	HALSensorik* hal_S = HALSensorik::getInstance();
@@ -200,7 +207,7 @@ int Serial::read_serial(struct packet p) {
 		if (returnV < 0) {
 			perror("read failed");
 		}
-		printPacket(&p);
+//		printPacket(&p);
 	}
 	/*
 	 * 1= E-Stop 2=Data 3=Ack
@@ -209,20 +216,20 @@ int Serial::read_serial(struct packet p) {
 	case (1):
 		MsgSendPulse(i_coid, SIGEV_PULSE_PRIO_INHERIT, BUTTONS, ESTOPBUTTON);
 	case (2):
-		if (con->pukArr[0].pukIdentifier == -1) {
+		if (!(con->pukArr[0].pukIdentifier == -1)) {
 			write_serial_ack(2);
 		}else{
 			con->pukArr[0].pukIdentifier = p.pukId;
 			con->pukArr[0].height1 = p.height1;
 			(p.type == 1)? con->pukArr[0].type = tall:(p.type == 2)? con->pukArr[0].type = withHole : con->pukArr[0].type = withMetal;
 			write_serial_ack(1);
-			//starten
+			con->startConveyer();
 		}
 	case (3):
 			if(p.acktype == 1){
 				con->ack = false;
 			}else{
-				usleep(5000);
+				thread::Timer::getInstance()->turnaroundTimer = TURN_TIME;
 			}
 
 	}

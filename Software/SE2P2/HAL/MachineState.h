@@ -34,13 +34,13 @@ public:
 	int height;
 
 	bool machineIsOn;
-	bool SensEntry;
-	bool SensExit;
-	bool SensHeight;
-	bool SensSwitch;
-	bool SensMetall;
-	bool SensSlip;
-	bool SwitchOpen;
+	bool sensEntry;
+	bool sensExit;
+	bool sensHeight;
+	bool sensSwitch;
+	bool sensMetall;
+	bool sensSlip;
+	bool switchOpen;
 	bool running;
 	bool turnAround;
 	//Band 2
@@ -50,13 +50,21 @@ public:
 	bool sortOut;
 
 	//initilisation
-	bool DispatcherGo;
-	bool InitRound;
+	bool dispatcherGo;
+	bool initRound;
+
+	//Lights
+	bool redFast;
+	bool redSlow;
+	bool yellow;
+	bool green;
+	bool stopLigth;
 
 	//times
 	int entryToHeight_f;
 	int heightToSwitch_f;
 	int switchToExit_f;
+	int goingBackTimer;
 
 	int inHeigthTime;
 

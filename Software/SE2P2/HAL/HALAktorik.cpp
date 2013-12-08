@@ -245,10 +245,12 @@ void HALAktorik::engine_start() {
 	out8(DIO_BASE + DIO_OFFS_A, val & ~BIT_3);
 	HALmutex->unlock();
 }
+/**
+ * This function resets all Bits
+ */
 
 void HALAktorik::resetAktorik(){
 	HALmutex->lock();
-	out8(DIO_BASE + DIO_OFFS_A, RESET);
+	out8(DIO_BASE + DIO_OFFS_A,RESET_AKT);
 	HALmutex->unlock();
-
 }

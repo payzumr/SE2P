@@ -22,22 +22,29 @@ MachineState::MachineState() {
 	 * Sensor States default is false
 	 */
 	machineIsOn = false;
-	SensEntry = false;
-	SensExit = false;
-	SensHeight = false;
-	SensMetall = false;
-	SensSlip = false;
-	SensSwitch = false;
-	SwitchOpen = false;
-	InitRound = false;
+	sensEntry = false;
+	sensExit = false;
+	sensHeight = false;
+	sensMetall = false;
+	sensSlip = false;
+	sensSwitch = false;
+	switchOpen = false;
+	initRound = false;
 
 	bandBelegt = false;
 	goingBack = false;
 	isMetal = false;
 	sortOut = false;
 
+	redSlow = false;
+	redFast = false;
+	stopLigth = true;
+	yellow = false;
+	green = false;
+
+
 	running = false;
-	DispatcherGo = true;
+	dispatcherGo = true;
 	turnAround = false;
 
 	height = 0;
@@ -75,13 +82,13 @@ void MachineState::showMachineState(){
 		   "Weiche offen: %d  \n"
 		   "E Stop gedrückt: %d \n"
 		   "Hoehe: %d \n",
-		   instance->SensEntry,
-		   instance->SensExit,
-		   instance->SensHeight,
-		   instance->SensSwitch,
-		   instance->SensMetall,
-		   instance->SensSlip,
-		   instance->SwitchOpen,
+		   instance->sensEntry,
+		   instance->sensExit,
+		   instance->sensHeight,
+		   instance->sensSwitch,
+		   instance->sensMetall,
+		   instance->sensSlip,
+		   instance->switchOpen,
 		   //instance->E_Stop,
 		   instance->height);
 }

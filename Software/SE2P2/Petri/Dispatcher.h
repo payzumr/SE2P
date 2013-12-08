@@ -28,10 +28,7 @@ private:
 
 	int signalChid;
 
-	bool portC_6;
 	bool e_stop;
-
-	bool not_aus_reset;
 
 	void setSensorChanges(int code, int val);
 	Dispatcher();
