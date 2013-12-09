@@ -108,7 +108,7 @@ void Controller2::entryHeightMessure() {
 				pukArr[PUK].place = S4; //<-- anpassen manuell
 			}
 #endif
-			if (MachineS->height >= 3400 && MachineS->height <= 3800) {
+			if (MachineS->height >= 3000 && MachineS->height <= 3800) {
 				pukArr[PUK].place = HOLEPUKHM;
 				pukArr[PUK].type = withHole;
 				pukArr[PUK].height2 = MachineS->height;
@@ -140,9 +140,11 @@ void Controller2::exitHeightMessure() {
 	}
 }
 void Controller2::metalFound() {
-	HAL_A->engine_left();
+	HALAktorik::getInstance()->engine_left();
 	cout << "metal found!!!!!!!!!!!!" <<endl;
-	if (!MachineS->isMetal) {
+	if (!MachineS->isMetal) { //????????? Wieso fragst du metall ab wenn du es nirgendswo anders gebrauchst?
+		//Weißt du noch welche ausgaben kamen?
+		//wir können am anfang nochmal den componenten test laufen lassen ob links auch funktioniert
 		cout << "metal found first time" <<endl;
 		if (pukArr[PUK].place == HOLEPUKHM) {
 			cout << "metal found and S3" <<endl;
@@ -152,7 +154,7 @@ void Controller2::metalFound() {
 			pukArr[PUK].place = METALLNOTOK;
 			MachineS->goingBack = true;
 			MachineS->isMetal = true;
-			HAL_A->engine_left();
+			HALAktorik::getInstance()->engine_left();
 			cout << "metal found go left" <<endl;
 			startConveyer();
 			timerC2->setTimer(PUK, MachineS->goingBackTimer);
@@ -277,8 +279,6 @@ void Controller2::errorFound() {
 void Controller2::printPuk(int puk) {
 	printf("Puk:\n");
 	printf("PukID: %d\n", pukArr[puk].pukIdentifier);
-//	printf("Stelle: %d\n", pukArr[puk].place);
-//	printf("Metall: %d\n", pukArr[puk].metall);
 	printf("Hohe1: %d\n", pukArr[puk].height1);
 	printf("Hohe2: %d\n", pukArr[puk].height2);
 	printf("Typ: ");
@@ -286,11 +286,11 @@ void Controller2::printPuk(int puk) {
 }
 
 void Controller2::stopConveyer() {
-	HAL_A->engine_stop();
+	HALAktorik::getInstance()->engine_stop();
 	MachineS->running = false;
 }
 void Controller2::startConveyer() {
-	HAL_A->engine_start();
+	HALAktorik::getInstance()->engine_start();
 	MachineS->running = true;
 }
 

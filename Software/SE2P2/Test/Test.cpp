@@ -173,6 +173,13 @@ void Test::componentTest(HALAktorik* hal) {
 	cout << "engine slow off" << endl;
 #endif
 	sleep(SLEEP_ONE_SEC);
+#ifdef TEST_MESSAGES
+	cout << "reset the machine" << endl;
+#endif
+	hal->resetAktorik();
+#ifdef TEST_MESSAGES
+	cout << "Test is finished" << endl;
+#endif
 }
 /**
  * testing to send a char to the other device
