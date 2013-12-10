@@ -20,7 +20,6 @@ class Controller1 {
 private:
 
 	static Controller1* instance;
-	static Mutex* controller1_mutex;
 
 
 
@@ -30,6 +29,7 @@ private:
 
 	Controller1();
 public:
+	static Mutex* controller1_mutex;
 	void errorFound();
 	bool errorFlag;
 	struct puk{

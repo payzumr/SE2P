@@ -195,7 +195,8 @@ void HALAktorik::led_Reset(bool state){
 void HALAktorik::engine_rigth() {
 	HALmutex->lock();
 	uint8_t val = in8(DIO_BASE + DIO_OFFS_A);
-	val = val | (BIT_0 & ~BIT_1);
+	val = val | BIT_0;
+	val = val & ~BIT_1;
 	out8(DIO_BASE + DIO_OFFS_A, val);
 	HALmutex->unlock();
 }

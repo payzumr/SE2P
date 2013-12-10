@@ -58,7 +58,7 @@ void LightControl::execute(void* arg) {
 		} else if (machineS->green) {
 			flashGreenIni();
 		} else {
-			usleep(50000);
+			usleep(10000);
 		}
 	}
 }
@@ -103,6 +103,8 @@ void LightControl::stopLights() {
 		HALAktorik::getInstance()->greenLigths(OFF);
 	}
 	HALAktorik::getInstance()->yellowLigths(OFF);
-	HALAktorik::getInstance()->redLigths(OFF);
+	cout << "mache aus " << endl;
+
+//	HALAktorik::getInstance()->redLigths(OFF);
 	MachineState::getInstance()->stopLigth = false;
 }

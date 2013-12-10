@@ -50,7 +50,7 @@ Controller1* Controller1::getInstance() {
 }
 
 void Controller1::init() {
-	numOfPuks = 0;
+//	numOfPuks = 0;
 	pukPointer = 0;
 	pukIdentifier = 0;
 	int i = 0;
@@ -69,16 +69,22 @@ void Controller1::init() {
  *
  */
 void Controller1::reset() {
+
 	timer->resetTimer();
 	errorFlag = false;
-	MachineState::getInstance()->stopLigth = true;
+	init();
+	MachineState::getInstance()->sensEntry = false;
 	HALAktorik::getInstance()->resetAktorik();
 	HALAktorik::getInstance()->greenLigths(ON);
+
 	cout << "Reset pusht! Machine is ready" << endl;
 }
 
 void Controller1::entryStartSens() {
-	if (++numOfPuks == N_PUKS + 1) {
+	controller1_mutex->lock();
+	timer->endTimer = -1;
+	cout << "pukpointer " << pukPointer << endl;
+	if (++pukPointer == N_PUKS + 1) {
 
 #ifdef DEBUG_MESSAGE
 		cout << "Error found in entryStartSens()" << endl;
@@ -86,25 +92,34 @@ void Controller1::entryStartSens() {
 		errorFound();
 	} else {
 		pukArr[pukPointer].place = CONVEYOREMPTY;
-		pukPointer = (pukPointer + 1) % N_PUKS;
 		pukArr[pukPointer].pukIdentifier = pukIdentifier;
 		pukIdentifier++;
+	cout << "HALLOHALLO " << endl;
 
-		HALa->greenLigths(ON);
-		HALa->engine_rigth();
-		startConveyer();
+		if (pukPointer == 1) {
+			HALa->greenLigths(ON);
+			HALa->engine_rigth();
+			startConveyer();
+		}
 	}
+	controller1_mutex->unlock();
 }
 void Controller1::exitStartSens() {
+	cout << "mutex 4 " << endl;
+	controller1_mutex->lock();
 	int puk = 0;
 	while (pukArr[puk].place != CONVEYOREMPTY) {
 		puk++;
 	}
 	pukArr[puk].place = CONVEYORBEGINNING;
 	timer->setTimer(puk, (Mstat->entryToHeight_f + timer->slowTimer));//timerArr[puk] = Mstat->entryToHeight_f;
+	printPuk(puk);
+	controller1_mutex->unlock();
 }
 
 void Controller1::entryHeightMessure() {
+	cout << "mutex 1 " << endl;
+	controller1_mutex->lock();
 	HALa->engine_slow(ON);
 	int puk = 0;
 	while (pukArr[puk].place != CONVEYORBEGINNING && puk <= N_PUKS) {
@@ -131,12 +146,12 @@ void Controller1::entryHeightMessure() {
 			pukArr[puk].place = HOLEPUKHM; //<-- anpassen manuell
 		}
 #endif
-		if (Mstat->height >= 3400 && Mstat->height <= 3800) {
+		if (Mstat->height >= 3200 && Mstat->height <= 3800) {
 			pukArr[puk].place = HOLEPUKHM;
 			pukArr[puk].type = withHole;
 			pukArr[puk].height1 = Mstat->height;
 		}
-		if (Mstat->height >= 2800 && Mstat->height <= 3400) {
+		if (Mstat->height >= 2800 && Mstat->height <= 3200) {
 			pukArr[puk].place = FLATPUKHM;
 			pukArr[puk].type = flat;
 			pukArr[puk].height1 = Mstat->height;
@@ -153,19 +168,25 @@ void Controller1::entryHeightMessure() {
 		errorFound();
 	}
 	printPuk(puk);
+	controller1_mutex->unlock();
 }
 
 void Controller1::exitHeightMessure() {
+	cout << "mutex 5 " << endl;
+	controller1_mutex->lock();
 	int puk = N_PUKS - 1;
 	while ((pukArr[puk].place != HOLEPUKHM && pukArr[puk].place != NONHOLEPUKHM
 			&& pukArr[puk].place != FLATPUKHM) && puk >= -1) {
 		puk--;
 	}
-	timer->setTimer(puk, Mstat->heightToSwitch_f);
 	HALa->engine_slow(OFF);
+	timer->setTimer(puk, Mstat->heightToSwitch_f);
+	printPuk(puk);
+	controller1_mutex->unlock();
 }
 
 void Controller1::metalFound() {
+	controller1_mutex->lock();
 	int puk = 0;
 	while (pukArr[puk].place != HOLEPUKHM && puk <= N_PUKS) {
 		puk++;
@@ -185,9 +206,13 @@ void Controller1::metalFound() {
 #endif
 		errorFound();
 	}
+	printPuk(puk);
+	controller1_mutex->unlock();
 }
 
 void Controller1::entrySlide() {
+	cout << "mutex 6 " << endl;
+	controller1_mutex->lock();
 	int puk = 0;
 	while (pukArr[puk].place != FLATPUKHM && puk <= N_PUKS) {
 		puk++;
@@ -198,7 +223,6 @@ void Controller1::entrySlide() {
 #endif
 		}
 	}
-	printPuk(puk);
 	if (!errorFlag) {
 		resetPuk(puk);
 		timer->slideTimer = SLIDE_TIME;
@@ -208,24 +232,36 @@ void Controller1::entrySlide() {
 #endif
 		errorFound();
 	}
+	printPuk(puk);
+	controller1_mutex->unlock();
 }
 void Controller1::exitSlide() {
+	cout << "mutex 7 " << endl;
+	controller1_mutex->lock();
 	timer->slideTimer = -1;
 	bool conveyerEmpty = false;
 	int puk = 0;
+
+	// hier fragen wir nicht nach dem flachen puk es kann also jeder rausgeschmissen werden und dann machen wir print puk und dann reset mit ner zahl die nicht geht
+
 	while (pukArr[puk].place == CONVEYOROCCUPIED && puk <= N_PUKS) {
 		puk++;
 		if (puk == N_PUKS) {
 			conveyerEmpty = true;
 		}
 	}
+	resetPuk(puk);
 	if (conveyerEmpty) {
-		reset();
+		//reset();
 		stopConveyer();
 	}
+	printPuk(puk);
+	controller1_mutex->unlock();
 }
 
 void Controller1::entrySwitch() {
+	cout << "mutex 8 " << endl;
+	controller1_mutex->lock();
 	int puk = 0;
 	while ((pukArr[puk].place != HOLEPUKHM && pukArr[puk].place != NONHOLEPUKHM
 			&& pukArr[puk].place != FLATPUKHM) && puk <= N_PUKS) {
@@ -252,9 +288,10 @@ void Controller1::entrySwitch() {
 			HALa->switchOnOff(ON);
 			timer->switchTimer = SWITCH_OPEN_TIME;
 		} else if (pukArr[puk].place == FLATPUKHM) {
-
+			HALa->switchOnOff(ON);
+			usleep(100000);
+			HALa->switchOnOff(OFF);
 		}
-		printPuk(puk);
 
 	} else {
 #ifdef DEBUG_MESSAGE
@@ -262,9 +299,15 @@ void Controller1::entrySwitch() {
 #endif
 		errorFound();
 	}
+		printPuk(puk);
+	controller1_mutex->unlock();
 }
 void Controller1::exitSwitch() {
+	cout << "mutex 9 " << endl;
+	controller1_mutex->lock();
 	int puk = N_PUKS - 1;
+
+	//Hier wird als einziges der flache puk nicht bearbeitet
 	while ((pukArr[puk].place != INSWITCHNONMETAL && pukArr[puk].place
 			!= INSWITCHNONHOLEMETAL && pukArr[puk].place != FLATPUKHM) && puk
 			>= -1) {
@@ -276,6 +319,9 @@ void Controller1::exitSwitch() {
 #endif
 		}
 	}
+
+	// hier kann der timer auch auf den flachen puk draufgerechnet werden soll das so?
+
 	timer->setTimer(puk, Mstat->switchToExit_f + timer->slowTimer);//timerArr[puk] = Mstat->switchToExit_f;
 	if (!errorFlag) {
 		if (pukArr[puk].place == INSWITCHNONMETAL) {
@@ -286,8 +332,13 @@ void Controller1::exitSwitch() {
 	} else {
 		errorFound();
 	}
+	printPuk(puk);
+	controller1_mutex->unlock();
 }
 void Controller1::entryFinishSens() {
+	cout << "mutex 10 " << endl;
+	controller1_mutex->lock();
+	stopConveyer();
 	int puk = 0;
 	while ((pukArr[puk].place != STARTEXITPARTHOLE && pukArr[puk].place
 			!= STARTEXITNONPARTHOLEMETAL && pukArr[puk].place != TURNPLACECE)
@@ -300,30 +351,29 @@ void Controller1::entryFinishSens() {
 #endif
 		}
 	}
-	printPuk(puk);
 	if (!errorFlag) {
 		timer->setTimer(puk, -1);//timerArr[puk] = -1;
 		if (pukArr[puk].place == STARTEXITPARTHOLE) {
 			pukArr[puk].place = EXIT;
-			stopConveyer();
+			//			stopConveyer();
 
 			handover(puk);
 
 			startConveyer();
 
 		} else if (pukArr[puk].place == TURNPLACECE) {
-			timer->turnaroundTimer = -1;
 			pukArr[puk].place = EXIT;
-			stopConveyer();
-
-			handover(puk);
-
+			//			stopConveyer();
+			timer->turnaroundTimer = -1;
 			Mstat->turnAround = false;
 			Mstat->stopLigth = true;
 			HALa->greenLigths(ON);
+
+			handover(puk);
+
 			startConveyer();
 		} else if (pukArr[puk].place == STARTEXITNONPARTHOLEMETAL) {
-			stopConveyer();
+			//			stopConveyer();
 			timer->turnaroundTimer = TURN_TIME;
 			Mstat->turnAround = true;
 			Mstat->yellow = true;
@@ -332,22 +382,26 @@ void Controller1::entryFinishSens() {
 		}
 	} else {
 		errorFound();
+		cout << "Error in entry Finsh Sens" << endl;
 	}
+	printPuk(puk);
+	controller1_mutex->unlock();
 }
 void Controller1::exitFinishSens() {
+	cout << "mutex 11 " << endl;
+	controller1_mutex->lock();
 	if (!Mstat->turnAround) {
 		int puk = 0;
 		while (pukArr[puk].place != WAITFORCONVEYOR2 && puk <= N_PUKS) {
 			puk++;
 			if (puk == N_PUKS) {
 				errorFlag = true;
+				cout << "Error in entry Finsh Sens" << endl;
 			}
 		}
-		printf("error is == %d\n", errorFlag);
 		if (!errorFlag) {
 
 			resetPuk(puk);
-			cout << "huhu1" << endl;
 
 			bool conveyerEmpty = false;
 			int puk = 0;
@@ -361,7 +415,9 @@ void Controller1::exitFinishSens() {
 				timer->endTimer = END_TIMER;
 			}
 		}
+	printPuk(puk);
 	}
+	controller1_mutex->unlock();
 }
 
 void Controller1::handover(int puk) {
@@ -369,10 +425,13 @@ void Controller1::handover(int puk) {
 	ack = true;
 	while (ack) {
 		Serial::getInstance()->write_serial_puk(&pukArr[puk]);
+		usleep(900000);
 	}
 }
 //tasten
 void Controller1::EStopPressed() {
+	cout << "mutex 12 " << endl;
+	controller1_mutex->lock();
 	Serial::getInstance()->write_serial_stop();
 	stopConveyer();
 	errorFlag = true;
@@ -381,9 +440,11 @@ void Controller1::EStopPressed() {
 	HALa->yellowLigths(OFF);
 	init();
 	printf("Not-Aus gedrueckt! Band muss abgeraumt werden!\n");
+	controller1_mutex->unlock();
 }
 
 void Controller1::errorFound() {
+	errorFlag = true;
 	stopConveyer();
 	HALa->greenLigths(OFF);
 	HALa->yellowLigths(OFF);
@@ -399,6 +460,8 @@ void Controller1::printPuk(int puk) {
 	printf("Stelle: %d\n", pukArr[puk].place);
 	printf("Metall: %d\n", pukArr[puk].metall);
 	printf("Hohe1: %d\n", pukArr[puk].height1);
+	printf("Pointer :%d\n", pukPointer);
+	printf("Größe: %d\n", sizeof(pukArr)/sizeof(struct puk));
 }
 void Controller1::stopConveyer() {
 	HALa->engine_stop();
@@ -417,4 +480,24 @@ void Controller1::resetPuk(int puk) {
 	pukArr[puk].height1 = 0;
 	pukArr[puk].height2 = 0;
 	pukArr[puk].metall = false;
+
+	if (pukPointer > 0) {
+		int i = puk;
+		for (; i < pukPointer; i++) {
+			pukArr[i] = pukArr[i + 1];
+			timer->timerArr[i] = timer->timerArr[i + 1];
+			if (i == pukPointer - 1) {
+				timer->setTimer(i + 1, -1);
+				pukArr[i + 1].pukIdentifier = 0;
+				pukArr[i + 1].type = undefined;
+				pukArr[i + 1].place = CONVEYOROCCUPIED;
+				pukArr[i + 1].height1 = 0;
+				pukArr[i + 1].height2 = 0;
+				pukArr[i + 1].metall = false;
+			}
+			//letzten löschen????????????
+		}
+		pukPointer--;
+	}
+
 }

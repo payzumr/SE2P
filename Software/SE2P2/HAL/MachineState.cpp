@@ -14,9 +14,21 @@ Mutex* MachineState::Machine_Mutex = new Mutex();
 MachineState* MachineState::instance = NULL;
 
 MachineState::MachineState() {
+	machineStateReset();
+
+}
+
+MachineState::~MachineState() {
+	delete instance;
+	instance = NULL;
+}
+
+void MachineState::machineStateReset(){
 
 	slideTime = SLIDE_TIME;
 	turnaroundTime = TURN_TIME;
+
+
 
 	/**
 	 * Sensor States default is false
@@ -30,6 +42,7 @@ MachineState::MachineState() {
 	sensSwitch = false;
 	switchOpen = false;
 	initRound = false;
+	quittiert = false;
 
 	bandBelegt = false;
 	goingBack = false;
@@ -49,14 +62,7 @@ MachineState::MachineState() {
 
 	height = 0;
 
-
 }
-
-MachineState::~MachineState() {
-	delete instance;
-	instance = NULL;
-}
-
 MachineState* MachineState::getInstance(){
 	Machine_Mutex->lock();
 	if (instance == NULL) {

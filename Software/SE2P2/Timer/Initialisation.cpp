@@ -163,6 +163,7 @@ void Initialisation::setSensorChanges(int code, int val) {
 #endif
 			if (MState->initRound) {
 				MState->dispatcherGo = false;
+				Initialisation::getInstance()->stop();
 			}
 			MState->sensExit = false;
 			MState->initRound = true;

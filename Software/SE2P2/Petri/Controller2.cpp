@@ -29,7 +29,7 @@ Controller2::Controller2() {
 
 Controller2::~Controller2() {
 	delete instance;
-		instance = NULL;
+	instance = NULL;
 }
 
 Controller2* Controller2::getInstance() {
@@ -62,7 +62,7 @@ void Controller2::entryStartSens() {
 	timerC2->setTimer(PUK, -1);
 	if (pukArr[PUK].place == CONVEYOREMPTY) {//Stellen noch etwas unklar!!!!!!!!!!!!!
 		HAL_A->greenLigths(ON);
-		//MachineS->bandBelegt = true;
+
 	} else if (pukArr[PUK].place == METALLNOTOK) {
 		if (!MachineS->turnAround) {
 			stopConveyer();
@@ -74,6 +74,8 @@ void Controller2::entryStartSens() {
 			pukArr[PUK].place = CONVEYOREMPTY;
 			MachineS->goingBack = false;
 			MachineS->stopLigth = true;
+			MachineS->turnAround = false;
+			HAL_A->engine_rigth();
 			startConveyer();
 		}
 	} else {
@@ -140,22 +142,19 @@ void Controller2::exitHeightMessure() {
 	}
 }
 void Controller2::metalFound() {
-	HALAktorik::getInstance()->engine_left();
-	cout << "metal found!!!!!!!!!!!!" <<endl;
 	if (!MachineS->isMetal) { //????????? Wieso fragst du metall ab wenn du es nirgendswo anders gebrauchst?
+			stopConveyer();
+//			HALAktorik::getInstance()->engine_left();
+			usleep(200000);
 		//Weißt du noch welche ausgaben kamen?
 		//wir können am anfang nochmal den componenten test laufen lassen ob links auch funktioniert
-		cout << "metal found first time" <<endl;
 		if (pukArr[PUK].place == HOLEPUKHM) {
-			cout << "metal found and S3" <<endl;
-			stopConveyer();
 			pukArr[PUK].metall = true;
 			pukArr[PUK].type = withMetal;
 			pukArr[PUK].place = METALLNOTOK;
 			MachineS->goingBack = true;
 			MachineS->isMetal = true;
 			HALAktorik::getInstance()->engine_left();
-			cout << "metal found go left" <<endl;
 			startConveyer();
 			timerC2->setTimer(PUK, MachineS->goingBackTimer);
 		} else {
@@ -186,50 +185,58 @@ void Controller2::entrySlide() {
 }
 void Controller2::exitSlide() {
 	timerC2->slideTimer = -1;
-	reset();
 	stopConveyer();
 }
 void Controller2::entrySwitch() {
 	timerC2->setTimer(PUK, -1);
 	if (!MachineS->sortOut) {
+//		if (!MachineS->isMetal) {
 
-		if (pukArr[PUK].place == NONHOLEPUKHM) {
-			pukArr[PUK].place = INSWITCHNONHOLE;
-			HAL_A->switchOnOff(ON);
-			timerC2->switchTimer = SWITCH_OPEN_TIME;
-		} else if (pukArr[PUK].place == HOLEPUKHM) {
-			pukArr[PUK].place = INSWITCHHOLE;
-			HAL_A->switchOnOff(ON);
-			timerC2->switchTimer = SWITCH_OPEN_TIME;
-		} else {
+			if (pukArr[PUK].place == NONHOLEPUKHM) {
+				pukArr[PUK].place = INSWITCHNONHOLE;
+				HAL_A->switchOnOff(ON);
+				timerC2->switchTimer = SWITCH_OPEN_TIME;
+			} else if (pukArr[PUK].place == HOLEPUKHM) {
+				pukArr[PUK].place = INSWITCHHOLE;
+				HAL_A->switchOnOff(ON);
+				timerC2->switchTimer = SWITCH_OPEN_TIME;
+			} else {
 
 #ifdef DEBUG_MESSAGE
-			cout << "Fehler in entrySwitch" << endl;
+				cout << "Fehler in entrySwitch" << endl;
 #endif
-			errorFound();
-		}
-//		//???????????????????????????????????????????????????????????????????????????????????????????????
-//		if (pukArr[PUK].metall == true) {
-//			pukArr[PUK].type = withMetal;
+				errorFound();
+			}
 //		}
 
+
+		//		//???????????????????????????????????????????????????????????????????????????????????????????????
+		//		if (pukArr[PUK].metall == true) {
+		//			pukArr[PUK].type = withMetal;
+		//		}
+
 	} else {
-		//ignore
+		HALAktorik::getInstance()->switchOnOff(ON);
+		usleep(100000);
+		HALAktorik::getInstance()->switchOnOff(OFF);
 	}
 }
 void Controller2::exitSwitch() {
 	if (!MachineS->sortOut) {
+//		if (!MachineS->isMetal) {
 
-		timerC2->setTimer(PUK, MachineS->switchToExit_f);
-		if (pukArr[PUK].place == INSWITCHHOLE || pukArr[PUK].place == INSWITCHNONHOLE) {
-			pukArr[PUK].place = STARTEXITPART;
-			//Blinki::getInstance()->start()
-		} else {
+			timerC2->setTimer(PUK, MachineS->switchToExit_f);
+			if (pukArr[PUK].place == INSWITCHHOLE || pukArr[PUK].place
+					== INSWITCHNONHOLE) {
+				pukArr[PUK].place = STARTEXITPART;
+				//Blinki::getInstance()->start()
+			} else {
 #ifdef DEBUG_MESSAGE
-			cout << "Error found in exitSwitch()" << endl;
+				cout << "Error found in exitSwitch()" << endl;
 #endif
-			errorFound();
-		}
+				errorFound();
+			}
+//		}
 	} else {
 		//ignore
 	}
@@ -250,7 +257,6 @@ void Controller2::entryFinishSens() {
 }
 
 void Controller2::exitFinishSens() {
-	MachineS->bandBelegt = false;
 	resetPuk(PUK);
 }
 
@@ -282,7 +288,7 @@ void Controller2::printPuk(int puk) {
 	printf("Hohe1: %d\n", pukArr[puk].height1);
 	printf("Hohe2: %d\n", pukArr[puk].height2);
 	printf("Typ: ");
-	(pukArr[puk].type == withHole)? printf("withHole\n") : printf("tall\n");
+	(pukArr[puk].type == withHole) ? printf("withHole\n") : printf("tall\n");
 }
 
 void Controller2::stopConveyer() {
@@ -302,4 +308,8 @@ void Controller2::resetPuk(int puk) {
 	pukArr[puk].height1 = 0;
 	pukArr[puk].height2 = 0;
 	pukArr[puk].metall = false;
+
+	MachineS->isMetal = false;
+	MachineS->goingBack = false;
+	MachineS->turnAround = false;
 }

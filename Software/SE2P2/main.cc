@@ -68,13 +68,17 @@ int main(int argc, char *argv[]) {
 	Initialisation::getInstance()->start(NULL);
 	LightControl::getInstance()->start(NULL);
 	MachineState::getInstance()->green = true;
+
+	cout << "Initialisierungslauf startet! Bitte 2 mal nacheindander das komplette Band durchlaufen lassen." << endl;
+
 	//Warten auf den Abschluss der Initialisierung
 	while (MachineState::getInstance()->dispatcherGo) {
-		sleep(1);
+		usleep(50000);
 	}
 	MachineState::getInstance()->stopLigth = true;
+
 	//Threads für die Initalisierung beenden
-	Initialisation::getInstance()->stop();
+//	Initialisation::getInstance()->stop();
 	Initialisation::getInstance()->join();
 
 

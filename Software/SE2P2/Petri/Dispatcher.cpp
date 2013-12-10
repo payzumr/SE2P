@@ -10,6 +10,7 @@
 
 #include "Dispatcher.h"
 #include "HALAktorik.h"
+#include "Controller2.h"
 
 using namespace thread;
 using namespace hal;
@@ -197,14 +198,19 @@ void Dispatcher::setSensorChanges(int code, int val) {
 			HALAktorik::getInstance()->greenLigths(ON);
 			MState->machineIsOn = true;
 		}
-	} else if (MState->machineIsOn && controller->errorFlag && !e_stop
-			&& (code == BUTTONS)) {
+	} else if (MState->machineIsOn && controller->errorFlag && !e_stop && (code
+			== BUTTONS)) {
 
 		if ((val & RESET)) {
 #ifdef DEBUG_MESSAGE
 			cout << "Resettaste gedrueckt" << endl;
 #endif
-			controller->reset();
+			if (MState->quittiert) {
+				controller->reset();
+			} else {
+				MachineState::getInstance()->stopLigth = true;
+				Timer::getInstance()->quittiertTimer = QUITTIERT_TIME;
+			}
 		}
 	} else if (MState->machineIsOn && !e_stop && (code == BUTTONS)) {
 

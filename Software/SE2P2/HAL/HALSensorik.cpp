@@ -155,7 +155,6 @@ void hal::HALSensorik::shutdown() {
 }
 
 void hal::HALSensorik::execute(void *arg) {
-	printf("11111\n");
 	struct _pulse pulse;
 	while (!isStopped()) {
 		if (-1 == MsgReceivePulse(isrChid, &pulse, sizeof(pulse), NULL)) {

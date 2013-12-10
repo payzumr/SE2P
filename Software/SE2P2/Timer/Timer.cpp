@@ -24,6 +24,7 @@ Timer::Timer() {
 	slideTimer = -1;
 	turnaroundTimer = -1;
 	endTimer = -1;
+	quittiertTimer = -1;
 
 	channelID = ChannelCreate(0);
 	if (channelID == -1) {
@@ -66,17 +67,27 @@ void Timer::execute(void* args) {
 		if (turnaroundTimer != -1) {
 			turnaroundTimer -= 1;
 		}
-		if (turnaroundTimer == 0) {//nochmal angucken ob andere timer ablaufen
+		if (turnaroundTimer == 0) {
 			printf("Timeout: Werkstueck umdrehen!\n");
 #ifdef BAND_1
-		Controller1::getInstance()->errorFound();
+			Controller1::getInstance()->errorFlag = true;
+			Controller1::getInstance()->errorFound();
 #endif
 #ifdef BAND_2
-		Controller2::getInstance()->errorFound();
+			Controller2::getInstance()->errorFlag = true;
+			Controller2::getInstance()->errorFound();
 #endif
 			turnaroundTimer = -1;
 		}
 
+		if (quittiertTimer != -1) {
+			quittiertTimer -= 1;
+		}
+		if (quittiertTimer == 0) {
+			HALAktorik::getInstance()->redLigths(ON);
+			Mst->quittiert = true;
+			quittiertTimer = -1;
+		}
 	}
 }
 void Timer::shutdown() {
@@ -92,14 +103,14 @@ void Timer::countDownTimer() {
 		if (timerArr[i] == 0) {
 			printf("Timeout: Fehlerzustand Puk! Nr: %d\n", i);
 #ifdef BAND_1
-		Controller1* control = Controller1::getInstance();
+			Controller1* control = Controller1::getInstance();
 #endif
 #ifdef BAND_2
-		Controller2* control = Controller2::getInstance();
+			Controller2* control = Controller2::getInstance();
 #endif
-		control->errorFlag = true;
-		control->errorFound();
-		timerArr[i] = -1;
+			control->errorFlag = true;
+			control->errorFound();
+			timerArr[i] = -1;
 		}
 	}
 	if (slideTimer != -1) {
@@ -129,11 +140,12 @@ void Timer::countDownTimer() {
 	}
 
 	if (endTimer == 0) {
+		cout << "Fehler im EndTimer" << endl;
 #ifdef BAND_1
-		Controller1::getInstance()->errorFound();
+		Controller1::getInstance()->reset();
 #endif
 #ifdef BAND_2
-		Controller2::getInstance()->errorFound();
+		Controller2::getInstance()->reset();
 #endif
 		endTimer = -1;
 	}

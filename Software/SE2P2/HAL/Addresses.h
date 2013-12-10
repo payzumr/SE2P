@@ -11,8 +11,6 @@
 #ifndef ADDRESSES_H_
 #define ADDRESSES_H_
 
-#define BAND_1
-//#define BAND_2
 
 /**
  * Base Adressen and Offsets for the Ports
@@ -93,5 +91,12 @@
 #define YELLOW 4
 #define GREEN 5
 
+//Timer
+
+#define SLIDE_TIME 1000
+#define TURN_TIME 5000
+#define SWITCH_OPEN_TIME 1000
+#define END_TIMER 1500
+#define QUITTIERT_TIME 500;
 
 #endif /* ADDRESSES_H_ */

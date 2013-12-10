@@ -15,6 +15,7 @@
 #include <pthread.h>
 #include <unistd.h>
 #include "Timer.h"
+#include "Controller2.h"
 
 using namespace hal;
 
@@ -123,7 +124,7 @@ ssize_t Serial::write_serial_puk(struct Controller1::puk* puk) {
 	if (returnV < 0) {
 		perror("write failed");
 	}
-	usleep(200000); // min. Zeit zwischen 2 Nachrichten
+	//usleep(500000); // min. Zeit zwischen 2 Nachrichten
 	return returnV;
 
 }
@@ -147,7 +148,7 @@ ssize_t Serial::write_serial_stop() {
 	if (returnVal < 0) {
 		perror("write failed");
 	}
-	usleep(200000); // min. Zeit zwischen 2 Nachrichten
+	//usleep(500000); // min. Zeit zwischen 2 Nachrichten
 	return returnVal;
 }
 /*
@@ -158,7 +159,7 @@ ssize_t Serial::write_serial_stop() {
  */
 
 ssize_t Serial::write_serial_ack(uint8_t ack) {
-	cout << " send ack"  << endl;
+	cout << " send ack " << ack  << endl;
 	ssize_t returnVal;
 	struct packet p;
 
@@ -179,7 +180,7 @@ ssize_t Serial::write_serial_ack(uint8_t ack) {
 	if (returnVal < 0) {
 		perror("write failed");
 	}
-	usleep(500000); // min. Zeit zwischen 2 Nachrichten
+//	usleep(500000); // min. Zeit zwischen 2 Nachrichten
 	return returnVal;
 }
 
@@ -215,9 +216,11 @@ int Serial::read_serial(struct packet p) {
 	switch (p.status) {
 	case (1):
 		MsgSendPulse(i_coid, SIGEV_PULSE_PRIO_INHERIT, BUTTONS, ESTOPBUTTON);
+		break;
 	case (2):
+
 		if (!(con->pukArr[0].pukIdentifier == -1)) {
-			write_serial_ack(2);
+			/write_serial_ack(2);
 		}else{
 			con->pukArr[0].pukIdentifier = p.pukId;
 			con->pukArr[0].height1 = p.height1;
@@ -225,13 +228,16 @@ int Serial::read_serial(struct packet p) {
 			write_serial_ack(1);
 			con->startConveyer();
 		}
+		break;
 	case (3):
 			if(p.acktype == 1){
+				cout << "will ack loeschen" << endl;
 				con->ack = false;
-			}else{
-				thread::Timer::getInstance()->turnaroundTimer = TURN_TIME;
 			}
-
+//			else if (p.acktype == 2 && MachineState::getInstance()->turnAround){
+//				thread::Timer::getInstance()->turnaroundTimer = TURN_TIME;
+//			}
+			break;
 	}
 	return returnV;
 }

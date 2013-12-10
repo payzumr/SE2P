@@ -18,9 +18,6 @@
 #include <stdint.h>
 #include <iostream>
 
-#define SLIDE_TIME 1500
-#define TURN_TIME 5000
-
 class MachineState {
 private:
 	static MachineState* instance;
@@ -76,6 +73,9 @@ public:
 	int heightSlow;
 	void showMachineState();
 	void showTimes();
+	void machineStateReset();
+
+	bool quittiert;
 };
 
 #endif /* MACHINESTATE_H_ */
