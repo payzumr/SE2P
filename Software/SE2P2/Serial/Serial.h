@@ -48,7 +48,7 @@ public:
 	void close_serial();
 	ssize_t write_serial_puk(struct Controller1::puk* p);
 	ssize_t write_serial_stop();
-	ssize_t write_serial_ack(uint8_t ack);
+	ssize_t write_serial_ack();
 	int read_serial(struct packet p);
 	void printPacket(struct packet* p);
 

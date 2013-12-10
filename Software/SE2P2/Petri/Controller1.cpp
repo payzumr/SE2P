@@ -20,7 +20,7 @@
 using namespace hal;
 
 Controller1* Controller1::instance = NULL;
-Mutex* Controller1::controller1_mutex = new Mutex();
+//Mutex* Controller1::controller1_mutex = new Mutex();
 HALAktorik* HALa = HALAktorik::getInstance();
 MachineState* Mstat = MachineState::getInstance();
 thread::Timer* timer = thread::Timer::getInstance();
@@ -35,7 +35,7 @@ Controller1::~Controller1() {
 }
 
 Controller1* Controller1::getInstance() {
-	controller1_mutex->lock();
+//	controller1_mutex->lock();
 	if (instance == NULL) {
 		// Zugriffsrechte fuer den Zugriff auf die HW holen
 		if (-1 == ThreadCtl(_NTO_TCTL_IO, 0)) {
@@ -44,13 +44,13 @@ Controller1* Controller1::getInstance() {
 		}
 		instance = new Controller1();
 	}
-	controller1_mutex->unlock();
+//	controller1_mutex->unlock();
 
 	return instance;
 }
 
 void Controller1::init() {
-//	numOfPuks = 0;
+	//	numOfPuks = 0;
 	pukPointer = 0;
 	pukIdentifier = 0;
 	int i = 0;
@@ -81,7 +81,7 @@ void Controller1::reset() {
 }
 
 void Controller1::entryStartSens() {
-	controller1_mutex->lock();
+//	controller1_mutex->lock();
 	timer->endTimer = -1;
 	cout << "pukpointer " << pukPointer << endl;
 	if (++pukPointer == N_PUKS + 1) {
@@ -94,7 +94,7 @@ void Controller1::entryStartSens() {
 		pukArr[pukPointer].place = CONVEYOREMPTY;
 		pukArr[pukPointer].pukIdentifier = pukIdentifier;
 		pukIdentifier++;
-	cout << "HALLOHALLO " << endl;
+		cout << "HALLOHALLO " << endl;
 
 		if (pukPointer == 1) {
 			HALa->greenLigths(ON);
@@ -102,11 +102,10 @@ void Controller1::entryStartSens() {
 			startConveyer();
 		}
 	}
-	controller1_mutex->unlock();
+//	controller1_mutex->unlock();
 }
 void Controller1::exitStartSens() {
-	cout << "mutex 4 " << endl;
-	controller1_mutex->lock();
+//	controller1_mutex->lock();
 	int puk = 0;
 	while (pukArr[puk].place != CONVEYOREMPTY) {
 		puk++;
@@ -114,12 +113,11 @@ void Controller1::exitStartSens() {
 	pukArr[puk].place = CONVEYORBEGINNING;
 	timer->setTimer(puk, (Mstat->entryToHeight_f + timer->slowTimer));//timerArr[puk] = Mstat->entryToHeight_f;
 	printPuk(puk);
-	controller1_mutex->unlock();
+//	controller1_mutex->unlock();
 }
 
 void Controller1::entryHeightMessure() {
-	cout << "mutex 1 " << endl;
-	controller1_mutex->lock();
+//	controller1_mutex->lock();
 	HALa->engine_slow(ON);
 	int puk = 0;
 	while (pukArr[puk].place != CONVEYORBEGINNING && puk <= N_PUKS) {
@@ -168,12 +166,11 @@ void Controller1::entryHeightMessure() {
 		errorFound();
 	}
 	printPuk(puk);
-	controller1_mutex->unlock();
+//	controller1_mutex->unlock();
 }
 
 void Controller1::exitHeightMessure() {
-	cout << "mutex 5 " << endl;
-	controller1_mutex->lock();
+//	controller1_mutex->lock();
 	int puk = N_PUKS - 1;
 	while ((pukArr[puk].place != HOLEPUKHM && pukArr[puk].place != NONHOLEPUKHM
 			&& pukArr[puk].place != FLATPUKHM) && puk >= -1) {
@@ -182,11 +179,11 @@ void Controller1::exitHeightMessure() {
 	HALa->engine_slow(OFF);
 	timer->setTimer(puk, Mstat->heightToSwitch_f);
 	printPuk(puk);
-	controller1_mutex->unlock();
+//	controller1_mutex->unlock();
 }
 
 void Controller1::metalFound() {
-	controller1_mutex->lock();
+//	controller1_mutex->lock();
 	int puk = 0;
 	while (pukArr[puk].place != HOLEPUKHM && puk <= N_PUKS) {
 		puk++;
@@ -207,12 +204,11 @@ void Controller1::metalFound() {
 		errorFound();
 	}
 	printPuk(puk);
-	controller1_mutex->unlock();
+//	controller1_mutex->unlock();
 }
 
 void Controller1::entrySlide() {
-	cout << "mutex 6 " << endl;
-	controller1_mutex->lock();
+//	controller1_mutex->lock();
 	int puk = 0;
 	while (pukArr[puk].place != FLATPUKHM && puk <= N_PUKS) {
 		puk++;
@@ -233,11 +229,10 @@ void Controller1::entrySlide() {
 		errorFound();
 	}
 	printPuk(puk);
-	controller1_mutex->unlock();
+//	controller1_mutex->unlock();
 }
 void Controller1::exitSlide() {
-	cout << "mutex 7 " << endl;
-	controller1_mutex->lock();
+//	controller1_mutex->lock();
 	timer->slideTimer = -1;
 	bool conveyerEmpty = false;
 	int puk = 0;
@@ -256,12 +251,11 @@ void Controller1::exitSlide() {
 		stopConveyer();
 	}
 	printPuk(puk);
-	controller1_mutex->unlock();
+//	controller1_mutex->unlock();
 }
 
 void Controller1::entrySwitch() {
-	cout << "mutex 8 " << endl;
-	controller1_mutex->lock();
+//	controller1_mutex->lock();
 	int puk = 0;
 	while ((pukArr[puk].place != HOLEPUKHM && pukArr[puk].place != NONHOLEPUKHM
 			&& pukArr[puk].place != FLATPUKHM) && puk <= N_PUKS) {
@@ -299,12 +293,11 @@ void Controller1::entrySwitch() {
 #endif
 		errorFound();
 	}
-		printPuk(puk);
-	controller1_mutex->unlock();
+	printPuk(puk);
+//	controller1_mutex->unlock();
 }
 void Controller1::exitSwitch() {
-	cout << "mutex 9 " << endl;
-	controller1_mutex->lock();
+//	controller1_mutex->lock();
 	int puk = N_PUKS - 1;
 
 	//Hier wird als einziges der flache puk nicht bearbeitet
@@ -333,11 +326,10 @@ void Controller1::exitSwitch() {
 		errorFound();
 	}
 	printPuk(puk);
-	controller1_mutex->unlock();
+//	controller1_mutex->unlock();
 }
 void Controller1::entryFinishSens() {
-	cout << "mutex 10 " << endl;
-	controller1_mutex->lock();
+//	controller1_mutex->lock();
 	stopConveyer();
 	int puk = 0;
 	while ((pukArr[puk].place != STARTEXITPARTHOLE && pukArr[puk].place
@@ -385,11 +377,10 @@ void Controller1::entryFinishSens() {
 		cout << "Error in entry Finsh Sens" << endl;
 	}
 	printPuk(puk);
-	controller1_mutex->unlock();
+//	controller1_mutex->unlock();
 }
 void Controller1::exitFinishSens() {
-	cout << "mutex 11 " << endl;
-	controller1_mutex->lock();
+//	controller1_mutex->lock();
 	if (!Mstat->turnAround) {
 		int puk = 0;
 		while (pukArr[puk].place != WAITFORCONVEYOR2 && puk <= N_PUKS) {
@@ -415,9 +406,9 @@ void Controller1::exitFinishSens() {
 				timer->endTimer = END_TIMER;
 			}
 		}
-	printPuk(puk);
+		printPuk(puk);
 	}
-	controller1_mutex->unlock();
+//	controller1_mutex->unlock();
 }
 
 void Controller1::handover(int puk) {
@@ -425,13 +416,12 @@ void Controller1::handover(int puk) {
 	ack = true;
 	while (ack) {
 		Serial::getInstance()->write_serial_puk(&pukArr[puk]);
-		usleep(900000);
+		usleep(500000);
 	}
 }
 //tasten
 void Controller1::EStopPressed() {
-	cout << "mutex 12 " << endl;
-	controller1_mutex->lock();
+//	controller1_mutex->lock();
 	Serial::getInstance()->write_serial_stop();
 	stopConveyer();
 	errorFlag = true;
@@ -440,7 +430,7 @@ void Controller1::EStopPressed() {
 	HALa->yellowLigths(OFF);
 	init();
 	printf("Not-Aus gedrueckt! Band muss abgeraumt werden!\n");
-	controller1_mutex->unlock();
+//	controller1_mutex->unlock();
 }
 
 void Controller1::errorFound() {
@@ -451,7 +441,7 @@ void Controller1::errorFound() {
 	MachineState::getInstance()->redFast = true;
 	init();
 	//ordentliche Fehlerausgaben
-	printf("Fehler Aufgetreten! Band muss abgeraumt werden!\n");
+	cout << "Fehler Aufgetreten! Band muss abgeraumt werden!" << endl;
 }
 
 void Controller1::printPuk(int puk) {
@@ -461,7 +451,7 @@ void Controller1::printPuk(int puk) {
 	printf("Metall: %d\n", pukArr[puk].metall);
 	printf("Hohe1: %d\n", pukArr[puk].height1);
 	printf("Pointer :%d\n", pukPointer);
-	printf("Größe: %d\n", sizeof(pukArr)/sizeof(struct puk));
+	printf("Größe: %d\n", sizeof(pukArr) / sizeof(struct puk));
 }
 void Controller1::stopConveyer() {
 	HALa->engine_stop();
@@ -500,4 +490,74 @@ void Controller1::resetPuk(int puk) {
 		pukPointer--;
 	}
 
+}
+
+void Controller1::printPlace(int place) {
+	switch (place) {
+	case (0):
+		cout << "ConveyerEmpty" << endl;
+		break;
+	case (1):
+		cout << "ConveyorBeginnind" << endl;
+		break;
+	case (2):
+		cout << "InHeightMeasure" << endl;
+		break;
+	case (3):
+		cout << "HolePukHM" << endl;
+		break;
+	case (4):
+		cout << "NonHolePukHM" << endl;
+		break;
+	case (5):
+		cout << "FlatPukHM" << endl;
+		break;
+	case (6):
+		cout << "InSwitchNonMetal" << endl;
+		break;
+	case (7):
+		cout << "inSwitchNonHoleMetal" << endl;
+		break;
+	case (8):
+		cout << "StartExitPartHole" << endl;
+		break;
+	case (9):
+		cout << "StartExitNonPartHoleMetal" << endl;
+		break;
+	case (10):
+		cout << "Turnplace 10" << endl;
+		break;
+	case (11):
+		cout << "Exit" << endl;
+		break;
+	case (12):
+		cout << "WaitForConveyor2" << endl;
+		break;
+	case (13):
+		cout << "SlidePlace" << endl;
+		break;
+	case (14):
+		cout << "HeigthMEasure" << endl;
+		break;
+	case (15):
+		cout << "InSwitchHole" << endl;
+		break;
+	case (16):
+		cout << "MetallNotOk" << endl;
+		break;
+	case (17):
+		cout << "ErrorMarker" << endl;
+		break;
+	case (18):
+		cout << "StartExitPart" << endl;
+		break;
+	case (19):
+		cout << "ConveyorOccupied" << endl;
+		break;
+	case (20):
+		cout << "InSwitchHole" << endl;
+		break;
+	default:
+		cout << "No Place found" << endl;
+	}
 }

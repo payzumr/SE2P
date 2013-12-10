@@ -74,6 +74,7 @@ public:
 	void stopConveyer();
 	void startConveyer();
 	void printPuk(int puk);
+	void printPlace(int place);
 };
 
 #endif /* CONTROLLER1_H_ */

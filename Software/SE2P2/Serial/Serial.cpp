@@ -78,7 +78,6 @@ void Serial::shutdown() {
 
 	close_serial();
 	cout << "shutdown Serial..." << endl;
-
 }
 
 /**
@@ -106,9 +105,9 @@ void Serial::close_serial() {
 	fd = 0;
 }
 /**
- * Writes data from a Buffer buf with the length nbytes to the serial port.
- * @param 	buf: data
- * 			nbytes: number of bytes
+ * This Method writes the Puk Data from Machine 1 to Machine 2
+ * @param 	puk: Struct puk
+ *
  */
 
 ssize_t Serial::write_serial_puk(struct Controller1::puk* puk) {
@@ -120,21 +119,19 @@ ssize_t Serial::write_serial_puk(struct Controller1::puk* puk) {
 	p.status = 2;
 	p.type = puk->type;
 
-	returnV = write(fd, &p, sizeof(p));// s. open, Sendepuffer, Anzahl der zu schreibenden Bytes
+	returnV = write(fd, &p, sizeof(p));
 	if (returnV < 0) {
 		perror("write failed");
 	}
-	//usleep(500000); // min. Zeit zwischen 2 Nachrichten
 	return returnV;
 
 }
 /**
- * Status = 1
+ * This Method writes the Stop Signal
  *
  */
 
 ssize_t Serial::write_serial_stop() {
-	cout << " send stop"  << endl;
 	ssize_t returnVal;
 
 	struct packet p;
@@ -148,18 +145,15 @@ ssize_t Serial::write_serial_stop() {
 	if (returnVal < 0) {
 		perror("write failed");
 	}
-	//usleep(500000); // min. Zeit zwischen 2 Nachrichten
 	return returnVal;
 }
-/*
- * Ack Types
- * Status 3
- * 1 = Band 2 ready
- * 2 = Band 2 not ready
+/**
+ *
+ * This Method writes teh Aply from Machine 2 to Machine 1, if Machine 2 is ready
  */
 
-ssize_t Serial::write_serial_ack(uint8_t ack) {
-	cout << " send ack " << ack  << endl;
+ssize_t Serial::write_serial_ack() {
+	cout << " send ack "  << endl;
 	ssize_t returnVal;
 	struct packet p;
 
@@ -167,27 +161,21 @@ ssize_t Serial::write_serial_ack(uint8_t ack) {
 	p.height1 = 0;
 	p.type = 0;
 	p.pukId = 0;
+	p.acktype = 1;
 
-	switch (ack) {
-	case (1):
-		p.acktype = 1;
-		break;
-	case (2):
-		p.acktype = 2;
-	}
 
 	returnVal = write(fd, &p, sizeof(p));
 	if (returnVal < 0) {
 		perror("write failed");
 	}
-//	usleep(500000); // min. Zeit zwischen 2 Nachrichten
 	return returnVal;
 }
 
 /**
- * Reads data to a Buffer buf with the length "length" from the serial port.
- * @param 	buf: buffer for incoming data
- * 			lentgh: number of bytes
+ * This Method reads the packet and switches the Status
+ * @Status 1: Status is STOP
+ * 		   2: Status is DATA
+ * 		   3: Status is ACK (For Reply that Machine 2 is ready)
  */
 int Serial::read_serial(struct packet p) {
 #ifdef BAND_1
@@ -208,7 +196,6 @@ int Serial::read_serial(struct packet p) {
 		if (returnV < 0) {
 			perror("read failed");
 		}
-//		printPacket(&p);
 	}
 	/*
 	 * 1= E-Stop 2=Data 3=Ack
@@ -220,27 +207,26 @@ int Serial::read_serial(struct packet p) {
 	case (2):
 
 		if (!(con->pukArr[0].pukIdentifier == -1)) {
-			/write_serial_ack(2);
 		}else{
 			con->pukArr[0].pukIdentifier = p.pukId;
 			con->pukArr[0].height1 = p.height1;
 			(p.type == 1)? con->pukArr[0].type = tall:(p.type == 2)? con->pukArr[0].type = withHole : con->pukArr[0].type = withMetal;
-			write_serial_ack(1);
+			write_serial_ack();
 			con->startConveyer();
 		}
 		break;
 	case (3):
 			if(p.acktype == 1){
-				cout << "will ack loeschen" << endl;
 				con->ack = false;
 			}
-//			else if (p.acktype == 2 && MachineState::getInstance()->turnAround){
-//				thread::Timer::getInstance()->turnaroundTimer = TURN_TIME;
-//			}
 			break;
 	}
 	return returnV;
 }
+/**
+ * This Method displays the packet up to the console
+ *
+ */
 
 void Serial::printPacket(struct packet* p) {
 

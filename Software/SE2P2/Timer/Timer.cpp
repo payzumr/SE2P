@@ -13,6 +13,8 @@
 
 using namespace thread;
 
+#define TIMERCNT(a) (a!=-1)?a-=1:; // ??
+
 Mutex* Timer::Timer_mutex = new Mutex();
 Timer* Timer::instance = NULL;
 
@@ -45,6 +47,21 @@ Timer::~Timer() {
 	delete instance;
 	instance = NULL;
 }
+Timer* Timer::getInstance() {
+
+	Timer_mutex->lock();
+	if (instance == NULL) {
+		// Zugriffsrechte fuer den Zugriff auf die HW holen
+		if (-1 == ThreadCtl(_NTO_TCTL_IO, 0)) {
+			perror("ThreadCtl access failed\n");
+			return NULL;
+		}
+		instance = new Timer();
+	}
+	Timer_mutex->unlock();
+	return instance;
+
+}
 
 void Timer::execute(void* args) {
 	MachineState* Mst = MachineState::getInstance();
@@ -59,7 +76,7 @@ void Timer::execute(void* args) {
 			perror("SensorCtrl: MsgReceivePulse");
 			exit(EXIT_FAILURE);
 		}
-		testzeit += 1;
+		testzeit += 1; // Nur für die Initialisierung??
 
 		if (Mst->running) {
 			countDownTimer();
@@ -101,7 +118,7 @@ void Timer::countDownTimer() {
 			timerArr[i] -= 1;
 		}
 		if (timerArr[i] == 0) {
-			printf("Timeout: Fehlerzustand Puk! Nr: %d\n", i);
+			cout << "Timeout: Fehlerzustand Puk! Nr: " << endl;
 #ifdef BAND_1
 			Controller1* control = Controller1::getInstance();
 #endif
@@ -117,7 +134,7 @@ void Timer::countDownTimer() {
 		slideTimer -= 1;
 	}
 	if (slideTimer == 0) {
-		printf("Timeout: Fehlerzustand Rutsche voll!\n");
+		cout << "Timeout: Fehlerzustand Rutsche voll" << endl;
 #ifdef BAND_1
 		Controller1::getInstance()->errorFound();
 #endif
@@ -154,21 +171,6 @@ void Timer::countDownTimer() {
 	}
 }
 
-Timer* Timer::getInstance() {
-
-	Timer_mutex->lock();
-	if (instance == NULL) {
-		// Zugriffsrechte fuer den Zugriff auf die HW holen
-		if (-1 == ThreadCtl(_NTO_TCTL_IO, 0)) {
-			perror("ThreadCtl access failed\n");
-			return NULL;
-		}
-		instance = new Timer();
-	}
-	Timer_mutex->unlock();
-	return instance;
-
-}
 void Timer::setTimer(int timer, int value) {
 	timerArr[timer] = value;
 }
@@ -178,16 +180,14 @@ void Timer::resetTimer() {
 	}
 	slideTimer = -1;
 	turnaroundTimer = -1;
+
+	//Endtimer auch reseten?
 }
 
 void Timer::addSlowTime(int puk) {
-	MachineState* mach = MachineState::getInstance();
 	for (int i = 0; i < N_TIMER; i++) {
 		if (i != puk && timerArr[i] != -1) {
-#ifdef DEBUG_TIMER
-			printf("slowtimeadd\n");
-#endif
-			timerArr[i] += mach->slowTimeAdd;
+			timerArr[i] += MachineState::getInstance()->slowTimeAdd;
 		}
 	}
 }

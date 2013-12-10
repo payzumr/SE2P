@@ -18,10 +18,10 @@ Mutex* HALAktorik::HALmutex = new Mutex();
 HALAktorik* HALAktorik::instance = NULL;
 
 HALAktorik::HALAktorik() {
-	// Initialisierung der Digitalen IO Karte
-	out8(DIO_BASE + DIO_OFFS_CTRL, 0x8A);
-	out8(DIO_BASE + DIO_OFFS_A, 0x00);
-	out8(DIO_BASE + DIO_OFFS_C, 0x00);
+//	// Initialisierung der Digitalen IO Karte
+//	out8(DIO_BASE + DIO_OFFS_CTRL, 0x8A);
+//	out8(DIO_BASE + DIO_OFFS_A, 0x00);
+//	out8(DIO_BASE + DIO_OFFS_C, 0x00);
 }
 
 HALAktorik::~HALAktorik() {
