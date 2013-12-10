@@ -57,8 +57,8 @@
 /**
  * Defines to able or disable Debug Messages
  */
-#define DEBUG_MESSAGE
-#define DEBUG_TIMER
+//#define DEBUG_MESSAGE
+//#define DEBUG_TIMER
 
 
 //Serial

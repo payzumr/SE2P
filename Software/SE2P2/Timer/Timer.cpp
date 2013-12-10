@@ -157,7 +157,7 @@ void Timer::countDownTimer() {
 	}
 
 	if (endTimer == 0) {
-		cout << "Fehler im EndTimer" << endl;
+		//cout << "Fehler im EndTimer" << endl;
 #ifdef BAND_1
 		Controller1::getInstance()->reset();
 #endif
