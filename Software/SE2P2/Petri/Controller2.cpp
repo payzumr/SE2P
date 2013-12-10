@@ -84,6 +84,7 @@ void Controller2::entryStartSens() {
 #endif
 		errorFound();
 	}
+	printPlace(pukArr[PUK].place);
 }
 void Controller2::exitStartSens() {
 	if (!MachineS->turnAround) {
@@ -91,6 +92,7 @@ void Controller2::exitStartSens() {
 		pukArr[PUK].place = CONVEYORBEGINNING;
 		timerC2->setTimer(PUK, MachineS->entryToHeight_f);
 	}
+	printPlace(pukArr[PUK].place);
 }
 
 void Controller2::entryHeightMessure() {
@@ -125,10 +127,11 @@ void Controller2::entryHeightMessure() {
 #endif
 			errorFound();
 		}
-		printPuk(PUK);
+//		printPuk(PUK);
 	} else {
 		//ignore
 	}
+	printPlace(pukArr[PUK].place);
 }
 void Controller2::exitHeightMessure() {
 	if (!MachineS->goingBack) {
@@ -138,6 +141,7 @@ void Controller2::exitHeightMessure() {
 	} else {
 		//ignore
 	}
+	printPlace(pukArr[PUK].place);
 }
 void Controller2::metalFound() {
 	if (!MachineS->isMetal) { //????????? Wieso fragst du metall ab wenn du es nirgendswo anders gebrauchst?
@@ -167,6 +171,7 @@ void Controller2::metalFound() {
 		//aussortieren;
         
 	}
+	printPlace(pukArr[PUK].place);
 }
 void Controller2::entrySlide() {
 	if (MachineS->sortOut) {
@@ -179,11 +184,13 @@ void Controller2::entrySlide() {
 #endif
 		errorFound();
 	}
+	printPlace(pukArr[PUK].place);
     
 }
 void Controller2::exitSlide() {
 	timerC2->slideTimer = -1;
 	stopConveyer();
+	printPlace(pukArr[PUK].place);
 }
 void Controller2::entrySwitch() {
 	timerC2->setTimer(PUK, -1);
@@ -210,6 +217,7 @@ void Controller2::entrySwitch() {
 		usleep(100000);
 		HALAktorik::getInstance()->switchOnOff(OFF);
 	}
+	printPlace(pukArr[PUK].place);
 }
 void Controller2::exitSwitch() {
 	if (!MachineS->sortOut) {
@@ -227,6 +235,7 @@ void Controller2::exitSwitch() {
 	} else {
 		//ignore
 	}
+	printPlace(pukArr[PUK].place);
 }
 void Controller2::entryFinishSens() {
 	timerC2->setTimer(PUK, -1);
@@ -241,10 +250,12 @@ void Controller2::entryFinishSens() {
 #endif
 		errorFound();
 	}
+	printPlace(pukArr[PUK].place);
 }
 
 void Controller2::exitFinishSens() {
 	resetPuk(PUK);
+	printPlace(pukArr[PUK].place);
 }
 
 //tasten
@@ -300,4 +311,74 @@ void Controller2::resetPuk(int puk) {
 	MachineS->isMetal = false;
 	MachineS->goingBack = false;
 	MachineS->turnAround = false;
+}
+
+void Controller2::printPlace(int place) {
+	switch (place) {
+	case (0):
+		cout << "ConveyerEmpty" << endl;
+		break;
+	case (1):
+		cout << "ConveyorBeginnind" << endl;
+		break;
+	case (2):
+		cout << "InHeightMeasure" << endl;
+		break;
+	case (3):
+		cout << "HolePukHM" << endl;
+		break;
+	case (4):
+		cout << "NonHolePukHM" << endl;
+		break;
+	case (5):
+		cout << "FlatPukHM" << endl;
+		break;
+	case (6):
+		cout << "InSwitchNonMetal" << endl;
+		break;
+	case (7):
+		cout << "inSwitchNonHoleMetal" << endl;
+		break;
+	case (8):
+		cout << "StartExitPartHole" << endl;
+		break;
+	case (9):
+		cout << "StartExitNonPartHoleMetal" << endl;
+		break;
+	case (10):
+		cout << "Turnplace 10" << endl;
+		break;
+	case (11):
+		cout << "Exit" << endl;
+		break;
+	case (12):
+		cout << "WaitForConveyor2" << endl;
+		break;
+	case (13):
+		cout << "SlidePlace" << endl;
+		break;
+	case (14):
+		cout << "HeigthMEasure" << endl;
+		break;
+	case (15):
+		cout << "InSwitchHole" << endl;
+		break;
+	case (16):
+		cout << "MetallNotOk" << endl;
+		break;
+	case (17):
+		cout << "ErrorMarker" << endl;
+		break;
+	case (18):
+		cout << "StartExitPart" << endl;
+		break;
+	case (19):
+		cout << "ConveyorOccupied" << endl;
+		break;
+	case (20):
+		cout << "InSwitchHole" << endl;
+		break;
+	default:
+		cout << "No Place found" << endl;
+	}
 }
