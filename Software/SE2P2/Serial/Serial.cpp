@@ -16,6 +16,7 @@
 #include <unistd.h>
 #include "Timer.h"
 #include "Controller2.h"
+#include "HALAktorik.h"
 
 using namespace hal;
 
@@ -26,19 +27,19 @@ Serial* Serial::instance = NULL;
 
 Serial::Serial() {
 
-	 fd = open_serial("dev/Ser1");
-	 struct termios ts;
-	 tcflush(fd, TCIOFLUSH);
-	 tcgetattr(fd, &ts);
-	 cfsetispeed(&ts, B19200); // input baut rate
-	 cfsetospeed(&ts, B19200); // output baut rate
-	 ts.c_cflag &= ~CSIZE; // clear number of data bits
-	 ts.c_cflag &= ~CSTOPB;
-	 ts.c_cflag &= ~PARENB; // clear number of data bits
-	 ts.c_cflag |= CS8; // clear number of data bits
-	 ts.c_cflag |= CREAD;
-	 ts.c_cflag |= CLOCAL;
-	 tcsetattr(fd, TCSANOW, &ts); // TCSANOW : The change is made immediately.
+	fd = open_serial("dev/Ser1");
+	struct termios ts;
+	tcflush(fd, TCIOFLUSH);
+	tcgetattr(fd, &ts);
+	cfsetispeed(&ts, B19200); // input baut rate
+	cfsetospeed(&ts, B19200); // output baut rate
+	ts.c_cflag &= ~CSIZE; // clear number of data bits
+	ts.c_cflag &= ~CSTOPB;
+	ts.c_cflag &= ~PARENB; // clear number of data bits
+	ts.c_cflag |= CS8; // clear number of data bits
+	ts.c_cflag |= CREAD;
+	ts.c_cflag |= CLOCAL;
+	tcsetattr(fd, TCSANOW, &ts); // TCSANOW : The change is made immediately.
 
 }
 
@@ -111,7 +112,7 @@ void Serial::close_serial() {
  */
 
 ssize_t Serial::write_serial_puk(struct Controller1::puk* puk) {
-	cout << " send puk"  << endl;
+	cout << " send puk" << endl;
 	ssize_t returnV;
 	struct packet p;
 	p.pukId = puk->pukIdentifier;
@@ -153,7 +154,7 @@ ssize_t Serial::write_serial_stop() {
  */
 
 ssize_t Serial::write_serial_ack() {
-	cout << " send ack "  << endl;
+	cout << " send ack " << endl;
 	ssize_t returnVal;
 	struct packet p;
 
@@ -162,7 +163,6 @@ ssize_t Serial::write_serial_ack() {
 	p.type = 0;
 	p.pukId = 0;
 	p.acktype = 1;
-
 
 	returnVal = write(fd, &p, sizeof(p));
 	if (returnVal < 0) {
@@ -206,20 +206,22 @@ int Serial::read_serial(struct packet p) {
 		break;
 	case (2):
 
-		if (!(con->pukArr[0].pukIdentifier == -1)) {
-		}else{
+		if (con->pukArr[0].pukIdentifier == -1 && ! con->errorFlag) {
 			con->pukArr[0].pukIdentifier = p.pukId;
 			con->pukArr[0].height1 = p.height1;
-			(p.type == 1)? con->pukArr[0].type = tall:(p.type == 2)? con->pukArr[0].type = withHole : con->pukArr[0].type = withMetal;
+			(p.type == 1) ? con->pukArr[0].type = tall
+					: (p.type == 2) ? con->pukArr[0].type = withHole
+							: con->pukArr[0].type = withMetal;
 			write_serial_ack();
+			HALAktorik::getInstance()->engine_rigth();
 			con->startConveyer();
 		}
 		break;
 	case (3):
-			if(p.acktype == 1){
-				con->ack = false;
-			}
-			break;
+		if (p.acktype == 1) {
+			con->ack = false;
+		}
+		break;
 	}
 	return returnV;
 }
@@ -230,7 +232,7 @@ int Serial::read_serial(struct packet p) {
 
 void Serial::printPacket(struct packet* p) {
 
-	printf("Status: %d\n PukId: %d\n Puktype: %d\n Hoehe: %d\n ACKtype: %d\n", p->status,
-			p->pukId, p->type, p->height1, p->acktype);
+	printf("Status: %d\n PukId: %d\n Puktype: %d\n Hoehe: %d\n ACKtype: %d\n",
+			p->status, p->pukId, p->type, p->height1, p->acktype);
 }
 
