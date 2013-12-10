@@ -20,6 +20,7 @@
 #include "Timer.h"
 #include "Serial.h"
 #include "LightControl.h"
+#include "HALAktorik.h"
 
 #include "Thread.h"
 #define TEST_TIME 25
@@ -40,25 +41,27 @@ int main(int argc, char *argv[]) {
 	out8(DIO_BASE + DIO_OFFS_A, 0x00);
 	out8(DIO_BASE + DIO_OFFS_C, 0x00);
 
+	HALAktorik::getInstance()->resetAktorik();
+
 	// Zugriffsrechte fuer den Zugriff auf die HW holen
 	if (-1 == ThreadCtl(_NTO_TCTL_IO, 0)) {
 		perror("ThreadCtl access failed\n");
 		return -1;
 	}
+/*
 
-	/*
 	 //Neues Objekt der Klasse Thread anlegen
 	 Thread thread;
 	 //Thread starten (void execute() wird aufgerufen)
 	 thread.start(NULL);
 
-	 string quit;
+	 string exit;
 	 do {
-	 cin >> quit;
-	 } while (quit != "q");
+	 cin >> exit;
+	 } while (exit != "q");
 	 thread.stop();
 	 thread.join();
-	 */
+*/
 
 	/*
 	 * Sensorik und Initalisation starten für den Initialisierungslauf

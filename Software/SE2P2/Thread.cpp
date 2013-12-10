@@ -57,6 +57,7 @@ void Thread::execute(void *arg) {
 
 	//hal->engine_rigth();
 	while (!isStopped()) {
+//		test.componentTest(hal);
 //		cout << "5" << endl;
 //		sleep(1);
 //		cout << "4" << endl;
@@ -68,9 +69,7 @@ void Thread::execute(void *arg) {
 //
 //		cout << "wait 10 sec" << endl;
 		sleep(10);
-
 	}
-
 }
 
 }
