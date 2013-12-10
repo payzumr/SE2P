@@ -213,6 +213,7 @@ int Serial::read_serial(struct packet p) {
 					: (p.type == 2) ? con->pukArr[0].type = withHole
 							: con->pukArr[0].type = withMetal;
 			write_serial_ack();
+			MachineState::getInstance()->machineIsOn = true;
 			HALAktorik::getInstance()->engine_rigth();
 			con->startConveyer();
 		}
