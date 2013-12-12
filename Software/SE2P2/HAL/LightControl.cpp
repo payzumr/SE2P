@@ -50,7 +50,6 @@ void LightControl::execute(void* arg) {
 
 		} else if (machineS->redFast) {
 			flashRedFast();
-
 		} else if (machineS->redSlow) {
 			flashRedSlow();
 		} else if (machineS->yellow) {
@@ -58,7 +57,7 @@ void LightControl::execute(void* arg) {
 		} else if (machineS->green) {
 			flashGreenIni();
 		} else {
-			usleep(10000);
+			usleep(100000);
 		}
 	}
 }
@@ -101,8 +100,6 @@ void LightControl::flashRedFast() {
  * This Method flashes the green Ligth ( 1 Hz )
  *
  */
-
-
 
 void LightControl::flashGreenIni() {
 	HALAktorik::getInstance()->greenLigths(ON);

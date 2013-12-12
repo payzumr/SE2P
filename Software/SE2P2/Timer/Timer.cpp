@@ -13,7 +13,7 @@
 
 using namespace thread;
 
-#define TIMERCNT(a) (a!=-1)?a-=1:; // ??
+#define TIMERCNT(a) (a!=-1)?a-=1; // ??
 
 Mutex* Timer::Timer_mutex = new Mutex();
 Timer* Timer::instance = NULL;

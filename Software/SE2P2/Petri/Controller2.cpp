@@ -26,12 +26,10 @@ thread::Timer* timerC2 = thread::Timer::getInstance();
 Controller2::Controller2() {
 	ack = true;
 }
-
 Controller2::~Controller2() {
 	delete instance;
 	instance = NULL;
 }
-
 Controller2* Controller2::getInstance() {
 	controller2_mutex->lock();
 	if (instance == NULL) {

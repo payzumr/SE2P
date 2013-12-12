@@ -176,15 +176,14 @@ void Dispatcher::setSensorChanges(int code, int val) {
 #ifdef DEBUG_MESSAGE
 				cout << "Stoptaste gedrueckt" << endl;
 #endif
-				HALAktorik::getInstance()->resetAktorik();
 				controller->reset();
 				MState->machineIsOn = false;
+				HALAktorik::getInstance()->resetAktorik();
 			}
 			if (!(val & E_STOP)) {
 #ifdef DEBUG_MESSAGE
 				cout << "E-stop gedrueckt" << endl;
 #endif
-
 				controller->EStopPressed();
 				e_stop = true;
 			}
@@ -207,6 +206,8 @@ void Dispatcher::setSensorChanges(int code, int val) {
 #endif
 			if (MState->quittiert) {
 				controller->reset();
+				controller->errorFlag = false;
+				MState->quittiert = false;
 			} else {
 				MachineState::getInstance()->stopLigth = true;
 				Timer::getInstance()->quittiertTimer = QUITTIERT_TIME;
@@ -231,11 +232,11 @@ void Dispatcher::setSensorChanges(int code, int val) {
 	} else if (MState->machineIsOn && (code == BUTTONS)) {
 		if (!(val & STOP)) {
 #ifdef DEBUG_MESSAGE
-			cout << "Stoptaste gedrueckt" << endl;
 #endif
-			HALAktorik::getInstance()->resetAktorik();
-			controller->reset();
+			cout << "Stoptaste gedrueckt" << endl;
 			MState->machineIsOn = false;
+			controller->reset();
+			HALAktorik::getInstance()->resetAktorik();
 		}
 	}
 #ifdef DEBUG_TIMER
