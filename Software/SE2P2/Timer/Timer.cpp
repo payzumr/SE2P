@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <signal.h>
 #include "HALAktorik.h"
+#include "Controller2.h"
 
 using namespace thread;
 
@@ -136,7 +137,7 @@ void Timer::countDownTimer() {
 	if (slideTimer == 0) {
 		cout << "Timeout: Fehlerzustand Rutsche voll" << endl;
 #ifdef BAND_1
-		Controller1::getInstance()->errorFound();
+		Controller1::getInstance()->errorSlide();
 #endif
 #ifdef BAND_2
 		Controller2::getInstance()->errorFound();

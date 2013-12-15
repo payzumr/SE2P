@@ -198,6 +198,20 @@ void Dispatcher::setSensorChanges(int code, int val) {
 			MState->machineIsOn = true;
 		}
 	} else if (MState->machineIsOn && controller->errorFlag && !e_stop && (code
+			== SENSORS)) {
+		if ((val & BIT_6) && MState->sensSlip) {
+#ifdef DEBUG_MESSAGE
+			cout << "Rutsche nicht mehr voll" << endl;
+#endif
+			MState->sensSlip = false;
+			MState->stopLigth = true;
+			controller->startConveyer();
+			HALAktorik::getInstance()->greenLigths(ON);
+			controller->errorFlag = false;
+			controller->exitSlide();
+		}
+
+	} else if (MState->machineIsOn && controller->errorFlag && !e_stop && (code
 			== BUTTONS)) {
 
 		if ((val & RESET)) {
@@ -239,8 +253,8 @@ void Dispatcher::setSensorChanges(int code, int val) {
 			HALAktorik::getInstance()->resetAktorik();
 		}
 	}
+	//	 Timer::getInstance()->showTimeArray();
 #ifdef DEBUG_TIMER
 	//printf("Maschine ist : %d\n", MState->machineIsOn);
-	// Timer::getInstance()->showTimeArray();
 #endif
 }

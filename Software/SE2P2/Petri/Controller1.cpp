@@ -77,8 +77,11 @@ void Controller1::reset() {
 }
 
 void Controller1::entryStartSens() {
+
+	static int f = 0;
+	cout << "Werkstück Nr.: " << f << endl;
+	f++;
 	timer->endTimer = -1;
-	cout << "pukpointer " << pukPointer << endl;
 	if (pukPointer == N_PUKS) {
 
 #ifdef DEBUG_MESSAGE
@@ -136,7 +139,7 @@ void Controller1::entryHeightMessure() {
 			pukArr[puk].place = HOLEPUKHM;
 		}
 #endif
-		if (Mstat->height >= 3200 && Mstat->height <= 3800) {
+		if (Mstat->height >= 3200 && Mstat->height <= 4200) {
 			pukArr[puk].place = HOLEPUKHM;
 			pukArr[puk].type = withHole;
 			pukArr[puk].height1 = Mstat->height;
@@ -204,7 +207,6 @@ void Controller1::entrySlide() {
 		}
 	}
 	if (!errorFlag) {
-		cout << "puknummenr: " << puk << endl;
 		resetPuk(puk);
 		timer->slideTimer = SLIDE_TIME;
 	} else {
@@ -416,6 +418,15 @@ void Controller1::errorFound() {
 	init();
 	//ordentliche Fehlerausgaben
 	cout << "Fehler Aufgetreten! Band muss abgeraumt werden!" << endl;
+}
+
+void Controller1::errorSlide(){
+	stopConveyer();
+	HALa->greenLigths(OFF);
+	HALa->yellowLigths(OFF);
+	MachineState::getInstance()->redSlow = true;
+	errorFlag = true;
+
 }
 
 void Controller1::printPuk(int puk) {

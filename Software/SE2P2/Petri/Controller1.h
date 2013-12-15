@@ -75,6 +75,8 @@ public:
 	void startConveyer();
 	void printPuk(int puk);
 	void printPlace(int place);
+	void errorSlide();
+
 };
 
 #endif /* CONTROLLER1_H_ */
