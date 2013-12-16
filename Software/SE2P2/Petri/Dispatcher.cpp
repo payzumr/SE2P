@@ -242,6 +242,7 @@ void Dispatcher::setSensorChanges(int code, int val) {
 			cout << "E-stop nicht mehr gedrueckt" << endl;
 #endif
 			e_stop = false;
+			Serial::getInstance()->write_serial_stop();
 		}
 	} else if (MState->machineIsOn && (code == BUTTONS)) {
 		if (!(val & STOP)) {

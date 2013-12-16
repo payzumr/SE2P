@@ -56,7 +56,7 @@ void Log::StopLog(){
 
 void Log::execute(void* arg){
 
-	while (1) {
+	while (!isStopped()) {
 			char charIn = getchar();
 			if(charIn == 'l' && LogRunning == false){
 				LogRunning = true;
@@ -67,10 +67,7 @@ void Log::execute(void* arg){
 				StopLog();
 				LogRunning = false;
 			}
-
-
 	}
-
 }
 
 void Log::shutdown(){
