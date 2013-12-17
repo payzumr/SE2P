@@ -9,14 +9,15 @@
  */
 
 #include "Serial.h"
+#include "Timer.h"
 #include <fcntl.h>
 #include <termios.h>
-#include <string>
-#include <pthread.h>
-#include <unistd.h>
-#include "Timer.h"
+//#include <string>
+//#include <pthread.h>
+//#include <unistd.h>
 #include "Controller2.h"
 #include "HALAktorik.h"
+#include "Dispatcher.h"
 
 using namespace hal;
 
@@ -202,17 +203,19 @@ int Serial::read_serial(struct packet p) {
 	 */
 	switch (p.status) {
 	case (1):
-		MsgSendPulse(i_coid, SIGEV_PULSE_PRIO_INHERIT, BUTTONS, ESTOPBUTTON);
+		con->EStopPressed();
+//		Dispatcher::getInstance()->e_stop = true;
 		break;
 	case (2):
 
-		if (con->pukArr[0].pukIdentifier == -1 && ! con->errorFlag) {
+		if (con->pukArr[0].pukIdentifier == -1 && !con->errorFlag) {
 			con->pukArr[0].pukIdentifier = p.pukId;
 			con->pukArr[0].height1 = p.height1;
 			(p.type == 1) ? con->pukArr[0].type = tall
 					: (p.type == 2) ? con->pukArr[0].type = withHole
 							: con->pukArr[0].type = withMetal;
 			write_serial_ack();
+			//Timer
 			MachineState::getInstance()->machineIsOn = true;
 			HALAktorik::getInstance()->engine_rigth();
 			con->startConveyer();

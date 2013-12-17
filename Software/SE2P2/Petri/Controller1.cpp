@@ -357,7 +357,7 @@ void Controller1::entryFinishSens() {
 		printPlace(pukArr[puk].place);
 	} else {
 		errorFound();
-		cout << "Error in entry Finsh Sens" << endl;
+		cout << "Error in entry Finsh Sens-------------------" << endl;
 	}
 }
 void Controller1::exitFinishSens() {
@@ -366,8 +366,8 @@ void Controller1::exitFinishSens() {
 		while (pukArr[puk].place != WAITFORCONVEYOR2 && puk <= N_PUKS) {
 			puk++;
 			if (puk == N_PUKS) {
-				errorFlag = true;
-				cout << "Error in entry Finsh Sens" << endl;
+				//errorFlag = true;
+				cout << "Error in exit Finsh Sens" << endl;
 			}
 		}
 		if (!errorFlag) {
@@ -399,7 +399,6 @@ void Controller1::handover(int puk) {
 }
 //tasten
 void Controller1::EStopPressed() {
-	Serial::getInstance()->write_serial_stop();
 	stopConveyer();
 	errorFlag = true;
 	MachineState::getInstance()->redFast = true;

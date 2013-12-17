@@ -53,6 +53,7 @@ public:
 	int switchTimer;
 	int slowTimer;
 	int endTimer;
+	int handoverTimer;
 
 	int quittiertTimer;
 

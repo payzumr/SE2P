@@ -183,7 +183,6 @@ void Controller2::metalFound() {
 }
 void Controller2::entrySlide() {
 	if (MachineS->sortOut) {
-		resetPuk(PUK);
 		timerC2->slideTimer = SLIDE_TIME;
 		MachineS->sortOut = false;
 	} else {
@@ -196,6 +195,7 @@ void Controller2::entrySlide() {
 }
 void Controller2::exitSlide() {
 	timerC2->slideTimer = -1;
+	resetPuk(PUK);
 	stopConveyer();
 	printPlace(pukArr[PUK].place);
 }
@@ -270,7 +270,6 @@ void Controller2::exitFinishSens() {
 
 //tasten
 void Controller2::EStopPressed() {
-	Serial::getInstance()->write_serial_stop();
 	stopConveyer();
 	errorFlag = true;
 	MachineState::getInstance()->redFast = true;
@@ -296,7 +295,8 @@ void Controller2::printPuk(int puk) {
 	printf("Hohe1: %d\n", pukArr[puk].height1);
 	printf("Hohe2: %d\n", pukArr[puk].height2);
 	printf("Typ: ");
-	(pukArr[puk].type == withHole) ? printf("with Hole\n") :(pukArr[puk].type == tall)?  printf("tall\n"):printf("with Metal\n") ;
+	(pukArr[puk].type == withHole) ? printf("with Hole\n") : (pukArr[puk].type
+			== tall) ? printf("tall\n") : printf("with Metal\n");
 }
 
 void Controller2::stopConveyer() {

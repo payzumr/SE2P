@@ -29,7 +29,7 @@ EXTRA_SRCVPATH+=$(PROJECT_ROOT) $(PROJECT_ROOT)/HAL  \
 	$(PROJECT_ROOT)/Timer $(PROJECT_ROOT)/Petri
 
 #===== CCFLAGS - add the flags to the C compiler command line. 
-CCFLAGS+=-DBAND_1
+CCFLAGS+=-DBAND_1 -DDEBUG_MESSAGE
 
 include $(MKFILES_ROOT)/qmacros.mk
 ifndef QNX_INTERNAL
