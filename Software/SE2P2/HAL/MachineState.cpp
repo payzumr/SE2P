@@ -43,6 +43,7 @@ void MachineState::machineStateReset(){
 	switchOpen = false;
 	initRound = false;
 	quittiert = false;
+	rutscheVoll = false;
 
 	bandBelegt = false;
 	goingBack = false;

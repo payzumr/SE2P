@@ -103,7 +103,7 @@ void Timer::execute(void* args) {
 			quittiertTimer -= 1;
 		}
 		if (quittiertTimer == 0) {
-			HALAktorik::getInstance()->redLigths(ON);
+
 			Mst->quittiert = true;
 			quittiertTimer = -1;
 		}

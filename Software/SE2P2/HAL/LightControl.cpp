@@ -57,7 +57,7 @@ void LightControl::execute(void* arg) {
 		} else if (machineS->green) {
 			flashGreenIni();
 		} else {
-			usleep(100000);
+			usleep(1000);
 		}
 	}
 }

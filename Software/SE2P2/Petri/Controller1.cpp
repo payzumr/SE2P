@@ -264,7 +264,7 @@ void Controller1::entrySwitch() {
 			printPlace(pukArr[puk].place);
 		} else if (pukArr[puk].place == FLATPUKHM) {
 			HALa->switchOnOff(ON);
-			usleep(80000);
+			usleep(50000);
 			HALa->switchOnOff(OFF);
 		}
 
@@ -423,8 +423,9 @@ void Controller1::errorSlide(){
 	stopConveyer();
 	HALa->greenLigths(OFF);
 	HALa->yellowLigths(OFF);
-	MachineState::getInstance()->redSlow = true;
+	MachineState::getInstance()->redFast = true;
 	errorFlag = true;
+	MachineState::getInstance()->rutscheVoll = true;
 
 }
 

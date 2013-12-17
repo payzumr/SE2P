@@ -94,7 +94,7 @@
 //Timer
 
 #define SLIDE_TIME 1000
-#define TURN_TIME 5000
+#define TURN_TIME 10000
 #define SWITCH_OPEN_TIME 1000
 #define END_TIMER 1500
 #define QUITTIERT_TIME 500;

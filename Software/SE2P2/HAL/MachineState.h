@@ -57,6 +57,8 @@ public:
 	bool green;
 	bool stopLigth;
 
+	bool rutscheVoll;
+
 	//times
 	int entryToHeight_f;
 	int heightToSwitch_f;
