@@ -28,6 +28,7 @@ Timer::Timer() {
 	turnaroundTimer = -1;
 	endTimer = -1;
 	quittiertTimer = -1;
+	handoverTimer = -1;
 
 	channelID = ChannelCreate(0);
 	if (channelID == -1) {

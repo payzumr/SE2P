@@ -11,6 +11,7 @@
 #include "Dispatcher.h"
 #include "HALAktorik.h"
 #include "Controller2.h"
+#include "Serial.h"
 
 using namespace thread;
 using namespace hal;
@@ -22,6 +23,7 @@ MachineState* MState = MachineState::getInstance();
 
 Dispatcher::Dispatcher() {
 	signalChid = HALSensorik::getInstance()->getSignalChid();
+	e_stop = false;
 }
 
 Dispatcher::~Dispatcher() {
@@ -184,6 +186,7 @@ void Dispatcher::setSensorChanges(int code, int val) {
 #ifdef DEBUG_MESSAGE
 				cout << "E-stop gedrueckt" << endl;
 #endif
+				Serial::getInstance()->write_serial_stop();
 				controller->EStopPressed();
 				e_stop = true;
 			}
@@ -233,6 +236,7 @@ void Dispatcher::setSensorChanges(int code, int val) {
 #ifdef DEBUG_MESSAGE
 			cout << "E-stop gedrueckt" << endl;
 #endif
+			Serial::getInstance()->write_serial_stop();
 			controller->EStopPressed();
 			e_stop = true;
 		}
@@ -242,7 +246,7 @@ void Dispatcher::setSensorChanges(int code, int val) {
 			cout << "E-stop nicht mehr gedrueckt" << endl;
 #endif
 			e_stop = false;
-			Serial::getInstance()->write_serial_stop();
+			//Serial::getInstance()->write_serial_stop();
 		}
 	} else if (MState->machineIsOn && (code == BUTTONS)) {
 		if (!(val & STOP)) {

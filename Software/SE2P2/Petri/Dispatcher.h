@@ -28,7 +28,6 @@ private:
 
 	int signalChid;
 
-	bool e_stop;
 
 	void setSensorChanges(int code, int val);
 	Dispatcher();
@@ -39,6 +38,7 @@ public:
 	//testwert:
 	long testzeitD;
 
+	bool e_stop;
 protected:
 	virtual void execute(void* arg);
 	virtual void shutdown();

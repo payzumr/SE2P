@@ -98,5 +98,6 @@
 #define SWITCH_OPEN_TIME 1000
 #define END_TIMER 1500
 #define QUITTIERT_TIME 500;
+#define HANDOVER_TIME 3000;
 
 #endif /* ADDRESSES_H_ */
