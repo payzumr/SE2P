@@ -157,6 +157,7 @@ void Dispatcher::setSensorChanges(int code, int val) {
 #ifdef DEBUG_MESSAGE
 				cout << "Rutsche nicht mehr voll" << endl;
 #endif
+
 				MState->sensSlip = false;
 				controller->exitSlide();
 			}
@@ -200,21 +201,36 @@ void Dispatcher::setSensorChanges(int code, int val) {
 			HALAktorik::getInstance()->greenLigths(ON);
 			MState->machineIsOn = true;
 		}
-	} else if (MState->machineIsOn && controller->errorFlag && !e_stop && (code
+	} else if (MState->machineIsOn && controller->errorFlag && MState->rutscheVoll && !e_stop && (code
 			== SENSORS)) {
 		if ((val & BIT_6) && MState->sensSlip) {
 #ifdef DEBUG_MESSAGE
 			cout << "Rutsche nicht mehr voll" << endl;
 #endif
 			MState->sensSlip = false;
-			MState->stopLigth = true;
-			controller->startConveyer();
-			HALAktorik::getInstance()->greenLigths(ON);
-			controller->errorFlag = false;
-			controller->exitSlide();
+			MState->redFast = false;
+			MState->redSlow = true;
+			MState->rutscheVoll = false;
+//			controller->startConveyer();
+//			HALAktorik::getInstance()->greenLigths(ON);
 		}
 
-	} else if (MState->machineIsOn && controller->errorFlag && !e_stop && (code
+	}else if (MState->machineIsOn && !MState->sensSlip && !MState->redFast && !e_stop && (code
+			== BUTTONS)) {
+
+		if ((val & RESET)) {
+#ifdef DEBUG_MESSAGE
+			cout << "Resettaste gedrueckt" << endl;
+#endif
+
+				printf("Huhu");
+				MachineState::getInstance()->stopLigth = true;
+				HALAktorik::getInstance()->greenLigths(ON);
+			    controller->errorFlag = false;
+				controller->startConveyer();
+				controller->exitSlide();
+		}
+	}else if (MState->machineIsOn && controller->errorFlag && !e_stop && (code
 			== BUTTONS)) {
 
 		if ((val & RESET)) {
@@ -225,8 +241,12 @@ void Dispatcher::setSensorChanges(int code, int val) {
 				controller->reset();
 				controller->errorFlag = false;
 				MState->quittiert = false;
+
 			} else {
 				MachineState::getInstance()->stopLigth = true;
+				usleep(100000);
+				MState->rutscheVoll = false;
+				HALAktorik::getInstance()->redLigths(ON);
 				Timer::getInstance()->quittiertTimer = QUITTIERT_TIME;
 			}
 		}
